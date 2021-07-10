@@ -6,6 +6,7 @@ import { select, Store } from '@ngrx/store'
 import { MenuService } from 'src/app/services/menu'
 import * as SettingsActions from 'src/app/store/settings/actions'
 import * as Reducers from 'src/app/store/reducers'
+import { EnumsService } from '../../../../services/enums/enums.service'
 
 @Component({
   selector: 'vb-menu-classic-left',
@@ -24,8 +25,13 @@ export class MenuClassicLeftComponent implements OnInit {
   menuData: any[]
   menuDataActivated: any[]
   role: String
-
-  constructor(private menuService: MenuService, private store: Store<any>, private router: Router) {
+  public Standards: any = {}
+  constructor(
+    private menuService: MenuService,
+    private enums: EnumsService,
+    private store: Store<any>,
+    private router: Router,
+  ) {
     this.store.pipe(select(Reducers.getUser)).subscribe(state => {
       this.role = state.role
     })
@@ -43,6 +49,8 @@ export class MenuClassicLeftComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.Standards = this.enums.standards
+    // this.myConf = Standards;
     this.activateMenu(this.router.url)
     this.router.events
       .pipe(filter(event => event instanceof NavigationStart))
@@ -50,7 +58,6 @@ export class MenuClassicLeftComponent implements OnInit {
         this.activateMenu(event.url ? event.url : null)
       })
   }
-
   activateMenu(url: any, menuData = this.menuData) {
     menuData = JSON.parse(JSON.stringify(menuData))
     const pathWithSelection = this.getPath({ url: url }, menuData, (entry: any) => entry, 'url')
@@ -60,7 +67,6 @@ export class MenuClassicLeftComponent implements OnInit {
     }
     this.menuDataActivated = menuData.slice()
   }
-
   getPath(
     element: any,
     source: any,
@@ -92,7 +98,6 @@ export class MenuClassicLeftComponent implements OnInit {
       (found || _.map(path, property))
     )
   }
-
   toggleSettings() {
     this.store.dispatch(
       new SettingsActions.SetStateAction({
@@ -100,7 +105,6 @@ export class MenuClassicLeftComponent implements OnInit {
       }),
     )
   }
-
   onCollapse(value: any) {
     this.store.dispatch(
       new SettingsActions.SetStateAction({
