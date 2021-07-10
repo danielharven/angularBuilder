@@ -19,6 +19,7 @@ export class LayoutMainComponent implements OnInit {
   touchStartLocked: Boolean = false
 
   constructor(private store: Store<any>) {
+    //rxjs
     this.store.pipe(select(Reducers.getSettings)).subscribe(state => {
       this.settings = state
     })

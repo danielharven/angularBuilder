@@ -1,13 +1,292 @@
 {
   "vb": "1.0.0",
-  "timestamp": 1610107454880,
+  "timestamp": 1625911131021,
+  "settings": {
+    "authProvider": "jwt",
+    "logo": "ESAPP",
+    "version": "air",
+    "theme": "default",
+    "locale": "en-US",
+    "isSidebarOpen": false,
+    "isSupportChatOpen": false,
+    "isMobileView": false,
+    "isMobileMenuOpen": false,
+    "isMenuCollapsed": false,
+    "isPreselectedOpen": false,
+    "preselectedVariant": "waves",
+    "menuLayoutType": "left",
+    "routerAnimation": "zoom-fadein",
+    "menuColor": "white",
+    "authPagesColor": "gray",
+    "isAuthTopbar": true,
+    "primaryColor": "#28a745",
+    "leftMenuWidth": 256,
+    "isMenuUnfixed": false,
+    "isMenuShadow": true,
+    "isTopbarFixed": false,
+    "isTopbarSeparated": true,
+    "isGrayTopbar": false,
+    "isContentMaxWidth": true,
+    "isAppMaxWidth": false,
+    "isGrayBackground": false,
+    "isCardShadow": true,
+    "isSquaredBorders": false,
+    "isBorderless": false,
+    "layoutMenu": "classic",
+    "layoutTopbar": "none",
+    "layoutBreadcrumbs": "v1",
+    "layoutFooter": "v1",
+    "flyoutMenuType": "flyout",
+    "flyoutMenuColor": "blue"
+  },
   "config": [
     {
       "key": "__dashboard",
-      "title": "Dashboard",
+      "title": "Dashboards",
       "url": "/dashboard",
-      "icon": "fe fe-home"
+      "icon": "fe fe-home",
+      "expanded": true
+    },
+    {
+      "title": "L&K Management",
+      "url": "/lkm",
+      "icon": "fe fe-book-open",
+      "key": "pxo5b",
+      "expanded": true,
+      "children": [
+        {
+          "title": "Interview Guide",
+          "url": "/lkm/interviews",
+          "key": "h7aad",
+          "expanded": true
+        },
+        {
+          "title": "My Stories",
+          "url": "/lkm/mystories",
+          "key": "rniyi9",
+          "expanded": true
+        },
+        {
+          "title": "Stories of Change",
+          "url": "/lkm/soc",
+          "key": "tx7k6w"
+        }
+      ]
+    },
+    {
+      "title": "Matching Grant Facility",
+      "url": "/mgf",
+      "icon": "fe fe-briefcase",
+      "key": "osk3u",
+      "expanded": true
+    },
+    {
+      "title": "Monitoring and Evaluation",
+      "url": "/me",
+      "icon": "fe fe-activity",
+      "key": "o9b8f",
+      "expanded": true
+    },
+    {
+      "title": "Capacity Building",
+      "url": "/cbb",
+      "icon": "fe fe-package",
+      "key": "65z1s9",
+      "expanded": true
+    },
+    {
+      "title": "Market Data",
+      "url": "/market",
+      "icon": "fe fe-bar-chart-2",
+      "key": "80pi8",
+      "expanded": true
+    },
+    {
+      "title": "Reports",
+      "url": "/reports",
+      "icon": "fe fe-file-text",
+      "key": "cwm04g"
+    },
+    {
+      "title": "User Administration",
+      "url": "/user",
+      "icon": "fe fe-users",
+      "key": "2hfvfk"
     }
   ],
-  "content": {}
+  "content": {
+    "h7aad": [
+      {
+        "key": "gqd71",
+        "columns": [
+          {
+            "key": "klimgf",
+            "className": "col-lg-6 col-md-12",
+            "cards": []
+          },
+          {
+            "key": "pbj1dm",
+            "className": "col-lg-6 col-md-12",
+            "cards": []
+          }
+        ]
+      },
+      {
+        "key": "720abe",
+        "columns": [
+          {
+            "key": "24gyhv",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "z9bf47",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "d2xobc",
+                    "name": "Headers-Heading2",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Interview Guide",
+                      "description": "Welcome to the interview guide section."
+                    }
+                  },
+                  {
+                    "key": "pa7it",
+                    "name": "Typography-3"
+                  },
+                  {
+                    "key": "7hmdcc",
+                    "name": "Controls-Button2",
+                    "editable": true,
+                    "dataType": "object",
+                    "data": {
+                      "title": "Download Template",
+                      "icon": "fe fe-download",
+                      "type": "primary"
+                    }
+                  },
+                  {
+                    "key": "ikfkw",
+                    "name": "WidgetsTables-2"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "rniyi9": [
+      {
+        "key": "liwese",
+        "columns": [
+          {
+            "key": "e9senj",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "e2115i",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "8fb4sc",
+                    "name": "Headers-Heading2",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "My Stories of Change",
+                      "description": "Welcome to my stories section."
+                    }
+                  },
+                  {
+                    "key": "kdk0g9",
+                    "name": "Typography-3"
+                  },
+                  {
+                    "key": "yoi50m",
+                    "name": "Controls-Button2",
+                    "editable": true,
+                    "dataType": "object",
+                    "data": {
+                      "title": "New Story of Change",
+                      "icon": "fe fe-plus-circle",
+                      "type": "primary"
+                    }
+                  },
+                  {
+                    "key": "m2lam",
+                    "name": "WidgetsTables-3"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "497u1",
+        "columns": [
+          {
+            "key": "tpxvbf",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "6f2dz",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "d0qz9",
+                    "name": "WidgetsGeneral-11v1",
+                    "wrapper": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tx7k6w": [
+      {
+        "key": "gha3ql",
+        "columns": [
+          {
+            "key": "qw1gqk",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "wtu5qn",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "3d4ekl",
+                    "name": "Headers-Heading2",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Stories of Change",
+                      "description": "Welcome to stories of change section."
+                    }
+                  },
+                  {
+                    "key": "sn1ni",
+                    "name": "Typography-3"
+                  },
+                  {
+                    "key": "0tqkv",
+                    "name": "WidgetsTables-3"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
