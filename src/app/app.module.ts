@@ -27,6 +27,11 @@ import { MockHttpCallInterceptor } from './services/fakeApi'
 import { registerLocaleData } from '@angular/common'
 import { default as localeEn } from '@angular/common/locales/en'
 import { NZ_I18N, en_US as localeZorro } from 'ng-zorro-antd/i18n'
+import { QuillModule } from 'ngx-quill'
+import { FormlyModule } from '@ngx-formly/core'
+import { FormlyFieldFile } from './components/formly/file-component'
+import { FieldNgSelect } from './components/formly/quill/ng-select'
+import { FieldQuillType } from './components/formly/quill/quil-type'
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
   { provide: NZ_I18N, useValue: localeZorro },
@@ -41,7 +46,19 @@ registerLocaleData(localeEn, 'en')
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-
+    QuillModule.forRoot(),
+    FormlyModule.forRoot({
+      extras: { lazyRender: true },
+      types: [
+        { name: 'file', component: FormlyFieldFile, wrappers: ['form-field'] },
+        { name: 'ng-select', component: FieldNgSelect, wrappers: ['form-field'] },
+        {
+          name: 'custom-text-area',
+          component: FieldQuillType,
+          wrappers: ['form-field'],
+        },
+      ],
+    }),
     // translate
     TranslateModule.forRoot(),
 

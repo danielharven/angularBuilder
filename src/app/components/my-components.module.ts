@@ -10,6 +10,17 @@ import { AppTable2Component } from './lmk/interviewguide/tables-interview/2.comp
 import { AppMyStoryTableComponent } from './lmk/myStories/stories-table/3.component'
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd'
 import { FormlyModule } from '@ngx-formly/core'
+import { CreateStoryFormComponent } from './lmk/mystories/create-story-form/create-story-form.component'
+import { ChecklistStoryFormComponent } from './lmk/mystories/checklist-story-form/checklist-story-form.component'
+import { FieldNgSelect } from './formly/quill/ng-select'
+import { FieldQuillType } from './formly/quill/quil-type'
+import { FormlySelectModule } from '@ngx-formly/core/select'
+import { QuillModule } from 'ngx-quill'
+import { FileValueAccessor } from './formly/file-accessor'
+import { FormlyFieldFile } from './formly/file-component'
+import { NgSelectModule } from '@ng-select/ng-select'
+import { ViewStoryFormComponent } from './lmk/mystories/view-story-form/view-story-form.component'
+import { AppMyStoriesTablesBootstrap4Component } from './lmk/myStories/my-Stories-table/4.component'
 
 const COMPONENTS = [
   FooterComponent,
@@ -17,12 +28,21 @@ const COMPONENTS = [
   AppTable2Component,
   AppTypography3Component,
   AppControlsButton2Component,
+  CreateStoryFormComponent,
+  ChecklistStoryFormComponent,
+  FieldNgSelect,
+  FieldQuillType,
+  FormlyFieldFile,
+  AppMyStoriesTablesBootstrap4Component,
+  ViewStoryFormComponent,
+  FileValueAccessor,
 ]
 
 @NgModule({
   imports: [
     SharedModule,
     FormsModule,
+    QuillModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
     WidgetsComponentsModule,
@@ -30,6 +50,8 @@ const COMPONENTS = [
     FormlyModule.forRoot({
       validationMessages: [{ name: 'required', message: 'This field is required' }],
     }),
+    FormlySelectModule,
+    NgSelectModule,
   ],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],

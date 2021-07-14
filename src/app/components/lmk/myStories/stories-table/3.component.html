@@ -1,18 +1,22 @@
-<div class="table-responsive text-nowrap">
+<div class="table-responsive text-wrap">
   <nz-tabset class="tabs" [nzSelectedIndex]="0">
     <nz-tab nzTitle="My Stories" [nzForceRender]="true">
-      <nz-table #basicTable [nzData]="tableData" [nzShowPagination]="false" class="table mb-4">
+      <nz-table #basicTable [nzData]="tableData"
+                [nzShowPagination]="false" class="table mb-4">
         <thead>
           <tr>
-            <th class="bg-transparent width-50">#</th>
+            <th class="bg-transparent">#</th>
             <th class="bg-transparent">Story Category</th>
             <th class="bg-transparent">Title</th>
-            <th class="bg-transparent ">Status</th>
-            <th class="bg-transparent text-right">Action</th>
+            <th class="bg-transparent">Status</th>
+            <th class="bg-transparent">View</th>
+            <th class="bg-transparent">Edit</th>
+            <th class="bg-transparent">Delete</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of basicTable.data">
+        <ng-container *ngFor="let data of basicTable.data">
+          <tr >
             <td>
               <div class="vb__utils__avatar">
                 <img [src]="data.avatar" alt="User" />
@@ -29,29 +33,56 @@
                 {{data.location}}
               </a>
             </td>
-            <td class="text-right">
-              <button type="button" class="btn btn-primary mr-1">
+            <td [nzExpand]="expandSet.has(data.id)"
+                (nzExpandChange)="onExpandChange(data.id, $event)">
+            </td>
+            <td >
+              <button type="button" class="btn">
                 <i class="fe fe-edit"></i>
               </button>
-              <button type="button" class="btn btn-primary mr-1">
-                <i class="fe fe-eye"></i>
-              </button>
-              <button type="button" class="btn btn-primary mr-1">
+            </td>
+            <td>
+              <button type="button" class="btn">
                 <i class="fe fe-trash"></i>
               </button>
             </td>
           </tr>
+          <tr [nzExpand]="expandSet.has(data.id)">
+            <app-view-story-form></app-view-story-form>
+          </tr>
+        </ng-container>
+
         </tbody>
       </nz-table>
     </nz-tab>
     <nz-tab nzTitle="Create Stories">
-       <b>Instructions</b>
-        <ol>
-      <li>  Fill out the form below after which you will be redirected to the "Check list" to complete the other details
-      </li>
-      <li> Fields marked with * are required </li>
-    </ol>
-      <hr>
+      <nz-steps nzType="navigation" [nzCurrent]="current" >
+        <nz-step nzTitle="Create / Choose" nzStatus="process" nzIcon="paper-clip">
+        </nz-step>
+        <nz-step nzTitle="Checklist for Story" nzStatus="wait" nzIcon="solution"></nz-step>
+<!--        <ng-template #iconTemplate><i nz-icon nzType="smile"></i></ng-template>-->
+      </nz-steps>
+      <div class="steps-content">
+        <app-create-story-form *ngIf="createTable"></app-create-story-form>
+        <app-checklist-story-form *ngIf="checklist"></app-checklist-story-form>
+      </div>
+      <div class="steps-action">
+        <button
+          class="btn btn-default mt-3 mr-2"
+          nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+          <span>Previous</span>
+        </button>
+        <button
+          class="btn btn-default mt-3 mr-2"
+          nz-button nzType="default" (click)="next()" *ngIf="current < 2">
+          <span>Next</span>
+        </button>
+        <button
+          class="btn btn-default mt-3 mr-2"
+          nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
+          <span>Done</span>
+        </button>
+      </div>
 
     </nz-tab>
     <nz-tab [nzTitle]="dropdownTemplate">
