@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 
 @Component({
-  selector: 'app-register-attendants-form',
-  templateUrl: './view-story-form.component.html',
-  styleUrls: ['./view-story-form.component.scss'],
+  selector: 'app-view-past-registration-form',
+  templateUrl: './view-past-registration-form.component.html',
+  styleUrls: ['./view-past-registration-form.component.scss'],
 })
-export class RegisterAttendantsFormComponent implements OnInit {
+export class ViewPastRegistrationFormComponent implements OnInit {
   loading = false
   constructor() {}
 
