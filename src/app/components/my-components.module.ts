@@ -25,6 +25,9 @@ import { AppStoriesOfChangeTablesBootstrap4Component } from './lmk/storiesOfChan
 import { AppStoriesOfChangeDataTableComponent } from './lmk/storiesOfChange/soc-stories-table/3.component'
 import { ViewStoriesOfChangeFormComponent } from './lmk/storiesOfChange/view-stories-of-change-form/view-story-form.component'
 import { StoriesOfChangeInstructionsComponent } from './lmk/storiesOfChange/soc-instructions/soc-instructions.component'
+import { CbTopicsTableComponent } from './cbb/topics/cbb-topics-table/cbb-topics-table.component'
+import { CbTopicsFormComponent } from './cbb/topics/cbb-topics-form/cbb-topics-form.component'
+
 
 const COMPONENTS = [
   FooterComponent,
@@ -42,6 +45,8 @@ const COMPONENTS = [
   AppStoriesOfChangeDataTableComponent,
   ViewStoriesOfChangeFormComponent,
   StoriesOfChangeInstructionsComponent,
+  CbTopicsTableComponent,
+  CbTopicsFormComponent,
   ViewStoryFormComponent,
   FileValueAccessor,
 ]
