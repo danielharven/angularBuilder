@@ -21,9 +21,10 @@ import { FormlyFieldFile } from './formly/file-component'
 import { NgSelectModule } from '@ng-select/ng-select'
 import { ViewStoryFormComponent } from './lmk/mystories/view-story-form/view-story-form.component'
 import { AppMyStoriesTablesBootstrap4Component } from './lmk/myStories/my-Stories-table/4.component'
-import { AppStoriesOfChangeTablesBootstrap4Component } from './lmk/storiesOfChange/storiesOfChangeTable/4.component'
-import { AppStoriesOfChangeDataTableComponent } from './lmk/storiesOfChange/stories-of-change-data-table/3.component'
+import { AppStoriesOfChangeTablesBootstrap4Component } from './lmk/storiesOfChange/soc-stories-detail-table/4.component'
+import { AppStoriesOfChangeDataTableComponent } from './lmk/storiesOfChange/soc-stories-table/3.component'
 import { ViewStoriesOfChangeFormComponent } from './lmk/storiesOfChange/view-stories-of-change-form/view-story-form.component'
+import { StoriesOfChangeInstructionsComponent } from './lmk/storiesOfChange/soc-instructions/soc-instructions.component'
 
 const COMPONENTS = [
   FooterComponent,
@@ -40,6 +41,7 @@ const COMPONENTS = [
   AppStoriesOfChangeTablesBootstrap4Component,
   AppStoriesOfChangeDataTableComponent,
   ViewStoriesOfChangeFormComponent,
+  StoriesOfChangeInstructionsComponent,
   ViewStoryFormComponent,
   FileValueAccessor,
 ]
