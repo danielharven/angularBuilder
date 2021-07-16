@@ -27,7 +27,9 @@ import { ViewStoriesOfChangeFormComponent } from './lmk/storiesOfChange/view-sto
 import { StoriesOfChangeInstructionsComponent } from './lmk/storiesOfChange/soc-instructions/soc-instructions.component'
 import { CbTopicsTableComponent } from './cbb/topics/cbb-topics-table/cbb-topics-table.component'
 import { CbTopicsFormComponent } from './cbb/topics/cbb-topics-form/cbb-topics-form.component'
-
+import { PricesTableComponent } from './market/prices/prices-table/prices-table.component'
+import { ViewPriceComponent } from './market/prices/prices-view-price/prices-view-price.component'
+import { PricesFormComponent } from './market/prices/prices-form/prices-form.component'
 
 const COMPONENTS = [
   FooterComponent,
@@ -48,6 +50,9 @@ const COMPONENTS = [
   CbTopicsTableComponent,
   CbTopicsFormComponent,
   ViewStoryFormComponent,
+  PricesTableComponent,
+  ViewPriceComponent,
+  PricesFormComponent,
   FileValueAccessor,
 ]
 
