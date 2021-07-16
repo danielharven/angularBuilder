@@ -30,6 +30,7 @@ import { CbTopicsFormComponent } from './cbb/topics/cbb-topics-form/cbb-topics-f
 import { PricesTableComponent } from './market/prices/prices-table/prices-table.component'
 import { ViewPriceComponent } from './market/prices/prices-view-price/prices-view-price.component'
 import { PricesFormComponent } from './market/prices/prices-form/prices-form.component'
+import { HttpClientModule } from '@angular/common/http'
 
 const COMPONENTS = [
   FooterComponent,
@@ -61,6 +62,7 @@ const COMPONENTS = [
     SharedModule,
     FormsModule,
     QuillModule,
+    HttpClientModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
     WidgetsComponentsModule,

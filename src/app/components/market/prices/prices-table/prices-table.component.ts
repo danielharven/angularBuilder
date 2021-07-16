@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 declare var require: any
-const data: any = require('./data.json')
+import { PricesService } from '../../../../prices.service'
 
 @Component({
   selector: 'app-prices-table',
@@ -8,12 +8,18 @@ const data: any = require('./data.json')
   styleUrls: ['./prices-table.component.scss'],
 })
 export class PricesTableComponent implements OnInit {
-  tableData = data
+  tableData: any
   createTable = true
   current: number = 0
   checklist: boolean = false
-  constructor() {}
-  ngOnInit() {}
+  constructor(private pricesService: PricesService) {}
+  getPrices(): void {
+    this.pricesService.getData().subscribe(data => (this.tableData = data))
+  }
+  ngOnInit() {
+    this.getPrices()
+  }
+
   pre(): void {
     this.current -= 1
     this.changeContent()
