@@ -1,1 +1,92 @@
-<p>pricing-plans works!</p>
+<!-- ================================
+         START PACKAGE AREA
+================================= -->
+<section class="package-area section--padding bg-vertical-gradient-gray">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title pb-3">Go beyond your school walls<br> with Tadya Plans</h2>
+      <p class="section-desc w-50 mx-auto pb-4">
+        Choose any of our flexible plans that suite your needs
+      </p>
+      <div class="toggle-switch d-inline-flex align-items-center" data-toggle="tooltip" data-placement="top" title="Discount available if billed annually">
+        <span class="fs-14 mr-1">Monthly</span>
+        <input type="checkbox" class="toggle-input"/>
+        <span class="fs-14 ml-1">Yearly</span>
+      </div>
+    </div>
+    <div class="row pt-60px">
+      <div class="col-lg-4 responsive-column-half">
+        <div class="card card-item">
+          <div class="card-body">
+            <h5 class="bg-gray fs-20 py-2 px-4 rounded-rounded d-inline-block">Pay as you go</h5>
+            <p class="card-text pt-3 pb-5">Billed per question asked</p>
+            <div class="card-price border-bottom border-bottom-gray mb-4 pb-4">
+              <span class="price-month fs-35 fw-bold text-black">K20 ZMW</span>
+              <span class="price-year fs-35 fw-bold text-black d-none">No yearly plan</span>
+              <p class="card-text pt-1 fs-15">per question</p>
+            </div>
+            <ul class="generic-list-item package-list pb-4">
+              <li><i class="la la-check text-success"></i> Get your question answered in full.</li>
+              <li><i class="la la-check text-success"></i> Access to your answers forever</li>
+            </ul>
+            <a routerLink="/auth/register/"  [queryParams]='{option:1}' class="btn theme-btn theme-btn-outline w-100">Sign up <i class="la la-arrow-right icon ml-1"></i></a>
+          </div>
+        </div><!-- end card -->
+      </div><!-- end col-lg-4 -->
+      <div class="col-lg-4 responsive-column-half">
+        <div class="card card-item">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+              <h5 class="bg-gray fs-20 py-2 px-4 rounded-rounded d-inline-block">Subscription</h5>
+              <span class="badge badge-success py-1 px-2 fs-13">Most used</span>
+            </div>
+            <p class="card-text pt-3 pb-5">Complete access to all questions and answers </p>
+            <div class="card-price border-bottom border-bottom-gray mb-4 pb-4">
+              <span class="price-month fs-35 fw-bold text-black">K250 ZMW</span>
+              <span class="price-year fs-35 fw-bold text-black d-none">K2,500 ZMW</span>
+              <p class="card-text pt-1 fs-15">per  month</p>
+            </div>
+            <ul class="generic-list-item package-list pb-4">
+              <li><i class="la la-check text-success"></i> Ask up to 10 questions / month (120 questions / year)</li>
+              <li><i class="la la-check text-success"></i> Access to all questions asked by students and answered by top teachers </li>
+              <li><i class="la la-check text-success"></i> Access to your answers forever.</li>
+              <li><i class="la la-check text-success"></i> Get in-depth clarifications on answers provided.</li>
+            </ul>
+            <a routerLink="/auth/register/"  [queryParams]='{option:2}' class="btn theme-btn w-100 price-month">Sign up <i class="la la-arrow-right icon ml-1"></i></a>
+            <a routerLink="/auth/register/"  [queryParams]='{option:3}'  class="btn theme-btn w-100 price-year d-none">Sign up <i class="la la-arrow-right icon ml-1"></i></a>
+          </div>
+        </div><!-- end card -->
+      </div><!-- end col-lg-4 -->
+      <div class="col-lg-4 responsive-column-half">
+        <div class="card card-item">
+          <div class="card-body">
+            <h5 class="bg-gray fs-20 py-2 px-4 rounded-rounded d-inline-block">Complete Subject </h5>
+            <p class="card-text pt-3 pb-5">
+              Want to pass in a specific subject ?
+            </p>
+            <div class="card-price border-bottom border-bottom-gray mb-4 pb-4">
+              <span class="fs-35 fw-bold text-black">k4,000 ZMW</span>
+              <p class="card-text pt-3 pb-5">
+                Per subject / year
+              </p>
+            </div>
+            <ul class="generic-list-item package-list pb-4">
+              <li><i class="la la-check text-success"></i>Personal online tutor upto 2 hours per day, 5 days a week</li>
+              <li><i class="la la-check text-success"></i> Topic by Topic coverage</li>
+              <li><i class="la la-check text-success"></i>Practice with tutor on exam questions</li>
+              <li><i class="la la-check text-success"></i>Revise up to 3 exam papers with tutor</li>
+              <li><i class="la la-check text-success"></i> Access to all questions asked by students and answered by top teachers </li>
+              <li><i class="la la-check text-success"></i> Access to your answers forever.</li>
+              <li><i class="la la-check text-success"></i>Guaranteed excellent pass</li>
+              <li><i class="la la-check text-success"></i>Request new tutor if unsatisfied (before 30 days)</li>
+            </ul>
+            <a routerLink="/auth/register/"  [queryParams]='{option:4}'  class="btn theme-btn theme-btn-outline w-100">Sign up <i class="la la-arrow-right icon ml-1"></i></a>
+          </div>
+        </div><!-- end card -->
+      </div><!-- end col-lg-4 -->
+    </div><!-- end row -->
+  </div><!-- end container -->
+</section>
+<!-- ================================
+         END PACKAGE AREA
+================================= -->

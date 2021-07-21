@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'register',
     component: RegisterPage,
     data: { title: 'Sign Up' },
+  },  {
+    path: 'register/:option',
+    component: RegisterPage,
+    data: { title: 'Sign Up' },
   },
   {
     path: 'locksreen',

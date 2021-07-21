@@ -99,7 +99,6 @@ export class AppComponent implements OnInit {
         const queryString = event.url.match(/\?(.*)/)
         if (queryString) {
           const queryParams = qs.parse(queryString[1])
-          console.log(queryParams)
           const keys = Object.keys(queryParams)
           if (keys.length) {
             keys.forEach(key => {
@@ -115,7 +114,7 @@ export class AppComponent implements OnInit {
                   value = queryParams[key]
                   break
               }
-              console.log(key, value)
+              // console.log(key, value)
               this.store.dispatch(
                 new SettingsActions.SetStateAction({
                   [key]: value,
