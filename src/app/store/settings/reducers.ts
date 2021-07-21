@@ -15,7 +15,7 @@ export const initialState: object = {
     // Read docs for available values: https://docs.visualbuilder.cloud
     // VB:REPLACE-START:SETTINGS
     authProvider: 'jwt',
-    logo: 'ESAPP',
+    logo: 'Tadya',
     version: 'air',
     theme: 'default',
     locale: 'en-US',

@@ -2,16 +2,9 @@ import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar'
 import { SharedModule } from 'src/app/shared.module'
-import { WidgetsComponentsModule } from 'src/app/@vb/widgets/widgets-components.module'
-import { FooterComponent } from './Footer/footer.component'
-import { AppTypography3Component } from './lmk/interviewguide/instructions-3/3.component'
-import { AppControlsButton2Component } from './lmk/interviewguide/Button2-download/button-2.component'
-import { AppTable2Component } from './lmk/interviewguide/tables-interview/2.component'
-import { AppMyStoryTableComponent } from './lmk/myStories/stories-table/3.component'
+// import { WidgetsComponentsModule } from 'src/app/@vb/widgets/widgets-components.module'
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd'
 import { FormlyModule } from '@ngx-formly/core'
-import { CreateStoryFormComponent } from './lmk/mystories/create-story-form/create-story-form.component'
-import { ChecklistStoryFormComponent } from './lmk/mystories/checklist-story-form/checklist-story-form.component'
 import { FieldNgSelect } from './formly/quill/ng-select'
 import { FieldQuillType } from './formly/quill/quil-type'
 import { FormlySelectModule } from '@ngx-formly/core/select'
@@ -19,55 +12,27 @@ import { QuillModule } from 'ngx-quill'
 import { FileValueAccessor } from './formly/file-accessor'
 import { FormlyFieldFile } from './formly/file-component'
 import { NgSelectModule } from '@ng-select/ng-select'
-import { ViewStoryFormComponent } from './lmk/mystories/view-story-form/view-story-form.component'
-import { AppMyStoriesTablesBootstrap4Component } from './lmk/myStories/my-Stories-table/4.component'
-import { AppStoriesOfChangeTablesBootstrap4Component } from './lmk/storiesOfChange/soc-stories-detail-table/4.component'
-import { AppStoriesOfChangeDataTableComponent } from './lmk/storiesOfChange/soc-stories-table/3.component'
-import { ViewStoriesOfChangeFormComponent } from './lmk/storiesOfChange/view-stories-of-change-form/view-story-form.component'
-import { StoriesOfChangeInstructionsComponent } from './lmk/storiesOfChange/soc-instructions/soc-instructions.component'
-import { CbTopicsTableComponent } from './cbb/topics/cbb-topics-table/cbb-topics-table.component'
-import { CbTopicsFormComponent } from './cbb/topics/cbb-topics-form/cbb-topics-form.component'
-import { AppAttendanceMainTableComponent } from './cbb/attendance/attendance-main-table/3.component'
-import { RegisterAttendantsFormComponent } from './cbb/attendance/register-attendance-form/view-story-form.component'
-import { ViewPastRegistrationFormComponent } from './cbb/attendance/view-past-registration-form/view-past-registration-form.component'
-import { PricesTableComponent } from './market/prices/prices-table/prices-table.component'
-import { ViewPriceComponent } from './market/prices/prices-view-price/prices-view-price.component'
-import { PricesFormComponent } from './market/prices/prices-form/prices-form.component'
-import { HttpClientModule } from '@angular/common/http'
-import { CbTopicsDetailComponent } from './cbb/topics/cbb-topics-detail/cbb-topics-detail.component'
-import { MGFTableComponent } from './mgf/mgf-table/mgf-table.component'
-import { MGFItemDetailComponent } from './mgf/mgf-item-detail/mgf-item-detail.component'
-import { MGFFormComponent } from './mgf/mgf-form/mgf-form.component'
+import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { FaqComponent } from './faq/faq.component';
+import { ContactComponent } from './contact/contact.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { TermsComponent } from './terms/terms.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { AboutComponent } from './about/about.component';
+import { CareersComponent } from './careers/careers.component';
+import { AdvertsComponent } from './adverts/adverts.component';
+import { InviteComponent } from './invite/invite.component';
+import { PricingPlansComponent } from './pricing-plans/pricing-plans.component';
+import { AskQuestionComponent } from './ask-question/ask-question.component'
 
 const COMPONENTS = [
-  FooterComponent,
-  AppMyStoryTableComponent,
-  AppTable2Component,
-  AppTypography3Component,
-  AppControlsButton2Component,
-  CreateStoryFormComponent,
-  ChecklistStoryFormComponent,
   FieldNgSelect,
   FieldQuillType,
   FormlyFieldFile,
-  AppMyStoriesTablesBootstrap4Component,
-  AppStoriesOfChangeTablesBootstrap4Component,
-  AppStoriesOfChangeDataTableComponent,
-  ViewStoriesOfChangeFormComponent,
-  StoriesOfChangeInstructionsComponent,
-  CbTopicsTableComponent,
-  CbTopicsFormComponent,
-  CbTopicsDetailComponent,
-  ViewStoryFormComponent,
-  PricesTableComponent,
-  ViewPriceComponent,
-  PricesFormComponent,
-  FileValueAccessor,
-  AppAttendanceMainTableComponent,
-  RegisterAttendantsFormComponent,
-  MGFTableComponent,
-  MGFItemDetailComponent,
-  MGFFormComponent,
+
 ]
 
 @NgModule({
@@ -78,7 +43,6 @@ const COMPONENTS = [
     HttpClientModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
-    WidgetsComponentsModule,
     FormlyNgZorroAntdModule,
     FormlyModule.forRoot({
       validationMessages: [{ name: 'required', message: 'This field is required' }],
@@ -86,7 +50,7 @@ const COMPONENTS = [
     FormlySelectModule,
     NgSelectModule,
   ],
-  declarations: [...COMPONENTS, ViewPastRegistrationFormComponent],
-  exports: [...COMPONENTS],
+  declarations: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent, FaqComponent, ContactComponent, PrivacyComponent, TermsComponent, FeedbackComponent, AboutComponent, CareersComponent, AdvertsComponent, InviteComponent, PricingPlansComponent, AskQuestionComponent],
+  exports: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent],
 })
 export class MyComponentsModule {}
