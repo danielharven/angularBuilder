@@ -4,6 +4,7 @@ import { select, Store } from '@ngrx/store'
 import * as Reducers from 'src/app/store/reducers'
 import * as UserActions from 'src/app/store/user/actions'
 import * as SettingsActions from 'src/app/store/settings/actions'
+import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core'
 
 @Component({
   selector: 'vb-system-login',
@@ -11,16 +12,38 @@ import * as SettingsActions from 'src/app/store/settings/actions'
   styleUrls: ['../style.component.scss'],
 })
 export class LoginComponent {
-  form: FormGroup
+  form = new FormGroup({})
+  model: any = {}
+  fields: FormlyFieldConfig[] =[
+    {
+      key: 'role',
+      type: 'select',
+      templateOptions: {
+        type: 'text',
+        placeholder: 'Select Role',
+        required: true,
+        options: [
+          {value:"guest", label:"Guest"},
+          {value:"mgf_applicant", label:"MGF Applicant"},
+          {value:"camp_officer", label:"Camp Officer"},
+          {value:"external_reviewer", label:"External Reviewer"},
+          {value:"audit", label:"Auditor"},
+          {value:"do", label:"District Officer"},
+          {value:"po", label:"Provincial Officer"},
+          {value:"pco", label:"ESSAP"},
+        ],
+      },
+    },
+  ]
+
+
+
   logo: String
   authProvider: string = 'basic-auth'
   loading: boolean = false
 
-  constructor(private fb: FormBuilder, private store: Store<any>) {
-    this.form = fb.group({
-      email: ['admin@emis.com', [Validators.required, Validators.minLength(4)]],
-      password: ['Q!weRTy@134', [Validators.required]],
-    })
+  constructor( private store: Store<any>) {
+
     this.store.pipe(select(Reducers.getSettings)).subscribe(state => {
       this.logo = state.logo
       this.authProvider = state.authProvider
@@ -30,26 +53,11 @@ export class LoginComponent {
     })
   }
 
-  get email() {
-    return this.form.controls.email
-  }
-  get password() {
-    return this.form.controls.password
-  }
-
   submitForm(): void {
-    this.email.markAsDirty()
-    this.email.updateValueAndValidity()
-    this.password.markAsDirty()
-    this.password.updateValueAndValidity()
-    if (this.email.invalid || this.password.invalid) {
-      return
-    }
-    const payload = {
-      email: this.email.value,
-      password: this.password.value,
-    }
-    this.store.dispatch(new UserActions.Login(payload))
+    // const payload = {
+    //   role: this.model.role,
+    // }
+    this.store.dispatch(new UserActions.Login(this.model))
   }
 
 }

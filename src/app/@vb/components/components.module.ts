@@ -34,12 +34,10 @@ import { SidebarComponent } from './Sidebar/sidebar.component'
 import { SupportChatComponent } from './SupportChat/support-chat.component'
 import { VariantsComponent } from './Variants/variants.component'
 
-import { ForgotPasswordComponent } from './Auth/forgot-password/forgot-password.component'
-import { LockscreenComponent } from './Auth/lockscreen/lockscreen.component'
 import { LoginComponent } from './Auth/login/login.component'
-import { RegisterComponent } from './Auth/register/register.component'
 import { Error404Component } from './Errors/404/404.component'
 import { Error500Component } from './Errors/500/500.component'
+import { FormlyModule } from '@ngx-formly/core'
 
 const COMPONENTS = [
   TopbarComponent,
@@ -72,10 +70,7 @@ const COMPONENTS = [
   SupportChatComponent,
   VariantsComponent,
 
-  ForgotPasswordComponent,
-  LockscreenComponent,
   LoginComponent,
-  RegisterComponent,
   Error404Component,
   Error500Component,
 ]
@@ -87,6 +82,7 @@ const COMPONENTS = [
     ReactiveFormsModule,
     PerfectScrollbarModule,
     WidgetsComponentsModule,
+    FormlyModule,
   ],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],

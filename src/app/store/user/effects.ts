@@ -38,22 +38,15 @@ export class UserEffects implements OnInitEffects {
     switchMap(([payload, settings]) => {
       // basic-auth login
       if (settings.authProvider === 'basic-auth') {
-        return this.basicAuthService.login(payload.email, payload.password).pipe(
+        console.log("This is where it breaks")
+
+        return this.basicAuthService.login(payload.role).pipe(
           map(response => {
             // if the response is authorized
-            if (response && response.accessToken) {
-              store.set('accessToken', response.accessToken)
+              store.set('role', response.role)
               this.notification.success('Logged In', 'You have successfully logged in!')
               return new UserActions.LoadCurrentAccount()
-            }
-            this.notification.warning('Auth Failed', response)
-            return new UserActions.LoginUnsuccessful()
-          }),
-          catchError(error => {
-            console.log('LOGIN ERROR: ', error)
-            return from([{ type: UserActions.LOGIN_UNSUCCESSFUL }])
-          }),
-        )
+          }))
       }
 
       // firebase login
@@ -83,7 +76,7 @@ export class UserEffects implements OnInitEffects {
       if (settings.authProvider === 'basic-auth') {
         return this.basicAuthService.currentAccount().pipe(
           map(response => {
-            if (response && (response.email || response.username)) {
+            if (response && response.role) {
               if (this.route.snapshot.queryParams.returnUrl) {
                 this.router.navigate([this.route.snapshot.queryParams.returnUrl]) // // redirect to returnUrl
               } else if (this.router.url.includes('/auth')) {

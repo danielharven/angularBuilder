@@ -8,7 +8,7 @@ export class EnumsService {
     essap_link: '',
     szi_link: 'https://www.szi.gov.zm',
     szi_name: 'SMART Zambia Institute',
-    esapp_name: 'ESAPP',
+    esapp_name: 'ESAP | Web Portal',
     testUserName:'admin@emis.com',
     testUserPassword: 'Q!weRTy@134'
   }
