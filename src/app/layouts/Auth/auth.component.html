@@ -3,7 +3,7 @@
 <!--    <vb-support-chat></vb-support-chat>-->
 <div class='row'>
   <div class='col-2'></div>
-  <div class='col-8'>
+  <div class='col-12'>
     <div class="authContainer" [ngClass]="{
         'vb__layout__squaredBorders': isSquaredBorders,
         'vb__layout__cardsShadow': isCardShadow,
@@ -15,10 +15,10 @@
       <div class="topbar" [ngClass]="{
         'topbarGray': isGrayTopbar
       }">
-        <div class="logoContainer">
-          <div class="logo">
-            <img src="assets/images/logo-black.png"  [height]='24' [width]='24' alt="Tadya Logo">
-            <div class="name">{{ logo }}</div>
+        <div routerLink='/home' >
+          <div class="logo mt-2">
+            <img src="assets/images/logo-black.png"  [height]='140' [width]='140' alt="Tadya Logo">
+<!--            <div class="name">{{ logo }}</div>-->
           </div>
         </div>
         <div class="d-none d-sm-block">
@@ -35,8 +35,6 @@
           <router-outlet #outlet="outlet"></router-outlet>
         </div>
       </div>
-
-
     </div>
   </div>
   <div class='col-12'>
@@ -45,3 +43,4 @@
 </div>
 
 
+<ngx-spinner></ngx-spinner>

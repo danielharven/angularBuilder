@@ -102,7 +102,7 @@
             </div>
           </form>
           <div class="nav-right-button">
-            <a routerLink="/auth/login" class="btn theme-btn"><i class="la la-user mr-1"></i> Account</a>
+            <a routerLink="/profile" class="btn theme-btn"><i class="la la-user mr-1"></i> Account</a>
           </div><!-- end nav-right-button -->
         </div><!-- end menu-wrapper -->
       </div><!-- end col-lg-10 -->
@@ -154,10 +154,14 @@
         </ul>
       </li>
     </ul>
-    <div class="off-canvas-btn-box px-4 pt-5 text-center">
+    <div *ngIf='!authorized' class="off-canvas-btn-box px-4 pt-5 text-center">
       <a routerLink="/auth/login" class="btn theme-btn theme-btn-sm theme-btn-outline" data-toggle="modal" data-target="#loginModal"><i class="la la-sign-in mr-1"></i> Login</a>
       <span class="fs-15 fw-medium d-inline-block mx-2">Or</span>
       <a routerLink="/auth/register" class="btn theme-btn theme-btn-sm" data-toggle="modal" data-target="#signUpModal"><i class="la la-plus mr-1"></i> Sign up</a>
+    </div>
+    <div *ngIf='authorized' class="off-canvas-btn-box px-4 pt-5 text-center">
+
+        <a routerLink="/profile" class="btn theme-btn"><i class="la la-user mr-1"></i> Account</a>
     </div>
   </div><!-- end off-canvas-menu -->
   <div class="mobile-search-form">

@@ -2,15 +2,12 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule, LOCALE_ID } from '@angular/core'
 import { TranslateModule } from '@ngx-translate/core'
-import { FormsModule } from '@angular/forms'
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { AbstractControl, FormsModule } from '@angular/forms'
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpInterceptor} from '@angular/common/http'
 
 import { NgProgressModule } from '@ngx-progressbar/core'
 import { NgProgressRouterModule } from '@ngx-progressbar/router'
 import { NgProgressHttpModule } from '@ngx-progressbar/http'
-import { AngularFireModule } from '@angular/fire'
-import { AngularFireAuthModule } from '@angular/fire/auth'
-import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -19,10 +16,8 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreRouterConnectingModule } from '@ngrx/router-store'
 import { reducers, metaReducers } from './store/reducers'
 import { UserEffects } from './store/user/effects'
-import { firebaseConfig, firebaseAuthService } from './services/firebase'
 import { jwtAuthService } from './services/jwt'
-import { MockHttpCallInterceptor } from './services/fakeApi'
-
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 // locale resistration
 import { registerLocaleData } from '@angular/common'
 import { default as localeEn } from '@angular/common/locales/en'
@@ -32,12 +27,34 @@ import { FormlyModule } from '@ngx-formly/core'
 import { FormlyFieldFile } from './components/formly/file-component'
 import { FieldNgSelect } from './components/formly/quill/ng-select'
 import { FieldQuillType } from './components/formly/quill/quil-type'
+import { NgxSpinnerModule } from 'ngx-spinner'
+import { configureGraphQL } from 'ngx-graphql'
+import { environment } from '../environments/environment'
+import {AuthInterceptor} from "./services/fakeApi";
+// import {FlutterwaveModule} from "flutterwave-angular-v3";
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
   { provide: NZ_I18N, useValue: localeZorro },
 ]
 registerLocaleData(localeEn, 'en')
+export function minlengthValidationMessages(err, field) {
+  return `Should have atleast ${field.templateOptions.minLength} characters`;
+}
 
+export function fieldMatchValidator(control: AbstractControl) {
+  const { password, passwordConfirm } = control.value;
+
+  // avoid displaying the message error when values are empty
+  if (!passwordConfirm || !password) {
+    return null;
+  }
+
+  if (passwordConfirm === password) {
+    return null;
+  }
+
+  return { fieldMatch: { message: 'Password Not Matching' } };
+}
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -48,6 +65,9 @@ registerLocaleData(localeEn, 'en')
     AppRoutingModule,
     QuillModule.forRoot(),
     FormlyModule.forRoot({
+      validators: [
+        { name: 'fieldMatch', validation: fieldMatchValidator },
+      ],
       extras: { lazyRender: true },
       types: [
         { name: 'file', component: FormlyFieldFile, wrappers: ['form-field'] },
@@ -59,6 +79,7 @@ registerLocaleData(localeEn, 'en')
         },
       ],
     }),
+    FormlyBootstrapModule,
     // translate
     TranslateModule.forRoot(),
 
@@ -76,28 +97,21 @@ registerLocaleData(localeEn, 'en')
     NgProgressRouterModule,
     NgProgressHttpModule,
 
-    // init firebase
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
+    NgxSpinnerModule,
   ],
   providers: [
-    // auth services
-    firebaseAuthService,
-    jwtAuthService,
-
-    // fake http interceptors
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: MockHttpCallInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
-
+    jwtAuthService,
+    configureGraphQL({
+      url: environment.url+"/graphql" // <-- configure GraphQL
+    }),
     // locale providers
     ...LOCALE_PROVIDERS,
 
-    // firestore settings
-    { provide: SETTINGS, useValue: {} },
   ],
   bootstrap: [AppComponent],
 })

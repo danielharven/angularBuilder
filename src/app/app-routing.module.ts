@@ -26,6 +26,8 @@ import { AdvertsComponent } from './components/adverts/adverts.component'
 import { InviteComponent } from './components/invite/invite.component'
 import { PricingPlansComponent } from './components/pricing-plans/pricing-plans.component'
 import { AskQuestionComponent } from './components/ask-question/ask-question.component'
+import { ProfileComponent } from './components/profile/profile.component'
+import { SettingsComponent } from './components/profile/settings/settings.component'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -39,7 +41,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutMainComponent,
-    canActivate: [AuthGuard],
+
     children: [
       // VB:REPLACE-START:ROUTER-CONFIG
       {
@@ -61,20 +63,24 @@ const routes: Routes = [
         path: 'privacy',
         data: { title: 'Privacy Policy' },
         component: PrivacyComponent,
-      }, {
+      },
+      {
         path: 'terms',
         data: { title: 'Terms and Conditions' },
         component: TermsComponent,
       },
       {
         path: 'feedback',
+        canActivate: [AuthGuard],
         data: { title: 'Feedback' },
         component: FeedbackComponent,
-      },  {
+      },
+      {
         path: 'about',
         data: { title: 'About Us' },
         component: AboutComponent,
-      },  {
+      },
+      {
         path: 'careers',
         data: { title: 'Careers' },
         component: CareersComponent,
@@ -95,9 +101,22 @@ const routes: Routes = [
       },
       {
         path: 'ask',
+        canActivate: [AuthGuard],
         data: { title: 'Ask' },
         component: AskQuestionComponent,
       },
+      {
+        path: 'profile',
+        canActivate: [AuthGuard],
+        data: { title: 'profile' },
+        component: ProfileComponent,
+      },
+      {
+        path:'settings',
+        canActivate: [AuthGuard],
+        data: { title: 'profile settings' },
+        component: SettingsComponent,
+      }
       // VB:REPLACE-END:ROUTER-CONFIG
     ],
   },

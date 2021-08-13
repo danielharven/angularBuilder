@@ -6,11 +6,12 @@ import { LayoutAuthComponent } from './Auth/auth.component'
 import { LayoutMainComponent } from './Main/main.component'
 import { LayoutPublicComponent } from './Public/public.component'
 import { MyComponentsModule } from '../components/my-components.module'
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 const COMPONENTS = [LayoutAuthComponent, LayoutMainComponent, LayoutPublicComponent]
 
 @NgModule({
-  imports: [SharedModule, MyComponentsModule],
+  imports: [SharedModule, MyComponentsModule, NgxSpinnerModule],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],
 })

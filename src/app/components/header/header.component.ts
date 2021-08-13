@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store'
+import * as Reducers from '../../store/reducers'
 
 @Component({
   selector: 'app-header',
@@ -6,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  authorized: boolean =false
+  constructor(private store: Store<any>) {
+    this.store.pipe(select(Reducers.getUser)).subscribe(state => {
 
-  constructor() { }
+      this.authorized = state.authorized
+    })
+  }
 
   ngOnInit(): void {
   }

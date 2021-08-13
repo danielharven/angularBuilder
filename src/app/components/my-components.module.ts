@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core'
+import { ErrorHandler, NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar'
 import { SharedModule } from 'src/app/shared.module'
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 // import { WidgetsComponentsModule } from 'src/app/@vb/widgets/widgets-components.module'
-import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd'
+// import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd'
 import { FormlyModule } from '@ngx-formly/core'
 import { FieldNgSelect } from './formly/quill/ng-select'
 import { FieldQuillType } from './formly/quill/quil-type'
@@ -27,30 +28,40 @@ import { AdvertsComponent } from './adverts/adverts.component';
 import { InviteComponent } from './invite/invite.component';
 import { PricingPlansComponent } from './pricing-plans/pricing-plans.component';
 import { AskQuestionComponent } from './ask-question/ask-question.component'
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ProfileComponent } from './profile/profile.component'
+import {MyErrorHandler} from '../services/MyErrorHandler';
+import { SettingsComponent } from './profile/settings/settings.component'
+import {NzPipesModule} from "ng-zorro-antd/pipes";
+import { RichtestPipe } from './pipes/richtest.pipe';
 const COMPONENTS = [
   FieldNgSelect,
   FieldQuillType,
-  FormlyFieldFile,
+  FormlyFieldFile,FileValueAccessor,
+  HeaderComponent, FooterComponent, HomeComponent, FaqComponent,
+  ContactComponent, PrivacyComponent, TermsComponent, FeedbackComponent,
+  AboutComponent, CareersComponent, AdvertsComponent, InviteComponent,
+  PricingPlansComponent, AskQuestionComponent, ProfileComponent
 
 ]
 
 @NgModule({
-  imports: [
-    SharedModule,
-    FormsModule,
-    QuillModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    PerfectScrollbarModule,
-    FormlyNgZorroAntdModule,
-    FormlyModule.forRoot({
-      validationMessages: [{ name: 'required', message: 'This field is required' }],
-    }),
-    FormlySelectModule,
-    NgSelectModule,
-  ],
-  declarations: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent, FaqComponent, ContactComponent, PrivacyComponent, TermsComponent, FeedbackComponent, AboutComponent, CareersComponent, AdvertsComponent, InviteComponent, PricingPlansComponent, AskQuestionComponent],
+    imports: [
+        SharedModule,
+        FormsModule,
+        QuillModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        PerfectScrollbarModule,
+        FormlyModule,
+        FormlyBootstrapModule,
+        FormlySelectModule,
+        NgSelectModule,
+        NgxSpinnerModule,
+        NzPipesModule,
+    ],
+  providers:[{provide: ErrorHandler, useClass: MyErrorHandler}],
+  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, ],
   exports: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent],
 })
 export class MyComponentsModule {}

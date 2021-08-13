@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   authenticated: false,
   hmr: false,
+  url:'http://localhost:1337'
 }
 
 /*

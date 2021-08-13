@@ -11,17 +11,18 @@ import * as Reducers from 'src/app/store/reducers'
 import * as UserActions from './actions'
 import { jwtAuthService } from 'src/app/services/jwt'
 import { firebaseAuthService } from 'src/app/services/firebase'
+import { UtilitiesService } from '../../services/utilities.service'
 
 @Injectable()
 export class UserEffects implements OnInitEffects {
   constructor(
     private actions: Actions,
     private jwtAuthService: jwtAuthService,
-    private firebaseAuthService: firebaseAuthService,
     private router: Router,
     private route: ActivatedRoute,
     private rxStore: Store<any>,
     private notification: NzNotificationService,
+    private utilities : UtilitiesService
   ) {}
 
   ngrxOnInitEffects(): Action {
@@ -37,11 +38,10 @@ export class UserEffects implements OnInitEffects {
     ),
     switchMap(([payload, settings]) => {
       // jwt login
-      if (settings.authProvider === 'jwt') {
         return this.jwtAuthService.login(payload.email, payload.password).pipe(
           map(response => {
-            if (response && response.accessToken) {
-              store.set('accessToken', response.accessToken)
+            if (response && response.jwt) {
+              store.set('accessToken', response.jwt)
               this.notification.success('Logged In', 'You have successfully logged in!')
               return new UserActions.LoadCurrentAccount()
             }
@@ -50,22 +50,12 @@ export class UserEffects implements OnInitEffects {
           }),
           catchError(error => {
             console.log('LOGIN ERROR: ', error)
+            this.utilities.stopLoadScreen();
+            this.utilities.notifyUser.error('Login failed')
             return from([{ type: UserActions.LOGIN_UNSUCCESSFUL }])
           }),
         )
-      }
 
-      // firebase login
-      return from(this.firebaseAuthService.login(payload.email, payload.password)).pipe(
-        map(() => {
-          this.notification.success('Logged In', 'You have successfully logged in!')
-          return new UserActions.LoadCurrentAccount()
-        }),
-        catchError((error: any) => {
-          this.notification.warning(error.code, error.message)
-          return from([{ type: UserActions.LOGIN_UNSUCCESSFUL }])
-        }),
-      )
     }),
   )
 
@@ -97,19 +87,6 @@ export class UserEffects implements OnInitEffects {
           }),
         )
       }
-
-      // firebase register
-      return from(
-        this.firebaseAuthService.register(payload.email, payload.password, payload.name),
-      ).pipe(
-        map(() => {
-          return new UserActions.EmptyAction()
-        }),
-        catchError(error => {
-          this.notification.warning(error.code, error.message)
-          return from([{ type: UserActions.EMPTY_ACTION }])
-        }),
-      )
     }),
   )
 
@@ -121,6 +98,7 @@ export class UserEffects implements OnInitEffects {
       of(action).pipe(withLatestFrom(this.rxStore.pipe(select(Reducers.getSettings)))),
     ),
     switchMap(([action, settings]) => {
+      console.log(settings)
       // jwt load current account
       if (settings.authProvider === 'jwt') {
         return this.jwtAuthService.currentAccount().pipe(
@@ -130,20 +108,21 @@ export class UserEffects implements OnInitEffects {
                 this.router.navigate([this.route.snapshot.queryParams.returnUrl]) // // redirect to returnUrl
               } else if (this.router.url.includes('/auth')) {
                 this.router.navigate(['/']) // redirect to root route on auth pages
+
               }
+              this.utilities.stopLoadScreen();
               return new UserActions.LoadCurrentAccountSuccessful(response)
             }
+            this.utilities.stopLoadScreen();
             return new UserActions.LoadCurrentAccountUnsuccessful()
           }),
           catchError(error => {
             console.log('ACCOUNT LOAD ERROR: ', error)
+            this.utilities.stopLoadScreen();
             return from([{ type: UserActions.LOGIN_UNSUCCESSFUL }])
           }),
         )
       }
-
-      // do nothing for firebase, as user state subscribed inside firebase service
-      return of(new UserActions.EmptyAction())
     }),
   )
 
@@ -166,14 +145,7 @@ export class UserEffects implements OnInitEffects {
         )
       }
 
-      // firebase logout
-      return from(this.firebaseAuthService.logout()).pipe(
-        map(() => {
-          store.remove('accessToken')
-          this.router.navigate(['/auth/login'])
-          return new UserActions.FlushUser()
-        }),
-      )
     }),
   )
+
 }

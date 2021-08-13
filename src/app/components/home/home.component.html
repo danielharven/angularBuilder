@@ -18,7 +18,8 @@
         To ask, to learn, to share, to grow.
       </p>
       <div class="hero-btn-box py-4">
-        <a routerLink="/pricing" class="btn theme-btn mr-2">Join Tadya</a>
+        <a *ngIf='!autherised' routerLink="/pricing" class="btn theme-btn mr-2">Join Tadya</a>
+        <a *ngIf='autherised' routerLink="/profile" class="btn theme-btn mr-2">Profile</a>
         <a routerLink="/ask" class="btn theme-btn theme-btn-outline">Ask a Question</a>
       </div>
     </div><!-- end hero-content -->
@@ -149,7 +150,7 @@
                 </div>
                 <div class="media media-card user-media align-items-center px-0 border-bottom-0 pb-0">
                   <a href="user-profile.html" class="media-img d-block">
-                    <img src="images/img3.jpg" alt="avatar">
+                    <img src="assets/images/img3.jpg" alt="avatar">
                   </a>
                   <div class="media-body d-flex flex-wrap align-items-center justify-content-between">
                     <div>
@@ -361,7 +362,7 @@
     <div class="cta-heading media align-items-center justify-content-center">
       <img src="assets/images/undraw-team-up.svg" alt="undraw-questions" class="undraw-illustration mr-5">
       <div class="media-body flex-inherit">
-        <h2 class="section-title pb-3 theme-font-2">Inite Friends to Tadya </h2>
+        <h2 class="section-title pb-3 theme-font-2">Invite Friends to Tadya </h2>
         <p class="section-desc pb-4">– Invite 5 friends to get free question.</p>
         <a routerLink="/invite" class="btn theme-btn">Invite</a>
       </div>
