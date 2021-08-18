@@ -1,0 +1,18 @@
+<div class="pt-5">
+  <div class="card boxContainer mt-2">
+    <div class="text-dark font-size-32 mb-3">I am a</div>
+    <div class="mb-4">
+      Select you role below
+      <br />
+      <strong>eg. Farmer, Camp Officer</strong>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submitForm()" role="form">
+      <formly-form [form]="form" [fields]="fields" [model]="model">
+      </formly-form>
+          <button nz-button nzType="primary" class="text-center w-100">
+            <strong>Log In</strong>
+          </button>
+    </form>
+
+  </div>
+</div>

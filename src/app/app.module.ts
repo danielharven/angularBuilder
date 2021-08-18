@@ -21,8 +21,7 @@ import { reducers, metaReducers } from './store/reducers'
 import { UserEffects } from './store/user/effects'
 import { firebaseConfig, firebaseAuthService } from './services/firebase'
 import { basicAuthService } from './services/basic-auth'
-import { MockHttpCallInterceptor } from './services/fakeApi'
-
+import { dataService } from './services/dataservice'
 // locale resistration
 import { registerLocaleData } from '@angular/common'
 import { default as localeEn } from '@angular/common/locales/en'
@@ -86,14 +85,7 @@ registerLocaleData(localeEn, 'en')
     // auth services
     firebaseAuthService,
     basicAuthService,
-
-    // fake http interceptors
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: MockHttpCallInterceptor,
-    //   multi: true,
-    // },
-
+    dataService,
     // locale providers
     ...LOCALE_PROVIDERS,
 

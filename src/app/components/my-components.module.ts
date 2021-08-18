@@ -16,7 +16,7 @@ import { NgSelectModule } from '@ng-select/ng-select'
 import { HttpClientModule } from '@angular/common/http'
 import { PortalCardComponent } from './dashboard/dashboard-cards/portal-card.component'
 import { PortalCardSearchComponent } from './dashboard/dashboard-card-search/portal-card-search.component'
-
+import { LoginFormComponent } from './login-form/login-form.component'
 const COMPONENTS = [
   FooterComponent,
   FieldNgSelect,
@@ -25,6 +25,7 @@ const COMPONENTS = [
   FileValueAccessor,
   PortalCardComponent,
   PortalCardSearchComponent,
+  LoginFormComponent
 ]
 
 @NgModule({

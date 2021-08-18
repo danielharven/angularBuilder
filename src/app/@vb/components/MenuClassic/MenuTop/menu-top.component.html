@@ -25,9 +25,13 @@
       <li nz-submenu>
       
         <span title>
-          <a href="/#/auth/login"><i class="icon fe fe-arrow-left"></i>
-          <span class="title">Logout</span></a>
+          <!-- <a href="/#/auth/login"><i class="icon fe fe-arrow-left"></i>
+          <span class="title">Logout</span></a> -->
+    <button (click)="logout()">Logout</button>
+
         </span>
+  <div>
+  </div>
         <ul>
           <ng-container *ngFor="let item of menuDataActivated">
             <ng-container *ngIf="!item.roles || item.roles.includes(role)">

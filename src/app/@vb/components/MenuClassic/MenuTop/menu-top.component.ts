@@ -6,6 +6,7 @@ import { select, Store } from '@ngrx/store'
 import { MenuService } from 'src/app/services/menu'
 import * as SettingsActions from 'src/app/store/settings/actions'
 import * as Reducers from 'src/app/store/reducers'
+import * as UserActions from 'src/app/store/user/actions'
 
 @Component({
   selector: 'vb-menu-classic-top',
@@ -79,5 +80,9 @@ export class MenuClassicTopComponent implements OnInit {
       }) &&
       (found || _.map(path, property))
     )
+  }
+  
+  logout() {
+    this.store.dispatch(new UserActions.Logout())
   }
 }

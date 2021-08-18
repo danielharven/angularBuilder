@@ -9,6 +9,7 @@ import { WidgetsComponentsModule } from 'src/app/@vb/widgets/widgets-components.
 import { LoginPage } from './login/login.component'
 import { Error500Page } from './500/500.component'
 import { Error404Page } from './404/404.component'
+import { MyComponentsModule } from '../../components/my-components.module'
 
 const COMPONENTS = [
   LoginPage,
@@ -24,6 +25,7 @@ const COMPONENTS = [
     ReactiveFormsModule,
     ComponentsModule,
     WidgetsComponentsModule,
+    MyComponentsModule,
   ],
   declarations: [...COMPONENTS],
 })

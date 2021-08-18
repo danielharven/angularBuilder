@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormlyFieldConfig } from '@ngx-formly/core'
 
 @Component({
   selector: 'app-dashboard-card-search',
@@ -7,6 +8,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./portal-card-search.component.scss'],
 })
 export class PortalCardSearchComponent implements OnInit {
+  model = {}
+  form = new FormGroup({})
+  fields: FormlyFieldConfig[] = [
+    {
+      key: 'query',
+      type: 'input',
+      templateOptions: {
+        label: 'Search'
+      },
+    hooks: {
+        onChanges: ((field: FormlyFieldConfig)=> {
+              console.log("Changed")
+        })
+    }
+    }
+  ]
+
   constructor(private fb: FormBuilder) {}
   validateForm2: FormGroup
   submitForm2(): void {
