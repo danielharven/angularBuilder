@@ -19,7 +19,6 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreRouterConnectingModule } from '@ngrx/router-store'
 import { reducers, metaReducers } from './store/reducers'
 import { UserEffects } from './store/user/effects'
-import { firebaseConfig, firebaseAuthService } from './services/firebase'
 import { basicAuthService } from './services/basic-auth'
 import { dataService } from './services/dataservice'
 // locale resistration
@@ -28,9 +27,9 @@ import { default as localeEn } from '@angular/common/locales/en'
 import { NZ_I18N, en_US as localeZorro } from 'ng-zorro-antd/i18n'
 import { QuillModule } from 'ngx-quill'
 import { FormlyModule } from '@ngx-formly/core'
-import { FormlyFieldFile } from './components/formly/file-component'
-import { FieldNgSelect } from './components/formly/quill/ng-select'
-import { FieldQuillType } from './components/formly/quill/quil-type'
+import { FormlyFieldFile } from './components/common/FormlyUploadField/file-component'
+import { FieldNgSelect } from './components/common/QuillRichTextEditor/ng-select'
+import { FieldQuillType } from './components/common/QuillRichTextEditor/quil-type'
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
   { provide: NZ_I18N, useValue: localeZorro },
@@ -50,7 +49,6 @@ registerLocaleData(localeEn, 'en')
       extras: { lazyRender: true },
       types: [
         { name: 'file', component: FormlyFieldFile, wrappers: ['form-field'] },
-
         { name: 'ng-select', component: FieldNgSelect, wrappers: ['form-field'] },
         {
           name: 'custom-text-area',
@@ -61,7 +59,6 @@ registerLocaleData(localeEn, 'en')
     }),
     // translate
     TranslateModule.forRoot(),
-
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([UserEffects]),
@@ -69,21 +66,16 @@ registerLocaleData(localeEn, 'en')
 
     // nprogress
     NgProgressModule.withConfig({
+      meteor: true,
       thick: true,
-      spinner: false,
-      color: '#0190fe',
+      spinner: true,
+      color: '#87f35b',
     }),
     NgProgressRouterModule,
     NgProgressHttpModule,
-
-    // init firebase
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
   ],
   providers: [
     // auth services
-    firebaseAuthService,
     basicAuthService,
     dataService,
     // locale providers

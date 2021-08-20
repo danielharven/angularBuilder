@@ -10,14 +10,12 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import * as Reducers from 'src/app/store/reducers'
 import * as UserActions from './actions'
 import { basicAuthService } from 'src/app/services/basic-auth'
-import { firebaseAuthService } from 'src/app/services/firebase'
 
 @Injectable()
 export class UserEffects implements OnInitEffects {
   constructor(
     private actions: Actions,
     private basicAuthService: basicAuthService,
-    private firebaseAuthService: firebaseAuthService,
     private router: Router,
     private route: ActivatedRoute,
     private rxStore: Store<any>,
@@ -48,21 +46,8 @@ export class UserEffects implements OnInitEffects {
               return new UserActions.LoadCurrentAccount()
           }))
       }
-
-      // firebase login
-      return from(this.firebaseAuthService.login(payload.email, payload.password)).pipe(
-        map(() => {
-          this.notification.success('Logged In', 'You have successfully logged in')
-          return new UserActions.LoadCurrentAccount()
-        }),
-        catchError((error: any) => {
-          this.notification.warning(error.code, error.message)
-          return from([{ type: UserActions.LOGIN_UNSUCCESSFUL }])
-        }),
-      )
     }),
   )
-
 
   @Effect()
   loadCurrentAccount: Observable<any> = this.actions.pipe(
@@ -92,8 +77,6 @@ export class UserEffects implements OnInitEffects {
           }),
         )
       }
-
-      // do nothing for firebase, as user state subscribed inside firebase service
       return of(new UserActions.EmptyAction())
     }),
   )
@@ -116,15 +99,6 @@ export class UserEffects implements OnInitEffects {
           }),
         )
       }
-
-      // firebase logout
-      return from(this.firebaseAuthService.logout()).pipe(
-        map(() => {
-          store.remove('accessToken')
-          this.router.navigate(['/auth/login'])
-          return new UserActions.FlushUser()
-        }),
-      )
     }),
   )
 }

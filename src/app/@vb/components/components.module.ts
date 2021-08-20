@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar'
 import { SharedModule } from 'src/app/shared.module'
-import { WidgetsComponentsModule } from 'src/app/@vb/widgets/widgets-components.module'
+// import { WidgetsComponentsModule } from 'src/app/@vb/widgets/widgets-components.module'
 
 import { TopbarComponent } from './Topbar/topbar.component'
 import { TopbarActionsComponent } from './Topbar/Actions/actions.component'
@@ -81,7 +81,7 @@ const COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
-    WidgetsComponentsModule,
+    // WidgetsComponentsModule,
     FormlyModule,
   ],
   declarations: [...COMPONENTS],
