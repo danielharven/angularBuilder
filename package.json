@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "local-start": "ng serve --host 0.0.0.0",
-    "start": "node server.js",
+    "start": "ng serve --open",
     "hmr": "ng serve --configuration=hmr --open",
     "hmr-proxy": "ng serve --proxy-config proxy.config.json --configuration=hmr --open",
     "build": "ng build --prod --build-optimizer",
@@ -21,8 +21,7 @@
     "build-deploy": "yarn vb-full && yarn build-demo && yarn deploy && yarn vb-seed",
     "vb": "node ./scripts/vb.js",
     "vb-full": "REDIRECT_URL=/dashboard/alpha node ./scripts/generate.js --config=config-full.json",
-    "vb-seed": "node ./scripts/generate.js --config=config-seed.json",
-    "heroku-postbuild": "ng buiid --prod"
+    "vb-seed": "node ./scripts/generate.js --config=config-seed.json"
   },
   "husky": {
     "hooks": {
