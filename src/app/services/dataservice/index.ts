@@ -40,7 +40,7 @@ export class dataService{
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.insight.co.zm/",
+            "url": "https://e-sapp.co.zm/",
             "icon":"fe-globe"
           }
         ],"guest":[
@@ -58,7 +58,7 @@ export class dataService{
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.insight.co.zm/",
+            "url": "https://e-sapp.co.zm/",
             "icon":"fe-globe"
           }
         ],
@@ -66,7 +66,7 @@ export class dataService{
           {
             "title": "ESAPP Mobile",
             "description": "",
-            "url": "http://localhost:4300/#/auth/login",
+            "url": "#",
             "icon":"fe-smartphone"
           },{
             "title": "ESAPP Knowledgebase",
@@ -77,12 +77,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://41.222.18.4:8088/ESAPP-MIS/backend/web/users/profile?id=14",
+            "url": "http://mis.e-sapp.co.zm/",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.insight.co.zm/",
+            "url": "https://e-sapp.co.zm/",
             "icon":"fe-globe"
           }
         ],
@@ -90,7 +90,7 @@ export class dataService{
           {
             "title": "ESAPP Mobile",
             "description": "",
-            "url": "http://localhost:4300/#/auth/login",
+            "url": "#",
             "icon":"fe-smartphone"
           },{
             "title": "ESAPP Knowledgebase",
@@ -101,12 +101,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://41.222.18.4:8088/ESAPP-MIS/backend/web/users/profile?id=14",
+            "url": "http://mis.e-sapp.co.zm/",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.insight.co.zm/",
+            "url": "https://esapp.co.zm/",
             "icon":"fe-globe"
           }
         ],
@@ -114,7 +114,7 @@ export class dataService{
           {
             "title": "ESAPP External Review",
             "description": "",
-            "url": "http://41.222.18.4:8088/ESAPP-MIS/backend/web/mgf-application/index?status=4",
+            "url": "http://mis.e-sapp.co.zm/",
             "icon":"fe-edit-3"
           },{
             "title": "ESAPP Knowledgebase",
@@ -124,7 +124,7 @@ export class dataService{
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.insight.co.zm/",
+            "url": "https://esapp.co.zm/",
             "icon":"fe-globe"
           }
 
@@ -139,12 +139,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://41.222.18.4:8088/ESAPP-MIS/backend/web/users/profile?id=14",
+            "url": "http://mis.e-sapp.co.zm/",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.insight.co.zm/",
+            "url": "https://esapp.co.zm/",
             "icon":"fe-globe"
           }
         ],
@@ -158,12 +158,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://41.222.18.4:8088/ESAPP-MIS/backend/web/users/profile?id=14",
+            "url": "http://mis.e-sapp.co.zm/",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.insight.co.zm/",
+            "url": "https://esapp.co.zm/",
             "icon":"fe-globe"
           }
         ],
@@ -177,12 +177,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://41.222.18.4:8088/ESAPP-MIS/backend/web/users/profile?id=14",
+            "url": "http://mis.e-sapp.co.zm/",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.insight.co.zm/",
+            "url": "https://esapp.co.zm/",
             "icon":"fe-globe"
           }
         ],
@@ -196,12 +196,12 @@ export class dataService{
           {
             "title": "Budget",
             "description": "",
-            "url": "http://41.222.18.4:8088/ESAPP-MIS/backend/web/awpb-activity-line/submitpw?id=1&status=2",
+            "url": "http://mis.e-sapp.co.zm/",
             "icon":"fe-dollar-sign"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.insight.co.zm/",
+            "url": "https://esapp.co.zm/",
             "icon":"fe-globe"
           }],
         "audit":[
@@ -213,7 +213,7 @@ export class dataService{
           },{
             "title": "Audit Trail",
             "description": "",
-            "url": "http://41.222.18.4:8088/ESAPP-MIS/backend/web/audit-trail/index",
+            "url": "http://mis.e-sapp.co.zm/",
             "icon":"fe-align-left"
           },{
             "title": "ESAPP Website",
