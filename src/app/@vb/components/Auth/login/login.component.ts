@@ -8,7 +8,7 @@ import * as SettingsActions from 'src/app/store/settings/actions'
 @Component({
   selector: 'vb-system-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../style.component.scss'],
+  styleUrls: ['./style.css'],
 })
 export class LoginComponent {
   form: FormGroup

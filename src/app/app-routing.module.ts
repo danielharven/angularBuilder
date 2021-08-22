@@ -14,6 +14,14 @@ import { LayoutMainComponent } from 'src/app/layouts/Main/main.component'
 // pages
 // VB:REPLACE-START:ROUTER-IMPORTS
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
+import { BusinessComponent } from './pages/business/business.component'
+import { BusinessUploadsComponent } from './pages/business/uploads/uploads.component'
+import { BusinessDataComponent } from './pages/business/data/data.component'
+import { AdminComponent } from './pages/admin/admin.component'
+import { AdminUsersComponent } from './pages/admin/users/users.component'
+import { AdminReviewsComponent } from './pages/admin/reviews/reviews.component'
+import { AdminAuditComponent } from './pages/admin/audit/audit.component'
+import { MycomponentsModule } from './components/mycomponents.module'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -32,8 +40,43 @@ const routes: Routes = [
       // VB:REPLACE-START:ROUTER-CONFIG
       {
         path: 'dashboard',
-        data: { title: 'Dashboard' },
+        data: { title: 'Dashboards' },
         component: DashboardComponent,
+      },
+      {
+        path: 'business',
+        data: { title: 'Business' },
+        component: BusinessComponent,
+      },
+      {
+        path: 'business/uploads',
+        data: { title: 'Uploads' },
+        component: BusinessUploadsComponent,
+      },
+      {
+        path: 'business/data',
+        data: { title: 'Data Entry' },
+        component: BusinessDataComponent,
+      },
+      {
+        path: 'admin',
+        data: { title: 'Admin' },
+        component: AdminComponent,
+      },
+      {
+        path: 'admin/users',
+        data: { title: 'Users' },
+        component: AdminUsersComponent,
+      },
+      {
+        path: 'admin/reviews',
+        data: { title: 'Review' },
+        component: AdminReviewsComponent,
+      },
+      {
+        path: 'admin/audit',
+        data: { title: 'Audit Trail' },
+        component: AdminAuditComponent,
       },
 
       // VB:REPLACE-END:ROUTER-CONFIG
@@ -67,10 +110,18 @@ const routes: Routes = [
     }),
     LayoutsModule,
     WidgetsComponentsModule,
+    MycomponentsModule,
   ],
   declarations: [
     // VB:REPLACE-START:ROUTER-DECLARATIONS
     DashboardComponent,
+    BusinessComponent,
+    BusinessUploadsComponent,
+    BusinessDataComponent,
+    AdminComponent,
+    AdminUsersComponent,
+    AdminReviewsComponent,
+    AdminAuditComponent,
 
     // VB:REPLACE-END:ROUTER-DECLARATIONS
   ],

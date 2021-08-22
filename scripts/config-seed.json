@@ -1,13 +1,649 @@
 {
   "vb": "1.0.0",
-  "timestamp": 1610107454880,
+  "timestamp": 1629538905941,
+  "settings": {
+    "authProvider": "jwt",
+    "logo": "DNPRC",
+    "version": "air",
+    "theme": "default",
+    "locale": "en-US",
+    "isSidebarOpen": false,
+    "isSupportChatOpen": false,
+    "isMobileView": false,
+    "isMobileMenuOpen": false,
+    "isMenuCollapsed": false,
+    "isPreselectedOpen": false,
+    "preselectedVariant": "waves",
+    "menuLayoutType": "top",
+    "routerAnimation": "slide-fadein-right",
+    "menuColor": "white",
+    "authPagesColor": "gray",
+    "isAuthTopbar": true,
+    "primaryColor": "#005000",
+    "leftMenuWidth": 256,
+    "isMenuUnfixed": false,
+    "isMenuShadow": false,
+    "isTopbarFixed": false,
+    "isTopbarSeparated": false,
+    "isGrayTopbar": false,
+    "isContentMaxWidth": false,
+    "isAppMaxWidth": false,
+    "isGrayBackground": true,
+    "isCardShadow": true,
+    "isSquaredBorders": false,
+    "isBorderless": false,
+    "layoutMenu": "classic",
+    "layoutTopbar": "none",
+    "layoutBreadcrumbs": "v1",
+    "layoutFooter": "v1",
+    "flyoutMenuType": "flyout",
+    "flyoutMenuColor": "blue"
+  },
   "config": [
     {
       "key": "__dashboard",
-      "title": "Dashboard",
+      "title": "Dashboards",
       "url": "/dashboard",
       "icon": "fe fe-home"
+    },
+    {
+      "title": "Business",
+      "url": "/business",
+      "icon": "fe fe-airplay",
+      "key": "rvrtr",
+      "expanded": true,
+      "children": [
+        {
+          "title": "Uploads",
+          "url": "/business/uploads",
+          "icon": "fe fe-upload",
+          "key": "gdxr7",
+          "expanded": true
+        },
+        {
+          "title": "Data Entry",
+          "url": "/business/data",
+          "icon": "fe fe-file-plus",
+          "key": "zucw6"
+        }
+      ]
+    },
+    {
+      "title": "Admin",
+      "url": "/admin",
+      "icon": "fe fe-star",
+      "key": "5l0hz",
+      "expanded": true,
+      "children": [
+        {
+          "title": "Users",
+          "url": "/admin/users",
+          "icon": "fe fe-user",
+          "key": "nlygf",
+          "expanded": true
+        },
+        {
+          "title": "Review",
+          "url": "/admin/reviews",
+          "icon": "fe fe-align-justify",
+          "key": "0bidi5"
+        },
+        {
+          "title": "Audit Trail",
+          "url": "/admin/audit",
+          "icon": "fe fe-pause",
+          "key": "ith22p"
+        }
+      ]
     }
   ],
-  "content": {}
+  "content": {
+    "__dashboard": [
+      {
+        "key": "6xr9f",
+        "columns": [
+          {
+            "key": "ajpdie",
+            "className": "col-lg-12",
+            "cards": []
+          }
+        ]
+      }
+    ],
+    "gdxr7": [
+      {
+        "key": "44oao",
+        "columns": [
+          {
+            "key": "aqyo4a",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "p45mf",
+                "extraClass": "card card-top card-top-success",
+                "widgets": [
+                  {
+                    "key": "wouj7r",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Uploads Section"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "vrvsaa",
+        "columns": [
+          {
+            "key": "2fbq6g",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "hm2osm",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "anghth",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Set Parameters"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "hat678",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "pk55j5",
+                "extraClass": "card card-top card-top-success",
+                "widgets": [
+                  {
+                    "key": "48sphg",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Confirmation"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "9z25kf",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "ua85k",
+                "extraClass": "card card-top",
+                "widgets": [
+                  {
+                    "key": "5ybc5",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "My Works"
+                    }
+                  },
+                  {
+                    "key": "18bfo8",
+                    "name": "TablesAntd-6"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "zucw6": [
+      {
+        "key": "sejzhr",
+        "columns": [
+          {
+            "key": "uaz8zs",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "e7yeq",
+                "extraClass": "card card-top card-top-success",
+                "widgets": [
+                  {
+                    "key": "zyqsn9",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Data Entry Section"
+                    }
+                  },
+                  {
+                    "key": "04s18u",
+                    "name": "Controls-Button",
+                    "editable": true,
+                    "dataType": "object",
+                    "data": {
+                      "title": "Get Next NRC",
+                      "type": "primary"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "obnp0g",
+        "columns": [
+          {
+            "key": "sy8sws",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "1t9kdq",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "42ymhf",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Basic Information"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "cj0wlo",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "3kku0p",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "h2zd6",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "NRC Images"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "wg7s68",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "g6s4pb",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "m6k4hu",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "My Works"
+                    }
+                  },
+                  {
+                    "key": "u2phs4e",
+                    "name": "TablesAntd-6"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "nlygf": [
+      {
+        "key": "iz6ed",
+        "columns": [
+          {
+            "key": "3ziiv9",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "mybny4",
+                "extraClass": "card card-top card-top-success",
+                "widgets": [
+                  {
+                    "key": "bci9vg",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Users Admin Section"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "jm4sj",
+        "columns": [
+          {
+            "key": "4gay1t",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "7ygq7d",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "ljo7gqd",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Create Users"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "dr6y9",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "v0t9e",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "4sbnxo",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "User List"
+                    }
+                  },
+                  {
+                    "key": "7u8s4a",
+                    "name": "TablesAntd-7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "46ivl",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "r2we4e",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "5zqcd8",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Most Active Users"
+                    }
+                  },
+                  {
+                    "key": "55g1u",
+                    "name": "TablesAntd-6"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "0bidi5": [
+      {
+        "key": "b5bx0o",
+        "columns": [
+          {
+            "key": "7bwqdg",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "3o2z6f",
+                "extraClass": "card card-top card-top-success",
+                "widgets": [
+                  {
+                    "key": "kt26qt",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Admin Review Section"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "jnqdm9",
+        "columns": [
+          {
+            "key": "llvszc",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "zq7gqk",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "gdjnzn",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Unconfimed NRC List"
+                    }
+                  },
+                  {
+                    "key": "l3wldn",
+                    "name": "Controls-Button",
+                    "editable": true,
+                    "dataType": "object",
+                    "data": {
+                      "title": "Refresh List",
+                      "type": "primary"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "9a7jt8",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "r03ler",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "umrayk",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Confirmed NRC List"
+                    }
+                  },
+                  {
+                    "key": "2u8kcs",
+                    "name": "Controls-Button",
+                    "editable": true,
+                    "dataType": "object",
+                    "data": {
+                      "title": "Refresh List",
+                      "type": "primary"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "g1m2ys",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "mli58",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ith22p": [
+      {
+        "key": "zsg8e",
+        "columns": [
+          {
+            "key": "5dvq6k",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "rkxulp",
+                "extraClass": "card card-top card-top-success",
+                "widgets": [
+                  {
+                    "key": "6ohxgu",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Admin Audit Trail Section"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "9isnh4",
+        "columns": [
+          {
+            "key": "kzt33s",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "ziymi",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "eqeppj",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "User Uploads Lists"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "qn8nk7",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "20es8",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "q7jkv",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "User Data Entry List"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "drlo9a",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "f4pt64",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "h6poqgs",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Basic page header"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

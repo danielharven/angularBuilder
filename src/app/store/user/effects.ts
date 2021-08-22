@@ -40,8 +40,8 @@ export class UserEffects implements OnInitEffects {
       if (settings.authProvider === 'jwt') {
         return this.jwtAuthService.login(payload.email, payload.password).pipe(
           map(response => {
-            if (response && response.accessToken) {
-              store.set('accessToken', response.accessToken)
+            if (response && response.jwt) {
+              store.set('accessToken', response.jwt)
               this.notification.success('Logged In', 'You have successfully logged in!')
               return new UserActions.LoadCurrentAccount()
             }
@@ -55,7 +55,7 @@ export class UserEffects implements OnInitEffects {
         )
       }
 
-      // firebase login
+      // firebase loginq
       return from(this.firebaseAuthService.login(payload.email, payload.password)).pipe(
         map(() => {
           this.notification.success('Logged In', 'You have successfully logged in!')

@@ -9,14 +9,56 @@ const STORED_SETTINGS = (storedSettings: object) => {
   })
   return settings
 }
+/*
+*
+*   "vb": "1.0.0",
+  "timestamp": 1629538905941,
+  "settings": {
+    "authProvider": "jwt",
+    "logo": "DNPRC",
+    "version": "air",
+    "theme": "default",
+    "locale": "en-US",
+    "isSidebarOpen": false,
+    "isSupportChatOpen": false,
+    "isMobileView": false,
+    "isMobileMenuOpen": false,
+    "isMenuCollapsed": false,
+    "isPreselectedOpen": false,
+    "preselectedVariant": "waves",
+    "menuLayoutType": "top",
+    "routerAnimation": "slide-fadein-right",
+    "menuColor": "white",
+    "authPagesColor": "gray",
+    "isAuthTopbar": true,
+    "primaryColor": "#005000",
+    "leftMenuWidth": 256,
+    "isMenuUnfixed": false,
+    "isMenuShadow": false,
+    "isTopbarFixed": false,
+    "isTopbarSeparated": false,
+    "isGrayTopbar": false,
+    "isContentMaxWidth": false,
+    "isAppMaxWidth": false,
+    "isGrayBackground": true,
+    "isCardShadow": true,
+    "isSquaredBorders": false,
+    "isBorderless": false,
+    "layoutMenu": "classic",
+    "layoutTopbar": "none",
+    "layoutBreadcrumbs": "v1",
+    "layoutFooter": "v1",
+    "flyoutMenuType": "flyout",
+    "flyoutMenuColor": "blue"
+* */
 
 export const initialState: object = {
   ...STORED_SETTINGS({
     // Read docs for available values: https://docs.visualbuilder.cloud
     // VB:REPLACE-START:SETTINGS
     authProvider: 'jwt',
-    logo: 'Visual Builder',
-    version: 'fluent',
+    logo: 'DNRPC',
+    version: 'air',
     theme: 'default',
     locale: 'en-US',
     isSidebarOpen: false,
@@ -25,13 +67,13 @@ export const initialState: object = {
     isMobileMenuOpen: false,
     isMenuCollapsed: false,
     isPreselectedOpen: false,
-    preselectedVariant: 'default',
-    menuLayoutType: 'left',
-    routerAnimation: 'slide-fadein-up',
-    menuColor: 'gray',
+    preselectedVariant: 'waves',
+    menuLayoutType: 'top',
+    routerAnimation: 'slide-fadein-right',
+    menuColor: 'white',
     authPagesColor: 'gray',
     isAuthTopbar: true,
-    primaryColor: '#4b7cf3',
+    primaryColor: '#007000',
     leftMenuWidth: 256,
     isMenuUnfixed: false,
     isMenuShadow: false,
@@ -40,17 +82,17 @@ export const initialState: object = {
     isGrayTopbar: false,
     isContentMaxWidth: false,
     isAppMaxWidth: false,
-    isGrayBackground: false,
+    isGrayBackground: true,
     isCardShadow: true,
     isSquaredBorders: false,
     isBorderless: false,
     layoutMenu: 'classic',
-    layoutTopbar: 'v1',
+    layoutTopbar: 'none',
     layoutBreadcrumbs: 'v1',
     layoutFooter: 'v1',
+    layoutMenuType: 'top',
     flyoutMenuType: 'flyout',
     flyoutMenuColor: 'blue',
-
     // VB:REPLACE-END:SETTINGS
   }),
 }

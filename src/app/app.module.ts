@@ -23,6 +23,8 @@ import { firebaseConfig, firebaseAuthService } from './services/firebase'
 import { jwtAuthService } from './services/jwt'
 import { MockHttpCallInterceptor } from './services/fakeApi'
 
+// Apollo
+import { AppolloClientModule } from './appollo-client/appollo-client.module'
 // locale resistration
 import { registerLocaleData } from '@angular/common'
 import { default as localeEn } from '@angular/common/locales/en'
@@ -41,7 +43,7 @@ registerLocaleData(localeEn, 'en')
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-
+    AppolloClientModule,
     // translate
     TranslateModule.forRoot(),
 

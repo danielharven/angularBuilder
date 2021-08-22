@@ -1,0 +1,98 @@
+<div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card card-top card-top-success">
+        <div class="card-header">
+          <vb-headers-heading [data]="{'title':'Uploads Section'}"></vb-headers-heading>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-12">
+      <div class="card card-top card-top-primary">
+        <div class="card-header">
+          <vb-headers-heading [data]="{'title':'Set Parameters'}"></vb-headers-heading>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="nrcForms" (ngSubmit)="submitForm()"  nz-form [nzLayout]="'verical'">
+
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please select province">
+              <nz-select
+                formControlName="province"
+                (ngModelChange)="getDistricts()"
+                nzShowSearch nzAllowClear nzPlaceHolder="Select a province"
+              >
+                <nz-option *ngFor="let x of provinces" nzLabel="{{x.name}}"
+                           nzValue="{{x.id}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please select district">
+              <nz-select
+                formControlName="district"
+                nzShowSearch nzAllowClear nzPlaceHolder="Select a district"
+              >
+                <nz-option *ngFor="let x of districts" nzLabel="{{x.name}}"
+                           nzValue="{{x.id}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <nz-form-item>
+            <nz-form-label nzRequired>Start NRC</nz-form-label>
+            <nz-form-control nzErrorTip="Please enter starting NRC">
+              <input formControlName="start" name="name" nz-input placeholder="">
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzRequired>End NRC</nz-form-label>
+            <nz-form-control nzErrorTip="Please enter ending NRC">
+              <input formControlName="end" name="end" nz-input placeholder="">
+            </nz-form-control>
+          </nz-form-item>
+          <div class="row">
+            <div class="col-6">
+              <nz-form-item>
+                <nz-form-label nzRequired>Upload Images</nz-form-label>
+                <app-upload ></app-upload>
+              </nz-form-item>
+            </div>
+            <div class="col-6">
+              <nz-form-item>
+                <button  class="btn btn-success btn-with-addon text-nowrap mt-3"
+                         type="submit">
+      <span class="btn-addon">
+        <i class="btn-addon-icon fe fe-plus-circle"></i>
+      </span>
+                  Submit
+                </button>
+              </nz-form-item>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+      <div class="card card-top card-top-success">
+        <div class="card-header">
+          <vb-headers-heading [data]="{'title':'Confirmation'}"></vb-headers-heading>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+      <div class="card card-top">
+        <div class="card-header">
+          <vb-headers-heading [data]="{'title':'My Works'}"></vb-headers-heading>
+        </div>
+        <div class="card-body"><vb-tables-antd-6></vb-tables-antd-6></div>
+      </div>
+    </div>
+  </div>
+</div>
