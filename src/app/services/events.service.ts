@@ -8,7 +8,8 @@ export class EventsService {
 
   onUploaded = new EventEmitter<{ status: boolean; downloadUrl?: string }>()
   onProductProcessesCompleted = new EventEmitter<{ status: boolean; product: any }>()
-  onUploadCompleted = new EventEmitter<{ status: boolean; downloadUrl?: string[] }>()
-  onPostProduct = new EventEmitter<{ status: boolean; downloadUrl?: [] }>()
+  onUploadCompleted = new EventEmitter<{ status: boolean; downloadUrl?: string[]; files?: any }>()
+  onPostProduct = new EventEmitter<{ status: boolean; files?: [] }>()
   onOpenProducts = new EventEmitter<{ status: boolean }>()
+  onConfrimData = new EventEmitter<{ status: boolean; data: any }>()
 }

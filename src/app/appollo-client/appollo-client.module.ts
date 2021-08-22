@@ -9,7 +9,7 @@ import { ApolloLink, InMemoryCache } from '@apollo/client/core'
 import { setContext } from '@apollo/client/link/context'
 // import { ApolloLink } from 'apollo-link';
 // import { setContext } from 'apollo-link-context';
-const uri = environment.url + '/'
+const uri = environment.url + '/graphql'
 
 @NgModule({
   declarations: [],
@@ -24,10 +24,10 @@ export class AppolloClientModule {
   }))
 
   // Get the authentication token from local storage if it exists
-  token = localStorage.getItem('accessToken') || ''
+  token = JSON.parse(localStorage.getItem('accessToken')) || ''
   auth = setContext((operation, context) => ({
     headers: {
-      Authorization: `Bearer ${this.token}`,
+      Authorization: 'Bearer ' + this.token,
     },
   }))
 

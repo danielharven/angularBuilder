@@ -16,13 +16,14 @@
         </div>
       </div>
       <div class="card-body">
-        <form [formGroup]="nrcForms" (ngSubmit)="submitForm()"  nz-form [nzLayout]="'verical'">
+        <form [formGroup]="nrcForms"
+              nz-form [nzLayout]="'verical'">
 
           <nz-form-item>
             <nz-form-control nzErrorTip="Please select province">
               <nz-select
                 formControlName="province"
-                (ngModelChange)="getDistricts()"
+                (ngModelChange)="getDistrictsByProvince()"
                 nzShowSearch nzAllowClear nzPlaceHolder="Select a province"
               >
                 <nz-option *ngFor="let x of provinces" nzLabel="{{x.name}}"
@@ -33,10 +34,11 @@
           <nz-form-item>
             <nz-form-control nzErrorTip="Please select district">
               <nz-select
+                [disabled]="submitting"
                 formControlName="district"
                 nzShowSearch nzAllowClear nzPlaceHolder="Select a district"
               >
-                <nz-option *ngFor="let x of districts" nzLabel="{{x.name}}"
+                <nz-option *ngFor="let x of districts" nzLabel="{{x.label}}"
                            nzValue="{{x.id}}"></nz-option>
               </nz-select>
             </nz-form-control>
@@ -44,15 +46,25 @@
 
 
           <nz-form-item>
+            <nz-form-label nzRequired>NRC Extension</nz-form-label>
+            <nz-form-control  nzErrorTip="Please enter NRC extension">
+              <input [disabled]="submitting" formControlName="ext"
+                     name="name" nz-input placeholder="10/1">
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
             <nz-form-label nzRequired>Start NRC</nz-form-label>
             <nz-form-control nzErrorTip="Please enter starting NRC">
-              <input formControlName="start" name="name" nz-input placeholder="">
+              <input [disabled]="submitting" type="number" formControlName="start"
+                     name="name" nz-input placeholder="193000">
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
             <nz-form-label nzRequired>End NRC</nz-form-label>
             <nz-form-control nzErrorTip="Please enter ending NRC">
-              <input formControlName="end" name="end" nz-input placeholder="">
+              <input [disabled]="submitting" type="number" formControlName="end" name="end"
+                     nz-input placeholder="193099">
             </nz-form-control>
           </nz-form-item>
           <div class="row">
@@ -64,11 +76,9 @@
             </div>
             <div class="col-6">
               <nz-form-item>
-                <button  class="btn btn-success btn-with-addon text-nowrap mt-3"
-                         type="submit">
-      <span class="btn-addon">
-        <i class="btn-addon-icon fe fe-plus-circle"></i>
-      </span>
+                <button nz-button (click)="submitForm()"
+                        [nzLoading]="submitting"
+                        class="btn btn-success btn-with-addon text-nowrap mt-3">
                   Submit
                 </button>
               </nz-form-item>
@@ -85,6 +95,11 @@
           <vb-headers-heading [data]="{'title':'Confirmation'}"></vb-headers-heading>
         </div>
       </div>
+      <div class="card-body">
+        <upload-confirmation-lists-25
+        [data]="readableFormData"
+        ></upload-confirmation-lists-25>
+      </div>
     </div>
     <div class="col-lg-4 col-md-12">
       <div class="card card-top">
@@ -96,3 +111,28 @@
     </div>
   </div>
 </div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Progress"
+          (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <ul class="list-unstyled mb-0">
+      <li *ngFor="let x of completed" class="item">
+        <div class="separator bg-success mr-3"></div>
+        <label for="checkbox-1" class="control checkbox mb-0">
+          <input type="checkbox" checked id="checkbox-1" />
+          <span class="controlIndicator"></span>
+          <div class="d-inline-block">
+            <div>NRC Generated </div>
+            <div class="text-muted">{{x}}</div>
+          </div>
+        </label>
+      </li>
+    </ul>
+    <nz-spin *ngIf="completed.length!=fileList.length/2" nzTip="Loading...">
+      <nz-alert
+        nzType="info"
+        nzMessage="Generating"
+        nzDescription="NRC : {{nrc}}"
+      ></nz-alert>
+    </nz-spin>
+  </ng-container>
+</nz-modal>

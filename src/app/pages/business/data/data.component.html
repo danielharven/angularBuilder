@@ -20,6 +20,48 @@
           <vb-headers-heading [data]="{'title':'Basic Information'}"></vb-headers-heading>
         </div>
       </div>
+      <div class="card-body">
+        <form [formGroup]="nrcForms"
+              nz-form [nzLayout]="'verical'">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please select district">
+              <nz-select
+                [disabled]="submitting"
+                formControlName="district"
+                nzShowSearch nzAllowClear nzPlaceHolder="Select a district"
+              >
+                <nz-option *ngFor="let x of districts" nzLabel="{{x.label}}"
+                           nzValue="{{x.id}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzRequired>NRC</nz-form-label>
+            <nz-form-control nzErrorTip="Please enter NRC">
+              <input [disabled]="submitting" formControlName="start"
+                     name="name" nz-input placeholder="193000/10/1">
+            </nz-form-control>
+          </nz-form-item>
+          <div class="row">
+            <div class="col-6">
+              <nz-form-item>
+                <nz-form-label nzRequired>Upload Images</nz-form-label>
+                <app-upload ></app-upload>
+              </nz-form-item>
+            </div>
+            <div class="col-6">
+              <nz-form-item>
+                <button nz-button (click)="submitForm()"
+                        [nzLoading]="submitting"
+                        class="btn btn-success btn-with-addon text-nowrap mt-3">
+                  Submit
+                </button>
+              </nz-form-item>
+            </div>
+          </div>
+
+        </form>
+      </div>
     </div>
     <div class="col-lg-4 col-md-12">
       <div class="card card-top card-top-primary">

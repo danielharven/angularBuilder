@@ -13,7 +13,7 @@ export class jwtAuthService {
   }
 
   register(email: string, password: string, name: string): Observable<any> {
-    return this.http.post(environment.url + '/auth/register', { email, password, name })
+    return this.http.post(environment.url + '/auth/register', { email, password, username: name })
   }
 
   currentAccount(): Observable<any> {

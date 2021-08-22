@@ -5,7 +5,7 @@ schema {
   mutation: Mutation
 }
 
-union Morph = District | DistrictAggregator | DistrictConnection | DistrictConnectionCreatedAt | DistrictConnectionId | DistrictConnectionLabel | DistrictConnectionPublished_at | DistrictConnectionUpdatedAt | DistrictConnection_id | DistrictGroupBy | Download | DownloadAggregator | DownloadConnection | DownloadConnectionCreatedAt | DownloadConnectionId | DownloadConnectionUpdatedAt | DownloadConnection_id | DownloadGroupBy | Nrc | NrcAggregator | NrcConnection | NrcConnectionConfirmed | NrcConnectionCreatedAt | NrcConnectionDistrict | NrcConnectionDob | NrcConnectionDor | NrcConnectionGender | NrcConnectionId | NrcConnectionNames | NrcConnectionNrc | NrcConnectionPic_id1 | NrcConnectionPic_id2 | NrcConnectionUpdatedAt | NrcConnectionVillage | NrcConnection_id | NrcGroupBy | Province | ProvinceAggregator | ProvinceConnection | ProvinceConnectionCreatedAt | ProvinceConnectionId | ProvinceConnectionName | ProvinceConnectionPublished_at | ProvinceConnectionUpdatedAt | ProvinceConnection_id | ProvinceGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UploadedDocuments | UploadedDocumentsAggregator | UploadedDocumentsConnection | UploadedDocumentsConnectionCreatedAt | UploadedDocumentsConnectionId | UploadedDocumentsConnectionPublished_at | UploadedDocumentsConnectionUpdatedAt | UploadedDocumentsConnection_id | UploadedDocumentsGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | createDistrictPayload | createDownloadPayload | createNrcPayload | createProvincePayload | createRolePayload | createUploadedDocumentPayload | createUserPayload | deleteDistrictPayload | deleteDownloadPayload | deleteFilePayload | deleteNrcPayload | deleteProvincePayload | deleteRolePayload | deleteUploadedDocumentPayload | deleteUserPayload | updateDistrictPayload | updateDownloadPayload | updateNrcPayload | updateProvincePayload | updateRolePayload | updateUploadedDocumentPayload | updateUserPayload
+union Morph = District | DistrictAggregator | DistrictConnection | DistrictConnectionCreatedAt | DistrictConnectionId | DistrictConnectionLabel | DistrictConnectionProvince | DistrictConnectionPublished_at | DistrictConnectionUpdatedAt | DistrictConnection_id | DistrictGroupBy | Download | DownloadAggregator | DownloadConnection | DownloadConnectionCreatedAt | DownloadConnectionId | DownloadConnectionUpdatedAt | DownloadConnection_id | DownloadGroupBy | Nrc | NrcAggregator | NrcConnection | NrcConnectionConfirmed | NrcConnectionCreatedAt | NrcConnectionDistrict | NrcConnectionDob | NrcConnectionDor | NrcConnectionGender | NrcConnectionId | NrcConnectionNames | NrcConnectionNrc | NrcConnectionPic_id1 | NrcConnectionPic_id2 | NrcConnectionUpdatedAt | NrcConnectionVillage | NrcConnection_id | NrcGroupBy | Province | ProvinceAggregator | ProvinceConnection | ProvinceConnectionCreatedAt | ProvinceConnectionId | ProvinceConnectionName | ProvinceConnectionPublished_at | ProvinceConnectionUpdatedAt | ProvinceConnection_id | ProvinceGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UploadedDocuments | UploadedDocumentsAggregator | UploadedDocumentsConnection | UploadedDocumentsConnectionCreatedAt | UploadedDocumentsConnectionId | UploadedDocumentsConnectionPublished_at | UploadedDocumentsConnectionUpdatedAt | UploadedDocumentsConnection_id | UploadedDocumentsGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | createDistrictPayload | createDownloadPayload | createNrcPayload | createProvincePayload | createRolePayload | createUploadedDocumentPayload | createUserPayload | deleteDistrictPayload | deleteDownloadPayload | deleteFilePayload | deleteNrcPayload | deleteProvincePayload | deleteRolePayload | deleteUploadedDocumentPayload | deleteUserPayload | updateDistrictPayload | updateDownloadPayload | updateNrcPayload | updateProvincePayload | updateRolePayload | updateUploadedDocumentPayload | updateUserPayload
 
 type AdminUser {
   firstname: String!
@@ -19,6 +19,7 @@ type District {
   createdAt: DateTime!
   id: ID!
   label: String
+  province: Province
   published_at: DateTime
   updatedAt: DateTime!
 }
@@ -49,6 +50,11 @@ type DistrictConnectionLabel {
   key: String
 }
 
+type DistrictConnectionProvince {
+  connection: DistrictConnection
+  key: ID
+}
+
 type DistrictConnectionPublished_at {
   connection: DistrictConnection
   key: DateTime
@@ -69,6 +75,7 @@ type DistrictGroupBy {
   createdAt: [DistrictConnectionCreatedAt]
   id: [DistrictConnectionId]
   label: [DistrictConnectionLabel]
+  province: [DistrictConnectionProvince]
   published_at: [DistrictConnectionPublished_at]
   updatedAt: [DistrictConnectionUpdatedAt]
 }
@@ -155,7 +162,7 @@ type Mutation {
   updateUploadedDocument(input: updateUploadedDocumentInput): updateUploadedDocumentPayload
   "Update an existing user"
   updateUser(input: updateUserInput): updateUserPayload
-  upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID, source: String): UploadFile!
+  upload(field: String, file: Upload!, ref: String, refId: ID, source: String): UploadFile!
 }
 
 type Nrc {
@@ -850,6 +857,11 @@ type updateUserPayload {
   user: UsersPermissionsUser
 }
 
+enum CacheControlScope {
+  PRIVATE
+  PUBLIC
+}
+
 enum PublicationState {
   LIVE
   PREVIEW
@@ -858,6 +870,7 @@ enum PublicationState {
 input DistrictInput {
   created_by: ID
   label: String
+  province: ID
   published_at: DateTime
   updated_by: ID
 }
@@ -1025,6 +1038,7 @@ input deleteUserInput {
 input editDistrictInput {
   created_by: ID
   label: String
+  province: ID
   published_at: DateTime
   updated_by: ID
 }
