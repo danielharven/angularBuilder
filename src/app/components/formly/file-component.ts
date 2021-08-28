@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser'
 import { FieldType } from '@ngx-formly/core'
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'formly-field-file',
   template: `
     <div class="upload-wrapper">
