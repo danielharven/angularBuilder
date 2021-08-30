@@ -29,70 +29,42 @@ export class MockHttpCallInterceptor implements HttpInterceptor {
   constructor(private injector: Injector, private notification: NzNotificationService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!request.headers.get('Authorization')) {
-      if (localStorage.getItem('accessToken'))
-        request.headers.set(
+    console.log(request.headers.get('Authorization'))
+    if (request.headers.get('Authorization') == null && request.url.includes('graphql')) {
+      const authReq = request.clone({
+        headers: request.headers.set(
           'Authorization',
           'Bearer ' + JSON.parse(localStorage.getItem('accessToken')) || '',
-        )
+        ),
+      })
+      return next.handle(authReq).pipe(
+        catchError(error => {
+          console.log('error is intercept')
+          console.error(error)
+          this.notification.error('DNRPC', error.error.data[0].messages[0].message)
+          return throwError(error.message)
+        }),
+      )
+      console.log(request.headers.get('Authorization'))
     }
-    // if (request.method === 'POST') {
-    //   // login
-    //   if (request.url === '/api/auth/login') {
-    //     const { email, password } = request.body
-    //     const user: any = users.find(item => item.email === email && item.password === password)
-    //     const error = user ? 'Something went wrong.' : 'Login failed, please try again'
-    //
-    //     if (user) {
-    //       return timer(500).pipe(switchMap(() => of(new HttpResponse({ status: 200, body: user }))))
-    //     }
-    //
-    //     return of(new HttpResponse({ status: 401, body: error }))
-    //   }
-    //
-    //   // register
-    //   if (request.url === '/api/auth/register') {
-    //     const { email, password, name } = request.body
-    //     const user = users.find(user => user.email === email)
-    //
-    //     if (!user) {
-    //       const user = {
-    //         id: users.length + 1,
-    //         email,
-    //         password,
-    //         name,
-    //         avatar: '',
-    //         role: 'admin',
-    //         accessToken: fakeJwtToken,
-    //       }
-    //       users.push(user)
-    //
-    //       return of(new HttpResponse({ status: 200, body: user }))
-    //     }
-    //
-    //     return of(new HttpResponse({ status: 401, body: 'This email is already in use.' }))
-    //   }
-    // }
-    //
-    // if (request.method === 'GET') {
-    //   // load account
-    //   if (request.url === '/api/auth/account') {
-    //     const AccessToken = request.headers.get('AccessToken')
-    //     const user: any = users.find(user => user.accessToken === AccessToken)
-    //
-    //     if (user) {
-    //       return timer(500).pipe(switchMap(() => of(new HttpResponse({ status: 200, body: user }))))
-    //     }
-    //
-    //     return of(new HttpResponse({ status: 401 }))
-    //   }
-    //
-    //   // logout
-    //   if (request.url === '/api/auth/logout') {
-    //     return of(new HttpResponse({ status: 200 }))
-    //   }
-    // }
-
+    let auth = request.url.includes('auth')
+    if (request.headers.get('Authorization') == null && !auth) {
+      const authReq = request.clone({
+        headers: request.headers.set(
+          'Authorization',
+          'Bearer ' + JSON.parse(localStorage.getItem('accessToken')) || '',
+        ),
+      })
+      return next.handle(authReq).pipe(
+        catchError(error => {
+          console.log('error is intercept')
+          console.error(error)
+          this.notification.error('DNRPC', error.error.data[0].messages[0].message)
+          return throwError(error.message)
+        }),
+      )
+      console.log(request.headers.get('Authorization'))
+    }
     return next.handle(request).pipe(
       catchError(error => {
         console.log('error is intercept')

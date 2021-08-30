@@ -1,3 +1,74 @@
 <div>
-  <div class="row"><div class="col-lg-12"></div></div>
+  <div class="row">
+    <div class="col-lg-12"></div>
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        My Profile
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="py-3 border-bottom">
+            <div class="font-weight-bold mb-2">Username </div>
+            <div>{{user.username}}</div>
+          </div>
+          <div class="py-3 border-bottom">
+            <div class="font-weight-bold mb-2">Email</div>
+            <div>{{user.email}}</div>
+          </div>
+          <div class="py-3 border-bottom">
+            <div class="font-weight-bold mb-2">Role</div>
+            <div>{{user.role}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        Change Password
+      </div>
+      <div class="card-body">
+        <form [formGroup]="userForms"
+              nz-form [nzLayout]="'verical'">
+          <nz-form-item>
+            <nz-form-label nzRequired>Current Password</nz-form-label>
+            <nz-form-control  nzErrorTip="Please enter current password">
+              <input type="password" formControlName="password"
+                     name="name" nz-input >
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzRequired>New Password</nz-form-label>
+            <nz-form-control  nzErrorTip="Please enter new Password">
+              <input type="password" formControlName="newPassword"
+                     name="newPassword" nz-input >
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzRequired>Confirm Password</nz-form-label>
+            <nz-form-control  nzErrorTip="Please enter confirm Password">
+              <input type="password" formControlName="confirmPassword"
+                     name="newPassword" nz-input >
+            </nz-form-control>
+          </nz-form-item>
+          <div class="row">
+            <div class="col-12">
+              <nz-form-item>
+                <button nz-button (click)="submitForm()"
+                        [nzLoading]="submitting"
+                        class="btn btn-success  mt-3">
+                  Submit
+                </button>
+              </nz-form-item>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4"></div>
+  </div>
 </div>

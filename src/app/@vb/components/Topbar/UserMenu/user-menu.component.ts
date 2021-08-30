@@ -16,8 +16,8 @@ export class TopbarUserMenuComponent {
 
   constructor(private store: Store<any>) {
     this.store.pipe(select(Reducers.getUser)).subscribe(state => {
-      this.name = state.name
-      this.role = state.role
+      this.name = state.username
+      this.role = state.role.name
       this.email = state.email
     })
   }

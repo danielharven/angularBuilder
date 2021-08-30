@@ -43,6 +43,9 @@ export class UploadComponent implements OnInit, OnChanges {
         this.evt.onUploadCompleted.emit({ status: true, downloadUrl: this.postUrl })
       }
     })
+    this.evt.onResetForm.subscribe(data => {
+      this.fileList = []
+    })
   }
 
   beforeUpload = (file: NzUploadFile): boolean => {
@@ -76,6 +79,7 @@ export class UploadComponent implements OnInit, OnChanges {
                     downloadUrl: this.postUrl,
                     files: this.fileList,
                   })
+                  this.fileList = []
                 }
               }
             },

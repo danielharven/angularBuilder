@@ -14,6 +14,51 @@
         <div class="card-header">
           <vb-headers-heading [data]="{'title':'Create Users'}"></vb-headers-heading>
         </div>
+        <div class="card-body">
+          <form [formGroup]="nrcForms"
+                nz-form [nzLayout]="'verical'">
+
+            <nz-form-item>
+              <nz-form-label nzRequired>Select Role</nz-form-label>
+              <nz-form-control nzErrorTip="Please select role">
+                <nz-select
+                  formControlName="role"
+                  nzShowSearch nzAllowClear nzPlaceHolder="Select a role"
+                >
+                  <nz-option *ngFor="let x of roles" nzLabel="{{x.name}}"
+                             nzValue="{{x.id}}"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label nzRequired>UserName</nz-form-label>
+              <nz-form-control  nzErrorTip="Please enter username">
+                <input [disabled]="submitting" formControlName="username"
+                       name="name" nz-input >
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzRequired>Email</nz-form-label>
+              <nz-form-control  nzErrorTip="Please enter email">
+                <input [disabled]="submitting" formControlName="email"
+                       name="email" nz-input >
+              </nz-form-control>
+            </nz-form-item>
+            <div class="row">
+              <div class="col-12">
+                <nz-form-item>
+                  <button nz-button (click)="submitForm()"
+                          [nzLoading]="submitting"
+                          class="btn btn-success  mt-3">
+                    Submit
+                  </button>
+                </nz-form-item>
+              </div>
+            </div>
+
+          </form>
+        </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-12">
@@ -21,7 +66,32 @@
         <div class="card-header">
           <vb-headers-heading [data]="{'title':'User List'}"></vb-headers-heading>
         </div>
-        <div class="card-body"><vb-tables-antd-7></vb-tables-antd-7></div>
+        <div class="card-body">
+          <nz-table #nzTable [nzData]="listOfData" nzTableLayout="fixed">
+            <thead>
+            <tr>
+              <th nzWidth="60px"></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let data of nzTable.data">
+              <tr>
+                <td [nzExpand]="expandSet.has(data.id)" (nzExpandChange)="onExpandChange(data.id, $event)"></td>
+                <td>{{ data.username }}</td>
+                <td>{{ data.email }}</td>
+                <td>{{ data.role.name }}</td>
+              </tr>
+              <tr [nzExpand]="expandSet.has(data.id)">
+              <td *ngIf="!data.block"><button class="btn btn-primary">Block User</button></td>
+              <td *ngIf="data.block"><button class="btn btn-primary">UnBlock User</button></td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </nz-table>
+        </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-12">

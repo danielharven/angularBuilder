@@ -22,6 +22,7 @@ import { AdminUsersComponent } from './pages/admin/users/users.component'
 import { AdminReviewsComponent } from './pages/admin/reviews/reviews.component'
 import { AdminAuditComponent } from './pages/admin/audit/audit.component'
 import { MycomponentsModule } from './components/mycomponents.module'
+import { NzImageModule } from 'ng-zorro-antd/image'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -111,6 +112,7 @@ const routes: Routes = [
     LayoutsModule,
     WidgetsComponentsModule,
     MycomponentsModule,
+    NzImageModule,
   ],
   declarations: [
     // VB:REPLACE-START:ROUTER-DECLARATIONS

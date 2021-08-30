@@ -30,6 +30,6 @@ export class jwtAuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.get('/api/auth/logout')
+    return this.http.get(environment.url + '/logout')
   }
 }

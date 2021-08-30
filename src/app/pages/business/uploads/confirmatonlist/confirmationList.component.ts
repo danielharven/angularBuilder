@@ -7,10 +7,10 @@ import { EventsService } from '../../../../services/events.service'
 })
 export class ConfirmationList25Component implements OnChanges {
   @Input('data') data = {
-    province: undefined,
-    startNrc: undefined,
-    district: undefined,
-    endNrc: undefined,
+    province: '',
+    startNrc: '',
+    district: '',
+    endNrc: '',
   }
   constructor(private evt: EventsService) {}
 
@@ -20,6 +20,11 @@ export class ConfirmationList25Component implements OnChanges {
   setupListerners() {
     this.evt.onConfrimData.subscribe(({ status, data }) => {
       if (!status) this.data = data
+    })
+
+    this.evt.onResetForm.subscribe(_ => {
+      // @ts-ignore
+      this.data = {}
     })
   }
 

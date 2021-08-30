@@ -11,8 +11,8 @@
 }">
 
     <vb-variants></vb-variants>
-    <vb-sidebar></vb-sidebar>
-    <vb-support-chat></vb-support-chat>
+<!--    <vb-sidebar></vb-sidebar>-->
+<!--    <vb-support-chat></vb-support-chat>-->
 
     <!-- classic left menu -->
     <nz-sider *ngIf="settings.layoutMenu === 'classic' && settings.menuLayoutType === 'left' && !settings.isMobileView"
@@ -23,7 +23,7 @@
       <div class="handler" (click)="toggleMobileMenu()">
         <div class="handlerIcon"></div>
       </div>
-      <nz-drawer [nzClosable]="false" [nzWrapClassName]="'mobileMenu'" [nzVisible]="isMobileMenuOpen" nzPlacement="left"
+      <nz-drawer [nzClosable]="false" [nzWrapClassName]="'mobileMenu'" [nzVisible]="settings.isMobileMenuOpen" nzPlacement="left"
         (nzOnClose)="toggleMobileMenu()">
         <vb-menu-classic-left></vb-menu-classic-left>
       </nz-drawer>

@@ -68,18 +68,25 @@
             </nz-form-control>
           </nz-form-item>
           <div class="row">
-            <div class="col-6">
-              <nz-form-item>
-                <nz-form-label nzRequired>Upload Images</nz-form-label>
-                <app-upload ></app-upload>
-              </nz-form-item>
+            <div class="col-9">
+              <div [ngStyle]="{height:'30vh',overflowY:'scroll'}">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Upload Images </nz-form-label>
+                  <app-upload ></app-upload>
+                </nz-form-item>
+              </div>
+
             </div>
-            <div class="col-6">
+            <div class="col-3">
               <nz-form-item>
                 <button nz-button (click)="submitForm()"
                         [nzLoading]="submitting"
-                        class="btn btn-success btn-with-addon text-nowrap mt-3">
+                        class="btn btn-success text-nowrap mt-3 d-block">
                   Submit
+                </button>
+                <button nz-button (click)="resetForm()"
+                        class="btn btn-danger text-nowrap mt-3 d-block">
+                  Reset
                 </button>
               </nz-form-item>
             </div>
@@ -121,8 +128,9 @@
           <input type="checkbox" checked id="checkbox-1" />
           <span class="controlIndicator"></span>
           <div class="d-inline-block">
-            <div>NRC Generated </div>
-            <div class="text-muted">{{x}}</div>
+            <div>NRC Info </div>
+            <div [class.text-danger]="x.includes('Failed')"
+                 class="text-primary">{{x}}</div>
           </div>
         </label>
       </li>

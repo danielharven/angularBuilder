@@ -9,30 +9,196 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-4 col-md-12">
+    <div class="col-lg-5 col-md-12">
+      <nz-tabset>
+        <nz-tab [nzTitle]="titleTemplate">
+          <ng-template #titleTemplate>
+            <i nz-icon nzType=""></i>
+            Un-Approved NRCs
+          </ng-template>
+          <div class="card card-top card-top-primary">
+            <div class="card-body">
+              <div>
+                <div class="row">
+                  <div class="col-4">
+                    <vb-controls-button (click)="refresh()"
+                      [data]="{'title':'Get Next NRC','type':'primary'}"
+                    ></vb-controls-button>
+                  </div>
+                  <div class="col-4">
+                    <div class=" ml-2 d-flex flex-wrap align-items-center">
+                      <div class="mr-auto">
+                        <p class="text-uppercase font-weight-bold mb-1">
+                          Total
+                        </p>
+                        <p class="mb-0">
+                          Un-Approved
+                        </p>
+                      </div>
+                      <p class="font-weight-bold font-size-24 mb-0">
+                        {{totals.unapproved}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+              </div>
+              <div *ngIf="downloaded?.nrc">
+                <div class="py-3 border-bottom">
+                  <div class="font-weight-bold mb-2">NRC</div>
+                  <div>{{downloaded.nrc}}</div>
+                </div>
+                <div class="py-3 border-bottom">
+                  <div class="font-weight-bold mb-2">Names</div>
+                  <div>{{downloaded.names}}</div>
+                </div>
+                <div class="py-3 border-bottom">
+                  <div class="font-weight-bold mb-2">Gender</div>
+                  <div>{{downloaded.gender}}</div>
+                </div>
+                <div class="py-3 border-bottom">
+                  <div class="font-weight-bold mb-2">Village</div>
+                  <div>{{downloaded.village}}</div>
+                </div>
+                <div class="py-3 border-bottom">
+                  <div class="font-weight-bold mb-2">DOB</div>
+                  <div>{{downloaded.dob|date}}</div>
+                </div>
+                <div class="py-3 border-bottom">
+                  <div class="font-weight-bold mb-2">DOR</div>
+                  <div>{{downloaded.dor|date}}</div>
+                </div>
+                <div class="py-3 border-bottom">
+                  <div class="font-weight-bold mb-2">District</div>
+                  <div>{{downloaded.district.label}}</div>
+                </div>
+
+                <div class="py-3 border-bottom">
+                  <a (click)="process('a')" class="btn btn-success text-blue mb-2">
+                    Approve
+                  </a>
+                   <a (click)="process('e')" class="ml-1 btn btn-info text-blue mb-2">
+                    Edit NRC
+                  </a>
+                </div>
+
+              </div>
+              <div *ngIf="edit">
+                <form [formGroup]="nrcForms"
+                      nz-form [nzLayout]="'verical'">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>NRC District</nz-form-label>
+                    <nz-form-control nzErrorTip="Please select district">
+                      <nz-select
+                        [disabled]="submitting"
+                        formControlName="district"
+                        nzShowSearch nzAllowClear nzPlaceHolder="Select a district"
+                      >
+                        <nz-option *ngFor="let x of districts" nzLabel="{{x.label}}"
+                                   nzValue="{{x.id}}"></nz-option>
+                      </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzRequired>NRC</nz-form-label>
+                    <nz-form-control nzErrorTip="Please enter NRC">
+                      <input [disabled]="submitting" formControlName="nrc"
+                             name="name" nz-input placeholder="193000/10/1">
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Full Names</nz-form-label>
+                    <nz-form-control nzErrorTip="Please enter Full Names">
+                      <input [disabled]="submitting" formControlName="names"
+                             name="name" nz-input placeholder="Daniel Chirwa">
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Village</nz-form-label>
+                    <nz-form-control nzErrorTip="Please enter village">
+                      <input [disabled]="submitting" formControlName="village"
+                             name="name" nz-input placeholder="">
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Gender</nz-form-label>
+                    <nz-form-control nzErrorTip="Please select Gender">
+                      <nz-select
+                        [disabled]="submitting"
+                        formControlName="gender"
+                        nzShowSearch nzAllowClear nzPlaceHolder="Gender"
+                      >
+                        <nz-option nzLabel="male" nzValue="male" ></nz-option>
+                        <nz-option nzLabel="female" nzValue="female" ></nz-option>
+                      </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzRequired>DOB</nz-form-label>
+                    <nz-form-control nzErrorTip="Enter Date Of Birth">
+                      <nz-date-picker
+                        [(ngModel)]="dob"
+                        name="dob"
+                        [ngModelOptions]="{standalone: true}"
+                        (ngModelChange)="changeDob($event)">
+                      </nz-date-picker>
+                      <br />
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzRequired>DOR</nz-form-label>
+                    <nz-form-control nzErrorTip="Enter Date Of Registration">
+                      <nz-date-picker
+                        [(ngModel)]="dor"
+                        name="dob"
+                        [ngModelOptions]="{standalone: true}"
+                        (ngModelChange)="changeDor($event)">
+                      </nz-date-picker>
+                      <br />
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <button nz-button (click)="submitForm()"
+                            [nzLoading]="submitting"
+                            class="btn btn-success text-nowrap mt-3">
+                      Submit & Approve
+                    </button>
+                  </nz-form-item>
+
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </nz-tab>
+        <nz-tab [nzTitle]="workTemplate">
+          <ng-template #workTemplate>
+            <i nz-icon nzType=""></i>
+           Search Approved NRC
+          </ng-template>
+          <div class="card card-top card-top-primary">
+            <div class="card-body">
+              <vb-controls-button
+                [data]="{'title':'Refresh List','type':'primary'}"
+              ></vb-controls-button>
+            </div>
+          </div>
+        </nz-tab>
+      </nz-tabset>
+    </div>
+    <div class="col-lg-7 col-md-12">
       <div class="card card-top card-top-primary">
         <div class="card-header">
-          <vb-headers-heading [data]="{'title':'Unconfimed NRC List'}"></vb-headers-heading>
-        </div>
-        <div class="card-body">
-          <vb-controls-button
-            [data]="{'title':'Refresh List','type':'primary'}"
-          ></vb-controls-button>
+          <vb-headers-heading [data]="{'title':'NRC Images'}"></vb-headers-heading>
         </div>
       </div>
-    </div>
-    <div class="col-lg-4 col-md-12">
-      <div class="card card-top card-top-primary">
-        <div class="card-header">
-          <vb-headers-heading [data]="{'title':'Confirmed NRC List'}"></vb-headers-heading>
-        </div>
-        <div class="card-body">
-          <vb-controls-button
-            [data]="{'title':'Refresh List','type':'primary'}"
-          ></vb-controls-button>
-        </div>
+      <div class="card-body">
+
+        <img nz-image width="500" height="400" [nzSrc]="pic1" alt="NRC Image 1" />
+        <img nz-image width="500" height="400" [nzSrc]="pic2" alt="NRC Image 2" />
+
       </div>
     </div>
-    <div class="col-lg-4 col-md-12"><div class="card card-top card-top-primary"></div></div>
   </div>
 </div>
+

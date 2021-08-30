@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment'
 // Apollo
 import { Apollo } from 'apollo-angular'
 import { HttpLink } from 'apollo-angular/http'
-import { ApolloLink, InMemoryCache } from '@apollo/client/core'
+import { ApolloLink, DefaultOptions, InMemoryCache } from '@apollo/client/core'
 import { setContext } from '@apollo/client/link/context'
 // import { ApolloLink } from 'apollo-link';
 // import { setContext } from 'apollo-link-context';
@@ -17,6 +17,20 @@ const uri = environment.url + '/graphql'
   imports: [CommonModule],
 })
 export class AppolloClientModule {
+  defaultOptions: DefaultOptions = {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+    mutate: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  }
   basic = setContext((operation, context) => ({
     headers: {
       Accept: 'charset=utf-8',
@@ -39,11 +53,13 @@ export class AppolloClientModule {
       apollo.create({
         link,
         cache,
+        defaultOptions: this.defaultOptions,
       })
     } else {
       apollo.create({
         link: httpLink.create({ uri }),
         cache: new InMemoryCache(),
+        defaultOptions: this.defaultOptions,
       })
     }
   }

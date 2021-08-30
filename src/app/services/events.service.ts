@@ -11,5 +11,6 @@ export class EventsService {
   onUploadCompleted = new EventEmitter<{ status: boolean; downloadUrl?: string[]; files?: any }>()
   onPostProduct = new EventEmitter<{ status: boolean; files?: [] }>()
   onOpenProducts = new EventEmitter<{ status: boolean }>()
+  onResetForm = new EventEmitter()
   onConfrimData = new EventEmitter<{ status: boolean; data: any }>()
 }
