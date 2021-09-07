@@ -14,7 +14,7 @@ export class dataService{
       {value:"external_reviewer", label:"External Reviewer"},
       {value:"do", label:"District Officer"},
       {value:"po", label:"Provincial Officer"},
-      {value:"pco", label:"ESAPP"},
+      {value:"pco", label:"PCO"},
     ])
   }
 
@@ -24,7 +24,7 @@ export class dataService{
           {
             "title": "ESAPP MGF",
             "description": "",
-            "url": "#",
+            "url": "http://mis.e-sapp.gov/frontend/web",
             "icon":"fe-edit-3"
           },{
             "title": "ESAPP Knowledgebase",
@@ -40,7 +40,7 @@ export class dataService{
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://e-sapp.co.zm/",
+            "url": "https://www.e-sapp.gov",
             "icon":"fe-globe"
           }
         ],"guest":[
@@ -58,7 +58,7 @@ export class dataService{
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://e-sapp.co.zm/",
+            "url": "https://www.e-sapp.gov",
             "icon":"fe-globe"
           }
         ],
@@ -77,12 +77,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://mis.e-sapp.co.zm/",
+            "url": "http://mis.e-sapp.gov/backend/web/users",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://e-sapp.co.zm/",
+            "url": "https://www.e-sapp.gov",
             "icon":"fe-globe"
           }
         ],
@@ -101,12 +101,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://mis.e-sapp.co.zm/",
+            "url": "http://mis.e-sapp.gov/backend/web/users",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.co.zm/",
+            "url": "https://www.e-sapp.gov",
             "icon":"fe-globe"
           }
         ],
@@ -114,7 +114,7 @@ export class dataService{
           {
             "title": "ESAPP External Review",
             "description": "",
-            "url": "http://mis.e-sapp.co.zm/",
+            "url": "http://mis.e-sapp.gov/backend/web/users",
             "icon":"fe-edit-3"
           },{
             "title": "ESAPP Knowledgebase",
@@ -124,7 +124,7 @@ export class dataService{
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.co.zm/",
+            "url": "https://www.e-sapp.gov",
             "icon":"fe-globe"
           }
 
@@ -139,12 +139,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://mis.e-sapp.co.zm/",
+            "url": "http://mis.e-sapp.gov/backend/web/users",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.co.zm/",
+            "url": "https://www.e-sapp.gov",
             "icon":"fe-globe"
           }
         ],
@@ -158,12 +158,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://mis.e-sapp.co.zm/",
+            "url": "http://mis.e-sapp.gov/backend/web/users",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.co.zm/",
+            "url": "https://www.e-sapp.gov",
             "icon":"fe-globe"
           }
         ],
@@ -177,12 +177,12 @@ export class dataService{
           {
             "title": "ESAPP Backend",
             "description": "",
-            "url": "http://mis.e-sapp.co.zm/",
+            "url": "http://mis.e-sapp.gov/backend/web/users",
             "icon":"fe-briefcase"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.co.zm/",
+            "url": "https://www.e-sapp.gov",
             "icon":"fe-globe"
           }
         ],
@@ -196,12 +196,12 @@ export class dataService{
           {
             "title": "Budget",
             "description": "",
-            "url": "http://mis.e-sapp.co.zm/",
+            "url": "http://mis.e-sapp.gov/backend/web/users",
             "icon":"fe-dollar-sign"
           },{
             "title": "ESAPP Website",
             "description": "",
-            "url": "https://esapp.co.zm/",
+            "url": "https://www.e-sapp.gov",
             "icon":"fe-globe"
           }],
         "audit":[
@@ -213,7 +213,7 @@ export class dataService{
           },{
             "title": "Audit Trail",
             "description": "",
-            "url": "http://mis.e-sapp.co.zm/",
+            "url": "http://mis.e-sapp.gov/backend/web/users",
             "icon":"fe-align-left"
           },{
             "title": "ESAPP Website",
