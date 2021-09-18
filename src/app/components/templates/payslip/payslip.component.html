@@ -1,0 +1,198 @@
+<div  id="print-section" *ngIf="loadPayslip"
+      style="position:absolute;left:50%;margin-left:-306px;top:0px;width:612px;height:792px;border-style:outset;overflow:hidden"
+[style.height.px]="totalPageHeight"
+>
+
+  <div style="position:absolute;left:187.63px;top:36.89px" class="cls_003"><span class="cls_003">GOVERNMENT OF THE REPUBLIC OF ZAMBIA</span></div>
+  <div style="position:absolute;left:297.65px;top:57.10px" class="cls_004"><span class="cls_004">E-Payslip</span></div>
+
+  <div style="position:absolute;left:79px;top:80.10px; width:480px" class="full-dashed-line"></div>
+
+
+  <div style="position:absolute;left:177.62px;top:96.16px" class="cls_002"><span class="cls_002">PAY MONTH</span></div>
+  <div style="position:absolute;left:295.85px;top:96.16px" class="cls_002"><span class="cls_002">NEXT APPRAISAL</span></div>
+  <div style="position:absolute;left:442.66px;top:96.16px" class="cls_002"><span class="cls_002">PRESENT APPOINT</span></div>
+  <div style="position:absolute;left:175.68px;top:114.16px" class="cls_002"><span class="cls_002">{{details.paymentMonth}}</span></div>
+  <div style="position:absolute;left:295.85px;top:116.18px" class="cls_005"><span class="cls_005">{{details.nxtAppraisalDate}}</span></div>
+  <div style="position:absolute;left:442.66px;top:116.75px" class="cls_005"><span class="cls_005">{{details.presentAppointmentDate}}</span></div>
+
+  <div style="position:absolute;left:79px;top:135.10px; width:480px" class="full-dashed-line">
+  </div>
+
+  <div style="position:absolute;left:80.78px;top:144.69px" class="cls_006"><span class="cls_006">EMPLOYEE NO.</span></div>
+  <div style="position:absolute;left:177.62px;top:144.69px" class="cls_006"><span class="cls_006">NRC</span></div>
+  <div style="position:absolute;left:280.44px;top:144.69px" class="cls_006"><span class="cls_006">MAN NO</span></div>
+  <div style="position:absolute;left:368.28px;top:144.69px" class="cls_006"><span class="cls_006">SAL/SCALE</span></div>
+  <div style="position:absolute;left:459.00px;top:148.07px" class="cls_002"><span class="cls_002 ">{{details.empGroup}}</span></div>
+  <div style="position:absolute;left:78.77px;top:157.07px" class="cls_002"><span class="cls_002">{{details.empNo}}</span></div>
+  <div style="position:absolute;left:175.68px;top:157.07px" class="cls_002"><span class="cls_002">{{details.nrc}}</span></div>
+  <div style="position:absolute;left:285.68px;top:157.07px" class="cls_002"><span class="cls_002">{{details.manNo}}</span></div>
+  <div style="position:absolute;left:366.26px;top:157.07px" class="cls_002"><span class="cls_002">{{details.scale}}</span></div>
+
+  <div style="position:absolute;left:565.00px;top:135.07px;height: 200px;" class="cls_002 rbd"><span class="cls_002 "></span></div>
+  <div style="position:absolute;left:79px;top:175.10px; width:480px" class="full-dashed-line">
+  </div>
+
+  <div style="position:absolute;left:80.14px;top:176.37px" class="cls_002"><span class="cls_002">{{details.empName}}</span></div>
+
+  <div style="position:absolute;left:322.00px;top:175.07px;height: 150px;" class="cls_002 rbd"><span class="cls_002 "></span></div>
+  <div style="position:absolute;left:75.00px;top:135.07px;height: 190px;" class="cls_002 lbd"><span class="cls_002 "></span></div>
+
+  <div style="position:absolute;left:325.44px;top:181.26px" class="cls_002"><span class="cls_002">{{details.bankName}}</span></div>
+  <div style="position:absolute;left:79.85px;top:194.01px" class="cls_002"><span class="cls_002">{{details.position}}</span></div>
+  <div style="position:absolute;left:80.14px;top:212.01px" class="cls_002"><span class="cls_002">{{details.district}}</span></div>
+  <div style="position:absolute;left:219.70px;top:212.01px" class="cls_002"><span class="cls_002">{{details.ministry}}</span></div>
+  <div style="position:absolute;left:325.15px;top:213.74px" class="cls_002"><span class="cls_002">{{details.bankBranch}}</span></div>
+
+  <div style="position:absolute;left:322px;top:230.10px; width:230px" class="full-dashed-line">
+  </div>
+
+  <div style="position:absolute;left:455.98px;top:213.74px" class="cls_002"><span class="cls_002">{{details.bankKey}}</span></div>
+  <div style="position:absolute;left:79.27px;top:235.34px" class="cls_002"><span class="cls_002">{{details.costCenter}}</span></div>
+  <div style="position:absolute;left:197.46px;top:235.34px" class="cls_002"><span class="cls_002">{{details.costCenterName}}</span></div>
+  <div style="position:absolute;left:326.23px;top:235.70px" class="cls_002"><span class="cls_002">{{details.leaveAccrued[0]}}{{details.leaveAccrued[1]}}</span></div>
+  <div style="position:absolute;left:79.13px;top:256.43px" class="cls_002"><span class="cls_002">{{details.orgUnit}}</span></div>
+  <div style="position:absolute;left:196.74px;top:256.43px" class="cls_002"><span class="cls_002"> {{details.costCenterName}}</span></div>
+
+  <div style="position:absolute;left:75px;top:275.10px; width:250px" class="full-dashed-line">
+  </div>
+
+
+  <div style="position:absolute;left:327.46px;top:256.50px" class="cls_002"><span class="cls_002">LEAVE TAKEN</span></div>
+  <div style="position:absolute;left:398.82px;top:256.50px" class="cls_002"><span class="cls_002">:</span></div>
+  <div style="position:absolute;left:420.78px;top:256.50px" class="cls_002"><span class="cls_002">{{details.leaveTaken[0]}}{{details.leaveTaken[1]}}</span></div>
+  <div style="position:absolute;left:327.67px;top:275.22px" class="cls_002"><span class="cls_002">PENSION LIFE T/D: {{details.pensionToDate[1]}}</span></div>
+  <div style="position:absolute;left:78.98px;top:278.39px" class="cls_002"><span class="cls_002">PAYMENT METHOD:  EFT Payment</span></div>
+  <div style="position:absolute;left:327.46px;top:295.02px" class="cls_002"><span class="cls_002">TAXABLE INCOME</span></div>
+  <div style="position:absolute;left:415.29px;top:295.02px" class="cls_002"><span class="cls_002">: {{details.taxableIncome}}</span></div>
+
+  <div style="position:absolute;left:75px;top:315.10px; width:490px" class="full-dashed-line">
+  </div>
+
+  <div style="position:absolute;left:77.33px;top:315.98px" class="cls_002"><span class="cls_002">Wage Code</span></div>
+  <div style="position:absolute;left:135.36px;top:315.98px" class="cls_002"><span class="cls_002">Description</span></div>
+  <div style="position:absolute;left:266.11px;top:315.98px" class="cls_002"><span class="cls_002">Period</span></div>
+  <div style="position:absolute;left:322.63px;top:315.98px" class="cls_002"><span class="cls_002">Payment</span></div>
+  <div style="position:absolute;left:402.91px;top:315.98px" class="cls_002"><span class="cls_002">Deduction</span></div>
+  <div style="position:absolute;left:469.66px;top:315.98px" class="cls_002"><span class="cls_002">Accumulation</span></div>
+  <div style="position:absolute;left:322.63px;top:327.71px" class="cls_002"><span class="cls_002">Amount</span></div>
+  <div style="position:absolute;left:402.91px;top:327.71px" class="cls_002"><span class="cls_002">Amount</span></div>
+
+  <div style="position:absolute;left:75px;top:339.10px; width:490px" class="full-dashed-line">
+  </div>
+
+<!--  Begin Transactions-->
+  <div *ngFor="let t of transactions; let i=index">
+  <div style="position:absolute;left:77.33px;"
+       [style.top.px]="341.46+(i*transactionsSettings.top_dif)"
+       class="cls_002"><span class="cls_002">{{t.wageCode}}</span></div>
+  <div style="position:absolute;left:135.36px;"
+       [style.top.px]="341.46+(i*transactionsSettings.top_dif)"
+       class="cls_002"><span class="cls_002">{{t.wageDescr}}</span></div>
+  <div style="position:absolute;left:266.11px;"
+       [style.top.px]="341.46+(i*transactionsSettings.top_dif)"
+       class="cls_002"><span class="cls_002">{{t.period}}</span>
+  </div>
+  <div style="position:absolute;"
+       [style.top.px]="341.46+(i*transactionsSettings.top_dif)"
+       [style.left.px]="transactionsSettings.payment_left_limit - (t.paymentAmount.length * transactionsSettings.space) "
+       class="cls_002"><span class="cls_002">{{t.paymentAmount|currency:'ZMW':''|removeZeros}}</span>
+  </div>
+  <div style="position:absolute;"
+       [style.top.px]="341.46+(i*transactionsSettings.top_dif)"
+       [style.left.px]="transactionsSettings.deduc_left_limit - (t.deductionAmount.length * transactionsSettings.space)"
+       class="cls_002"><span class="cls_002">{{t.deductionAmount|currency:'ZMW':'' |transposeminus| removeZeros}}</span>
+  </div>
+  <div style="position:absolute;"
+       [style.top.px]="341.46+(i*transactionsSettings.top_dif)"
+       [style.left.px]="transactionsSettings.accum_left_limit - (t.accumulation.length * transactionsSettings.space)"
+       class="cls_002"><span class="cls_002">{{t.accumulation|currency:'ZMW':''|transposeminus|removeZeros}}</span>
+  </div>
+  </div>
+
+<!--  the seven boundaries-->
+  <div>
+    <div style="position:absolute;left:565.00px;top:319.10px"
+         [style.height.px]="transactions.length*transactionsSettings.top_dif+28"
+         class="cls_002 lbd"><span class="cls_002 "></span></div>
+
+    <div style="position:absolute;left:466.00px;top:319.10px"
+         [style.height.px]="transactions.length*transactionsSettings.top_dif+28"
+         class="cls_002 lbd"><span class="cls_002 "></span></div>
+
+    <div style="position:absolute;left:398.00px;top:319.10px"
+         [style.height.px]="transactions.length*transactionsSettings.top_dif+28"
+         class="cls_002 lbd"><span class="cls_002 "></span></div>
+    <div style="position:absolute;left:318.00px;top:319.10px"
+         [style.height.px]="transactions.length*transactionsSettings.top_dif+28"
+         class="cls_002 lbd"><span class="cls_002 "></span></div>
+    <div style="position:absolute;left:262.00px;top:319.10px"
+         [style.height.px]="transactions.length*transactionsSettings.top_dif+28"
+         class="cls_002 lbd"><span class="cls_002 "></span></div>
+    <div style="position:absolute;left:73.00px;top:319.10px"
+         [style.height.px]="transactions.length*transactionsSettings.top_dif+28"
+         class="cls_002 lbd"><span class="cls_002 "></span></div>
+
+    <div style="position:absolute;left:130.00px;top:319.10px"
+         [style.height.px]="transactions.length*transactionsSettings.top_dif+28"
+         class="cls_002 lbd"><span class="cls_002 "></span></div>
+
+  </div>
+
+<!--  closing transaction table-->
+  <div style="position:absolute;left:75px;
+   width:490px"
+       [style.top.px]="transactionsSettings.top_dif*transactions.length+347"
+       class="full-dashed-line">
+  </div>
+
+<!--  Total Calculations-->
+  <div style="position:absolute;left:75px; width:490px"
+       [style.top.px]="totalPageHeight-98.27"
+       class="full-dark-dashed-line">
+  </div>
+  <div style="position:absolute;left:346.18px;"
+       [style.top.px]="totalPageHeight-97.27"
+       class="cls_002"><span class="cls_002">{{netPay|currency:'ZMW':''}}</span></div>
+
+  <div style="position:absolute;left:424.22px;"
+       [style.top.px]="totalPageHeight-97.27"
+       class="cls_002"><span class="cls_002">{{netDeduc|currency:'ZMW':''|transposeminus|removeZeros}}</span></div>
+
+
+  <div style="position:absolute;left:138.17px;"
+       [style.top.px]="totalPageHeight-93.27"
+       class="cls_006"><span class="cls_006">TOTALS</span></div>
+
+  <div style="position:absolute;left:138.17px;"
+       [style.top.px]="totalPageHeight-77.27"
+       class="cls_006"><span class="cls_006">NET PAY</span></div>
+
+  <div style="position:absolute;left:75px; width:490px"
+       [style.top.px]="totalPageHeight-78.27"
+       class="full-dark-dashed-line">
+  </div>
+
+  <div style="position:absolute;left:351.65px;"
+       [style.top.px]="totalPageHeight-76.27"
+       class="cls_002"><span class="cls_002">{{net|currency:'ZMW':''}}</span></div>
+
+  <div style="position:absolute;left:75px; width:490px"
+       [style.top.px]="totalPageHeight-60.27"
+       class="full-dashed-line">
+  </div>
+
+  <div style="position:absolute;left:233.35px"
+       [style.top.px]="totalPageHeight-54.64"
+       class="cls_007"><span class="cls_007">A SMART and value centred civil service</span></div>
+  <div style="position:absolute;left:180.72px;"
+       [style.top.px]="totalPageHeight-39.89"
+       class="cls_009"><span class="cls_009">{{footer}}</span></div>
+</div>
+<button
+  [useExistingCss]="true"
+  printSectionId="print-section" ngxPrint [style.top]="0">
+  <i  nz-icon nzType="printer"
+      nzTheme="outline"> Print</i>
+</button>
+

@@ -10,18 +10,20 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import * as Reducers from 'src/app/store/reducers'
 import * as UserActions from './actions'
 import { jwtAuthService } from 'src/app/services/jwt'
-import { firebaseAuthService } from 'src/app/services/firebase'
+// import { firebaseAuthService } from 'src/app/services/firebase'
+import { UtilitiesService } from '../../services/utilities.service'
 
 @Injectable()
 export class UserEffects implements OnInitEffects {
   constructor(
     private actions: Actions,
     private jwtAuthService: jwtAuthService,
-    private firebaseAuthService: firebaseAuthService,
+    // private firebaseAuthService: firebaseAuthService,
     private router: Router,
     private route: ActivatedRoute,
     private rxStore: Store<any>,
     private notification: NzNotificationService,
+    private utilities: UtilitiesService
   ) {}
 
   ngrxOnInitEffects(): Action {
@@ -40,13 +42,16 @@ export class UserEffects implements OnInitEffects {
       if (settings.authProvider === 'jwt') {
         return this.jwtAuthService.login(payload.email, payload.password).pipe(
           map(response => {
-            if (response && response.accessToken) {
-              store.set('accessToken', response.accessToken)
-              this.notification.success('Logged In', 'You have successfully logged in!')
-              return new UserActions.LoadCurrentAccount()
+            if (response.message) {
+              this.utilities.accountFound.emit({status:response.message});
+              return
+              // store.set('accessToken', response.accessToken)
+              // this.notification.success('Logged In', 'You have successfully logged in!')
+              // return new UserActions.LoadCurrentAccount()
             }
-            this.notification.warning('Auth Failed', response)
-            return new UserActions.LoginUnsuccessful()
+            this.notification.warning('Auth Failed', 'Employee not found')
+            this.utilities.accountFound.emit({status:response.message});
+            return new UserActions.LoginUnsuccessful();
           }),
           catchError(error => {
             console.log('LOGIN ERROR: ', error)
@@ -55,17 +60,17 @@ export class UserEffects implements OnInitEffects {
         )
       }
 
-      // firebase login
-      return from(this.firebaseAuthService.login(payload.email, payload.password)).pipe(
-        map(() => {
-          this.notification.success('Logged In', 'You have successfully logged in!')
-          return new UserActions.LoadCurrentAccount()
-        }),
-        catchError((error: any) => {
-          this.notification.warning(error.code, error.message)
-          return from([{ type: UserActions.LOGIN_UNSUCCESSFUL }])
-        }),
-      )
+      // // firebase login
+      // return from(this.firebaseAuthService.login(payload.email, payload.password)).pipe(
+      //   map(() => {
+      //     this.notification.success('Logged In', 'You have successfully logged in!')
+      //     return new UserActions.LoadCurrentAccount()
+      //   }),
+      //   catchError((error: any) => {
+      //     this.notification.warning(error.code, error.message)
+      //     return from([{ type: UserActions.LOGIN_UNSUCCESSFUL }])
+      //   }),
+      // )
     }),
   )
 
@@ -99,17 +104,17 @@ export class UserEffects implements OnInitEffects {
       }
 
       // firebase register
-      return from(
-        this.firebaseAuthService.register(payload.email, payload.password, payload.name),
-      ).pipe(
-        map(() => {
-          return new UserActions.EmptyAction()
-        }),
-        catchError(error => {
-          this.notification.warning(error.code, error.message)
-          return from([{ type: UserActions.EMPTY_ACTION }])
-        }),
-      )
+      // return from(
+      //   this.firebaseAuthService.register(payload.email, payload.password, payload.name),
+      // ).pipe(
+      //   map(() => {
+      //     return new UserActions.EmptyAction()
+      //   }),
+      //   catchError(error => {
+      //     this.notification.warning(error.code, error.message)
+      //     return from([{ type: UserActions.EMPTY_ACTION }])
+      //   }),
+      // )
     }),
   )
 
@@ -125,7 +130,9 @@ export class UserEffects implements OnInitEffects {
       if (settings.authProvider === 'jwt') {
         return this.jwtAuthService.currentAccount().pipe(
           map(response => {
+            // console.log(response)
             if (response && (response.email || response.user)) {
+              localStorage.setItem('ucross',JSON.stringify(response)||'');
               if (this.route.snapshot.queryParams.returnUrl) {
                 this.router.navigate([this.route.snapshot.queryParams.returnUrl]) // // redirect to returnUrl
               } else if (this.router.url.includes('/auth')) {
@@ -143,7 +150,7 @@ export class UserEffects implements OnInitEffects {
       }
 
       // do nothing for firebase, as user state subscribed inside firebase service
-      return of(new UserActions.EmptyAction())
+      // return of(new UserActions.EmptyAction())
     }),
   )
 
@@ -167,13 +174,13 @@ export class UserEffects implements OnInitEffects {
       }
 
       // firebase logout
-      return from(this.firebaseAuthService.logout()).pipe(
-        map(() => {
-          store.remove('accessToken')
-          this.router.navigate(['/auth/login'])
-          return new UserActions.FlushUser()
-        }),
-      )
+      // return from(this.firebaseAuthService.logout()).pipe(
+      //   map(() => {
+      //     store.remove('accessToken')
+      //     this.router.navigate(['/auth/login'])
+      //     return new UserActions.FlushUser()
+      //   }),
+      // )
     }),
   )
 }

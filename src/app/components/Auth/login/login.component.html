@@ -1,0 +1,40 @@
+-<div class="pt-5">
+  <div class="card boxContainer mt-2">
+    <div class="text-dark font-size-32 mb-3">Sign In</div>
+    <div class="mb-4">
+      Email and Employee No
+      <br />
+      <strong>e-Payslip Self Service</strong>
+    </div>
+    <div class="mb-4">
+      <nz-radio-group [ngModel]="authProvider" (ngModelChange)="setProvider($event)">
+        <label nz-radio nzValue="jwt">Secure</label>
+<!--        <label nz-radio nzValue="firebase">Firebase</label>-->
+      </nz-radio-group>
+    </div>
+    <div *ngIf="noAccount" nz-typography nzType="danger">Kindly ensure the details entered are correct </div>
+    <div *ngIf="tooLong" nz-typography nzType="warning">
+      This is taking longer than usual,Kindly check your email for your credentials </div>
+    <div *ngIf="account" nz-typography nzType="success">A mail has been sent to your email</div>
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="form"
+          (ngSubmit)="submitForm()" role="form">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your email!">
+          <input type="text" nz-input formControlName="email" placeholder="Email Address" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Employee No!">
+          <input type="text" nz-input formControlName="empNo" placeholder="Employee Number i.e 00000000" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" [nzLoading]="loading" class="text-center w-100">
+            <strong>Send me credentials</strong>
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
