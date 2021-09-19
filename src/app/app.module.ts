@@ -21,7 +21,7 @@ import { reducers, metaReducers } from './store/reducers'
 import { UserEffects } from './store/user/effects'
 import { firebaseConfig, firebaseAuthService } from './services/firebase'
 import { basicAuthService } from './services/basic-auth'
-import { MockHttpCallInterceptor } from './services/fakeApi'
+// import { MockHttpCallInterceptor } from './services/fakeApi'
 
 // locale resistration
 import { registerLocaleData } from '@angular/common'
@@ -32,6 +32,8 @@ import { FormlyModule } from '@ngx-formly/core'
 import { FormlyFieldFile } from './components/formly/file-component'
 import { FieldNgSelect } from './components/formly/quill/ng-select'
 import { FieldQuillType } from './components/formly/quill/quil-type'
+import { WidgetsComponentsModule } from './@vb/widgets/widgets-components.module'
+import { ComponentsModule } from './@vb/components/components.module'
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
   { provide: NZ_I18N, useValue: localeZorro },
@@ -45,6 +47,10 @@ registerLocaleData(localeEn, 'en')
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    // VB modules
+    WidgetsComponentsModule,
+    ComponentsModule,
+    // end
     AppRoutingModule,
     QuillModule.forRoot(),
     FormlyModule.forRoot({

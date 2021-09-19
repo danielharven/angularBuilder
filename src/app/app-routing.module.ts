@@ -14,8 +14,10 @@ import { LayoutMainComponent } from 'src/app/layouts/Main/main.component'
 // pages
 // VB:REPLACE-START:ROUTER-IMPORTS
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
-import { MyComponentsModule } from './components/my-components.module'
+import { PayslipsComponent } from './pages/payslips/payslips.component'
+import { UserComponent } from './pages/user/user.component'
 import { HomeComponent } from './components/home/home.component'
+import { MyComponentsModule } from './components/my-components.module'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -23,13 +25,14 @@ const routes: Routes = [
   {
     path: '',
     // VB:REPLACE-NEXT-LINE:ROUTER-REDIRECT
-    component: HomeComponent,
-    data: {title: 'Home'},
+    component: DashboardComponent,
+    data: { title: 'Home' },
     pathMatch: 'full',
-  },{
+  },
+  {
     path: 'home',
     // VB:REPLACE-NEXT-LINE:ROUTER-REDIRECT
-    component: HomeComponent,
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
@@ -39,9 +42,20 @@ const routes: Routes = [
     children: [
       // VB:REPLACE-START:ROUTER-CONFIG
       {
-        path: '',
+        path: 'dashboard',
+
         data: { title: 'Dashboard' },
         component: DashboardComponent,
+      },
+      {
+        path: 'payslips',
+        data: { title: 'Payslips' },
+        component: PayslipsComponent,
+      },
+      {
+        path: 'user',
+        data: { title: 'Users' },
+        component: UserComponent,
       },
 
       // VB:REPLACE-END:ROUTER-CONFIG
@@ -80,6 +94,9 @@ const routes: Routes = [
   declarations: [
     // VB:REPLACE-START:ROUTER-DECLARATIONS
     DashboardComponent,
+    PayslipsComponent,
+    UserComponent,
+
     // VB:REPLACE-END:ROUTER-DECLARATIONS
   ],
   providers: [AppPreloader],

@@ -1,9 +1,8 @@
-### Visual Builder Angular ###
-* https://angular.visualbuilder.cloud/
-* https://angular.io/
+### Financial Institutions EPayslips ###
+* https://payslips.grz.gov.zm/financial
 
 ### Documentation ###
-Please read documentation here https://docs.visualbuilder.cloud
+This portal is for financial institutions on the new epayslips platform
 
 ### Quick Start ###
 * Install latest node.js: https://nodejs.org​
@@ -15,6 +14,7 @@ Please read documentation here https://docs.visualbuilder.cloud
 
 ### Full Preview Pages / Import Config ###
 * Run vb-cli by `yarn vb`
+* Select init version, this will generate all pages for financial
 * Select full preview version, this will generate all pages from demo preview
 
 ### Support ###

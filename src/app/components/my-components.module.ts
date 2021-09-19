@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { NavComponent } from './nav/nav.component'
 import { FooterComponent } from './Footer/footer.component';
 import { HomeComponent } from './home/home.component'
+import { ComponentsModule } from '../@vb/components/components.module'
 
 const COMPONENTS = [
   FieldNgSelect,

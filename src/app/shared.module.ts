@@ -8,6 +8,7 @@ import { ACLComponent } from 'src/app/@vb/components/ACL/acl.component'
 
 // antd components module
 import { AntdModule } from 'src/app/antd.module'
+import { WidgetsComponentsModule } from './@vb/widgets/widgets-components.module'
 
 const MODULES = [CommonModule, RouterModule, AntdModule, TranslateModule]
 

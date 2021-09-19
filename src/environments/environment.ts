@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   authenticated: false,
   hmr: false,
+  url:'http://localhost:1338'
   // apiUrl: "http://41.63.1.60/esapp/api/web",
   // apiUrl: "api",
 }
