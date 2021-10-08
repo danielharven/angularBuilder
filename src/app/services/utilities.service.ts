@@ -21,7 +21,7 @@ export class UtilitiesService {
   }
   constructor(
     private nzNotify: NzNotificationService,
-    private http: HttpClient,
+    public http: HttpClient,
     private store: Store<any>,
     private apollo: Apollo,
   ) {
@@ -32,11 +32,17 @@ export class UtilitiesService {
       this.user.username = state.username
     })
     this.getProvinces().valueChanges.subscribe((result: any) => {
+      this.auditQuery({item:`Provinces`,action:'Get All'}).subscribe(
+        data=>{}
+      )
       this.provinces = result?.data?.provinces
       // this.loading = result.loading;
       // this.error = result.error;
     })
     this.getDistricts().valueChanges.subscribe((result: any) => {
+      this.auditQuery({item:`Districts`,action:'Get All'}).subscribe(
+        data=>{}
+      )
       this.districts = result?.data?.districts
       // this.loading = result.loading;
       // this.error = result.error;
@@ -82,6 +88,42 @@ export class UtilitiesService {
       `,
     })
   }
+  getDistrictsByCountry(id) {
+    return this.apollo.query({
+      query: gql`
+        {
+          districts(sort: "label" where:{country:"${id}"}) {
+            id
+            label
+          }
+        }
+      `,
+    })
+  }
+  getExtensionByDistrict(id) {
+    return this.apollo.query({
+      query: gql`
+        {
+          extensions(sort: "label" where:{district:"${id}"}) {
+            id
+            code
+          }
+        }
+      `,
+    })
+  }
+  getChiefByDistrict(id) {
+    return this.apollo.query({
+      query: gql`
+        {
+          chiefs(sort: "label" where:{district:"${id}"}) {
+            id
+            name
+          }
+        }
+      `,
+    })
+  }
   getRoles() {
     return this.apollo.query({
       query: gql`
@@ -94,12 +136,24 @@ export class UtilitiesService {
       `,
     })
   }
+  getCountries() {
+    return this.apollo.query({
+      query: gql`
+        query {
+          countries {
+            id
+            name
+          }
+        }
+      `,
+    })
+  }
   getUsers() {
     return this.apollo.query({
       query: gql`
         query {
           users {
-            block
+            blocked
             id
             username
             role {
@@ -107,6 +161,26 @@ export class UtilitiesService {
               name
             }
             email
+          }
+        }
+      `,
+    })
+  }
+  getCountUsersActivities() {
+    return this.apollo.query({
+      query: gql`
+        query{
+          auditsConnection{
+            groupBy{
+              user{
+                username:key
+                connection{
+                  aggregate{
+                    count
+                  }
+                }
+              }
+            }
           }
         }
       `,
@@ -130,6 +204,31 @@ export class UtilitiesService {
             dob
             gender
             village
+            chief
+          }
+        }
+      `,
+    })
+  }
+  getUnconfirmedNrcsByProvince(prov) {
+    return this.apollo.query({
+      query: gql`
+        query {
+          nrcs(limit: 100, where: { confirmed: false , district:{province:{id:"${prov}"}}}) {
+            createdAt
+            pic_id1
+            pic_id2
+            names
+            nrc
+            id
+            district {
+              id
+            }
+            dor
+            dob
+            gender
+            village
+            chief
           }
         }
       `,
@@ -156,6 +255,7 @@ export class UtilitiesService {
             names
             gender
             village
+            chief
             confirmed
             pic_id1
             pic_id2
@@ -167,6 +267,98 @@ export class UtilitiesService {
             }
           }
         }
+      `,
+    })
+  }
+  getConfirmedAudit() {
+    return this.apollo.query({
+      query: gql`
+        query{
+          auditsConnection(where:{action:"Confirmed"}){
+            groupBy{
+              user{
+                key
+                connection{
+                  aggregate{
+                    count
+                  }
+                }
+              }
+            }
+          }
+        }
+      `,
+    })
+  }
+  getApprovedAudit() {
+    return this.apollo.query({
+      query: gql`
+        query{
+          auditsConnection(where:{action:"Approve"}){
+            groupBy{
+              user{
+                key
+                connection{
+                  aggregate{
+                    count
+                  }
+                }
+              }
+            }
+          }
+        }
+      `,
+    })
+  }
+  getUploadedAudit() {
+    return this.apollo.query({
+      query: gql`
+        query{
+          auditsConnection(where:{action:"Upload"}){
+            groupBy{
+              user{
+                key
+                connection{
+                  aggregate{
+                    count
+                  }
+                }
+              }
+            }
+          }
+        }
+      `,
+    })
+  }
+  searchNrcs(data) {
+    return this.apollo.query({
+      query: gql`
+        query{
+          nrcs(
+            where: { _or: [{ names_contains:"${data}" } ,  {nrc_contains: "${data}"}]
+            }
+          )
+          {
+            id
+            nrc
+            names
+            gender
+            village
+            approved
+            confirmed
+            dob
+            district{
+              id
+              label
+            }
+            dor
+            chief
+            pic_id1,
+            pic_id2
+          }
+
+        }
+
       `,
     })
   }
@@ -194,7 +386,8 @@ export class UtilitiesService {
                 confirmed: ${data.confirmed},
                 nrc:"${data.nrc}",
                 pic_id1: "${data.pic1}",
-                pic_id2: "${data.pic2}"
+                pic_id2: "${data.pic2}",
+                chief: "${data.chief}"
               }
             }
           ){
@@ -230,6 +423,46 @@ export class UtilitiesService {
       `,
     })
   }
+  blockUser(data) {
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation{
+          updateUser(
+            input: {
+              where: {id:"${data}"}
+              data: {
+                blocked:true,
+              }
+            }
+          ){
+            user{
+              id
+            }
+          }
+        }
+      `,
+    })
+  }
+  resetUserPassword(data) {
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation{
+          updateUser(
+            input: {
+              where: {id:"${data}"}
+              data: {
+                password:"123@123",
+              }
+            }
+          ){
+            user{
+              id
+            }
+          }
+        }
+      `,
+    })
+  }
   updateNrc(data) {
     return this.apollo.mutate({
       mutation: gql`
@@ -240,6 +473,7 @@ export class UtilitiesService {
               data: {
                 district:"${data.district}",
                 village:"${data.village}",
+                chief:"${data.chief}",
                 names:"${data.names}",
                 gender:"${data.gender}",
                 dor:"${data.dor}",
@@ -274,6 +508,7 @@ export class UtilitiesService {
               data: {
                 district:"${data.district}",
                 village:"${data.village}",
+                chief:"${data.chief}",
                 names:"${data.names}",
                 gender:"${data.gender}",
                 dor:"${data.dor}",
@@ -312,7 +547,41 @@ export class UtilitiesService {
       `,
     })
   }
+  deleteNrc(id) {
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation{
+          deleteNrc(input:{where:{id:"${id}"}}){
+            nrc{
+              id
+            }
+          }
+        }
+      `,
+    })
+  }
   downloadFile(id) {
     return this.http.get(environment.url + '/downloads/' + id, { responseType: 'blob' })
+  }
+  auditQuery(data){
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation{
+          createAudit(
+            input: {
+              data: {
+                user:"${this.user.username}",
+                item: "${data.item}",
+                action:"${data.action}",
+              }
+            }
+          ){
+            audit{
+              id
+            }
+          }
+        }
+      `,
+    })
   }
 }

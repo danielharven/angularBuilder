@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { UtilitiesService } from '../../../services/utilities.service'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'app-admin-reviews',
@@ -23,7 +24,8 @@ export class AdminReviewsComponent implements OnInit {
     district: {
       id: '',
       label: '',
-    },
+    }, chief: '',
+
   }
   totals = {
     unapproved: 0,
@@ -35,10 +37,24 @@ export class AdminReviewsComponent implements OnInit {
   nrcForms: FormGroup
   districts: any = []
   edit: boolean = false
+  searchedNrcData: any = []
+  expandSet = new Set<number>()
+  nrc: string=''
+  visible: boolean =false
+  duplicatedNrcs: any=[]
+  chosenTab: number=0
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expandSet.add(id)
+    } else {
+      this.expandSet.delete(id)
+    }
+  }
   constructor(private utility: UtilitiesService) {
     this.getConfigData()
   }
   ngOnInit() {
+    this.resetImages();
     this.getCountUnconfirmedNrc()
     this.getUnconfirmedNrc()
     this.nrcForms = new FormGroup({
@@ -47,16 +63,30 @@ export class AdminReviewsComponent implements OnInit {
       dob: new FormControl(null, Validators.required),
       dor: new FormControl(null, Validators.required),
       village: new FormControl(null, Validators.required),
+      chief: new FormControl(null, Validators.required),
       gender: new FormControl(null, Validators.required),
       district: new FormControl('', Validators.required),
     })
   }
+  resetImages(){
+    this.pic1 = 'assets/images/zambiaCoatOfArms.jfif'
+    this.pic2 = 'assets/images/zambiaCoatOfArms.jfif'
+  }
   getUnconfirmedNrc() {
-    this.utility.getUnapprovedNrcs().subscribe(({ data, errors }) => {
+    this.resetImages();
+    this.utility.getUnapprovedNrcs()
+      .subscribe(({ data, errors }) => {
       if (errors) {
+        this.utility.auditQuery({item:`NRC `,action:'Failed -Get Unconfirmed'}).subscribe(
+          data=>{}
+        )
         return
       }
       if (data) {
+        this.utility
+          .auditQuery({item:"NRC",action:'Get unconfirmed'}).subscribe(
+          data=>{}
+        )
         // @ts-ignore
         if (data.nrcs.length == 1) {
           // @ts-ignore
@@ -68,9 +98,11 @@ export class AdminReviewsComponent implements OnInit {
         if (data?.nrcs.length > 1) {
           // @ts-ignore
           let rnd = Math.floor(Math.random() * data.nrcs.length - 1)
-          console.log(data)
+          if(rnd == -1) rnd = 0
+          // console.log(data)
           // @ts-ignore
           this.downloaded = data.nrcs[rnd]
+
           this.updateValues()
         }
       }
@@ -92,13 +124,40 @@ export class AdminReviewsComponent implements OnInit {
   process(e: string) {
     switch (e) {
       case 'a': {
-        this.utility.approveNrc(this.downloaded.id).subscribe(({ data, errors }) => {
+        this.utility.approveNrc(this.downloaded.id)
+          .subscribe(({ data, errors }) => {
           if (errors) {
+            this.utility.auditQuery({item:`NRC - ${this.downloaded.nrc}`,action:'Failed - Approve'}).subscribe(
+              data=>{}
+            )
+            this.utility.notify.error('Approve failed, try again later')
+            return
+          }
+          if (data) {
+            this.utility.auditQuery({item:`NRC - ${this.downloaded.nrc}`,action:'Approve'}).subscribe(
+              data=>{}
+            )
+            this.utility.notify.success('Nrc Approve Completed')
+            this.refresh()
+          }
+        })
+        break
+      }
+      case 'd': {
+        this.utility.deleteNrc(this.downloaded.id)
+          .subscribe(({ data, errors }) => {
+          if (errors) {
+            this.utility.auditQuery({item:`NRC - ${this.downloaded.nrc}`,action:'Failed - Delete'}).subscribe(
+              data=>{}
+            )
             this.utility.notify.error('Update failed, try again later')
             return
           }
           if (data) {
-            this.utility.notify.success('Nrc Updated Completed')
+            this.utility.auditQuery({item:`NRC - ${this.downloaded.nrc}`,action:'Delete'}).subscribe(
+              data=>{}
+            )
+            this.utility.notify.success('Nrc Delete Completed')
             this.refresh()
           }
         })
@@ -109,6 +168,61 @@ export class AdminReviewsComponent implements OnInit {
         break
       }
     }
+  }
+  approveNrc(nrcData){
+    this.utility.approveNrc(nrcData.id)
+      .subscribe(({ data, errors }) => {
+        if (errors) {
+          this.utility.auditQuery({item:`NRC - ${nrcData.nrc}`,action:'Failed - Approve'}).subscribe(
+            data=>{}
+          )
+          this.utility.notify.error('Approve failed, try again later')
+          return
+        }
+        if (data) {
+          this.utility.auditQuery({item:`NRC - ${nrcData.nrc}`,action:'Approve'}).subscribe(
+            data=>{}
+          )
+          this.utility.notify.success('Nrc Approve Completed')
+          this.refresh()
+        }
+      })
+  }
+  deleteNrc(nrcData){
+    this.utility.deleteNrc(nrcData.id)
+      .subscribe(({ data, errors }) => {
+        if (errors) {
+          this.utility.auditQuery({item:`NRC - ${nrcData.nrc}`,action:'Failed - delete'}).subscribe(
+            data=>{}
+          )
+          this.utility.notify.error('delete failed, try again later')
+          return
+        }
+        if (data) {
+          this.nrc=nrcData.nrc;
+          this.searchNrc()
+          this.utility.auditQuery({item:`NRC - ${nrcData.nrc}`,action:'Deleted'}).subscribe(
+            data=>{}
+          )
+          this.utility.notify.success('Nrc deleted Completed')
+          this.refresh()
+        }
+      })
+  }
+  editNrc(nrcData){
+    this.visible=true;
+    this.downloaded=nrcData;
+    this.nrcForms.patchValue({
+      district:nrcData.district.label,
+      nrc : nrcData.nrc,
+      names : nrcData.names,
+      village : nrcData.village,
+      chief : nrcData.chief,
+      gender : nrcData.gender,
+      dob : nrcData.dob,
+      dor : nrcData.dor,
+    })
+
   }
 
   refresh() {
@@ -141,10 +255,10 @@ export class AdminReviewsComponent implements OnInit {
       this.utility.notify.error('Kindly ensure all fields are completed')
       return
     }
-    let { district, nrc, dor, dob, names, village, gender } = this.nrcForms.value
+    let { district, nrc, dor, dob, names, village, gender,chief } = this.nrcForms.value
     let { id } = this.downloaded
     this.utility
-      .updateNrcAndApprove({ district, nrc, dor, dob, names, village, gender, id })
+      .updateNrcAndApprove({chief, district, nrc, dor, dob, names, village, gender, id })
       .subscribe(({ data, errors }) => {
         if (errors) {
           this.utility.notify.error('NRC Update failed')
@@ -188,5 +302,59 @@ export class AdminReviewsComponent implements OnInit {
     setInterval(() => {
       this.districts = this.utility.districts
     }, 3000)
+  }
+
+  searchNrc() {
+    this.utility.searchNrcs(this.nrc).subscribe(
+      ({data,errors})=>{
+        if(errors){
+          return
+        }
+        if(data){
+          // @ts-ignore
+          this.searchedNrcData=data.nrcs;
+        }
+      }
+    )
+  }
+
+  close() {
+    this.visible =false
+  }
+
+  chooseRow(data: any) {
+    // console.log(data)
+    this.downloaded = data;
+    this.updateValues();
+  }
+
+  duplicateList() {
+    this.utility.http.get(environment.url+'/nrcs/duplicates').subscribe(
+      (data:any)=>{
+        // let myd = data?.data.replace(/Nrcs.nrc/g,"nrc")
+        //  myd = myd.replace(/Nrcs.count/g,"count");
+       // myd = JSON.parse(myd)
+        console.log(data.data[0]['nrc'])
+        this.duplicatedNrcs =data.data;
+
+      },err=>{
+        this.utility.notify.error('Error: Failed to get duplicate NRC')
+      }
+    )
+  }
+
+  getDuplicateInfo(data: any) {
+    this.utility.searchNrcs(data.nrc).subscribe(
+      ({data,errors})=>{
+        if(errors){
+          return ;
+        }
+        if(data){
+          // @ts-ignore
+          this.searchedNrcData = data?.nrcs;
+          this.chosenTab=1;
+        }
+      }
+    )
   }
 }

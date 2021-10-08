@@ -19,32 +19,7 @@ export class AdminUsersComponent implements OnInit {
       this.expandSet.delete(id)
     }
   }
-  listOfData = [
-    {
-      id: 1,
-      name: 'John Brown',
-      age: 32,
-      expand: false,
-      address: 'New York No. 1 Lake Park',
-      description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-    },
-    {
-      id: 2,
-      name: 'Jim Green',
-      age: 42,
-      expand: false,
-      address: 'London No. 1 Lake Park',
-      description: 'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
-    },
-    {
-      id: 3,
-      name: 'Joe Black',
-      age: 32,
-      expand: false,
-      address: 'Sidney No. 1 Lake Park',
-      description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
-    },
-  ]
+  listOfData = [ ]
   constructor(private utility: UtilitiesService) {}
   ngOnInit() {
     this.nrcForms = new FormGroup({
@@ -54,23 +29,37 @@ export class AdminUsersComponent implements OnInit {
     })
     this.utility.getRoles().subscribe(({ errors, data }) => {
       if (errors) {
+        this.utility.auditQuery({item:"Roles",action:'Failed - Get All'}).subscribe(
+          data=>{}
+        )
         return
       }
       if (data) {
+        this.utility.auditQuery({item:"Roles",action:'Get All'}).subscribe(
+          data=>{}
+        )
         // @ts-ignore
         let { roles } = data
         this.roles = roles
       }
     })
 
-    this.utility.getUsers().subscribe(({ errors, data }) => {
+    this.utility.getUsers()
+      .subscribe(({ errors, data }) => {
       if (errors) {
+        this.utility.auditQuery({item:"users",action:'Failed - Get All'}).subscribe(
+          data=>{}
+        )
         return
       }
       if (data) {
+        this.utility.auditQuery({item:"users",action:'Get All'}).subscribe(
+          data=>{}
+        )
         // @ts-ignore
         let { users } = data
         this.listOfData = users
+
       }
     })
   }
@@ -97,5 +86,43 @@ export class AdminUsersComponent implements OnInit {
         this.nrcForms.reset()
       }
     })
+  }
+  blockUser(id){
+    this.utility.blockUser(id).subscribe(
+      ({data,errors})=>{
+        if(errors){
+          this.utility.auditQuery({item:`User - ${id}`,action:'Failed Blocked User'}).subscribe(
+            (data:any)=>{}
+          )
+          this.utility.notify.error('Failed User Blocked')
+          return
+        }
+        if(data){
+          this.utility.auditQuery({item:`User - ${id}`,action:'Blocked User'}).subscribe(
+            (data:any)=>{}
+          )
+          this.utility.notify.success('User Blocked')
+        }
+      }
+    )
+  }
+  resetPassword(id){
+    this.utility.resetUserPassword(id).subscribe(
+      ({data,errors})=>{
+        if(errors){
+          this.utility.auditQuery({item:`User - ${id}`,action:'Failed Password Reset For User'}).subscribe(
+            (data:any)=>{}
+          )
+          this.utility.notify.error('Failed Password Reset For User')
+          return
+        }
+        if(data){
+          this.utility.auditQuery({item:`User - ${id}`,action:'Password Reset For User'}).subscribe(
+            (data:any)=>{}
+          )
+          this.utility.notify.success('Password Reset For User')
+        }
+      }
+    )
   }
 }

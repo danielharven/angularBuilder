@@ -7,13 +7,14 @@ import { TranslateModule } from '@ngx-translate/core'
 import { ACLComponent } from 'src/app/@vb/components/ACL/acl.component'
 
 // antd components module
-import { AntdModule } from 'src/app/antd.module'
+import { AntdModule } from 'src/app/antd.module';
+import { NrcPipe } from './pipes/nrc.pipe'
 
 const MODULES = [CommonModule, RouterModule, AntdModule, TranslateModule]
 
 @NgModule({
   imports: [...MODULES],
-  declarations: [ACLComponent],
-  exports: [...MODULES],
+  declarations: [ACLComponent, NrcPipe],
+  exports: [...MODULES, NrcPipe],
 })
 export class SharedModule {}

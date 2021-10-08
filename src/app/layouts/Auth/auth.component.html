@@ -1,7 +1,7 @@
 <nz-layout>
   <nz-content>
-    <vb-sidebar></vb-sidebar>
-    <vb-support-chat></vb-support-chat>
+<!--    <vb-sidebar></vb-sidebar>-->
+<!--    <vb-support-chat></vb-support-chat>-->
     <div class="authContainer" [ngClass]="{
         'vb__layout__squaredBorders': isSquaredBorders,
         'vb__layout__cardsShadow': isCardShadow,
@@ -9,7 +9,8 @@
         'white': authPagesColor === 'white',
         'gray': authPagesColor === 'gray'
 
-      }" [ngStyle]="{backgroundImage: authPagesColor === 'image' ? 'url(assets/images/content/photos/8.jpg)' : ''}">
+      }">
+<!--      [ngStyle]="{backgroundImage: authPagesColor === 'image' ? 'url(assets/images/content/photos/8.jpg)' : ''}"-->
       <div class="topbar" [ngClass]="{
         'topbarGray': isGrayTopbar
       }">

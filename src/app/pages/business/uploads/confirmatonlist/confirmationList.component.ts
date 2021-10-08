@@ -5,23 +5,22 @@ import { EventsService } from '../../../../services/events.service'
   selector: 'upload-confirmation-lists-25',
   templateUrl: './confirmationList.component.html',
 })
-export class ConfirmationList25Component implements OnChanges {
+export class ConfirmationList25Component {
   @Input('data') data = {
     province: '',
     startNrc: '',
     district: '',
     endNrc: '',
   }
-  constructor(private evt: EventsService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
+  constructor(private evt: EventsService) {
+    this.setupListerners()
   }
+
+
   setupListerners() {
     this.evt.onConfrimData.subscribe(({ status, data }) => {
       if (!status) this.data = data
     })
-
     this.evt.onResetForm.subscribe(_ => {
       // @ts-ignore
       this.data = {}
@@ -29,6 +28,8 @@ export class ConfirmationList25Component implements OnChanges {
   }
 
   process() {
-    this.evt.onConfrimData.emit({ status: true, data: this.data })
+    this.evt
+      .onConfrimData
+      .emit({ status: true, data: this.data })
   }
 }

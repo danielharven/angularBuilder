@@ -9,18 +9,20 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-4 col-md-12">
+    <div class=" col-md-6">
       <div class="card card-top card-top-primary">
         <div class="card-header">
-          <vb-headers-heading [data]="{'title':'Set Parameters'}"></vb-headers-heading>
+          <vb-headers-heading
+            [data]="{'title':'Set Parameters'}"></vb-headers-heading>
         </div>
       </div>
       <div class="card-body">
         <form [formGroup]="nrcForms"
-              nz-form [nzLayout]="'verical'">
-
+              nz-form >
           <nz-form-item>
-            <nz-form-control nzErrorTip="Please select province">
+            <nz-form-label nzRequired>Please select province</nz-form-label>
+            <nz-form-control
+              nzErrorTip="Please select province">
               <nz-select
                 formControlName="province"
                 (ngModelChange)="getDistrictsByProvince()"
@@ -32,8 +34,11 @@
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
-            <nz-form-control nzErrorTip="Please select district">
+            <nz-form-label nzRequired>Please select district</nz-form-label>
+            <nz-form-control
+              nzErrorTip="Please select district">
               <nz-select
+                (ngModelChange)="onDistrictChange()"
                 [disabled]="submitting"
                 formControlName="district"
                 nzShowSearch nzAllowClear nzPlaceHolder="Select a district"
@@ -43,28 +48,40 @@
               </nz-select>
             </nz-form-control>
           </nz-form-item>
-
-
+<!--          <nz-form-item>-->
+<!--            <nz-form-label nzRequired>Please select chief</nz-form-label>-->
+<!--            <nz-form-control-->
+<!--              nzErrorTip="Please select chief">-->
+<!--              <nz-select-->
+<!--                [disabled]="submitting"-->
+<!--                formControlName="chief"-->
+<!--                nzShowSearch nzAllowClear nzPlaceHolder="Select a chief"-->
+<!--              >-->
+<!--                <nz-option *ngFor="let x of chiefs" nzLabel="{{x.name}}"-->
+<!--                           nzValue="{{x.name}}"></nz-option>-->
+<!--              </nz-select>-->
+<!--            </nz-form-control>-->
+<!--          </nz-form-item>-->
           <nz-form-item>
             <nz-form-label nzRequired>NRC Extension</nz-form-label>
-            <nz-form-control  nzErrorTip="Please enter NRC extension">
-              <input [disabled]="submitting" formControlName="ext"
-                     name="name" nz-input placeholder="10/1">
-            </nz-form-control>
+            {{ext}}
+              <input type="hidden" disabled formControlName="ext"
+                     name="name" nz-input >
           </nz-form-item>
-
           <nz-form-item>
             <nz-form-label nzRequired>Start NRC</nz-form-label>
             <nz-form-control nzErrorTip="Please enter starting NRC">
-              <input [disabled]="submitting" type="number" formControlName="start"
-                     name="name" nz-input placeholder="193000">
+              <input [disabled]="submitting"
+                     type="number" formControlName="start"
+                     name="name" nz-input placeholder="i.e 193000">
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
             <nz-form-label nzRequired>End NRC</nz-form-label>
             <nz-form-control nzErrorTip="Please enter ending NRC">
-              <input [disabled]="submitting" type="number" formControlName="end" name="end"
-                     nz-input placeholder="193099">
+              <input [disabled]="submitting"
+                     type="number" formControlName="end" name="end"
+                     nz-input placeholder="i.e 193099">
             </nz-form-control>
           </nz-form-item>
           <div class="row">
@@ -91,15 +108,15 @@
               </nz-form-item>
             </div>
           </div>
-
         </form>
 
       </div>
     </div>
-    <div class="col-lg-4 col-md-12">
+    <div class="col-md-6">
       <div class="card card-top card-top-success">
         <div class="card-header">
-          <vb-headers-heading [data]="{'title':'Confirmation'}"></vb-headers-heading>
+          <vb-headers-heading
+            [data]="{'title':'Confirmation'}"></vb-headers-heading>
         </div>
       </div>
       <div class="card-body">
@@ -108,39 +125,118 @@
         ></upload-confirmation-lists-25>
       </div>
     </div>
-    <div class="col-lg-4 col-md-12">
-      <div class="card card-top">
-        <div class="card-header">
-          <vb-headers-heading [data]="{'title':'My Works'}"></vb-headers-heading>
-        </div>
-        <div class="card-body"><vb-tables-antd-6></vb-tables-antd-6></div>
-      </div>
-    </div>
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--      <div class="card card-top">-->
+<!--        <div class="card-header">-->
+<!--          <vb-headers-heading [data]="{'title':'My Works'}"></vb-headers-heading>-->
+<!--        </div>-->
+<!--        <div class="card-body"><vb-tables-antd-6></vb-tables-antd-6></div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Progress"
           (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>
-    <ul class="list-unstyled mb-0">
-      <li *ngFor="let x of completed" class="item">
-        <div class="separator bg-success mr-3"></div>
-        <label for="checkbox-1" class="control checkbox mb-0">
-          <input type="checkbox" checked id="checkbox-1" />
-          <span class="controlIndicator"></span>
-          <div class="d-inline-block">
-            <div>NRC Info </div>
-            <div [class.text-danger]="x.includes('Failed')"
-                 class="text-primary">{{x}}</div>
+    <nz-tabset>
+      <nz-tab nzTitle="Nrc Upload">
+        <nz-progress [nzPercent]="percentageUpload"></nz-progress>
+        <div class="row mb-3">
+          <div class="col-6">
+            Failed Uploads : <span>{{failedUploads}}</span>
           </div>
-        </label>
-      </li>
-    </ul>
-    <nz-spin *ngIf="completed.length!=fileList.length/2" nzTip="Loading...">
-      <nz-alert
-        nzType="info"
-        nzMessage="Generating"
-        nzDescription="NRC : {{nrc}}"
-      ></nz-alert>
-    </nz-spin>
+          <div class="col-6">
+            <a class="text-primary" (click)="reUploadDataAll()" >click here to re-uploaded failed</a>
+          </div>
+        </div>
+        <nz-table *ngIf="uploadCompleted" #sortTable
+                  [nzData]="nrcStatus" nzTableLayout="fixed">
+          <thead>
+          <tr>
+            <th *ngFor="let column of listOfColumn"
+                [nzSortFn]="column.compare"
+                [nzSortPriority]="column.priority">
+              {{ column.title }}
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of sortTable.data;let i=index">
+            <td>{{ data.nrc.name }}</td>
+            <td>
+              <p>
+                {{ data.status }}
+              </p>
+              <a *ngIf="!data.status" (click)="reUploadData(data.nrc,i)">try upload</a>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-tab>
+      <nz-tab nzTitle="Nrc Generation">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-3">
+                <button nz-button (click)="generateNrcs()">Begin Generating NRCs</button>
+              </div>
+              <div class="col-3"></div>
+              <div class="col-3"></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div [ngStyle]="{height:'50vh',overflowY:'scroll'}">
+              <div class="row">
+                <div class="col-6">
+                  <h5>Completed</h5>
+                  <ul class="list list-unstyled mb-0">
+                    <li *ngFor="let x of completedSuccess" class="item">
+                      <a href="javascript: void(0);" class="itemLink">
+                        <div class="itemMeta">
+                          <div class="donut success md"></div>
+                        </div>
+                        <div class="mr-3">
+                          <div>{{x.nrc|nrc}}</div>
+                          <div class="text-muted">
+                            {{x.message}}</div>
+                        </div>
+                        <div class="itemAction">
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-6">
+                  <h5>Failed </h5>
+                  <button (click)="regenerateNrcs()" nz-button>Re-generate failed NRCs</button>
+                  <ul class="list list-unstyled mb-0">
+                    <li *ngFor="let x of completedFailed" class="item">
+                      <a href="javascript: void(0);" class="itemLink">
+                        <div class="itemMeta">
+                          <div class="donut danger md"></div>
+                        </div>
+                        <div class="mr-3">
+                          <div>{{x.nrc|nrc}}</div>
+                          <div class="text-muted">
+                            {{x.message}}
+                          </div>
+                        </div>
+                        <div class="itemAction">
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+
   </ng-container>
 </nz-modal>

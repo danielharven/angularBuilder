@@ -19,7 +19,7 @@ body {
   bottom: -40px;
   width: auto;
   height: auto;
-  background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
+  background-image: url("/assets/images/logo.png");
   background-size: cover;
   -webkit-filter: blur(5px);
   z-index: 0;
@@ -47,7 +47,7 @@ body {
 .header {
   position: absolute;
   top: calc(50% - 35px);
-  left: calc(50% - 255px);
+  left: calc(35% - 255px);
   z-index: 2;
 }
 
@@ -60,7 +60,7 @@ body {
 }
 
 .header div span {
-  color: #5379fa !important;
+  color: #008000 !important;
 }
 
 .login {

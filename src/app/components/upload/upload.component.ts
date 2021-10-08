@@ -31,7 +31,8 @@ export class UploadComponent implements OnInit, OnChanges {
     this.setupEvents()
   }
   setupEvents() {
-    this.evt.onPostProduct.subscribe(data => {
+    this.evt.onPostProduct
+      .subscribe(data => {
       if (data.status) {
         this.handleUpload()
       }
@@ -49,16 +50,18 @@ export class UploadComponent implements OnInit, OnChanges {
   }
 
   beforeUpload = (file: NzUploadFile): boolean => {
+    // console.log(file)
     this.fileList = this.fileList.concat(file)
     return false
   }
 
   handleUpload(): void {
-    console.log(this.fileList)
-    if (this.fileList.length > 0 && this.fileList.length % 2 == 0) {
-      console.log('move forward')
+    if (this.fileList.length > 0 && this.fileList.length % 2 == 0)
+    {
+      let index=0;
       //sort
       for (let x of this.fileList) {
+        this.fileList[index].index = index;
         let myForm = new FormData()
         // @ts-ignore
         myForm.append('file', x)
@@ -70,26 +73,48 @@ export class UploadComponent implements OnInit, OnChanges {
           })
           .subscribe(
             (myd: any) => {
-              if (myd.data) {
-                this.postUrl.push(myd.data)
-                if (this.postUrl.length == this.fileList.length) {
-                  //end upload and move on
-                  this.evt.onUploadCompleted.emit({
-                    status: true,
-                    downloadUrl: this.postUrl,
-                    files: this.fileList,
-                  })
-                  this.fileList = []
-                }
-              }
+                index++;
+                this.postUrl.push(myd?.data)
+                this.evt
+                  .onUploadProgress
+                  .emit({total:this.fileList.length,
+                    nrc:x,downloadUrl:myd.data,
+                    current:index,status:true})
+
             },
             error => {
-              //stop upload allow user to re-upload
-              //TODO: reupoload the data
+              index++;
+              this.evt
+                .onUploadProgress
+                .emit({total:this.fileList.length,
+                  nrc:x,downloadUrl:{},
+                  current:index,status:false})
+              if (index == this.fileList.length) {
+                console.log(index)
+                //end upload and move on
+                this.evt.onUploadCompleted.emit({
+                  status: true,
+                  downloadUrl: this.postUrl,
+                  files: this.fileList,
+                })
+                this.fileList = []
+              }
             },
+            ()=>{
+              if (index == this.fileList.length) {
+                this.evt.onUploadCompleted.emit({
+                  status: true,
+                  downloadUrl: this.postUrl,
+                  files: this.fileList,
+                })
+                this.fileList = []
+              }
+            }
           )
+
       }
-    } else {
+    }
+    else {
       this.evt.onPostProduct.emit({ status: false })
     }
     // let editmode = JSON.parse(localStorage.getItem('editActive')||'false');

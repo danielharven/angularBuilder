@@ -12,21 +12,75 @@
     <div class="col-lg-4 col-md-12">
       <div class="card card-top card-top-primary">
         <div class="card-header">
-          <vb-headers-heading [data]="{'title':'User Uploads Lists'}"></vb-headers-heading>
+          <vb-headers-heading [data]="{'title':'Uploads Trail'}"></vb-headers-heading>
+        </div>
+        <div class="card-body">
+          <nz-table #nzTable [nzData]="uploadedTrail" nzTableLayout="fixed">
+            <thead>
+            <tr>
+              <th>User</th>
+              <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let data of nzTable.data">
+              <tr>
+                <td>{{ data.key }}</td>
+                <td>{{ data.connection?.aggregate?.count }}</td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </nz-table>
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-12">
       <div class="card card-top card-top-primary">
         <div class="card-header">
-          <vb-headers-heading [data]="{'title':'User Data Entry List'}"></vb-headers-heading>
+          <vb-headers-heading [data]="{'title':'Data Entry Trail'}"></vb-headers-heading>
+        </div>
+        <div class="card-body">
+          <nz-table #nzConfirmedTable [nzData]="confirmedTrail" nzTableLayout="fixed">
+            <thead>
+            <tr>
+              <th>User</th>
+              <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let data of nzConfirmedTable.data">
+              <tr>
+                <td>{{ data.key }}</td>
+                <td>{{ data.connection?.aggregate?.count }}</td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </nz-table>
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-12">
       <div class="card card-top card-top-primary">
         <div class="card-header">
-          <vb-headers-heading [data]="{'title':'Basic page header'}"></vb-headers-heading>
+          <vb-headers-heading [data]="{'title':'Approved Trail'}"></vb-headers-heading>
+        </div>
+        <div class="card-body">
+          <nz-table #nzApprovedTable [nzData]="approvedTrail" nzTableLayout="fixed">
+            <thead>
+            <tr>
+              <th>User</th>
+              <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let data of nzApprovedTable.data">
+              <tr>
+                <td>{{ data.key }}</td>
+                <td>{{ data.connection?.aggregate?.count }}</td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </nz-table>
         </div>
       </div>
     </div>

@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-12">
+    <div class="col-lg-8 col-md-12">
       <div class="card card-top card-top-primary">
         <div class="card-header">
           <vb-headers-heading [data]="{'title':'User List'}"></vb-headers-heading>
@@ -85,7 +85,8 @@
                 <td>{{ data.role.name }}</td>
               </tr>
               <tr [nzExpand]="expandSet.has(data.id)">
-              <td *ngIf="!data.block"><button class="btn btn-primary">Block User</button></td>
+              <td (click)="resetPassword(data.id)" ><button class="btn btn-primary">Reset Password</button></td>
+              <td (click)="blockUser(data.id)" *ngIf="!data.block"><button class="btn btn-primary">Block User</button></td>
               <td *ngIf="data.block"><button class="btn btn-primary">UnBlock User</button></td>
               </tr>
             </ng-container>
@@ -99,7 +100,9 @@
         <div class="card-header">
           <vb-headers-heading [data]="{'title':'Most Active Users'}"></vb-headers-heading>
         </div>
-        <div class="card-body"><vb-tables-antd-6></vb-tables-antd-6></div>
+        <div class="card-body"><active-user-tables-antd-6>
+
+        </active-user-tables-antd-6></div>
       </div>
     </div>
   </div>

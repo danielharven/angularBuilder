@@ -1,1168 +1,2085 @@
 # This file was generated based on ".graphqlconfig". Do not edit manually.
 
 schema {
-    query: Query
-    mutation: Mutation
+  query: Query
+  mutation: Mutation
 }
 
-union Morph = District | DistrictAggregator | DistrictConnection | DistrictConnectionCreatedAt | DistrictConnectionId | DistrictConnectionLabel | DistrictConnectionProvince | DistrictConnectionPublished_at | DistrictConnectionUpdatedAt | DistrictConnection_id | DistrictGroupBy | Download | DownloadAggregator | DownloadConnection | DownloadConnectionCreatedAt | DownloadConnectionId | DownloadConnectionUpdatedAt | DownloadConnection_id | DownloadGroupBy | Nrc | NrcAggregator | NrcConnection | NrcConnectionApproved | NrcConnectionConfirmed | NrcConnectionCreatedAt | NrcConnectionDistrict | NrcConnectionDob | NrcConnectionDor | NrcConnectionGender | NrcConnectionId | NrcConnectionNames | NrcConnectionNrc | NrcConnectionPic_id1 | NrcConnectionPic_id2 | NrcConnectionUpdatedAt | NrcConnectionVillage | NrcConnection_id | NrcGroupBy | Province | ProvinceAggregator | ProvinceConnection | ProvinceConnectionCreatedAt | ProvinceConnectionId | ProvinceConnectionName | ProvinceConnectionPublished_at | ProvinceConnectionUpdatedAt | ProvinceConnection_id | ProvinceGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UploadedDocuments | UploadedDocumentsAggregator | UploadedDocumentsConnection | UploadedDocumentsConnectionCreatedAt | UploadedDocumentsConnectionId | UploadedDocumentsConnectionPublished_at | UploadedDocumentsConnectionUpdatedAt | UploadedDocumentsConnection_id | UploadedDocumentsGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | createDistrictPayload | createDownloadPayload | createNrcPayload | createProvincePayload | createRolePayload | createUploadedDocumentPayload | createUserPayload | deleteDistrictPayload | deleteDownloadPayload | deleteFilePayload | deleteNrcPayload | deleteProvincePayload | deleteRolePayload | deleteUploadedDocumentPayload | deleteUserPayload | updateDistrictPayload | updateDownloadPayload | updateNrcPayload | updateProvincePayload | updateRolePayload | updateUploadedDocumentPayload | updateUserPayload
+union Morph = Audit | AuditAggregator | AuditConnection | AuditConnectionAction | AuditConnectionCreatedAt | AuditConnectionId | AuditConnectionItem | AuditConnectionPublished_at | AuditConnectionUpdatedAt | AuditConnectionUser | AuditConnection_id | AuditGroupBy | AuditLogAuditLogs | Chief | ChiefAggregator | ChiefConnection | ChiefConnectionCreatedAt | ChiefConnectionDistrict | ChiefConnectionId | ChiefConnectionName | ChiefConnectionPublished_at | ChiefConnectionUpdatedAt | ChiefConnection_id | ChiefGroupBy | Country | CountryAggregator | CountryConnection | CountryConnectionCreatedAt | CountryConnectionId | CountryConnectionName | CountryConnectionPublished_at | CountryConnectionUpdatedAt | CountryConnection_id | CountryGroupBy | District | DistrictAggregator | DistrictConnection | DistrictConnectionCountry | DistrictConnectionCreatedAt | DistrictConnectionId | DistrictConnectionLabel | DistrictConnectionProvince | DistrictConnectionPublished_at | DistrictConnectionUpdatedAt | DistrictConnection_id | DistrictGroupBy | Download | DownloadAggregator | DownloadConnection | DownloadConnectionCreatedAt | DownloadConnectionId | DownloadConnectionUpdatedAt | DownloadConnection_id | DownloadGroupBy | Extension | ExtensionAggregator | ExtensionConnection | ExtensionConnectionCode | ExtensionConnectionCreatedAt | ExtensionConnectionDistrict | ExtensionConnectionId | ExtensionConnectionPublished_at | ExtensionConnectionUpdatedAt | ExtensionConnection_id | ExtensionGroupBy | Nrc | NrcAggregator | NrcConnection | NrcConnectionApproved | NrcConnectionBirthCountry | NrcConnectionChief | NrcConnectionConfirmed | NrcConnectionCreatedAt | NrcConnectionDistrict | NrcConnectionDob | NrcConnectionDor | NrcConnectionEducation | NrcConnectionGender | NrcConnectionId | NrcConnectionNames | NrcConnectionNrc | NrcConnectionPic_id1 | NrcConnectionPic_id2 | NrcConnectionRace | NrcConnectionUpdatedAt | NrcConnectionVillage | NrcConnection_id | NrcGroupBy | Pob | PobAggregator | PobConnection | PobConnectionAppChief | PobConnectionAppCountry | PobConnectionAppDistrict | PobConnectionAppVillage | PobConnectionCreatedAt | PobConnectionFatChief | PobConnectionFatDistrict | PobConnectionFatVillage | PobConnectionId | PobConnectionNrc | PobConnectionPublished_at | PobConnectionUpdatedAt | PobConnection_id | PobGroupBy | Province | ProvinceAggregator | ProvinceConnection | ProvinceConnectionCountry | ProvinceConnectionCreatedAt | ProvinceConnectionId | ProvinceConnectionName | ProvinceConnectionPublished_at | ProvinceConnectionUpdatedAt | ProvinceConnection_id | ProvinceGroupBy | Trail | TrailAggregator | TrailAggregatorAvg | TrailAggregatorMax | TrailAggregatorMin | TrailAggregatorSum | TrailConnection | TrailConnectionAction | TrailConnectionAuthor | TrailConnectionContent | TrailConnectionContentType | TrailConnectionCreatedAt | TrailConnectionId | TrailConnectionMethod | TrailConnectionParams | TrailConnectionRequest | TrailConnectionRoute | TrailConnectionStatusCode | TrailConnectionUpdatedAt | TrailConnection_id | TrailGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UploadedDocuments | UploadedDocumentsAggregator | UploadedDocumentsConnection | UploadedDocumentsConnectionCreatedAt | UploadedDocumentsConnectionId | UploadedDocumentsConnectionPublished_at | UploadedDocumentsConnectionUpdatedAt | UploadedDocumentsConnection_id | UploadedDocumentsGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | createAuditPayload | createChiefPayload | createCountryPayload | createDistrictPayload | createDownloadPayload | createExtensionPayload | createNrcPayload | createPobPayload | createProvincePayload | createRolePayload | createTrailPayload | createUploadedDocumentPayload | createUserPayload | deleteAuditPayload | deleteChiefPayload | deleteCountryPayload | deleteDistrictPayload | deleteDownloadPayload | deleteExtensionPayload | deleteFilePayload | deleteNrcPayload | deletePobPayload | deleteProvincePayload | deleteRolePayload | deleteTrailPayload | deleteUploadedDocumentPayload | deleteUserPayload | updateAuditPayload | updateChiefPayload | updateCountryPayload | updateDistrictPayload | updateDownloadPayload | updateExtensionPayload | updateNrcPayload | updatePobPayload | updateProvincePayload | updateRolePayload | updateTrailPayload | updateUploadedDocumentPayload | updateUserPayload
 
 type AdminUser {
-    firstname: String!
-    id: ID!
-    lastname: String!
-    username: String
+  firstname: String!
+  id: ID!
+  lastname: String!
+  username: String
+}
+
+type Audit {
+  _id: ID!
+  action: String
+  createdAt: DateTime!
+  id: ID!
+  item: String
+  published_at: DateTime
+  updatedAt: DateTime!
+  user: String
+}
+
+type AuditAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type AuditConnection {
+  aggregate: AuditAggregator
+  groupBy: AuditGroupBy
+  values: [Audit]
+}
+
+type AuditConnectionAction {
+  connection: AuditConnection
+  key: String
+}
+
+type AuditConnectionCreatedAt {
+  connection: AuditConnection
+  key: DateTime
+}
+
+type AuditConnectionId {
+  connection: AuditConnection
+  key: ID
+}
+
+type AuditConnectionItem {
+  connection: AuditConnection
+  key: String
+}
+
+type AuditConnectionPublished_at {
+  connection: AuditConnection
+  key: DateTime
+}
+
+type AuditConnectionUpdatedAt {
+  connection: AuditConnection
+  key: DateTime
+}
+
+type AuditConnectionUser {
+  connection: AuditConnection
+  key: String
+}
+
+type AuditConnection_id {
+  connection: AuditConnection
+  key: ID
+}
+
+type AuditGroupBy {
+  _id: [AuditConnection_id]
+  action: [AuditConnectionAction]
+  createdAt: [AuditConnectionCreatedAt]
+  id: [AuditConnectionId]
+  item: [AuditConnectionItem]
+  published_at: [AuditConnectionPublished_at]
+  updatedAt: [AuditConnectionUpdatedAt]
+  user: [AuditConnectionUser]
+}
+
+type AuditLogAuditLogs {
+  _id: ID!
+  action: ENUM_AUDITLOGAUDITLOGS_ACTION!
+  content: JSON!
+  id: ID!
+  model_name: String!
+  origin_id: String!
+  timestamp: DateTime
+}
+
+type Chief {
+  _id: ID!
+  createdAt: DateTime!
+  district: District
+  id: ID!
+  name: String
+  published_at: DateTime
+  updatedAt: DateTime!
+}
+
+type ChiefAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ChiefConnection {
+  aggregate: ChiefAggregator
+  groupBy: ChiefGroupBy
+  values: [Chief]
+}
+
+type ChiefConnectionCreatedAt {
+  connection: ChiefConnection
+  key: DateTime
+}
+
+type ChiefConnectionDistrict {
+  connection: ChiefConnection
+  key: ID
+}
+
+type ChiefConnectionId {
+  connection: ChiefConnection
+  key: ID
+}
+
+type ChiefConnectionName {
+  connection: ChiefConnection
+  key: String
+}
+
+type ChiefConnectionPublished_at {
+  connection: ChiefConnection
+  key: DateTime
+}
+
+type ChiefConnectionUpdatedAt {
+  connection: ChiefConnection
+  key: DateTime
+}
+
+type ChiefConnection_id {
+  connection: ChiefConnection
+  key: ID
+}
+
+type ChiefGroupBy {
+  _id: [ChiefConnection_id]
+  createdAt: [ChiefConnectionCreatedAt]
+  district: [ChiefConnectionDistrict]
+  id: [ChiefConnectionId]
+  name: [ChiefConnectionName]
+  published_at: [ChiefConnectionPublished_at]
+  updatedAt: [ChiefConnectionUpdatedAt]
+}
+
+type Country {
+  _id: ID!
+  createdAt: DateTime!
+  districts(limit: Int, sort: String, start: Int, where: JSON): [District]
+  id: ID!
+  name: String
+  provinces(limit: Int, sort: String, start: Int, where: JSON): [Province]
+  published_at: DateTime
+  updatedAt: DateTime!
+}
+
+type CountryAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CountryConnection {
+  aggregate: CountryAggregator
+  groupBy: CountryGroupBy
+  values: [Country]
+}
+
+type CountryConnectionCreatedAt {
+  connection: CountryConnection
+  key: DateTime
+}
+
+type CountryConnectionId {
+  connection: CountryConnection
+  key: ID
+}
+
+type CountryConnectionName {
+  connection: CountryConnection
+  key: String
+}
+
+type CountryConnectionPublished_at {
+  connection: CountryConnection
+  key: DateTime
+}
+
+type CountryConnectionUpdatedAt {
+  connection: CountryConnection
+  key: DateTime
+}
+
+type CountryConnection_id {
+  connection: CountryConnection
+  key: ID
+}
+
+type CountryGroupBy {
+  _id: [CountryConnection_id]
+  createdAt: [CountryConnectionCreatedAt]
+  id: [CountryConnectionId]
+  name: [CountryConnectionName]
+  published_at: [CountryConnectionPublished_at]
+  updatedAt: [CountryConnectionUpdatedAt]
 }
 
 type District {
-    _id: ID!
-    createdAt: DateTime!
-    id: ID!
-    label: String
-    province: Province
-    published_at: DateTime
-    updatedAt: DateTime!
+  _id: ID!
+  chiefs(limit: Int, sort: String, start: Int, where: JSON): [Chief]
+  country: Country
+  createdAt: DateTime!
+  id: ID!
+  label: String
+  province: Province
+  published_at: DateTime
+  updatedAt: DateTime!
 }
 
 type DistrictAggregator {
-    count: Int
-    totalCount: Int
+  count: Int
+  totalCount: Int
 }
 
 type DistrictConnection {
-    aggregate: DistrictAggregator
-    groupBy: DistrictGroupBy
-    values: [District]
+  aggregate: DistrictAggregator
+  groupBy: DistrictGroupBy
+  values: [District]
+}
+
+type DistrictConnectionCountry {
+  connection: DistrictConnection
+  key: ID
 }
 
 type DistrictConnectionCreatedAt {
-    connection: DistrictConnection
-    key: DateTime
+  connection: DistrictConnection
+  key: DateTime
 }
 
 type DistrictConnectionId {
-    connection: DistrictConnection
-    key: ID
+  connection: DistrictConnection
+  key: ID
 }
 
 type DistrictConnectionLabel {
-    connection: DistrictConnection
-    key: String
+  connection: DistrictConnection
+  key: String
 }
 
 type DistrictConnectionProvince {
-    connection: DistrictConnection
-    key: ID
+  connection: DistrictConnection
+  key: ID
 }
 
 type DistrictConnectionPublished_at {
-    connection: DistrictConnection
-    key: DateTime
+  connection: DistrictConnection
+  key: DateTime
 }
 
 type DistrictConnectionUpdatedAt {
-    connection: DistrictConnection
-    key: DateTime
+  connection: DistrictConnection
+  key: DateTime
 }
 
 type DistrictConnection_id {
-    connection: DistrictConnection
-    key: ID
+  connection: DistrictConnection
+  key: ID
 }
 
 type DistrictGroupBy {
-    _id: [DistrictConnection_id]
-    createdAt: [DistrictConnectionCreatedAt]
-    id: [DistrictConnectionId]
-    label: [DistrictConnectionLabel]
-    province: [DistrictConnectionProvince]
-    published_at: [DistrictConnectionPublished_at]
-    updatedAt: [DistrictConnectionUpdatedAt]
+  _id: [DistrictConnection_id]
+  country: [DistrictConnectionCountry]
+  createdAt: [DistrictConnectionCreatedAt]
+  id: [DistrictConnectionId]
+  label: [DistrictConnectionLabel]
+  province: [DistrictConnectionProvince]
+  published_at: [DistrictConnectionPublished_at]
+  updatedAt: [DistrictConnectionUpdatedAt]
 }
 
 type Download {
-    _id: ID!
-    createdAt: DateTime!
-    id: ID!
-    updatedAt: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
 }
 
 type DownloadAggregator {
-    count: Int
-    totalCount: Int
+  count: Int
+  totalCount: Int
 }
 
 type DownloadConnection {
-    aggregate: DownloadAggregator
-    groupBy: DownloadGroupBy
-    values: [Download]
+  aggregate: DownloadAggregator
+  groupBy: DownloadGroupBy
+  values: [Download]
 }
 
 type DownloadConnectionCreatedAt {
-    connection: DownloadConnection
-    key: DateTime
+  connection: DownloadConnection
+  key: DateTime
 }
 
 type DownloadConnectionId {
-    connection: DownloadConnection
-    key: ID
+  connection: DownloadConnection
+  key: ID
 }
 
 type DownloadConnectionUpdatedAt {
-    connection: DownloadConnection
-    key: DateTime
+  connection: DownloadConnection
+  key: DateTime
 }
 
 type DownloadConnection_id {
-    connection: DownloadConnection
-    key: ID
+  connection: DownloadConnection
+  key: ID
 }
 
 type DownloadGroupBy {
-    _id: [DownloadConnection_id]
-    createdAt: [DownloadConnectionCreatedAt]
-    id: [DownloadConnectionId]
-    updatedAt: [DownloadConnectionUpdatedAt]
+  _id: [DownloadConnection_id]
+  createdAt: [DownloadConnectionCreatedAt]
+  id: [DownloadConnectionId]
+  updatedAt: [DownloadConnectionUpdatedAt]
+}
+
+type Extension {
+  _id: ID!
+  code: String
+  createdAt: DateTime!
+  district: District
+  id: ID!
+  published_at: DateTime
+  updatedAt: DateTime!
+}
+
+type ExtensionAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ExtensionConnection {
+  aggregate: ExtensionAggregator
+  groupBy: ExtensionGroupBy
+  values: [Extension]
+}
+
+type ExtensionConnectionCode {
+  connection: ExtensionConnection
+  key: String
+}
+
+type ExtensionConnectionCreatedAt {
+  connection: ExtensionConnection
+  key: DateTime
+}
+
+type ExtensionConnectionDistrict {
+  connection: ExtensionConnection
+  key: ID
+}
+
+type ExtensionConnectionId {
+  connection: ExtensionConnection
+  key: ID
+}
+
+type ExtensionConnectionPublished_at {
+  connection: ExtensionConnection
+  key: DateTime
+}
+
+type ExtensionConnectionUpdatedAt {
+  connection: ExtensionConnection
+  key: DateTime
+}
+
+type ExtensionConnection_id {
+  connection: ExtensionConnection
+  key: ID
+}
+
+type ExtensionGroupBy {
+  _id: [ExtensionConnection_id]
+  code: [ExtensionConnectionCode]
+  createdAt: [ExtensionConnectionCreatedAt]
+  district: [ExtensionConnectionDistrict]
+  id: [ExtensionConnectionId]
+  published_at: [ExtensionConnectionPublished_at]
+  updatedAt: [ExtensionConnectionUpdatedAt]
 }
 
 type Mutation {
-    createDistrict(input: createDistrictInput): createDistrictPayload
-    createDownload(input: createDownloadInput): createDownloadPayload
-    createNrc(input: createNrcInput): createNrcPayload
-    createProvince(input: createProvinceInput): createProvincePayload
-    "Create a new role"
-    createRole(input: createRoleInput): createRolePayload
-    createUploadedDocument(input: createUploadedDocumentInput): createUploadedDocumentPayload
-    "Create a new user"
-    createUser(input: createUserInput): createUserPayload
-    deleteDistrict(input: deleteDistrictInput): deleteDistrictPayload
-    deleteDownload(input: deleteDownloadInput): deleteDownloadPayload
-    "Delete one file"
-    deleteFile(input: deleteFileInput): deleteFilePayload
-    deleteNrc(input: deleteNrcInput): deleteNrcPayload
-    deleteProvince(input: deleteProvinceInput): deleteProvincePayload
-    "Delete an existing role"
-    deleteRole(input: deleteRoleInput): deleteRolePayload
-    deleteUploadedDocument(input: deleteUploadedDocumentInput): deleteUploadedDocumentPayload
-    "Delete an existing user"
-    deleteUser(input: deleteUserInput): deleteUserPayload
-    emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
-    forgotPassword(email: String!): UserPermissionsPasswordPayload
-    login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
-    multipleUpload(field: String, files: [Upload]!, ref: String, refId: ID, source: String): [UploadFile]!
-    register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
-    resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-    updateDistrict(input: updateDistrictInput): updateDistrictPayload
-    updateDownload(input: updateDownloadInput): updateDownloadPayload
-    updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
-    updateNrc(input: updateNrcInput): updateNrcPayload
-    updateProvince(input: updateProvinceInput): updateProvincePayload
-    "Update an existing role"
-    updateRole(input: updateRoleInput): updateRolePayload
-    updateUploadedDocument(input: updateUploadedDocumentInput): updateUploadedDocumentPayload
-    "Update an existing user"
-    updateUser(input: updateUserInput): updateUserPayload
-    upload(field: String, file: Upload!, ref: String, refId: ID, source: String): UploadFile!
+  createAudit(input: createAuditInput): createAuditPayload
+  createChief(input: createChiefInput): createChiefPayload
+  createCountry(input: createCountryInput): createCountryPayload
+  createDistrict(input: createDistrictInput): createDistrictPayload
+  createDownload(input: createDownloadInput): createDownloadPayload
+  createExtension(input: createExtensionInput): createExtensionPayload
+  createNrc(input: createNrcInput): createNrcPayload
+  createPob(input: createPobInput): createPobPayload
+  createProvince(input: createProvinceInput): createProvincePayload
+  "Create a new role"
+  createRole(input: createRoleInput): createRolePayload
+  createTrail(input: createTrailInput): createTrailPayload
+  createUploadedDocument(input: createUploadedDocumentInput): createUploadedDocumentPayload
+  "Create a new user"
+  createUser(input: createUserInput): createUserPayload
+  deleteAudit(input: deleteAuditInput): deleteAuditPayload
+  deleteChief(input: deleteChiefInput): deleteChiefPayload
+  deleteCountry(input: deleteCountryInput): deleteCountryPayload
+  deleteDistrict(input: deleteDistrictInput): deleteDistrictPayload
+  deleteDownload(input: deleteDownloadInput): deleteDownloadPayload
+  deleteExtension(input: deleteExtensionInput): deleteExtensionPayload
+  "Delete one file"
+  deleteFile(input: deleteFileInput): deleteFilePayload
+  deleteNrc(input: deleteNrcInput): deleteNrcPayload
+  deletePob(input: deletePobInput): deletePobPayload
+  deleteProvince(input: deleteProvinceInput): deleteProvincePayload
+  "Delete an existing role"
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+  deleteTrail(input: deleteTrailInput): deleteTrailPayload
+  deleteUploadedDocument(input: deleteUploadedDocumentInput): deleteUploadedDocumentPayload
+  "Delete an existing user"
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  multipleUpload(field: String, files: [Upload]!, ref: String, refId: ID, source: String): [UploadFile]!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
+  updateAudit(input: updateAuditInput): updateAuditPayload
+  updateChief(input: updateChiefInput): updateChiefPayload
+  updateCountry(input: updateCountryInput): updateCountryPayload
+  updateDistrict(input: updateDistrictInput): updateDistrictPayload
+  updateDownload(input: updateDownloadInput): updateDownloadPayload
+  updateExtension(input: updateExtensionInput): updateExtensionPayload
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  updateNrc(input: updateNrcInput): updateNrcPayload
+  updatePob(input: updatePobInput): updatePobPayload
+  updateProvince(input: updateProvinceInput): updateProvincePayload
+  "Update an existing role"
+  updateRole(input: updateRoleInput): updateRolePayload
+  updateTrail(input: updateTrailInput): updateTrailPayload
+  updateUploadedDocument(input: updateUploadedDocumentInput): updateUploadedDocumentPayload
+  "Update an existing user"
+  updateUser(input: updateUserInput): updateUserPayload
+  upload(field: String, file: Upload!, ref: String, refId: ID, source: String): UploadFile!
 }
 
 type Nrc {
-    _id: ID!
-    approved: Boolean
-    confirmed: Boolean
-    createdAt: DateTime!
-    district: District
-    dob: DateTime
-    dor: DateTime
-    gender: String
-    id: ID!
-    names: String
-    nrc: String
-    pic_id1: String
-    pic_id2: String
-    updatedAt: DateTime!
-    village: String
+  _id: ID!
+  approved: Boolean
+  birthCountry: String
+  chief: String
+  confirmed: Boolean
+  createdAt: DateTime!
+  district: District
+  dob: DateTime
+  dor: DateTime
+  education: String
+  gender: String
+  id: ID!
+  names: String
+  nrc: String
+  pic_id1: String
+  pic_id2: String
+  race: String
+  updatedAt: DateTime!
+  village: String
 }
 
 type NrcAggregator {
-    count: Int
-    totalCount: Int
+  count: Int
+  totalCount: Int
 }
 
 type NrcConnection {
-    aggregate: NrcAggregator
-    groupBy: NrcGroupBy
-    values: [Nrc]
+  aggregate: NrcAggregator
+  groupBy: NrcGroupBy
+  values: [Nrc]
 }
 
 type NrcConnectionApproved {
-    connection: NrcConnection
-    key: Boolean
+  connection: NrcConnection
+  key: Boolean
+}
+
+type NrcConnectionBirthCountry {
+  connection: NrcConnection
+  key: String
+}
+
+type NrcConnectionChief {
+  connection: NrcConnection
+  key: String
 }
 
 type NrcConnectionConfirmed {
-    connection: NrcConnection
-    key: Boolean
+  connection: NrcConnection
+  key: Boolean
 }
 
 type NrcConnectionCreatedAt {
-    connection: NrcConnection
-    key: DateTime
+  connection: NrcConnection
+  key: DateTime
 }
 
 type NrcConnectionDistrict {
-    connection: NrcConnection
-    key: ID
+  connection: NrcConnection
+  key: ID
 }
 
 type NrcConnectionDob {
-    connection: NrcConnection
-    key: DateTime
+  connection: NrcConnection
+  key: DateTime
 }
 
 type NrcConnectionDor {
-    connection: NrcConnection
-    key: DateTime
+  connection: NrcConnection
+  key: DateTime
+}
+
+type NrcConnectionEducation {
+  connection: NrcConnection
+  key: String
 }
 
 type NrcConnectionGender {
-    connection: NrcConnection
-    key: String
+  connection: NrcConnection
+  key: String
 }
 
 type NrcConnectionId {
-    connection: NrcConnection
-    key: ID
+  connection: NrcConnection
+  key: ID
 }
 
 type NrcConnectionNames {
-    connection: NrcConnection
-    key: String
+  connection: NrcConnection
+  key: String
 }
 
 type NrcConnectionNrc {
-    connection: NrcConnection
-    key: String
+  connection: NrcConnection
+  key: String
 }
 
 type NrcConnectionPic_id1 {
-    connection: NrcConnection
-    key: String
+  connection: NrcConnection
+  key: String
 }
 
 type NrcConnectionPic_id2 {
-    connection: NrcConnection
-    key: String
+  connection: NrcConnection
+  key: String
+}
+
+type NrcConnectionRace {
+  connection: NrcConnection
+  key: String
 }
 
 type NrcConnectionUpdatedAt {
-    connection: NrcConnection
-    key: DateTime
+  connection: NrcConnection
+  key: DateTime
 }
 
 type NrcConnectionVillage {
-    connection: NrcConnection
-    key: String
+  connection: NrcConnection
+  key: String
 }
 
 type NrcConnection_id {
-    connection: NrcConnection
-    key: ID
+  connection: NrcConnection
+  key: ID
 }
 
 type NrcGroupBy {
-    _id: [NrcConnection_id]
-    approved: [NrcConnectionApproved]
-    confirmed: [NrcConnectionConfirmed]
-    createdAt: [NrcConnectionCreatedAt]
-    district: [NrcConnectionDistrict]
-    dob: [NrcConnectionDob]
-    dor: [NrcConnectionDor]
-    gender: [NrcConnectionGender]
-    id: [NrcConnectionId]
-    names: [NrcConnectionNames]
-    nrc: [NrcConnectionNrc]
-    pic_id1: [NrcConnectionPic_id1]
-    pic_id2: [NrcConnectionPic_id2]
-    updatedAt: [NrcConnectionUpdatedAt]
-    village: [NrcConnectionVillage]
+  _id: [NrcConnection_id]
+  approved: [NrcConnectionApproved]
+  birthCountry: [NrcConnectionBirthCountry]
+  chief: [NrcConnectionChief]
+  confirmed: [NrcConnectionConfirmed]
+  createdAt: [NrcConnectionCreatedAt]
+  district: [NrcConnectionDistrict]
+  dob: [NrcConnectionDob]
+  dor: [NrcConnectionDor]
+  education: [NrcConnectionEducation]
+  gender: [NrcConnectionGender]
+  id: [NrcConnectionId]
+  names: [NrcConnectionNames]
+  nrc: [NrcConnectionNrc]
+  pic_id1: [NrcConnectionPic_id1]
+  pic_id2: [NrcConnectionPic_id2]
+  race: [NrcConnectionRace]
+  updatedAt: [NrcConnectionUpdatedAt]
+  village: [NrcConnectionVillage]
+}
+
+type Pob {
+  _id: ID!
+  appChief: String
+  appCountry: String
+  appDistrict: String
+  appVillage: String
+  createdAt: DateTime!
+  fatChief: String
+  fatDistrict: String
+  fatVillage: String
+  id: ID!
+  nrc: Nrc
+  published_at: DateTime
+  updatedAt: DateTime!
+}
+
+type PobAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PobConnection {
+  aggregate: PobAggregator
+  groupBy: PobGroupBy
+  values: [Pob]
+}
+
+type PobConnectionAppChief {
+  connection: PobConnection
+  key: String
+}
+
+type PobConnectionAppCountry {
+  connection: PobConnection
+  key: String
+}
+
+type PobConnectionAppDistrict {
+  connection: PobConnection
+  key: String
+}
+
+type PobConnectionAppVillage {
+  connection: PobConnection
+  key: String
+}
+
+type PobConnectionCreatedAt {
+  connection: PobConnection
+  key: DateTime
+}
+
+type PobConnectionFatChief {
+  connection: PobConnection
+  key: String
+}
+
+type PobConnectionFatDistrict {
+  connection: PobConnection
+  key: String
+}
+
+type PobConnectionFatVillage {
+  connection: PobConnection
+  key: String
+}
+
+type PobConnectionId {
+  connection: PobConnection
+  key: ID
+}
+
+type PobConnectionNrc {
+  connection: PobConnection
+  key: ID
+}
+
+type PobConnectionPublished_at {
+  connection: PobConnection
+  key: DateTime
+}
+
+type PobConnectionUpdatedAt {
+  connection: PobConnection
+  key: DateTime
+}
+
+type PobConnection_id {
+  connection: PobConnection
+  key: ID
+}
+
+type PobGroupBy {
+  _id: [PobConnection_id]
+  appChief: [PobConnectionAppChief]
+  appCountry: [PobConnectionAppCountry]
+  appDistrict: [PobConnectionAppDistrict]
+  appVillage: [PobConnectionAppVillage]
+  createdAt: [PobConnectionCreatedAt]
+  fatChief: [PobConnectionFatChief]
+  fatDistrict: [PobConnectionFatDistrict]
+  fatVillage: [PobConnectionFatVillage]
+  id: [PobConnectionId]
+  nrc: [PobConnectionNrc]
+  published_at: [PobConnectionPublished_at]
+  updatedAt: [PobConnectionUpdatedAt]
 }
 
 type Province {
-    _id: ID!
-    createdAt: DateTime!
-    id: ID!
-    name: String!
-    published_at: DateTime
-    updatedAt: DateTime!
+  _id: ID!
+  country: Country
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  published_at: DateTime
+  updatedAt: DateTime!
 }
 
 type ProvinceAggregator {
-    count: Int
-    totalCount: Int
+  count: Int
+  totalCount: Int
 }
 
 type ProvinceConnection {
-    aggregate: ProvinceAggregator
-    groupBy: ProvinceGroupBy
-    values: [Province]
+  aggregate: ProvinceAggregator
+  groupBy: ProvinceGroupBy
+  values: [Province]
+}
+
+type ProvinceConnectionCountry {
+  connection: ProvinceConnection
+  key: ID
 }
 
 type ProvinceConnectionCreatedAt {
-    connection: ProvinceConnection
-    key: DateTime
+  connection: ProvinceConnection
+  key: DateTime
 }
 
 type ProvinceConnectionId {
-    connection: ProvinceConnection
-    key: ID
+  connection: ProvinceConnection
+  key: ID
 }
 
 type ProvinceConnectionName {
-    connection: ProvinceConnection
-    key: String
+  connection: ProvinceConnection
+  key: String
 }
 
 type ProvinceConnectionPublished_at {
-    connection: ProvinceConnection
-    key: DateTime
+  connection: ProvinceConnection
+  key: DateTime
 }
 
 type ProvinceConnectionUpdatedAt {
-    connection: ProvinceConnection
-    key: DateTime
+  connection: ProvinceConnection
+  key: DateTime
 }
 
 type ProvinceConnection_id {
-    connection: ProvinceConnection
-    key: ID
+  connection: ProvinceConnection
+  key: ID
 }
 
 type ProvinceGroupBy {
-    _id: [ProvinceConnection_id]
-    createdAt: [ProvinceConnectionCreatedAt]
-    id: [ProvinceConnectionId]
-    name: [ProvinceConnectionName]
-    published_at: [ProvinceConnectionPublished_at]
-    updatedAt: [ProvinceConnectionUpdatedAt]
+  _id: [ProvinceConnection_id]
+  country: [ProvinceConnectionCountry]
+  createdAt: [ProvinceConnectionCreatedAt]
+  id: [ProvinceConnectionId]
+  name: [ProvinceConnectionName]
+  published_at: [ProvinceConnectionPublished_at]
+  updatedAt: [ProvinceConnectionUpdatedAt]
 }
 
 type Query {
-    district(id: ID!, publicationState: PublicationState): District
-    districts(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [District]
-    districtsConnection(limit: Int, sort: String, start: Int, where: JSON): DistrictConnection
-    download(id: ID!, publicationState: PublicationState): Download
-    downloads(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Download]
-    downloadsConnection(limit: Int, sort: String, start: Int, where: JSON): DownloadConnection
-    files(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UploadFile]
-    filesConnection(limit: Int, sort: String, start: Int, where: JSON): UploadFileConnection
-    me: UsersPermissionsMe
-    nrc(id: ID!, publicationState: PublicationState): Nrc
-    nrcs(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Nrc]
-    nrcsConnection(limit: Int, sort: String, start: Int, where: JSON): NrcConnection
-    province(id: ID!, publicationState: PublicationState): Province
-    provinces(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Province]
-    provincesConnection(limit: Int, sort: String, start: Int, where: JSON): ProvinceConnection
-    role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
-    "Retrieve all the existing roles. You can't apply filters on this query."
-    roles(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsRole]
-    rolesConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsRoleConnection
-    uploadedDocument(id: ID!, publicationState: PublicationState): UploadedDocuments
-    uploadedDocuments(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UploadedDocuments]
-    uploadedDocumentsConnection(limit: Int, sort: String, start: Int, where: JSON): UploadedDocumentsConnection
-    user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
-    users(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
-    usersConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsUserConnection
+  audit(id: ID!, publicationState: PublicationState): Audit
+  audits(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Audit]
+  auditsConnection(limit: Int, sort: String, start: Int, where: JSON): AuditConnection
+  chief(id: ID!, publicationState: PublicationState): Chief
+  chiefs(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Chief]
+  chiefsConnection(limit: Int, sort: String, start: Int, where: JSON): ChiefConnection
+  countries(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Country]
+  countriesConnection(limit: Int, sort: String, start: Int, where: JSON): CountryConnection
+  country(id: ID!, publicationState: PublicationState): Country
+  district(id: ID!, publicationState: PublicationState): District
+  districts(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [District]
+  districtsConnection(limit: Int, sort: String, start: Int, where: JSON): DistrictConnection
+  download(id: ID!, publicationState: PublicationState): Download
+  downloads(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Download]
+  downloadsConnection(limit: Int, sort: String, start: Int, where: JSON): DownloadConnection
+  extension(id: ID!, publicationState: PublicationState): Extension
+  extensions(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Extension]
+  extensionsConnection(limit: Int, sort: String, start: Int, where: JSON): ExtensionConnection
+  files(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UploadFile]
+  filesConnection(limit: Int, sort: String, start: Int, where: JSON): UploadFileConnection
+  me: UsersPermissionsMe
+  nrc(id: ID!, publicationState: PublicationState): Nrc
+  nrcs(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Nrc]
+  nrcsConnection(limit: Int, sort: String, start: Int, where: JSON): NrcConnection
+  pob(id: ID!, publicationState: PublicationState): Pob
+  pobs(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Pob]
+  pobsConnection(limit: Int, sort: String, start: Int, where: JSON): PobConnection
+  province(id: ID!, publicationState: PublicationState): Province
+  provinces(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Province]
+  provincesConnection(limit: Int, sort: String, start: Int, where: JSON): ProvinceConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+  "Retrieve all the existing roles. You can't apply filters on this query."
+  roles(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsRoleConnection
+  trail(id: ID!, publicationState: PublicationState): Trail
+  trails(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Trail]
+  trailsConnection(limit: Int, sort: String, start: Int, where: JSON): TrailConnection
+  uploadedDocument(id: ID!, publicationState: PublicationState): UploadedDocuments
+  uploadedDocuments(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UploadedDocuments]
+  uploadedDocumentsConnection(limit: Int, sort: String, start: Int, where: JSON): UploadedDocumentsConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsUserConnection
+}
+
+type Trail {
+  _id: ID!
+  action: String
+  author: JSON
+  content: JSON
+  contentType: String
+  createdAt: DateTime!
+  id: ID!
+  method: String
+  params: JSON
+  request: JSON
+  route: String
+  statusCode: Int
+  updatedAt: DateTime!
+}
+
+type TrailAggregator {
+  avg: TrailAggregatorAvg
+  count: Int
+  max: TrailAggregatorMax
+  min: TrailAggregatorMin
+  sum: TrailAggregatorSum
+  totalCount: Int
+}
+
+type TrailAggregatorAvg {
+  statusCode: Float
+}
+
+type TrailAggregatorMax {
+  statusCode: Float
+}
+
+type TrailAggregatorMin {
+  statusCode: Float
+}
+
+type TrailAggregatorSum {
+  statusCode: Float
+}
+
+type TrailConnection {
+  aggregate: TrailAggregator
+  groupBy: TrailGroupBy
+  values: [Trail]
+}
+
+type TrailConnectionAction {
+  connection: TrailConnection
+  key: String
+}
+
+type TrailConnectionAuthor {
+  connection: TrailConnection
+  key: JSON
+}
+
+type TrailConnectionContent {
+  connection: TrailConnection
+  key: JSON
+}
+
+type TrailConnectionContentType {
+  connection: TrailConnection
+  key: String
+}
+
+type TrailConnectionCreatedAt {
+  connection: TrailConnection
+  key: DateTime
+}
+
+type TrailConnectionId {
+  connection: TrailConnection
+  key: ID
+}
+
+type TrailConnectionMethod {
+  connection: TrailConnection
+  key: String
+}
+
+type TrailConnectionParams {
+  connection: TrailConnection
+  key: JSON
+}
+
+type TrailConnectionRequest {
+  connection: TrailConnection
+  key: JSON
+}
+
+type TrailConnectionRoute {
+  connection: TrailConnection
+  key: String
+}
+
+type TrailConnectionStatusCode {
+  connection: TrailConnection
+  key: Int
+}
+
+type TrailConnectionUpdatedAt {
+  connection: TrailConnection
+  key: DateTime
+}
+
+type TrailConnection_id {
+  connection: TrailConnection
+  key: ID
+}
+
+type TrailGroupBy {
+  _id: [TrailConnection_id]
+  action: [TrailConnectionAction]
+  author: [TrailConnectionAuthor]
+  content: [TrailConnectionContent]
+  contentType: [TrailConnectionContentType]
+  createdAt: [TrailConnectionCreatedAt]
+  id: [TrailConnectionId]
+  method: [TrailConnectionMethod]
+  params: [TrailConnectionParams]
+  request: [TrailConnectionRequest]
+  route: [TrailConnectionRoute]
+  statusCode: [TrailConnectionStatusCode]
+  updatedAt: [TrailConnectionUpdatedAt]
 }
 
 type UploadFile {
-    _id: ID!
-    alternativeText: String
-    caption: String
-    createdAt: DateTime!
-    ext: String
-    formats: JSON
-    hash: String!
-    height: Int
-    id: ID!
-    mime: String!
-    name: String!
-    previewUrl: String
-    provider: String!
-    provider_metadata: JSON
-    related(limit: Int, sort: String, start: Int, where: JSON): [Morph]
-    size: Float!
-    updatedAt: DateTime!
-    url: String!
-    width: Int
+  _id: ID!
+  alternativeText: String
+  caption: String
+  createdAt: DateTime!
+  ext: String
+  formats: JSON
+  hash: String!
+  height: Int
+  id: ID!
+  mime: String!
+  name: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(limit: Int, sort: String, start: Int, where: JSON): [Morph]
+  size: Float!
+  updatedAt: DateTime!
+  url: String!
+  width: Int
 }
 
 type UploadFileAggregator {
-    avg: UploadFileAggregatorAvg
-    count: Int
-    max: UploadFileAggregatorMax
-    min: UploadFileAggregatorMin
-    sum: UploadFileAggregatorSum
-    totalCount: Int
+  avg: UploadFileAggregatorAvg
+  count: Int
+  max: UploadFileAggregatorMax
+  min: UploadFileAggregatorMin
+  sum: UploadFileAggregatorSum
+  totalCount: Int
 }
 
 type UploadFileAggregatorAvg {
-    height: Float
-    size: Float
-    width: Float
+  height: Float
+  size: Float
+  width: Float
 }
 
 type UploadFileAggregatorMax {
-    height: Float
-    size: Float
-    width: Float
+  height: Float
+  size: Float
+  width: Float
 }
 
 type UploadFileAggregatorMin {
-    height: Float
-    size: Float
-    width: Float
+  height: Float
+  size: Float
+  width: Float
 }
 
 type UploadFileAggregatorSum {
-    height: Float
-    size: Float
-    width: Float
+  height: Float
+  size: Float
+  width: Float
 }
 
 type UploadFileConnection {
-    aggregate: UploadFileAggregator
-    groupBy: UploadFileGroupBy
-    values: [UploadFile]
+  aggregate: UploadFileAggregator
+  groupBy: UploadFileGroupBy
+  values: [UploadFile]
 }
 
 type UploadFileConnectionAlternativeText {
-    connection: UploadFileConnection
-    key: String
+  connection: UploadFileConnection
+  key: String
 }
 
 type UploadFileConnectionCaption {
-    connection: UploadFileConnection
-    key: String
+  connection: UploadFileConnection
+  key: String
 }
 
 type UploadFileConnectionCreatedAt {
-    connection: UploadFileConnection
-    key: DateTime
+  connection: UploadFileConnection
+  key: DateTime
 }
 
 type UploadFileConnectionExt {
-    connection: UploadFileConnection
-    key: String
+  connection: UploadFileConnection
+  key: String
 }
 
 type UploadFileConnectionFormats {
-    connection: UploadFileConnection
-    key: JSON
+  connection: UploadFileConnection
+  key: JSON
 }
 
 type UploadFileConnectionHash {
-    connection: UploadFileConnection
-    key: String
+  connection: UploadFileConnection
+  key: String
 }
 
 type UploadFileConnectionHeight {
-    connection: UploadFileConnection
-    key: Int
+  connection: UploadFileConnection
+  key: Int
 }
 
 type UploadFileConnectionId {
-    connection: UploadFileConnection
-    key: ID
+  connection: UploadFileConnection
+  key: ID
 }
 
 type UploadFileConnectionMime {
-    connection: UploadFileConnection
-    key: String
+  connection: UploadFileConnection
+  key: String
 }
 
 type UploadFileConnectionName {
-    connection: UploadFileConnection
-    key: String
+  connection: UploadFileConnection
+  key: String
 }
 
 type UploadFileConnectionPreviewUrl {
-    connection: UploadFileConnection
-    key: String
+  connection: UploadFileConnection
+  key: String
 }
 
 type UploadFileConnectionProvider {
-    connection: UploadFileConnection
-    key: String
+  connection: UploadFileConnection
+  key: String
 }
 
 type UploadFileConnectionProvider_metadata {
-    connection: UploadFileConnection
-    key: JSON
+  connection: UploadFileConnection
+  key: JSON
 }
 
 type UploadFileConnectionSize {
-    connection: UploadFileConnection
-    key: Float
+  connection: UploadFileConnection
+  key: Float
 }
 
 type UploadFileConnectionUpdatedAt {
-    connection: UploadFileConnection
-    key: DateTime
+  connection: UploadFileConnection
+  key: DateTime
 }
 
 type UploadFileConnectionUrl {
-    connection: UploadFileConnection
-    key: String
+  connection: UploadFileConnection
+  key: String
 }
 
 type UploadFileConnectionWidth {
-    connection: UploadFileConnection
-    key: Int
+  connection: UploadFileConnection
+  key: Int
 }
 
 type UploadFileConnection_id {
-    connection: UploadFileConnection
-    key: ID
+  connection: UploadFileConnection
+  key: ID
 }
 
 type UploadFileGroupBy {
-    _id: [UploadFileConnection_id]
-    alternativeText: [UploadFileConnectionAlternativeText]
-    caption: [UploadFileConnectionCaption]
-    createdAt: [UploadFileConnectionCreatedAt]
-    ext: [UploadFileConnectionExt]
-    formats: [UploadFileConnectionFormats]
-    hash: [UploadFileConnectionHash]
-    height: [UploadFileConnectionHeight]
-    id: [UploadFileConnectionId]
-    mime: [UploadFileConnectionMime]
-    name: [UploadFileConnectionName]
-    previewUrl: [UploadFileConnectionPreviewUrl]
-    provider: [UploadFileConnectionProvider]
-    provider_metadata: [UploadFileConnectionProvider_metadata]
-    size: [UploadFileConnectionSize]
-    updatedAt: [UploadFileConnectionUpdatedAt]
-    url: [UploadFileConnectionUrl]
-    width: [UploadFileConnectionWidth]
+  _id: [UploadFileConnection_id]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  createdAt: [UploadFileConnectionCreatedAt]
+  ext: [UploadFileConnectionExt]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  height: [UploadFileConnectionHeight]
+  id: [UploadFileConnectionId]
+  mime: [UploadFileConnectionMime]
+  name: [UploadFileConnectionName]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+  size: [UploadFileConnectionSize]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  url: [UploadFileConnectionUrl]
+  width: [UploadFileConnectionWidth]
 }
 
 type UploadedDocuments {
-    _id: ID!
-    createdAt: DateTime!
-    id: ID!
-    name(limit: Int, sort: String, start: Int, where: JSON): [UploadFile]
-    published_at: DateTime
-    updatedAt: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  id: ID!
+  name(limit: Int, sort: String, start: Int, where: JSON): [UploadFile]
+  published_at: DateTime
+  updatedAt: DateTime!
 }
 
 type UploadedDocumentsAggregator {
-    count: Int
-    totalCount: Int
+  count: Int
+  totalCount: Int
 }
 
 type UploadedDocumentsConnection {
-    aggregate: UploadedDocumentsAggregator
-    groupBy: UploadedDocumentsGroupBy
-    values: [UploadedDocuments]
+  aggregate: UploadedDocumentsAggregator
+  groupBy: UploadedDocumentsGroupBy
+  values: [UploadedDocuments]
 }
 
 type UploadedDocumentsConnectionCreatedAt {
-    connection: UploadedDocumentsConnection
-    key: DateTime
+  connection: UploadedDocumentsConnection
+  key: DateTime
 }
 
 type UploadedDocumentsConnectionId {
-    connection: UploadedDocumentsConnection
-    key: ID
+  connection: UploadedDocumentsConnection
+  key: ID
 }
 
 type UploadedDocumentsConnectionPublished_at {
-    connection: UploadedDocumentsConnection
-    key: DateTime
+  connection: UploadedDocumentsConnection
+  key: DateTime
 }
 
 type UploadedDocumentsConnectionUpdatedAt {
-    connection: UploadedDocumentsConnection
-    key: DateTime
+  connection: UploadedDocumentsConnection
+  key: DateTime
 }
 
 type UploadedDocumentsConnection_id {
-    connection: UploadedDocumentsConnection
-    key: ID
+  connection: UploadedDocumentsConnection
+  key: ID
 }
 
 type UploadedDocumentsGroupBy {
-    _id: [UploadedDocumentsConnection_id]
-    createdAt: [UploadedDocumentsConnectionCreatedAt]
-    id: [UploadedDocumentsConnectionId]
-    published_at: [UploadedDocumentsConnectionPublished_at]
-    updatedAt: [UploadedDocumentsConnectionUpdatedAt]
+  _id: [UploadedDocumentsConnection_id]
+  createdAt: [UploadedDocumentsConnectionCreatedAt]
+  id: [UploadedDocumentsConnectionId]
+  published_at: [UploadedDocumentsConnectionPublished_at]
+  updatedAt: [UploadedDocumentsConnectionUpdatedAt]
 }
 
 type UserPermissionsPasswordPayload {
-    ok: Boolean!
+  ok: Boolean!
 }
 
 type UsersPermissionsLoginPayload {
-    jwt: String
-    user: UsersPermissionsMe!
+  jwt: String
+  user: UsersPermissionsMe!
 }
 
 type UsersPermissionsMe {
-    blocked: Boolean
-    confirmed: Boolean
-    email: String!
-    id: ID!
-    role: UsersPermissionsMeRole
-    username: String!
+  blocked: Boolean
+  confirmed: Boolean
+  email: String!
+  id: ID!
+  role: UsersPermissionsMeRole
+  username: String!
 }
 
 type UsersPermissionsMeRole {
-    description: String
-    id: ID!
-    name: String!
-    type: String
+  description: String
+  id: ID!
+  name: String!
+  type: String
 }
 
 type UsersPermissionsPermission {
-    _id: ID!
-    action: String!
-    controller: String!
-    enabled: Boolean!
-    id: ID!
-    policy: String
-    role: UsersPermissionsRole
-    type: String!
+  _id: ID!
+  action: String!
+  controller: String!
+  enabled: Boolean!
+  id: ID!
+  policy: String
+  role: UsersPermissionsRole
+  type: String!
 }
 
 type UsersPermissionsRole {
-    _id: ID!
-    description: String
-    id: ID!
-    name: String!
-    permissions(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsPermission]
-    type: String
-    users(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
+  _id: ID!
+  description: String
+  id: ID!
+  name: String!
+  permissions(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsPermission]
+  type: String
+  users(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
 }
 
 type UsersPermissionsRoleAggregator {
-    count: Int
-    totalCount: Int
+  count: Int
+  totalCount: Int
 }
 
 type UsersPermissionsRoleConnection {
-    aggregate: UsersPermissionsRoleAggregator
-    groupBy: UsersPermissionsRoleGroupBy
-    values: [UsersPermissionsRole]
+  aggregate: UsersPermissionsRoleAggregator
+  groupBy: UsersPermissionsRoleGroupBy
+  values: [UsersPermissionsRole]
 }
 
 type UsersPermissionsRoleConnectionDescription {
-    connection: UsersPermissionsRoleConnection
-    key: String
+  connection: UsersPermissionsRoleConnection
+  key: String
 }
 
 type UsersPermissionsRoleConnectionId {
-    connection: UsersPermissionsRoleConnection
-    key: ID
+  connection: UsersPermissionsRoleConnection
+  key: ID
 }
 
 type UsersPermissionsRoleConnectionName {
-    connection: UsersPermissionsRoleConnection
-    key: String
+  connection: UsersPermissionsRoleConnection
+  key: String
 }
 
 type UsersPermissionsRoleConnectionType {
-    connection: UsersPermissionsRoleConnection
-    key: String
+  connection: UsersPermissionsRoleConnection
+  key: String
 }
 
 type UsersPermissionsRoleConnection_id {
-    connection: UsersPermissionsRoleConnection
-    key: ID
+  connection: UsersPermissionsRoleConnection
+  key: ID
 }
 
 type UsersPermissionsRoleGroupBy {
-    _id: [UsersPermissionsRoleConnection_id]
-    description: [UsersPermissionsRoleConnectionDescription]
-    id: [UsersPermissionsRoleConnectionId]
-    name: [UsersPermissionsRoleConnectionName]
-    type: [UsersPermissionsRoleConnectionType]
+  _id: [UsersPermissionsRoleConnection_id]
+  description: [UsersPermissionsRoleConnectionDescription]
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  type: [UsersPermissionsRoleConnectionType]
 }
 
 type UsersPermissionsUser {
-    _id: ID!
-    blocked: Boolean
-    confirmed: Boolean
-    createdAt: DateTime!
-    email: String!
-    id: ID!
-    provider: String
-    role: UsersPermissionsRole
-    updatedAt: DateTime!
-    username: String!
+  _id: ID!
+  blocked: Boolean
+  confirmed: Boolean
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  provider: String
+  role: UsersPermissionsRole
+  updatedAt: DateTime!
+  username: String!
 }
 
 type UsersPermissionsUserAggregator {
-    count: Int
-    totalCount: Int
+  count: Int
+  totalCount: Int
 }
 
 type UsersPermissionsUserConnection {
-    aggregate: UsersPermissionsUserAggregator
-    groupBy: UsersPermissionsUserGroupBy
-    values: [UsersPermissionsUser]
+  aggregate: UsersPermissionsUserAggregator
+  groupBy: UsersPermissionsUserGroupBy
+  values: [UsersPermissionsUser]
 }
 
 type UsersPermissionsUserConnectionBlocked {
-    connection: UsersPermissionsUserConnection
-    key: Boolean
+  connection: UsersPermissionsUserConnection
+  key: Boolean
 }
 
 type UsersPermissionsUserConnectionConfirmed {
-    connection: UsersPermissionsUserConnection
-    key: Boolean
+  connection: UsersPermissionsUserConnection
+  key: Boolean
 }
 
 type UsersPermissionsUserConnectionCreatedAt {
-    connection: UsersPermissionsUserConnection
-    key: DateTime
+  connection: UsersPermissionsUserConnection
+  key: DateTime
 }
 
 type UsersPermissionsUserConnectionEmail {
-    connection: UsersPermissionsUserConnection
-    key: String
+  connection: UsersPermissionsUserConnection
+  key: String
 }
 
 type UsersPermissionsUserConnectionId {
-    connection: UsersPermissionsUserConnection
-    key: ID
+  connection: UsersPermissionsUserConnection
+  key: ID
 }
 
 type UsersPermissionsUserConnectionProvider {
-    connection: UsersPermissionsUserConnection
-    key: String
+  connection: UsersPermissionsUserConnection
+  key: String
 }
 
 type UsersPermissionsUserConnectionRole {
-    connection: UsersPermissionsUserConnection
-    key: ID
+  connection: UsersPermissionsUserConnection
+  key: ID
 }
 
 type UsersPermissionsUserConnectionUpdatedAt {
-    connection: UsersPermissionsUserConnection
-    key: DateTime
+  connection: UsersPermissionsUserConnection
+  key: DateTime
 }
 
 type UsersPermissionsUserConnectionUsername {
-    connection: UsersPermissionsUserConnection
-    key: String
+  connection: UsersPermissionsUserConnection
+  key: String
 }
 
 type UsersPermissionsUserConnection_id {
-    connection: UsersPermissionsUserConnection
-    key: ID
+  connection: UsersPermissionsUserConnection
+  key: ID
 }
 
 type UsersPermissionsUserGroupBy {
-    _id: [UsersPermissionsUserConnection_id]
-    blocked: [UsersPermissionsUserConnectionBlocked]
-    confirmed: [UsersPermissionsUserConnectionConfirmed]
-    createdAt: [UsersPermissionsUserConnectionCreatedAt]
-    email: [UsersPermissionsUserConnectionEmail]
-    id: [UsersPermissionsUserConnectionId]
-    provider: [UsersPermissionsUserConnectionProvider]
-    role: [UsersPermissionsUserConnectionRole]
-    updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
-    username: [UsersPermissionsUserConnectionUsername]
+  _id: [UsersPermissionsUserConnection_id]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  createdAt: [UsersPermissionsUserConnectionCreatedAt]
+  email: [UsersPermissionsUserConnectionEmail]
+  id: [UsersPermissionsUserConnectionId]
+  provider: [UsersPermissionsUserConnectionProvider]
+  role: [UsersPermissionsUserConnectionRole]
+  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
+  username: [UsersPermissionsUserConnectionUsername]
+}
+
+type createAuditPayload {
+  audit: Audit
+}
+
+type createChiefPayload {
+  chief: Chief
+}
+
+type createCountryPayload {
+  country: Country
 }
 
 type createDistrictPayload {
-    district: District
+  district: District
 }
 
 type createDownloadPayload {
-    download: Download
+  download: Download
+}
+
+type createExtensionPayload {
+  extension: Extension
 }
 
 type createNrcPayload {
-    nrc: Nrc
+  nrc: Nrc
+}
+
+type createPobPayload {
+  pob: Pob
 }
 
 type createProvincePayload {
-    province: Province
+  province: Province
 }
 
 type createRolePayload {
-    role: UsersPermissionsRole
+  role: UsersPermissionsRole
+}
+
+type createTrailPayload {
+  trail: Trail
 }
 
 type createUploadedDocumentPayload {
-    uploadedDocument: UploadedDocuments
+  uploadedDocument: UploadedDocuments
 }
 
 type createUserPayload {
-    user: UsersPermissionsUser
+  user: UsersPermissionsUser
+}
+
+type deleteAuditPayload {
+  audit: Audit
+}
+
+type deleteChiefPayload {
+  chief: Chief
+}
+
+type deleteCountryPayload {
+  country: Country
 }
 
 type deleteDistrictPayload {
-    district: District
+  district: District
 }
 
 type deleteDownloadPayload {
-    download: Download
+  download: Download
+}
+
+type deleteExtensionPayload {
+  extension: Extension
 }
 
 type deleteFilePayload {
-    file: UploadFile
+  file: UploadFile
 }
 
 type deleteNrcPayload {
-    nrc: Nrc
+  nrc: Nrc
+}
+
+type deletePobPayload {
+  pob: Pob
 }
 
 type deleteProvincePayload {
-    province: Province
+  province: Province
 }
 
 type deleteRolePayload {
-    role: UsersPermissionsRole
+  role: UsersPermissionsRole
+}
+
+type deleteTrailPayload {
+  trail: Trail
 }
 
 type deleteUploadedDocumentPayload {
-    uploadedDocument: UploadedDocuments
+  uploadedDocument: UploadedDocuments
 }
 
 type deleteUserPayload {
-    user: UsersPermissionsUser
+  user: UsersPermissionsUser
+}
+
+type updateAuditPayload {
+  audit: Audit
+}
+
+type updateChiefPayload {
+  chief: Chief
+}
+
+type updateCountryPayload {
+  country: Country
 }
 
 type updateDistrictPayload {
-    district: District
+  district: District
 }
 
 type updateDownloadPayload {
-    download: Download
+  download: Download
+}
+
+type updateExtensionPayload {
+  extension: Extension
 }
 
 type updateNrcPayload {
-    nrc: Nrc
+  nrc: Nrc
+}
+
+type updatePobPayload {
+  pob: Pob
 }
 
 type updateProvincePayload {
-    province: Province
+  province: Province
 }
 
 type updateRolePayload {
-    role: UsersPermissionsRole
+  role: UsersPermissionsRole
+}
+
+type updateTrailPayload {
+  trail: Trail
 }
 
 type updateUploadedDocumentPayload {
-    uploadedDocument: UploadedDocuments
+  uploadedDocument: UploadedDocuments
 }
 
 type updateUserPayload {
-    user: UsersPermissionsUser
+  user: UsersPermissionsUser
 }
 
 enum CacheControlScope {
-    PRIVATE
-    PUBLIC
+  PRIVATE
+  PUBLIC
+}
+
+enum ENUM_AUDITLOGAUDITLOGS_ACTION {
+  CREATE
+  CREATE_REMOVE
+  CREATE_REMOVE_UPDATE
+  CREATE_UPDATE
+  CREATE_UPDATE_REMOVE
+  DELETE
+  REMOVE_CREATE
+  REMOVE_CREATE_UPDATE
+  REMOVE_UPDATE
+  REMOVE_UPDATE_CREATE
+  UPDATE
+  UPDATE_CREATE
+  UPDATE_CREATE_REMOVE
+  UPDATE_REMOVE
+  UPDATE_REMOVE_CREATE
 }
 
 enum PublicationState {
-    LIVE
-    PREVIEW
+  LIVE
+  PREVIEW
+}
+
+input AuditInput {
+  action: String
+  created_by: ID
+  item: String
+  published_at: DateTime
+  updated_by: ID
+  user: String
+}
+
+input AuditLogInput {
+  action: ENUM_AUDITLOGAUDITLOGS_ACTION!
+  content: JSON!
+  created_by: ID
+  model_name: String!
+  origin_id: String!
+  timestamp: DateTime
+  updated_by: ID
+}
+
+input ChiefInput {
+  created_by: ID
+  district: ID
+  name: String
+  published_at: DateTime
+  updated_by: ID
+}
+
+input CountryInput {
+  created_by: ID
+  districts: [ID]
+  name: String
+  provinces: [ID]
+  published_at: DateTime
+  updated_by: ID
 }
 
 input DistrictInput {
-    created_by: ID
-    label: String
-    province: ID
-    published_at: DateTime
-    updated_by: ID
+  chiefs: [ID]
+  country: ID
+  created_by: ID
+  label: String
+  province: ID
+  published_at: DateTime
+  updated_by: ID
 }
 
 input DownloadInput {
-    created_by: ID
-    updated_by: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input ExtensionInput {
+  code: String
+  created_by: ID
+  district: ID
+  published_at: DateTime
+  updated_by: ID
 }
 
 input FileInfoInput {
-    alternativeText: String
-    caption: String
-    name: String
+  alternativeText: String
+  caption: String
+  name: String
 }
 
 input FileInput {
-    alternativeText: String
-    caption: String
-    created_by: ID
-    ext: String
-    formats: JSON
-    hash: String!
-    height: Int
-    mime: String!
-    name: String!
-    previewUrl: String
-    provider: String!
-    provider_metadata: JSON
-    related: [ID]
-    size: Float!
-    updated_by: ID
-    url: String!
-    width: Int
+  alternativeText: String
+  caption: String
+  created_by: ID
+  ext: String
+  formats: JSON
+  hash: String!
+  height: Int
+  mime: String!
+  name: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  size: Float!
+  updated_by: ID
+  url: String!
+  width: Int
 }
 
 input InputID {
-    id: ID!
+  id: ID!
 }
 
 input NrcInput {
-    approved: Boolean
-    confirmed: Boolean
-    created_by: ID
-    district: ID
-    dob: DateTime
-    dor: DateTime
-    gender: String
-    names: String
-    nrc: String
-    pic_id1: String
-    pic_id2: String
-    updated_by: ID
-    village: String
+  approved: Boolean
+  birthCountry: String
+  chief: String
+  confirmed: Boolean
+  created_by: ID
+  district: ID
+  dob: DateTime
+  dor: DateTime
+  education: String
+  gender: String
+  names: String
+  nrc: String
+  pic_id1: String
+  pic_id2: String
+  race: String
+  updated_by: ID
+  village: String
+}
+
+input PobInput {
+  appChief: String
+  appCountry: String
+  appDistrict: String
+  appVillage: String
+  created_by: ID
+  fatChief: String
+  fatDistrict: String
+  fatVillage: String
+  nrc: ID
+  published_at: DateTime
+  updated_by: ID
 }
 
 input ProvinceInput {
-    created_by: ID
-    name: String!
-    published_at: DateTime
-    updated_by: ID
+  country: ID
+  created_by: ID
+  name: String!
+  published_at: DateTime
+  updated_by: ID
 }
 
 input RoleInput {
-    created_by: ID
-    description: String
-    name: String!
-    permissions: [ID]
-    type: String
-    updated_by: ID
-    users: [ID]
+  created_by: ID
+  description: String
+  name: String!
+  permissions: [ID]
+  type: String
+  updated_by: ID
+  users: [ID]
+}
+
+input TrailInput {
+  action: String
+  author: JSON
+  content: JSON
+  contentType: String
+  created_by: ID
+  method: String
+  params: JSON
+  request: JSON
+  route: String
+  statusCode: Int
+  updated_by: ID
 }
 
 input UploadedDocumentInput {
-    created_by: ID
-    name: [ID]
-    published_at: DateTime
-    updated_by: ID
+  created_by: ID
+  name: [ID]
+  published_at: DateTime
+  updated_by: ID
 }
 
 input UserInput {
-    blocked: Boolean
-    confirmationToken: String
-    confirmed: Boolean
-    created_by: ID
-    email: String!
-    password: String
-    provider: String
-    resetPasswordToken: String
-    role: ID
-    updated_by: ID
-    username: String!
+  blocked: Boolean
+  confirmationToken: String
+  confirmed: Boolean
+  created_by: ID
+  email: String!
+  password: String
+  provider: String
+  resetPasswordToken: String
+  role: ID
+  updated_by: ID
+  username: String!
 }
 
 input UsersPermissionsLoginInput {
-    identifier: String!
-    password: String!
-    provider: String = "local"
+  identifier: String!
+  password: String!
+  provider: String = "local"
 }
 
 input UsersPermissionsRegisterInput {
-    email: String!
-    password: String!
-    username: String!
+  email: String!
+  password: String!
+  username: String!
+}
+
+input createAuditInput {
+  data: AuditInput
+}
+
+input createChiefInput {
+  data: ChiefInput
+}
+
+input createCountryInput {
+  data: CountryInput
 }
 
 input createDistrictInput {
-    data: DistrictInput
+  data: DistrictInput
 }
 
 input createDownloadInput {
-    data: DownloadInput
+  data: DownloadInput
+}
+
+input createExtensionInput {
+  data: ExtensionInput
 }
 
 input createNrcInput {
-    data: NrcInput
+  data: NrcInput
+}
+
+input createPobInput {
+  data: PobInput
 }
 
 input createProvinceInput {
-    data: ProvinceInput
+  data: ProvinceInput
 }
 
 input createRoleInput {
-    data: RoleInput
+  data: RoleInput
+}
+
+input createTrailInput {
+  data: TrailInput
 }
 
 input createUploadedDocumentInput {
-    data: UploadedDocumentInput
+  data: UploadedDocumentInput
 }
 
 input createUserInput {
-    data: UserInput
+  data: UserInput
+}
+
+input deleteAuditInput {
+  where: InputID
+}
+
+input deleteChiefInput {
+  where: InputID
+}
+
+input deleteCountryInput {
+  where: InputID
 }
 
 input deleteDistrictInput {
-    where: InputID
+  where: InputID
 }
 
 input deleteDownloadInput {
-    where: InputID
+  where: InputID
+}
+
+input deleteExtensionInput {
+  where: InputID
 }
 
 input deleteFileInput {
-    where: InputID
+  where: InputID
 }
 
 input deleteNrcInput {
-    where: InputID
+  where: InputID
+}
+
+input deletePobInput {
+  where: InputID
 }
 
 input deleteProvinceInput {
-    where: InputID
+  where: InputID
 }
 
 input deleteRoleInput {
-    where: InputID
+  where: InputID
+}
+
+input deleteTrailInput {
+  where: InputID
 }
 
 input deleteUploadedDocumentInput {
-    where: InputID
+  where: InputID
 }
 
 input deleteUserInput {
-    where: InputID
+  where: InputID
+}
+
+input editAuditInput {
+  action: String
+  created_by: ID
+  item: String
+  published_at: DateTime
+  updated_by: ID
+  user: String
+}
+
+input editAuditLogInput {
+  action: ENUM_AUDITLOGAUDITLOGS_ACTION
+  content: JSON
+  created_by: ID
+  model_name: String
+  origin_id: String
+  timestamp: DateTime
+  updated_by: ID
+}
+
+input editChiefInput {
+  created_by: ID
+  district: ID
+  name: String
+  published_at: DateTime
+  updated_by: ID
+}
+
+input editCountryInput {
+  created_by: ID
+  districts: [ID]
+  name: String
+  provinces: [ID]
+  published_at: DateTime
+  updated_by: ID
 }
 
 input editDistrictInput {
-    created_by: ID
-    label: String
-    province: ID
-    published_at: DateTime
-    updated_by: ID
+  chiefs: [ID]
+  country: ID
+  created_by: ID
+  label: String
+  province: ID
+  published_at: DateTime
+  updated_by: ID
 }
 
 input editDownloadInput {
-    created_by: ID
-    updated_by: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editExtensionInput {
+  code: String
+  created_by: ID
+  district: ID
+  published_at: DateTime
+  updated_by: ID
 }
 
 input editFileInput {
-    alternativeText: String
-    caption: String
-    created_by: ID
-    ext: String
-    formats: JSON
-    hash: String
-    height: Int
-    mime: String
-    name: String
-    previewUrl: String
-    provider: String
-    provider_metadata: JSON
-    related: [ID]
-    size: Float
-    updated_by: ID
-    url: String
-    width: Int
+  alternativeText: String
+  caption: String
+  created_by: ID
+  ext: String
+  formats: JSON
+  hash: String
+  height: Int
+  mime: String
+  name: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  size: Float
+  updated_by: ID
+  url: String
+  width: Int
 }
 
 input editNrcInput {
-    approved: Boolean
-    confirmed: Boolean
-    created_by: ID
-    district: ID
-    dob: DateTime
-    dor: DateTime
-    gender: String
-    names: String
-    nrc: String
-    pic_id1: String
-    pic_id2: String
-    updated_by: ID
-    village: String
+  approved: Boolean
+  birthCountry: String
+  chief: String
+  confirmed: Boolean
+  created_by: ID
+  district: ID
+  dob: DateTime
+  dor: DateTime
+  education: String
+  gender: String
+  names: String
+  nrc: String
+  pic_id1: String
+  pic_id2: String
+  race: String
+  updated_by: ID
+  village: String
+}
+
+input editPobInput {
+  appChief: String
+  appCountry: String
+  appDistrict: String
+  appVillage: String
+  created_by: ID
+  fatChief: String
+  fatDistrict: String
+  fatVillage: String
+  nrc: ID
+  published_at: DateTime
+  updated_by: ID
 }
 
 input editProvinceInput {
-    created_by: ID
-    name: String
-    published_at: DateTime
-    updated_by: ID
+  country: ID
+  created_by: ID
+  name: String
+  published_at: DateTime
+  updated_by: ID
 }
 
 input editRoleInput {
-    created_by: ID
-    description: String
-    name: String
-    permissions: [ID]
-    type: String
-    updated_by: ID
-    users: [ID]
+  created_by: ID
+  description: String
+  name: String
+  permissions: [ID]
+  type: String
+  updated_by: ID
+  users: [ID]
+}
+
+input editTrailInput {
+  action: String
+  author: JSON
+  content: JSON
+  contentType: String
+  created_by: ID
+  method: String
+  params: JSON
+  request: JSON
+  route: String
+  statusCode: Int
+  updated_by: ID
 }
 
 input editUploadedDocumentInput {
-    created_by: ID
-    name: [ID]
-    published_at: DateTime
-    updated_by: ID
+  created_by: ID
+  name: [ID]
+  published_at: DateTime
+  updated_by: ID
 }
 
 input editUserInput {
-    blocked: Boolean
-    confirmationToken: String
-    confirmed: Boolean
-    created_by: ID
-    email: String
-    password: String
-    provider: String
-    resetPasswordToken: String
-    role: ID
-    updated_by: ID
-    username: String
+  blocked: Boolean
+  confirmationToken: String
+  confirmed: Boolean
+  created_by: ID
+  email: String
+  password: String
+  provider: String
+  resetPasswordToken: String
+  role: ID
+  updated_by: ID
+  username: String
+}
+
+input updateAuditInput {
+  data: editAuditInput
+  where: InputID
+}
+
+input updateChiefInput {
+  data: editChiefInput
+  where: InputID
+}
+
+input updateCountryInput {
+  data: editCountryInput
+  where: InputID
 }
 
 input updateDistrictInput {
-    data: editDistrictInput
-    where: InputID
+  data: editDistrictInput
+  where: InputID
 }
 
 input updateDownloadInput {
-    data: editDownloadInput
-    where: InputID
+  data: editDownloadInput
+  where: InputID
+}
+
+input updateExtensionInput {
+  data: editExtensionInput
+  where: InputID
 }
 
 input updateNrcInput {
-    data: editNrcInput
-    where: InputID
+  data: editNrcInput
+  where: InputID
+}
+
+input updatePobInput {
+  data: editPobInput
+  where: InputID
 }
 
 input updateProvinceInput {
-    data: editProvinceInput
-    where: InputID
+  data: editProvinceInput
+  where: InputID
 }
 
 input updateRoleInput {
-    data: editRoleInput
-    where: InputID
+  data: editRoleInput
+  where: InputID
+}
+
+input updateTrailInput {
+  data: editTrailInput
+  where: InputID
 }
 
 input updateUploadedDocumentInput {
-    data: editUploadedDocumentInput
-    where: InputID
+  data: editUploadedDocumentInput
+  where: InputID
 }
 
 input updateUserInput {
-    data: editUserInput
-    where: InputID
+  data: editUserInput
+  where: InputID
 }
 
 
