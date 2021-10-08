@@ -32,17 +32,13 @@ export class UtilitiesService {
       this.user.username = state.username
     })
     this.getProvinces().valueChanges.subscribe((result: any) => {
-      this.auditQuery({item:`Provinces`,action:'Get All'}).subscribe(
-        data=>{}
-      )
+      this.auditQuery({ item: `Provinces`, action: 'Get All' }).subscribe(data => {})
       this.provinces = result?.data?.provinces
       // this.loading = result.loading;
       // this.error = result.error;
     })
     this.getDistricts().valueChanges.subscribe((result: any) => {
-      this.auditQuery({item:`Districts`,action:'Get All'}).subscribe(
-        data=>{}
-      )
+      this.auditQuery({ item: `Districts`, action: 'Get All' }).subscribe(data => {})
       this.districts = result?.data?.districts
       // this.loading = result.loading;
       // this.error = result.error;
@@ -77,7 +73,7 @@ export class UtilitiesService {
     return this.apollo.watchQuery({
       query: gql`
         {
-          districts(sort: "label") {
+          districts(sort: "label", where: { country: { name_contains: "zambia" } }) {
             id
             label
             province {
@@ -169,13 +165,13 @@ export class UtilitiesService {
   getCountUsersActivities() {
     return this.apollo.query({
       query: gql`
-        query{
-          auditsConnection{
-            groupBy{
-              user{
-                username:key
-                connection{
-                  aggregate{
+        query {
+          auditsConnection {
+            groupBy {
+              user {
+                username: key
+                connection {
+                  aggregate {
                     count
                   }
                 }
@@ -234,6 +230,37 @@ export class UtilitiesService {
       `,
     })
   }
+  getUnconfirmedNrcsByDistrict(dist) {
+    return this.apollo.query({
+      query: gql`
+        query {
+          nrcs(limit: 100, where: { confirmed: false , district:{id:"${dist}"}}) {
+            createdAt
+            fatChief
+            fatDistrict
+            fatDistrict
+            pic_id1
+            pic_id2
+            names
+            nrc
+            id
+            district {
+              id
+            }
+            dor
+            dob
+            gender
+            village
+            chief
+            education
+            race
+            birthCountry
+            birthDistrict
+          }
+        }
+      `,
+    })
+  }
   checkIfNrcExists(nrc) {
     return this.apollo.query({
       query: gql`
@@ -273,13 +300,13 @@ export class UtilitiesService {
   getConfirmedAudit() {
     return this.apollo.query({
       query: gql`
-        query{
-          auditsConnection(where:{action:"Confirmed"}){
-            groupBy{
-              user{
+        query {
+          auditsConnection(where: { action: "Confirmed" }) {
+            groupBy {
+              user {
                 key
-                connection{
-                  aggregate{
+                connection {
+                  aggregate {
                     count
                   }
                 }
@@ -293,13 +320,13 @@ export class UtilitiesService {
   getApprovedAudit() {
     return this.apollo.query({
       query: gql`
-        query{
-          auditsConnection(where:{action:"Approve"}){
-            groupBy{
-              user{
+        query {
+          auditsConnection(where: { action: "Approve" }) {
+            groupBy {
+              user {
                 key
-                connection{
-                  aggregate{
+                connection {
+                  aggregate {
                     count
                   }
                 }
@@ -313,13 +340,13 @@ export class UtilitiesService {
   getUploadedAudit() {
     return this.apollo.query({
       query: gql`
-        query{
-          auditsConnection(where:{action:"Upload"}){
-            groupBy{
-              user{
+        query {
+          auditsConnection(where: { action: "Upload" }) {
+            groupBy {
+              user {
                 key
-                connection{
-                  aggregate{
+                connection {
+                  aggregate {
                     count
                   }
                 }
@@ -475,6 +502,13 @@ export class UtilitiesService {
                 village:"${data.village}",
                 chief:"${data.chief}",
                 names:"${data.names}",
+                birthCountry:"${data.country}",
+                birthDistrict:"${data.appDistrict}",
+                fatChief:"${data.fatChief}",
+                fatVillage:"${data.fatVillage}",
+                fatDistrict:"${data.fatDistrict}",
+                education:"${data.education}",
+                race:"${data.race}",
                 gender:"${data.gender}",
                 dor:"${data.dor}",
                 dob:"${data.dob}",
@@ -563,7 +597,7 @@ export class UtilitiesService {
   downloadFile(id) {
     return this.http.get(environment.url + '/downloads/' + id, { responseType: 'blob' })
   }
-  auditQuery(data){
+  auditQuery(data) {
     return this.apollo.mutate({
       mutation: gql`
         mutation{

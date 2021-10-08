@@ -5,32 +5,30 @@
         <div class="card-header">
           <vb-headers-heading [data]="{'title':'Data Entry Section'}"></vb-headers-heading>
         </div>
-        <div class="card-body">
-          <nz-form-item>
-            <nz-form-control nzErrorTip="Please select province">
-              <nz-select
-                [(ngModel)]="province"
-                nzShowSearch nzAllowClear nzPlaceHolder="Select a province"
-              >
-                <nz-option *ngFor="let x of provinces" nzLabel="{{x.name}}"
-                           nzValue="{{x.id}}"></nz-option>
-              </nz-select>
-            </nz-form-control>
-          </nz-form-item>
-          <nz-form-item>
-            <vb-controls-button
-              (click)="getUnconfirmed()"
-              [data]="{'title':'Get Next NRC','type':'primary'}"
-            ></vb-controls-button>
-          </nz-form-item>
-
         </div>
-      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-5 col-md-12"
-         [ngStyle]="{height:'50vh',overflow:'scroll'}">
+         [ngStyle]="{height:'70vh',overflow:'scroll'}">
+      <nz-form-item>
+        <input type="hidden" formControlName="id">
+        <nz-form-control nzErrorTip="Please select district">
+          <nz-select
+            [(ngModel)]="province"
+            nzShowSearch nzAllowClear nzPlaceHolder="Select a province"
+          >
+            <nz-option *ngFor="let x of provinces" nzLabel="{{x.label}}"
+                       nzValue="{{x.id}}"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <vb-controls-button
+          (click)="getUnconfirmed()"
+          [data]="{'title':'Get Next NRC','type':'primary'}"
+        ></vb-controls-button>
+      </nz-form-item>
       <nz-tabset>
         <nz-tab [nzTitle]="titleTemplate">
           <ng-template #titleTemplate>
@@ -111,10 +109,48 @@
                       <nz-form-label nzRequired>District</nz-form-label>
                       <nz-form-control nzErrorTip="Please select district">
                         <nz-select
+                          (ngModelChange)="onDistrictChange()"
                           [disabled]="submitting"
-                          formControlName="district"
+                          formControlName="appDistrict"
                           nzShowSearch nzAllowClear nzPlaceHolder="Select a district">
                           <nz-option *ngFor="let x of districts" nzLabel="{{x.label}}"
+                                     nzValue="{{x.id}}"></nz-option>
+                        </nz-select>
+                      </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                      <nz-form-label>Chief (if Applicable)</nz-form-label>
+                      <nz-form-control
+                        nzErrorTip="Please select chief">
+                        <nz-select
+                          [disabled]="submitting"
+                          formControlName="chief"
+                          nzShowSearch nzAllowClear nzPlaceHolder="Select a chief"
+                        >
+                          <nz-option *ngFor="let x of chiefs" nzLabel="{{x.name}}"
+                                     nzValue="{{x.name}}"></nz-option>
+                        </nz-select>
+                      </nz-form-control>
+                    </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label >Village(if Applicable)</nz-form-label>
+                    <nz-form-control nzErrorTip="Please enter village">
+                      <input [disabled]="submitting" formControlName="village"
+                             name="name" nz-input placeholder="">
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+                <h5>Father's Place Of Birth</h5>
+                    <nz-form-item>
+                      <nz-form-label nzRequired>District</nz-form-label>
+                      <nz-form-control nzErrorTip="Please select district">
+                        <nz-select
+                          (ngModelChange)="getChiefsByDistrictsFather()"
+                          [disabled]="submitting"
+                          formControlName="fatDistrict"
+                          nzShowSearch nzAllowClear nzPlaceHolder="Select a district">
+                          <nz-option *ngFor="let x of districtsFather" nzLabel="{{x.label}}"
                                      nzValue="{{x.id}}"></nz-option>
                         </nz-select>
                       </nz-form-control>
@@ -125,10 +161,10 @@
                         nzErrorTip="Please select chief">
                         <nz-select
                           [disabled]="submitting"
-                          formControlName="chief"
+                          formControlName="fatChief"
                           nzShowSearch nzAllowClear nzPlaceHolder="Select a chief"
                         >
-                          <nz-option *ngFor="let x of chiefs" nzLabel="{{x.name}}"
+                          <nz-option *ngFor="let x of chiefsFather" nzLabel="{{x.name}}"
                                      nzValue="{{x.name}}"></nz-option>
                         </nz-select>
                       </nz-form-control>
@@ -136,59 +172,11 @@
                   <nz-form-item>
                     <nz-form-label nzRequired>Village</nz-form-label>
                     <nz-form-control nzErrorTip="Please enter village">
-                      <input [disabled]="submitting" formControlName="village"
+                      <input [disabled]="submitting" formControlName="fatVillage"
                              name="name" nz-input placeholder="">
                     </nz-form-control>
                   </nz-form-item>
-                </div>
-
-                <h5>Father's Place Of Birth</h5>
-                    <nz-form-item>
-                      <nz-form-label nzRequired>Country</nz-form-label>
-                      <nz-form-control nzErrorTip="Please select country">
-                        <nz-select
-                          [disabled]="submitting"
-                          formControlName="country"
-                          nzShowSearch nzAllowClear nzPlaceHolder="Select a country">
-                          <nz-option *ngFor="let x of countries" nzLabel="{{x.name}}"
-                                     nzValue="{{x.id}}"></nz-option>
-                        </nz-select>
-                      </nz-form-control>
-                    </nz-form-item>
-                    <nz-form-item>
-                      <nz-form-label nzRequired>District</nz-form-label>
-                      <nz-form-control nzErrorTip="Please select district">
-                        <nz-select
-                          [disabled]="submitting"
-                          formControlName="district"
-                          nzShowSearch nzAllowClear nzPlaceHolder="Select a district">
-                          <nz-option *ngFor="let x of districts" nzLabel="{{x.label}}"
-                                     nzValue="{{x.id}}"></nz-option>
-                        </nz-select>
-                      </nz-form-control>
-                    </nz-form-item>
-                    <nz-form-item>
-                      <nz-form-label nzRequired>Chief (if Applicable)</nz-form-label>
-                      <nz-form-control
-                        nzErrorTip="Please select chief">
-                        <nz-select
-                          [disabled]="submitting"
-                          formControlName="chief"
-                          nzShowSearch nzAllowClear nzPlaceHolder="Select a chief"
-                        >
-                          <nz-option *ngFor="let x of chiefs" nzLabel="{{x.name}}"
-                                     nzValue="{{x.name}}"></nz-option>
-                        </nz-select>
-                      </nz-form-control>
-                    </nz-form-item>
-                  <nz-form-item>
-                    <nz-form-label nzRequired>Village(if Applicable)</nz-form-label>
-                    <nz-form-control nzErrorTip="Please enter village">
-                      <input [disabled]="submitting" formControlName="village"
-                             name="name" nz-input placeholder="">
-                    </nz-form-control>
-                  </nz-form-item>
-
+                <hr>
                 <nz-form-item>
                   <nz-form-label nzRequired>DOB</nz-form-label>
                   <nz-form-control nzErrorTip="Enter Date Of Birth">
@@ -213,6 +201,35 @@
                     <br />
                   </nz-form-control>
                 </nz-form-item>
+                <hr>
+                <div class="form-group">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Education</nz-form-label>
+                    <nz-form-control
+                      nzErrorTip="Please select education level">
+                      <nz-select
+                        formControlName="education"
+                        nzShowSearch nzAllowClear nzPlaceHolder="Select a education level"
+                      >
+                        <nz-option *ngFor="let x of education" nzLabel="{{x.name}}"
+                                   nzValue="{{x.name}}"></nz-option>
+                      </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Race</nz-form-label>
+                    <nz-form-control
+                      nzErrorTip="Please select race">
+                      <nz-select
+                        formControlName="race"
+                        nzShowSearch nzAllowClear nzPlaceHolder="Select a Race"
+                      >
+                        <nz-option *ngFor="let x of race" nzLabel="{{x.name}}"
+                                   nzValue="{{x.name}}"></nz-option>
+                      </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
                 <nz-form-item>
                   <button nz-button (click)="submitForm()"
                           [nzLoading]="submitting"

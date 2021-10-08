@@ -5,7 +5,7 @@ schema {
   mutation: Mutation
 }
 
-union Morph = Audit | AuditAggregator | AuditConnection | AuditConnectionAction | AuditConnectionCreatedAt | AuditConnectionId | AuditConnectionItem | AuditConnectionPublished_at | AuditConnectionUpdatedAt | AuditConnectionUser | AuditConnection_id | AuditGroupBy | AuditLogAuditLogs | Chief | ChiefAggregator | ChiefConnection | ChiefConnectionCreatedAt | ChiefConnectionDistrict | ChiefConnectionId | ChiefConnectionName | ChiefConnectionPublished_at | ChiefConnectionUpdatedAt | ChiefConnection_id | ChiefGroupBy | Country | CountryAggregator | CountryConnection | CountryConnectionCreatedAt | CountryConnectionId | CountryConnectionName | CountryConnectionPublished_at | CountryConnectionUpdatedAt | CountryConnection_id | CountryGroupBy | District | DistrictAggregator | DistrictConnection | DistrictConnectionCountry | DistrictConnectionCreatedAt | DistrictConnectionId | DistrictConnectionLabel | DistrictConnectionProvince | DistrictConnectionPublished_at | DistrictConnectionUpdatedAt | DistrictConnection_id | DistrictGroupBy | Download | DownloadAggregator | DownloadConnection | DownloadConnectionCreatedAt | DownloadConnectionId | DownloadConnectionUpdatedAt | DownloadConnection_id | DownloadGroupBy | Extension | ExtensionAggregator | ExtensionConnection | ExtensionConnectionCode | ExtensionConnectionCreatedAt | ExtensionConnectionDistrict | ExtensionConnectionId | ExtensionConnectionPublished_at | ExtensionConnectionUpdatedAt | ExtensionConnection_id | ExtensionGroupBy | Nrc | NrcAggregator | NrcConnection | NrcConnectionApproved | NrcConnectionBirthCountry | NrcConnectionChief | NrcConnectionConfirmed | NrcConnectionCreatedAt | NrcConnectionDistrict | NrcConnectionDob | NrcConnectionDor | NrcConnectionEducation | NrcConnectionGender | NrcConnectionId | NrcConnectionNames | NrcConnectionNrc | NrcConnectionPic_id1 | NrcConnectionPic_id2 | NrcConnectionRace | NrcConnectionUpdatedAt | NrcConnectionVillage | NrcConnection_id | NrcGroupBy | Pob | PobAggregator | PobConnection | PobConnectionAppChief | PobConnectionAppCountry | PobConnectionAppDistrict | PobConnectionAppVillage | PobConnectionCreatedAt | PobConnectionFatChief | PobConnectionFatDistrict | PobConnectionFatVillage | PobConnectionId | PobConnectionNrc | PobConnectionPublished_at | PobConnectionUpdatedAt | PobConnection_id | PobGroupBy | Province | ProvinceAggregator | ProvinceConnection | ProvinceConnectionCountry | ProvinceConnectionCreatedAt | ProvinceConnectionId | ProvinceConnectionName | ProvinceConnectionPublished_at | ProvinceConnectionUpdatedAt | ProvinceConnection_id | ProvinceGroupBy | Trail | TrailAggregator | TrailAggregatorAvg | TrailAggregatorMax | TrailAggregatorMin | TrailAggregatorSum | TrailConnection | TrailConnectionAction | TrailConnectionAuthor | TrailConnectionContent | TrailConnectionContentType | TrailConnectionCreatedAt | TrailConnectionId | TrailConnectionMethod | TrailConnectionParams | TrailConnectionRequest | TrailConnectionRoute | TrailConnectionStatusCode | TrailConnectionUpdatedAt | TrailConnection_id | TrailGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UploadedDocuments | UploadedDocumentsAggregator | UploadedDocumentsConnection | UploadedDocumentsConnectionCreatedAt | UploadedDocumentsConnectionId | UploadedDocumentsConnectionPublished_at | UploadedDocumentsConnectionUpdatedAt | UploadedDocumentsConnection_id | UploadedDocumentsGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | createAuditPayload | createChiefPayload | createCountryPayload | createDistrictPayload | createDownloadPayload | createExtensionPayload | createNrcPayload | createPobPayload | createProvincePayload | createRolePayload | createTrailPayload | createUploadedDocumentPayload | createUserPayload | deleteAuditPayload | deleteChiefPayload | deleteCountryPayload | deleteDistrictPayload | deleteDownloadPayload | deleteExtensionPayload | deleteFilePayload | deleteNrcPayload | deletePobPayload | deleteProvincePayload | deleteRolePayload | deleteTrailPayload | deleteUploadedDocumentPayload | deleteUserPayload | updateAuditPayload | updateChiefPayload | updateCountryPayload | updateDistrictPayload | updateDownloadPayload | updateExtensionPayload | updateNrcPayload | updatePobPayload | updateProvincePayload | updateRolePayload | updateTrailPayload | updateUploadedDocumentPayload | updateUserPayload
+union Morph = Audit | AuditAggregator | AuditConnection | AuditConnectionAction | AuditConnectionCreatedAt | AuditConnectionId | AuditConnectionItem | AuditConnectionPublished_at | AuditConnectionUpdatedAt | AuditConnectionUser | AuditConnection_id | AuditGroupBy | AuditLogAuditLogs | Chief | ChiefAggregator | ChiefConnection | ChiefConnectionCreatedAt | ChiefConnectionDistrict | ChiefConnectionId | ChiefConnectionName | ChiefConnectionPublished_at | ChiefConnectionUpdatedAt | ChiefConnection_id | ChiefGroupBy | Country | CountryAggregator | CountryConnection | CountryConnectionCreatedAt | CountryConnectionId | CountryConnectionName | CountryConnectionPublished_at | CountryConnectionUpdatedAt | CountryConnection_id | CountryGroupBy | District | DistrictAggregator | DistrictConnection | DistrictConnectionCountry | DistrictConnectionCreatedAt | DistrictConnectionId | DistrictConnectionLabel | DistrictConnectionProvince | DistrictConnectionPublished_at | DistrictConnectionUpdatedAt | DistrictConnection_id | DistrictGroupBy | Download | DownloadAggregator | DownloadConnection | DownloadConnectionCreatedAt | DownloadConnectionId | DownloadConnectionUpdatedAt | DownloadConnection_id | DownloadGroupBy | Extension | ExtensionAggregator | ExtensionConnection | ExtensionConnectionCode | ExtensionConnectionCreatedAt | ExtensionConnectionDistrict | ExtensionConnectionId | ExtensionConnectionPublished_at | ExtensionConnectionUpdatedAt | ExtensionConnection_id | ExtensionGroupBy | Nrc | NrcAggregator | NrcConnection | NrcConnectionApproved | NrcConnectionBirthCountry | NrcConnectionBirthDistrict | NrcConnectionChief | NrcConnectionConfirmed | NrcConnectionCreatedAt | NrcConnectionDistrict | NrcConnectionDob | NrcConnectionDor | NrcConnectionEducation | NrcConnectionFatChief | NrcConnectionFatDistrict | NrcConnectionFatVillage | NrcConnectionGender | NrcConnectionId | NrcConnectionNames | NrcConnectionNrc | NrcConnectionPic_id1 | NrcConnectionPic_id2 | NrcConnectionRace | NrcConnectionUpdatedAt | NrcConnectionVillage | NrcConnection_id | NrcGroupBy | Pob | PobAggregator | PobConnection | PobConnectionAppChief | PobConnectionAppCountry | PobConnectionAppDistrict | PobConnectionAppVillage | PobConnectionCreatedAt | PobConnectionFatChief | PobConnectionFatDistrict | PobConnectionFatVillage | PobConnectionId | PobConnectionNrc | PobConnectionPublished_at | PobConnectionUpdatedAt | PobConnection_id | PobGroupBy | Province | ProvinceAggregator | ProvinceConnection | ProvinceConnectionCountry | ProvinceConnectionCreatedAt | ProvinceConnectionId | ProvinceConnectionName | ProvinceConnectionPublished_at | ProvinceConnectionUpdatedAt | ProvinceConnection_id | ProvinceGroupBy | Trail | TrailAggregator | TrailAggregatorAvg | TrailAggregatorMax | TrailAggregatorMin | TrailAggregatorSum | TrailConnection | TrailConnectionAction | TrailConnectionAuthor | TrailConnectionContent | TrailConnectionContentType | TrailConnectionCreatedAt | TrailConnectionId | TrailConnectionMethod | TrailConnectionParams | TrailConnectionRequest | TrailConnectionRoute | TrailConnectionStatusCode | TrailConnectionUpdatedAt | TrailConnection_id | TrailGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UploadedDocuments | UploadedDocumentsAggregator | UploadedDocumentsConnection | UploadedDocumentsConnectionCreatedAt | UploadedDocumentsConnectionId | UploadedDocumentsConnectionPublished_at | UploadedDocumentsConnectionUpdatedAt | UploadedDocumentsConnection_id | UploadedDocumentsGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | createAuditPayload | createChiefPayload | createCountryPayload | createDistrictPayload | createDownloadPayload | createExtensionPayload | createNrcPayload | createPobPayload | createProvincePayload | createRolePayload | createTrailPayload | createUploadedDocumentPayload | createUserPayload | deleteAuditPayload | deleteChiefPayload | deleteCountryPayload | deleteDistrictPayload | deleteDownloadPayload | deleteExtensionPayload | deleteFilePayload | deleteNrcPayload | deletePobPayload | deleteProvincePayload | deleteRolePayload | deleteTrailPayload | deleteUploadedDocumentPayload | deleteUserPayload | updateAuditPayload | updateChiefPayload | updateCountryPayload | updateDistrictPayload | updateDownloadPayload | updateExtensionPayload | updateNrcPayload | updatePobPayload | updateProvincePayload | updateRolePayload | updateTrailPayload | updateUploadedDocumentPayload | updateUserPayload
 
 type AdminUser {
   firstname: String!
@@ -471,6 +471,7 @@ type Nrc {
   _id: ID!
   approved: Boolean
   birthCountry: String
+  birthDistrict: String
   chief: String
   confirmed: Boolean
   createdAt: DateTime!
@@ -478,6 +479,9 @@ type Nrc {
   dob: DateTime
   dor: DateTime
   education: String
+  fatChief: String
+  fatDistrict: String
+  fatVillage: String
   gender: String
   id: ID!
   names: String
@@ -506,6 +510,11 @@ type NrcConnectionApproved {
 }
 
 type NrcConnectionBirthCountry {
+  connection: NrcConnection
+  key: String
+}
+
+type NrcConnectionBirthDistrict {
   connection: NrcConnection
   key: String
 }
@@ -541,6 +550,21 @@ type NrcConnectionDor {
 }
 
 type NrcConnectionEducation {
+  connection: NrcConnection
+  key: String
+}
+
+type NrcConnectionFatChief {
+  connection: NrcConnection
+  key: String
+}
+
+type NrcConnectionFatDistrict {
+  connection: NrcConnection
+  key: String
+}
+
+type NrcConnectionFatVillage {
   connection: NrcConnection
   key: String
 }
@@ -599,6 +623,7 @@ type NrcGroupBy {
   _id: [NrcConnection_id]
   approved: [NrcConnectionApproved]
   birthCountry: [NrcConnectionBirthCountry]
+  birthDistrict: [NrcConnectionBirthDistrict]
   chief: [NrcConnectionChief]
   confirmed: [NrcConnectionConfirmed]
   createdAt: [NrcConnectionCreatedAt]
@@ -606,6 +631,9 @@ type NrcGroupBy {
   dob: [NrcConnectionDob]
   dor: [NrcConnectionDor]
   education: [NrcConnectionEducation]
+  fatChief: [NrcConnectionFatChief]
+  fatDistrict: [NrcConnectionFatDistrict]
+  fatVillage: [NrcConnectionFatVillage]
   gender: [NrcConnectionGender]
   id: [NrcConnectionId]
   names: [NrcConnectionNames]
@@ -1647,6 +1675,7 @@ input InputID {
 input NrcInput {
   approved: Boolean
   birthCountry: String
+  birthDistrict: String
   chief: String
   confirmed: Boolean
   created_by: ID
@@ -1654,6 +1683,9 @@ input NrcInput {
   dob: DateTime
   dor: DateTime
   education: String
+  fatChief: String
+  fatDistrict: String
+  fatVillage: String
   gender: String
   names: String
   nrc: String
@@ -1933,6 +1965,7 @@ input editFileInput {
 input editNrcInput {
   approved: Boolean
   birthCountry: String
+  birthDistrict: String
   chief: String
   confirmed: Boolean
   created_by: ID
@@ -1940,6 +1973,9 @@ input editNrcInput {
   dob: DateTime
   dor: DateTime
   education: String
+  fatChief: String
+  fatDistrict: String
+  fatVillage: String
   gender: String
   names: String
   nrc: String
