@@ -13,8 +13,11 @@
           <strong>{{ 'topBar.profileMenu.email' | translate }}: </strong>
           {{email || '—'}}
           <br />
-          <strong>{{ 'topBar.profileMenu.phone' | translate }}: </strong>
-          {{phone || '—'}}
+          <strong>{{ 'topBar.profileMenu.role' | translate }}: </strong>
+          {{role || '—'}}
+          <br />
+          <strong>Institution: </strong>
+          {{institution | institutionName|async}}
         </div>
       </li>
       <li nz-menu-divider></li>

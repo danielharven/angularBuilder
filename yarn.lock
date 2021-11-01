@@ -231,10 +231,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/forms@^11.2.1":
-  version "11.2.1"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-11.2.1.tgz#c08d942a47e80f44f612447a8d1794ab1f0dd65d"
-  integrity sha512-/Xy1DQCZkCs1qWudmxooscPmVDkOEsgy9YJIoAYzsrRNINOpggBxBYRO9dztRmp2yDvRSAFTylmfQyTOrWrK7Q==
+"@angular/forms@^11.2.14":
+  version "11.2.14"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-11.2.14.tgz#dc858408f7647f4fd033996a03aa74df18a02079"
+  integrity sha512-4LWqY6KEIk1AZQFnk+4PJSOCamlD4tumuVN06gO4D0dZo9Cx+GcvW6pM6N0CPubRvPs3sScCnu20WT11HNWC1w==
   dependencies:
     tslib "^2.0.0"
 
@@ -1731,6 +1731,20 @@
     "@angular-devkit/core" "11.2.1"
     enhanced-resolve "5.7.0"
     webpack-sources "2.2.0"
+
+"@ngx-formly/core@^5.10.21":
+  version "5.10.22"
+  resolved "https://registry.yarnpkg.com/@ngx-formly/core/-/core-5.10.22.tgz#e8723b932bb6f056b1b0d899179ac73dabf4f4ed"
+  integrity sha512-HTgVN2xNf3TdPS10ayV4G7dvX1olHvggquhTUY/dzej1x03NVofDQulnPTxKEU1ObN92IQZNq3VL9pm3sBCR7A==
+  dependencies:
+    tslib "^1.7.1"
+
+"@ngx-formly/ng-zorro-antd@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@ngx-formly/ng-zorro-antd/-/ng-zorro-antd-0.0.1.tgz#5c44c310616b3b4c8029ab8cfd2da5dbdde041ff"
+  integrity sha512-6K/mth46XTmNCdedq9vYe+yDkky/93WtjRRT2DTij+Wu7OrRXO/aZxdB+v+X2YxjOyxHPkmPpH7rRVN/m/mtMQ==
+  dependencies:
+    tslib "^1.9.0"
 
 "@ngx-progressbar/core@^5.3.2":
   version "5.3.2"
@@ -7943,6 +7957,13 @@ ngx-perfect-scrollbar@^10.0.1:
     resize-observer-polyfill "^1.5.0"
     tslib "^2.0.0"
 
+ngx-print@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/ngx-print/-/ngx-print-1.2.1.tgz#0a96def696dfedde9dca6470ecc686f5e0c065d1"
+  integrity sha512-+xz5wbVO9N5vAT/W6dgTzbE1RBB1jUeBOSF04Gs66QqTrb46paRAjHgqMr4TvE8CUiTp5aMmkL54QEKat9gj6w==
+  dependencies:
+    tslib "^1.9.3"
+
 ngx-quill@^13.2.0:
   version "13.2.0"
   resolved "https://registry.yarnpkg.com/ngx-quill/-/ngx-quill-13.2.0.tgz#bb41b4dc1106086dd5c8888a04a473356e8015d9"
@@ -7956,6 +7977,13 @@ ngx-sortablejs@^3.1.4:
   integrity sha512-jrEC4loWf01JxBcPiOHiyHbXwNrs4acIus1c9NVv7hiK574dywoqOnL5/OVQFnluqItWC7llqCUXfDr3Kmyqfg==
   dependencies:
     tslib "^1.9.0"
+
+ngx-spinner@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-spinner/-/ngx-spinner-12.0.0.tgz#c23d50912bb8f3974534c3a27cb3d359cdb3e707"
+  integrity sha512-0BIaLQDBwNApdSWfKYnYA4hSpfgd2bZ9ptBTB+1tOYJHULg67TRqVYswR6H4tNqmGfA8KNivTYXcY7/6RkyjyA==
+  dependencies:
+    tslib "^2.1.0"
 
 nice-try@^1.0.4:
   version "1.0.5"
@@ -11312,7 +11340,7 @@ tslib@^1.10.0, tslib@^1.13.0, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
-tslib@^1.11.1:
+tslib@^1.11.1, tslib@^1.7.1, tslib@^1.9.3:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
@@ -11321,6 +11349,11 @@ tslib@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
   integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
+
+tslib@^2.1.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
+  integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
 tslint-config-prettier@^1.18.0:
   version "1.18.0"

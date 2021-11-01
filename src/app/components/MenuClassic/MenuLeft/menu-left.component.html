@@ -520,7 +520,7 @@ l-45 23 20 -28 c29 -41 64 -66 127 -90 72 -27 209 -36 283 -19 110 26 156 63
       </div>
     </div>
     <perfect-scrollbar>
-      <ul *ngIf="false" nz-menu class="navigation" [nzInlineIndent]="15" [nzMode]="'inline'"
+      <ul nz-menu class="navigation" [nzInlineIndent]="15" [nzMode]="'inline'"
         [nzInlineCollapsed]="isMenuCollapsed && !isMobileView">
         <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menuDataActivated, level: 0}"></ng-container>
         <ng-template #menuTpl let-menuDataActivated let-level="level">

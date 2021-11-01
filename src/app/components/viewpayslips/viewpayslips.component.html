@@ -1,0 +1,50 @@
+<nz-skeleton nzActive="true" *ngIf="retrievingAvailablePayslips"></nz-skeleton>
+<nz-form-item>
+  <div *ngIf="!retrievingAvailablePayslips">
+
+    <nz-alert *ngIf="availablePayslips.length==0"
+              nzType="warning" nzMessage="No Payslips Available">
+
+    </nz-alert>
+    <div class="row">
+      <!--                              TODO: Implement Proper Scrolling-->
+      <div class="col-4 listPayslips">
+        <h6>Available Payslips</h6>
+        <ul class="list-unstyled mb-0">
+          <li *ngFor="let data of availablePayslips" class="item">
+            <a class="itemLink">
+              <div class="itemPic">
+                <i class="fe fe-file-text"></i>
+              </div>
+              <div class="mr-2">
+                <div>{{data|monthsyear |date}}</div>
+                <a class="alert-link" (click)="getPayslip(data)">Load Payslip</a> <br>
+                <a class="alert-link" *ngIf="showPayslip" (click)="showPay()">View Full Payslip</a>
+              </div>
+              <div class="itemAction">
+                <span></span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <h6>Payments</h6>
+        <ul class="list-unstyled mb-0">
+          <li *ngFor="let data of currentPayments" class="item">
+            {{data.wageDescr}} : {{data.paymentAmount}}
+          </li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <h6>Deductions</h6>
+        <ul class="list-unstyled mb-0 ml-3">
+          <li *ngFor="let data of currentDeductions" class="item">
+            {{data.wageDescr}} : {{data.deductionAmount}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</nz-form-item>

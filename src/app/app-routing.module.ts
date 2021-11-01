@@ -7,16 +7,23 @@ import { AppPreloader } from 'src/app/app-routing-loader'
 import { AuthGuard } from 'src/app/components/Guard/auth.guard'
 // import { WidgetsComponentsModule } from 'src/app/@vb/widgets/widgets-components.module'
 
-
 // layouts & notfound
 import { LayoutAuthComponent } from 'src/app/layouts/Auth/auth.component'
 import { LayoutMainComponent } from 'src/app/layouts/Main/main.component'
 
 // pages
 // VB:REPLACE-START:ROUTER-IMPORTS
-import { DashboardUserComponent } from './pages/dashboard/user/user.component'
-import { DashbordHelpdeskDashboardComponent } from './pages/dashbord/helpdesk-dashboard/helpdesk-dashboard.component'
+import { DashboardComponent } from './pages/dashboard/dashboard.component'
+import { PayslipsComponent } from './pages/payslips/payslips.component'
+import { UserComponent } from './pages/user/user.component'
 import { CustomModule } from './components/custom.module'
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton'
+import { NzAlertModule } from 'ng-zorro-antd/alert'
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
+import { NzSelectModule } from 'ng-zorro-antd/select'
+import { NzModalModule } from 'ng-zorro-antd/modal'
+import { NzPopoverModule } from 'ng-zorro-antd/popover'
+import { FormlyModule } from '@ngx-formly/core'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -24,7 +31,7 @@ const routes: Routes = [
   {
     path: '',
     // VB:REPLACE-NEXT-LINE:ROUTER-REDIRECT
-    redirectTo: 'dashboard/user',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
 
@@ -35,21 +42,24 @@ const routes: Routes = [
     children: [
       // VB:REPLACE-START:ROUTER-CONFIG
       {
-        path: 'dashboard/user/:id',
-        data: { title: 'User Dashboard' },
-        component: DashboardUserComponent,
+        path: 'dashboard/:token',
+        data: { title: 'Dashboard' },
+        component: DashboardComponent,
       },
       {
-        path: 'dashboard/user',
-        data: { title: 'User Dashboard' },
-        component: DashboardUserComponent,
-        canActivate: [AuthGuard],
+        path: 'dashboard',
+        data: { title: 'Dashboard' },
+        component: DashboardComponent,
       },
       {
-        path: 'dashbord/helpdesk-dashboard',
-        data: { title: 'Helpdesk Dashboard' },
-        component: DashbordHelpdeskDashboardComponent,
-        canActivate: [AuthGuard],
+        path: 'payslips',
+        data: { title: 'Payslips' },
+        component: PayslipsComponent,
+      },
+      {
+        path: 'user',
+        data: { title: 'Users' },
+        component: UserComponent,
       },
 
       // VB:REPLACE-END:ROUTER-CONFIG
@@ -84,11 +94,19 @@ const routes: Routes = [
     LayoutsModule,
     // WidgetsComponentsModule,
     CustomModule,
+    NzSkeletonModule,
+    NzAlertModule,
+    NzPopconfirmModule,
+    NzSelectModule,
+    NzModalModule,
+    NzPopoverModule,
+    FormlyModule,
   ],
   declarations: [
     // VB:REPLACE-START:ROUTER-DECLARATIONS
-    DashboardUserComponent,
-    DashbordHelpdeskDashboardComponent,
+    DashboardComponent,
+    PayslipsComponent,
+    UserComponent,
 
     // VB:REPLACE-END:ROUTER-DECLARATIONS
   ],

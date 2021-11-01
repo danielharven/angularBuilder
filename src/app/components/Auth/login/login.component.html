@@ -2,9 +2,8 @@
   <div class="card boxContainer mt-2">
     <div class="text-dark font-size-32 mb-3">Sign In</div>
     <div class="mb-4">
-      Email and Employee No
       <br />
-      <strong>e-Payslip Self Service</strong>
+      <strong>e-Payslip Business Portal</strong>
     </div>
     <div class="mb-4">
       <nz-radio-group [ngModel]="authProvider" (ngModelChange)="setProvider($event)">
@@ -21,11 +20,6 @@
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your email!">
           <input type="text" nz-input formControlName="email" placeholder="Email Address" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Employee No!">
-          <input type="text" nz-input formControlName="empNo" placeholder="Employee Number i.e 00000000" />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>

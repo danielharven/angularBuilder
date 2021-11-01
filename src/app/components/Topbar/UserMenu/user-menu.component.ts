@@ -12,12 +12,14 @@ export class TopbarUserMenuComponent {
   name: string = ''
   role: string = ''
   email: string = ''
+  institution: string = ''
   phone: string = ''
 
   constructor(private store: Store<any>) {
     this.store.pipe(select(Reducers.getUser)).subscribe(state => {
-      this.name = state.name
-      this.role = state.role
+      this.name = state.username
+      this.role = state.role.name
+      this.institution = state.institution?.name
       this.email = state.email
     })
   }

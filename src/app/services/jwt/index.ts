@@ -7,18 +7,18 @@ import { Router } from '@angular/router'
 
 @Injectable()
 export class jwtAuthService {
-  constructor(private http: HttpClient,private router:Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(environment.url+'/employees/credentials/login', { email, password })
+  login(email: string): Observable<any> {
+    return this.http.post(environment.url + '/business/credentials/login', { email })
   }
 
   register(email: string, password: string, name: string): Observable<any> {
-    return this.http.post(environment.url+'/api/auth/register', { email, password, name })
+    return this.http.post(environment.url + '/api/auth/register', { email, password, name })
   }
 
   currentAccount(): Observable<any> {
-    const accessToken = store.get('accessToken');
+    const accessToken = store.get('token')
     const params = accessToken
       ? {
           headers: {
@@ -27,13 +27,13 @@ export class jwtAuthService {
           },
         }
       : {}
-// console.log(params)
-    return this.http.get(environment.url+'/users/me', params)
+    console.log(params)
+    return this.http.get(environment.url + '/users/me', params)
   }
 
   logout(): Observable<any> {
-    localStorage.clear();
+    localStorage.clear()
     this.router.navigate(['/auth/logout'])
-    return this.http.get(environment.url+'/api/auth/logout')
+    return this.http.get(environment.url + '/api/auth/logout')
   }
 }

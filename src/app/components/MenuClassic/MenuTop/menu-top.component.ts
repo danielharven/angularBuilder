@@ -41,6 +41,7 @@ export class MenuClassicTopComponent implements OnInit {
 
   activateMenu(url: any, menuData = this.menuData) {
     menuData = JSON.parse(JSON.stringify(menuData))
+    console.log(menuData)
     const pathWithSelection = this.getPath({ url: url }, menuData, (entry: any) => entry, 'url')
     if (pathWithSelection) {
       pathWithSelection.pop().selected = true

@@ -1,0 +1,199 @@
+<div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card card-top card-top-primary">
+        <div class="card-header">
+          <vb-headers-card-header
+            [data]="{'title':'Welcome to the payslips page'}"
+          ></vb-headers-card-header>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+          <div>
+            <nz-tabset class="tabs vb-tabs-bordered" [nzSelectedIndex]="0">
+              <nz-tab nzTitle="Search">
+                <div class="row">
+                  <div class="col-8">
+                    <nz-form-item>
+                      <nz-select  nzMode="tags" nzPlaceHolder="Search by NRC or Employee No" [(ngModel)]="searchArray">
+                      </nz-select>
+                    </nz-form-item>
+                  </div>
+                  <div class="col-4">
+                    <button  (click)="searchPayslip()"
+                             nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+                  </div>
+                </div>
+
+                <div>
+<!--                  <div class="head">-->
+<!--                    <div class="headItem mb-3 pr-3">-->
+<!--                      <div class="headIcon bg-light text-dark mr-3">-->
+<!--                        <i class="fe fe-menu font-size-18"></i>-->
+<!--                      </div>-->
+<!--                      <div>-->
+<!--                        <div class="text-uppercase text-muted text-nowrap">Cross Earnings</div>-->
+<!--                        <div class="font-weight-bold text-dark">+125,367.36</div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="headItem mb-3">-->
+<!--                      <div class="headIcon bg-light text-dark mr-3">-->
+<!--                        <i class="fe fe-cloud font-size-18"></i>-->
+<!--                      </div>-->
+<!--                      <div>-->
+<!--                        <div class="text-uppercase text-muted text-nowrap">Tax witheld</div>-->
+<!--                        <div class="font-weight-bold text-dark">-$12,350.00</div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+                  <div class="table-responsive text-nowrap">
+                    <nz-table #basicTable [nzData]="tableData"
+                              [nzShowPagination]="true" class="table mb-4">
+                      <thead>
+                      <tr>
+                        <th></th>
+                        <th class="bg-transparent text-uppercase">Names</th>
+                        <th class="bg-transparent text-uppercase">Employee N0</th>
+                        <th class="bg-transparent text-uppercase">NRC</th>
+                        <th class="bg-transparent text-uppercase text-right">Status</th>
+                        <th class="bg-transparent text-uppercase text-right">Flag ?</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <ng-container *ngFor="let data of basicTable.data">
+                        <tr >
+                          <td [nzExpand]="expandSet.has(data?.id)"
+                              (nzExpandChange)="onExpandChange(data?.id, $event)"></td>
+                          <td class="text-gray-6">
+                            {{data?.empName}}
+                          </td>
+                          <td>
+                            <a href="javascript: void(0);" class="text-blue">
+                              {{data?.empNo}}
+                            </a>
+                          </td>
+                          <td>
+                            {{data?.nrc}}
+                          </td>
+                          <td class="font-weight-bold text-right">
+                            <button
+                              nz-button
+                              nzType="primary"
+                              nz-popover
+                              nzPopoverTitle="Flags"
+                              nzPopoverPlacement="left"
+                              [(nzPopoverVisible)]="flagsVisible"
+                              (nzPopoverVisibleChange)="change($event)"
+                              nzPopoverTrigger="click"
+                              [nzPopoverContent]="flagStatusTemplate"
+                            >
+                              Check Status
+                            </button>
+                            <ng-template #flagStatusTemplate>
+                              <app-flags
+                                [emp]="data"
+                              ></app-flags>
+                              <a (click)="clickMe()">Close</a>
+                            </ng-template>
+                          </td>
+                          <td class="font-weight-bold text-right">
+                            <button
+                              nz-popconfirm
+                              nzPopconfirmTitle="Are you sure you want to flag this employee?"
+                              nzPopconfirmPlacement="bottom"
+                              (nzOnConfirm)="confirmFlag(data)"
+                              (nzOnCancel)="cancelFlag(data)"
+                              nz-button nzType="danger">
+                              <i nz-icon nzType="check" nzTheme="outline"></i>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr [nzExpand]="expandSet.has(data?.id)">
+                          <app-viewpayslips
+                            (payslip)="showPay($event)"
+                          [emp]="data"
+                          ></app-viewpayslips>
+                        </tr>
+                      </ng-container>
+
+                      </tbody>
+                    </nz-table>
+                  </div>
+                </div>
+              </nz-tab>
+              <nz-tab (nzClick)="getFlags()" nzTitle="Flagged Employees">
+
+                <nz-table *ngIf="flaggedData.length>0" #basicTable [nzData]="flaggedData"
+                          [nzShowPagination]="true"
+                          class="table mb-4">
+                  <thead>
+                  <tr>
+                    <th class="bg-transparent text-uppercase">Date</th>
+                    <th class="bg-transparent text-uppercase">Processing</th>
+                    <th class="bg-transparent text-uppercase">Institution</th>
+                    <th class="bg-transparent text-uppercase">Comments</th>
+                    <th class="bg-transparent text-uppercase">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let data of basicTable.data">
+                    <td class="text-right">
+                      <span class="font-weight-bold">
+                        {{data?.createdAt|date}}</span></td>
+                    <td>{{data?.processing}}</td>
+                    <td>
+                      {{data?.institution?.name}}
+                    </td>
+                    <td>{{data?.comments}}</td>
+                    <td><button nz-button nzType="primary" (click)="unflagEmp(data)">Delete Flag</button> </td>
+                  </tr>
+                  </tbody>
+                </nz-table>
+              </nz-tab>
+              <nz-tab nzTitle="Actions">
+                <div class="text-center mb-3 py-4 bg-light rounded">No Actions</div>
+              </nz-tab>
+            </nz-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-12"><div class="card"
+    ></div></div>
+  </div>
+</div>
+<nz-drawer [nzClosable]="true"
+           [nzVisible]="visible" nzPlacement="top"
+           nzHeight="500"
+           nzTitle="Payslip" (nzOnClose)="close()">
+  <ng-container *nzDrawerContent>
+    <app-payslip *ngIf="visible"
+                 [payslip]="epayslip"
+    ></app-payslip>
+  </ng-container>
+</nz-drawer>
+
+<nz-modal [(nzVisible)]="flagVisible"
+          nzClosable="true"
+          nzTitle="Flag"
+          (nzOnCancel)="handleCancelFlag()" (nzOnOk)="handleOkFlag()">
+  <ng-container *nzModalContent>
+    <nz-form-item>
+      <p>You are about to flag an employee, kindly add a comment before we proceed.</p>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-textarea-count [nzMaxCharacterCount]="100">
+          <textarea rows="4" [(ngModel)]="comments" nz-input></textarea>
+        </nz-textarea-count>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+</nz-modal>

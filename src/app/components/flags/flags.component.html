@@ -1,0 +1,24 @@
+<div class="table-responsive text-nowrap">
+  <nz-skeleton *ngIf="loading" nzActive="true"></nz-skeleton>
+  <nz-table *ngIf="!loading" #basicTable [nzData]="tableData" [nzShowPagination]="false" class="table mb-4">
+    <thead>
+    <tr>
+      <th class="bg-transparent text-uppercase text-right">Date</th>
+      <th class="bg-transparent text-uppercase">Processing</th>
+      <th class="bg-transparent text-uppercase text-right">Institution</th>
+      <th class="bg-transparent text-uppercase text-right">Comments</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td class="text-right"><span class="font-weight-bold">{{data?.createdAt|date}}</span></td>
+      <td>{{data?.processing}}</td>
+      <td>
+          {{data?.institution.name}}
+      </td>
+      <td>{{data?.comments}}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

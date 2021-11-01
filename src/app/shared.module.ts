@@ -8,12 +8,13 @@ import { ACLComponent } from 'src/app/components/ACL/acl.component'
 
 // antd components module
 import { AntdModule } from 'src/app/antd.module'
+import { InstitutionNamePipe } from './pipe/institution-name.pipe'
 
 const MODULES = [CommonModule, RouterModule, AntdModule, TranslateModule]
 
 @NgModule({
   imports: [...MODULES],
-  declarations: [ACLComponent],
-  exports: [...MODULES],
+  declarations: [ACLComponent, InstitutionNamePipe],
+  exports: [...MODULES, InstitutionNamePipe],
 })
 export class SharedModule {}

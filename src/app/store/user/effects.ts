@@ -23,7 +23,7 @@ export class UserEffects implements OnInitEffects {
     private route: ActivatedRoute,
     private rxStore: Store<any>,
     private notification: NzNotificationService,
-    private utilities: UtilitiesService
+    private utilities: UtilitiesService,
   ) {}
 
   ngrxOnInitEffects(): Action {
@@ -40,18 +40,18 @@ export class UserEffects implements OnInitEffects {
     switchMap(([payload, settings]) => {
       // jwt login
       if (settings.authProvider === 'jwt') {
-        return this.jwtAuthService.login(payload.email, payload.password).pipe(
+        return this.jwtAuthService.login(payload.email).pipe(
           map(response => {
             if (response.message) {
-              this.utilities.accountFound.emit({status:response.message});
+              this.utilities.accountFound.emit({ status: response.message })
               return
               // store.set('accessToken', response.accessToken)
               // this.notification.success('Logged In', 'You have successfully logged in!')
               // return new UserActions.LoadCurrentAccount()
             }
-            this.notification.warning('Auth Failed', 'Employee not found')
-            this.utilities.accountFound.emit({status:response.message});
-            return new UserActions.LoginUnsuccessful();
+            this.notification.warning('Auth Failed', 'Account not found')
+            this.utilities.accountFound.emit({ status: response.message })
+            return new UserActions.LoginUnsuccessful()
           }),
           catchError(error => {
             console.log('LOGIN ERROR: ', error)
@@ -132,7 +132,8 @@ export class UserEffects implements OnInitEffects {
           map(response => {
             // console.log(response)
             if (response && (response.email || response.user)) {
-              localStorage.setItem('ucross',JSON.stringify(response)||'');
+              store.set('ucross', response)
+              localStorage.setItem('ucross', JSON.stringify(response) || '')
               if (this.route.snapshot.queryParams.returnUrl) {
                 this.router.navigate([this.route.snapshot.queryParams.returnUrl]) // // redirect to returnUrl
               } else if (this.router.url.includes('/auth')) {
@@ -148,7 +149,6 @@ export class UserEffects implements OnInitEffects {
           }),
         )
       }
-
       // do nothing for firebase, as user state subscribed inside firebase service
       // return of(new UserActions.EmptyAction())
     }),

@@ -1,0 +1,108 @@
+<div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card card-top card-top-primary">
+        <div class="card-header">
+          <vb-headers-card-header
+            [data]="{'title':'Welcome to your users management page'}"
+          ></vb-headers-card-header>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-12 offset-lg-3"><div class="card">
+      <div>
+        <div class="d-flex flex-wrap align-items-center">
+          <div class="vb__utils__avatar vb__utils__avatar--size64 flex-shrink-0 mr-5 mb-3">
+            <img src="assets/logo.svg" alt="Mary Stanform" />
+          </div>
+          <div class="mr-auto mb-3">
+            <div class="text-dark font-weight-bold font-size-24">
+              <span class="mr-3">{{institution?.name}}</span>
+              <span class="align-middle text-primary text-uppercase font-size-12 badge badge-light">{{user?.name}}</span>
+            </div>
+            <div>{{institution?.email}} | {{institution?.phone}}</div>
+          </div>
+<!--          <a class="btn btn-light btn-lg text-blue font-size-14" href="javascript: void(0);">Move assets →</a>-->
+        </div>
+        <nz-tabset class="vb-tabs-bordered mb-2" [nzSelectedIndex]="0">
+          <nz-tab nzTitle="List">
+            <div>
+              <div class="text-nowrap text-dark text-center font-size-50 font-weight-bold">
+                {{tableUser.length}}<sup class="text-uppercase text-gray-6 font-size-30 ml-2">Users</sup>
+              </div>
+              <div class="table-responsive text-nowrap">
+                <nz-table #basicTable [nzData]="tableUser" [nzShowPagination]="false" class="table mb-4">
+                  <thead>
+                  <tr>
+<!--                    <th class="bg-transparent width-50"></th>-->
+                    <th class="bg-transparent">User Name</th>
+                    <th class="bg-transparent">Email</th>
+                    <th class="bg-transparent">Blocked</th>
+                    <th class="bg-transparent text-right">Block User</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let data of basicTable.data">
+<!--                    <td>-->
+<!--                      <div class="vb__utils__avatar">-->
+<!--                        <img [src]="data.avatar" alt="User" />-->
+<!--                      </div>-->
+<!--                    </td>-->
+                    <td>
+                      <div>{{data?.username}}</div>
+                      <div class="text-gray-4">{{data?.role?.name}}</div>
+                    </td>
+                    <td>
+                      <a  class="text-blue">
+                        {{data.email}}
+                      </a>
+                    </td>
+                    <td>
+                      {{data.blocked}}
+                    </td>
+                    <td class="font-weight-bold text-right">
+                      <button
+                        nz-popconfirm
+                        nzPopconfirmTitle="Are you sure you want to block this employee?"
+                        nzPopconfirmPlacement="bottom"
+                        (nzOnConfirm)="confirmBlock(data)"
+                        (nzOnCancel)="cancelBlock(data)"
+                        nz-button nzType="danger">
+                        <i nz-icon nzType="check" nzTheme="outline"></i>
+                      </button>
+                      <button
+                        class="ml-2"
+                        nz-popconfirm
+                        nzPopconfirmTitle="Are you sure you want to unblock this employee?"
+                        nzPopconfirmPlacement="bottom"
+                        (nzOnConfirm)="confirmUnBlock(data)"
+                        (nzOnCancel)="cancelBlock(data)"
+                        nz-button nzType="primary">
+                        <i nz-icon nzType="close" nzTheme="outline"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+            </div>
+          </nz-tab>
+          <nz-tab nzTitle="Create">
+            <div class="row">
+              <div class=" col-12 col-md-5">
+                <form [formGroup]="form" (ngSubmit)="submit(model)">
+                  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+                  <button nz-button nzType="primary" type="submit"
+                          class="btn btn-default">Create</button>
+                </form>
+              </div>
+            </div>
+          </nz-tab>
+          <nz-tab nzTitle="Settings"></nz-tab>
+        </nz-tabset>
+      </div>
+    </div></div>
+  </div>
+</div>
