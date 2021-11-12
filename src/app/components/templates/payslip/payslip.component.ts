@@ -91,6 +91,8 @@ export class PayslipComponent implements OnInit {
     presentAppointmentDate: undefined,
     nxtAppraisalDate: undefined,
     manNo: undefined,
+    costCenterType: undefined,
+    unitOrg: '',
   }
   netPay = 0
   netDeduc = 0
@@ -102,6 +104,7 @@ export class PayslipComponent implements OnInit {
   constructor(private utility: UtilitiesService) {}
 
   ngOnInit(): void {
+    this.getFooter()
     this.transactions = this.payslip.empTransactions
     //@ts-ignore
     this.details = this.payslip.empDetails
@@ -123,11 +126,18 @@ export class PayslipComponent implements OnInit {
 
   calculateSpaceDeduction(t: any) {
     //find out if there is a dot
-    let tt = t.deductionAmount?.toString()
+    let tt = t.deductionAmount?.toString() || ''
     if (!tt.includes('.')) {
       return (tt.length + 3) * this.transactionsSettings.space
     }
 
     return tt.length * this.transactionsSettings.space
+  }
+  getFooter() {
+    let api = '/footers?current=true'
+    let method = 'GET'
+    this.utility.sendAuthenticatedRequests({ api, method }).subscribe(data => {
+      this.footer = data[0]
+    })
   }
 }
