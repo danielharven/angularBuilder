@@ -18,6 +18,12 @@ export const getMenuData: any[] = [
     url: '/user',
     icon: 'fe fe-users',
   },
+  {
+    title: 'Employee',
+    key: '633g4',
+    url: '/employee',
+    icon: 'fe fe-users',
+  },
 
   // VB:REPLACE-END:MENU-CONFIG
 ]

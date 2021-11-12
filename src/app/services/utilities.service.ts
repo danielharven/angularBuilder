@@ -23,6 +23,30 @@ export class UtilitiesService {
     }
     return this.sendAuthenticatedRequests(data)
   }
+  getEmployee(empNo) {
+    let data = {
+      api: '/employees?empNo=' + empNo,
+      method: 'GET',
+    }
+    return this.sendAuthenticatedRequests(data)
+  }
+  getEmployees() {
+    let data = {
+      api: '/employees',
+      method: 'GET',
+    }
+    return this.sendAuthenticatedRequests(data)
+  }
+  updateEmployee(employee) {
+    console.log('I am in the update employee')
+    const data = {
+      api: '/employees/' + employee.id,
+      method: 'PUT',
+      body: employee,
+    }
+    return this.sendAuthenticatedRequests(data)
+  }
+
   getPayslip(indexer) {
     let data = {
       api: '/mypayslips/' + indexer,
@@ -39,13 +63,12 @@ export class UtilitiesService {
     return this.sendAuthenticatedRequests(d)
   }
 
-  //events area
+  // events area
   accountFound = new EventEmitter<{ status: boolean }>()
   //end events area
 
   sendAuthenticatedRequests({ api, method, body = {} }) {
     const accessToken = store.get('accessToken')
-    // console.log(environment.url+api)
     switch (method) {
       case 'POST': {
         return this.http.post(environment.url + api, body, {
@@ -53,6 +76,17 @@ export class UtilitiesService {
             Authorization: `Bearer ${accessToken}`,
           },
         })
+        break
+      }
+      case 'PUT': {
+        console.log('Entering the PUT')
+        const res = this.http.put(environment.url + api, body, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        console.log(res)
+        return res
         break
       }
       case 'DELETE': {

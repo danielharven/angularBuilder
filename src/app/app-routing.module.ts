@@ -14,6 +14,7 @@ import { LayoutMainComponent } from 'src/app/layouts/Main/main.component'
 // pages
 // VB:REPLACE-START:ROUTER-IMPORTS
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
+import { EmployeeComponent } from './pages/employee/employee.component'
 import { PayslipsComponent } from './pages/payslips/payslips.component'
 import { UserComponent } from './pages/user/user.component'
 import { CustomModule } from './components/custom.module'
@@ -61,6 +62,11 @@ const routes: Routes = [
         data: { title: 'Users' },
         component: UserComponent,
       },
+      {
+        path: 'employee',
+        data: { title: 'Employee' },
+        component: EmployeeComponent,
+      },
 
       // VB:REPLACE-END:ROUTER-CONFIG
     ],
@@ -107,6 +113,7 @@ const routes: Routes = [
     DashboardComponent,
     PayslipsComponent,
     UserComponent,
+    EmployeeComponent,
 
     // VB:REPLACE-END:ROUTER-DECLARATIONS
   ],
