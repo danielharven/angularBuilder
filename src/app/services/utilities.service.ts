@@ -25,7 +25,7 @@ export class UtilitiesService {
   }
   getEmployee(empNo) {
     let data = {
-      api: '/employees?empNo=' + empNo,
+      api: '/employees/hra?empNo=' + empNo,
       method: 'GET',
     }
     return this.sendAuthenticatedRequests(data)

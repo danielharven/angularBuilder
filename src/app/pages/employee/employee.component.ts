@@ -23,8 +23,10 @@ import { UtilitiesService } from '../../services/utilities.service'
             <li>Employee No: {{ employee.empNo }}</li>
             <li>
               <div>
-                <button (click)="handleChangePhone(phone.value, employee)">Change Phone No.</button>
-                <input type="text" value="{{ employee.phone }}" #phone />
+                <button (click)="handleChangePhone(phone.value, employee)">
+                  Change Email Addr.
+                </button>
+                <input type="text" value="{{ employee.email }}" #phone />
                 <!--            <input type='text' value='{{ employee.empName }}' >-->
               </div>
             </li>
@@ -44,11 +46,11 @@ export class EmployeeComponent implements OnInit {
     this.data = this.utility.getEmployee(empNo)
     // this.data  = this.utility.getEmployees()
   }
-  handleChangePhone(phone, employee) {
+  handleChangePhone(email, employee) {
     console.log('Printing employee')
     const employeeData = {
       ...employee,
-      phone: phone,
+      email: email,
     }
     console.log(employeeData)
     this.utility.updateEmployee(employeeData).subscribe(data => alert)
