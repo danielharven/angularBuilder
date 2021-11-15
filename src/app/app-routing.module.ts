@@ -25,6 +25,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { FormlyModule } from '@ngx-formly/core'
+import { NzDividerModule } from 'ng-zorro-antd/divider'
+import { NzSwitchModule } from 'ng-zorro-antd/switch'
+import { NzAvatarModule } from 'ng-zorro-antd/avatar'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -107,6 +110,9 @@ const routes: Routes = [
     NzModalModule,
     NzPopoverModule,
     FormlyModule,
+    NzDividerModule,
+    NzSwitchModule,
+    NzAvatarModule,
   ],
   declarations: [
     // VB:REPLACE-START:ROUTER-DECLARATIONS
