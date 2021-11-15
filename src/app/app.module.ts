@@ -26,7 +26,7 @@ import { jwtAuthService } from './services/jwt'
 // locale resistration
 import { registerLocaleData } from '@angular/common'
 import { default as localeEn } from '@angular/common/locales/en'
-import { NZ_I18N, en_US as localeZorro } from 'ng-zorro-antd/i18n';
+import { NZ_I18N, en_US as localeZorro } from 'ng-zorro-antd/i18n'
 import { RemoveZerosPipe } from './pipe/remove-zeros.pipe'
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
@@ -38,7 +38,7 @@ registerLocaleData(localeEn, 'en')
   declarations: [AppComponent, RemoveZerosPipe],
   imports: [
     HttpClientModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
@@ -84,8 +84,6 @@ registerLocaleData(localeEn, 'en')
     // { provide: SETTINGS, useValue: {} },
   ],
   bootstrap: [AppComponent],
-  exports: [
-    RemoveZerosPipe,
-  ],
+  exports: [RemoveZerosPipe],
 })
 export class AppModule {}
