@@ -2,14 +2,33 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="card card-top card-top-primary">
-        <div class="card-header">
-          <vb-headers-card-header
-            [data]="{'title':'Welcome to your users management page'}"
-          ></vb-headers-card-header>
+        <div class="card-header d-flex justify-content-between">
+          <div>
+            User Management
+          </div>
+          <div class="float-end">
+            <button nz-button [nzType]="'primary'" (click)="showModal()">Create New user</button>
+          </div>
+        </div>
+        <div class="card-body">
+          Card Body
         </div>
       </div>
     </div>
   </div>
+
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="New User" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+      <form [formGroup]="form" (ngSubmit)="submit(model)">
+        <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+        <button nz-button nzType="primary" type="submit"
+                class="btn btn-default">Create</button>
+      </form>
+    </ng-container>
+  </nz-modal>
+
+  
+
   <div class="row">
     <div class="col-lg-6 col-md-12 offset-lg-3"><div class="card">
       <div>
@@ -19,10 +38,10 @@
           </div>
           <div class="mr-auto mb-3">
             <div class="text-dark font-weight-bold font-size-24">
-              <span class="mr-3">{{institution?.name}}</span>
+              <!-- <span class="mr-3">{{institution?.name}}</span> -->
               <span class="align-middle text-primary text-uppercase font-size-12 badge badge-light">{{user?.name}}</span>
             </div>
-            <div>{{institution?.email}} | {{institution?.phone}}</div>
+            <!-- <div>{{institution?.email}} | {{institution?.phone}}</div> -->
           </div>
 <!--          <a class="btn btn-light btn-lg text-blue font-size-14" href="javascript: void(0);">Move assets →</a>-->
         </div>

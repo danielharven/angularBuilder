@@ -8,6 +8,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 })
 export class UtilitiesService {
   constructor(private http: HttpClient, private notify: NzNotificationService) {}
+
   notifyUser = {
     error: msg => {
       this.notify.error('SelfService', msg)
@@ -16,6 +17,7 @@ export class UtilitiesService {
       this.notify.success('SelfService', msg)
     },
   }
+
   getAvailbalePayslips(empNo) {
     let data = {
       api: '/available-payslips?empNo=' + empNo,
@@ -23,6 +25,17 @@ export class UtilitiesService {
     }
     return this.sendAuthenticatedRequests(data)
   }
+
+  createUser(data) {
+    let userData = {
+      api: '/',
+      method: 'POST',
+      data: data,
+    }
+
+    return this.sendAuthenticatedRequests(userData)
+  }
+
   getEmployee(empNo) {
     let data = {
       api: '/employees?empNo=' + empNo,
@@ -30,6 +43,7 @@ export class UtilitiesService {
     }
     return this.sendAuthenticatedRequests(data)
   }
+
   getEmployees() {
     let data = {
       api: '/employees',
@@ -37,6 +51,7 @@ export class UtilitiesService {
     }
     return this.sendAuthenticatedRequests(data)
   }
+
   updateEmployee(employee) {
     console.log('I am in the update employee')
     const data = {
@@ -54,6 +69,7 @@ export class UtilitiesService {
     }
     return this.sendAuthenticatedRequests(data)
   }
+
   sendFeedback(data) {
     let d = {
       api: '/feedbacks',
@@ -106,15 +122,16 @@ export class UtilitiesService {
       }
     }
   }
+
   sendUnAuthenticatedRequests({ api, method, body }) {
     const accessToken = store.get('accessToken')
     switch (method) {
       case 'POST': {
-        return this.http.post(api, body)
+        return this.http.post(environment.url + api, body)
         break
       }
       case 'GET': {
-        return this.http.get(api)
+        return this.http.get(environment.url + api)
       }
     }
   }
