@@ -3,10 +3,10 @@ import { UtilitiesService } from '../../services/utilities.service'
 import store from 'store'
 import { FormGroup } from '@angular/forms'
 import { FormlyFieldConfig } from '@ngx-formly/core'
-import { map } from 'rxjs/operators'
+import { map, switchMap } from 'rxjs/operators'
 import { Observable, of } from 'rxjs'
 
-interface Institution {
+export interface Institution {
   _id: string
   name: string
   email: string
@@ -17,6 +17,37 @@ interface Institution {
   updatedAt: string
   __v: number
   id: string
+}
+
+export interface Role {
+  description: string
+  id: string
+  name: string
+  type: string
+  updatedAt: string
+  username: string
+  __v: number
+  _id: string
+}
+
+export interface User {
+  blocked: boolean
+  confirmed: boolean
+  createdAt: string
+  email: string
+  id: string
+  institution: Institution
+  provider: string
+  role: Role
+  updatedAt: string
+  username: string
+  __v: number
+  _id: string
+}
+
+export interface UserReturn {
+  jwt: string
+  user: User
 }
 
 @Component({
@@ -156,7 +187,18 @@ export class UserComponent implements OnInit {
 
     this.utility
       .sendUnAuthenticatedRequests({ api, method: 'POST', body: model })
-      .subscribe(data => alert)
+      .pipe(
+        switchMap((data: UserReturn) => {
+          return this.utility.sendAuthenticatedRequests({
+            api: `/institutions/${model.institution}`,
+            method: 'PUT',
+            body: { ...data.user.institution, administrator: data.user._id },
+          })
+        }),
+      )
+      .subscribe(data => {
+        console.log(data)
+      })
   }
 
   confirmBlock(data: any) {
