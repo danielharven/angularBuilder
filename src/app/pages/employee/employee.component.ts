@@ -1,56 +1,103 @@
 import { Component, OnInit } from '@angular/core'
 import { UtilitiesService } from '../../services/utilities.service'
 
+interface Employee {
+  _id: string
+  empName: string
+  empNo: string
+  email: string
+  nrc: string
+  published_at: string
+  createdAt: string
+  updatedAt: string
+  __v: string
+  created_by: string
+  updated_by: string
+  id: string
+}
+
 @Component({
   selector: 'app-employee',
   template: `
-    <div>
-      <h1>Employee</h1>
-      <br />
-      <h3 class="title">Employee Search</h3>
-      <hr />
-      <div>
-        <button (click)="handleClick(empNo.value)">Search</button>
+    <div [ngClass]="['card']">
+      <div [ngClass]="['card-header']">
+        <h3>Employee Table</h3>
       </div>
-      <input type="text" value="349433" #empNo />
-      <div>
-        <br />
-        <h3 class="title">Employee Details</h3>
-        <hr />
-        <div>
-          <ul *ngFor="let employee of data | async">
-            <li>Name: {{ employee.empName }}</li>
-            <li>Employee No: {{ employee.empNo }}</li>
-            <li>
-              <div>
-                <button (click)="handleChangePhone(phone.value, employee)">Change Phone No.</button>
-                <input type="text" value="{{ employee.phone }}" #phone />
-                <!--            <input type='text' value='{{ employee.empName }}' >-->
-              </div>
-            </li>
-          </ul>
-        </div>
+    </div>
+    <br />
+    <br />
+    <div [ngClass]="['container']">
+      <div [ngClass]="">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input type="text" nz-input placeholder="input employee number" #empNo />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <i nz-icon nzType="search" (click)="handleClick(empNo.value)"></i>
+        </ng-template>
+      </div>
+      <br />
+      <br />
+      <div *ngIf="data !== ''">
+        <nz-card [nzActions]="[actionEdit]">
+          <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
+            <nz-card-meta
+              nzTitle="{{ employeeData?.empName }}"
+              nzDescription="This is the description"
+            ></nz-card-meta>
+          </nz-skeleton>
+        </nz-card>
+        <ng-template #actionEdit>
+          <nz-input-group [nzSuffix]="suffixIconEdit">
+            <input
+              type="text"
+              nz-input
+              [value]="employeeData?.email"
+              [disabled]="!isEditing"
+              #email
+            />
+          </nz-input-group>
+          <ng-template #suffixIconEdit>
+            <i nz-icon nzType="edit" (click)="handleChangeEmail(email.value, employeeData)"></i>
+          </ng-template>
+        </ng-template>
       </div>
     </div>
   `,
 })
 export class EmployeeComponent implements OnInit {
   loading: boolean
-  data: any
+  employeeData: Employee
   employeeEmail: string = ''
+  isEditing: boolean
+  data: string
   constructor(private utility: UtilitiesService) {}
-  ngOnInit() {}
-  handleClick(empNo) {
-    this.data = this.utility.getEmployee(empNo)
-    // this.data  = this.utility.getEmployees()
+  ngOnInit() {
+    this.data = ''
+    this.isEditing = false
   }
-  handleChangePhone(phone, employee) {
-    console.log('Printing employee')
+  handleClick(empNo) {
+    this.loading = true
+    this.utility.getEmployee(empNo).subscribe((emp: any) => {
+      if (emp !== {}) {
+        this.employeeData = emp
+        this.utility.notifyUser['success']('Successfully found user')
+        this.data = 'emp'
+      } else {
+        this.utility.notifyUser['error']('No such user, check the employee number')
+      }
+      this.loading = false
+    })
+  }
+  handleChangeEmail(email, employee) {
     const employeeData = {
       ...employee,
-      phone: phone,
+      email: email,
     }
-    console.log(employeeData)
-    this.utility.updateEmployee(employeeData).subscribe(data => alert)
+    if (this.isEditing) {
+      this.utility.updateEmployee(employeeData).subscribe(data => {
+        this.utility.notifyUser['success']('Successfully editted user email')
+      })
+    }
+    this.isEditing = !this.isEditing
   }
 }
