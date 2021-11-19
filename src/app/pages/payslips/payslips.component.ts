@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { UtilitiesService } from '../../services/utilities.service'
 import { environment } from '../../../environments/environment'
+import qs from 'qs'
 
 @Component({
   selector: 'app-payslips',
@@ -14,7 +15,6 @@ export class PayslipsComponent implements OnInit {
   flagVisible: boolean = false
   searchtext: string = ''
   currentEmp: any = {}
-
   epayslip: any
   visible: any = false
   searchArray: any = []
@@ -26,7 +26,6 @@ export class PayslipsComponent implements OnInit {
     // this.resetData();
     if (checked) {
       this.expandSet.add(id)
-
       this.currentEmp = this.tableData.find(item => item.id == id)
     } else {
       this.expandSet.delete(id)
@@ -34,40 +33,33 @@ export class PayslipsComponent implements OnInit {
   }
   constructor(private utility: UtilitiesService, private ref: ChangeDetectorRef) {}
   ngOnInit() {}
+  // Search payslip and get add the user to the
+  // table.
+
   searchPayslip() {
     this.tableData = []
-    if (this.searchArray.length == 1) {
-      let api = `/employees?_where[_or][0][empNo]=${this.searchArray}&_where[_or][1][nrc]=${this.searchArray}`
-      this.utility.sendAuthenticatedRequests({ api, method: 'GET' }).subscribe(
-        (data: any) => {
-          this.tableData = data
+    if (this.searchArray.length === 0) return
+    const query = unescape(
+      qs.stringify({
+        _where: {
+          _or: this.searchArray.flatMap((employee: string) => [
+            { empNo: employee },
+            { nrc: employee },
+          ]),
         },
-        error => {
-          console.log(error)
-        },
-      )
-    } else {
-      let con = 1
-      for (let searchtext of this.searchArray) {
-        let api = `/employees?_where[_or][0][empNo]=${searchtext}&_where[_or][1][nrc]=${searchtext}`
-        this.utility.sendAuthenticatedRequests({ api, method: 'GET' }).subscribe(
-          (data: any) => {
-            // console.log(data[0])
-            this.tempTableData.push(data[0])
-            con++
-            if (con == this.searchArray.length) {
-              this.ref.markForCheck()
-              this.tableData = this.tempTableData
-            }
-          },
-          error => {
-            con++
-            console.log(error)
-          },
-        )
-      }
-    }
+      }),
+    )
+    const api = `/employees?${query}`
+    this.utility.sendAuthenticatedRequests({ api, method: 'GET' }).subscribe(
+      (data: any) => {
+        this.tableData = data
+      },
+      error => {
+        console.log(error)
+      },
+    )
   }
+
   showPay(data) {
     this.epayslip = data
     this.visible = true

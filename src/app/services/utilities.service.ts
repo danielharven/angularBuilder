@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http'
 import store from 'store'
 import { environment } from '../../environments/environment'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
+import * as qs from 'querystring'
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +18,10 @@ export class UtilitiesService {
     success: msg => {
       this.notify.success('SelfService', msg)
     },
+  }
+
+  stringify(query): string {
+    return qs.stringify(query)
   }
 
   getAvailbalePayslips(empNo) {
