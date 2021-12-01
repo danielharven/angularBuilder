@@ -7,8 +7,9 @@ import { dataService } from '../../services/dataservice'
 import { switchMap } from 'rxjs/operators'
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-portal',
   templateUrl: './portal.component.html',
+  styleUrls: ['portal.component.scss']
 })
 export class PortalComponent implements OnInit {
 

@@ -1,8 +1,85 @@
-.slide-in {
-  animation: slide-in 2s;
+.app-card {
+  font-size: 16px;
+  border-radius: 9px;
+  background-color: ghostwhite;
+  //border: 10px solid black;
+  padding: 15px;
+  text-align: center;
+  transition: .3s ease;
+  &:hover {
+    transform: scale(1.12);
+    background-color:  rgba(200, 230, 210, 0.7);
+    border-radius: 14px;
+    cursor: pointer;
+    .btn {
+        transform: translate(0, -10px);
+        opacity: 1;
+    }
+    //padding: 20px;
+  }
+  .data {
+    .btn {
+      opacity: 0;
+      transform: translate(0, 20px);
+      transition: 0.3s ease;
+    }
+    i {
+      opacity: 0.8;
+      transition: 0.1s ease;
+    }
+    .title {
+      opacity: 0.4;
+      transition: 0.2s ease;
+    }
+    &:hover {
+      .btn {
+        transform: translate(0, -10px);
+        opacity: 1;
+      }
+    i {
+        opacity: 1;
+      }
+      .title {
+        opacity: 1;
+      }
+    }
+  }
+
+  //& + .app-card {
+  //  margin-left: 20px;
+  //}
+  //span {
+  //  display: flex;
+  //  align-items: center;
+  //}
+  &-buttons {
+    display: flex;
+    align-items: center;
+    //margin-left: auto;
+    //margin-top: 16px;
+  }
+  //@media screen and (max-width: 1110px) {
+  //  width: calc(50% - 20px);
+  //  &:last-child {
+  //    margin-top: 20px;
+  //    margin-left: 0px;
+  //  }
+  //}
+  //@media screen and (max-width: 565px) {
+  //  width: calc(100% - 20px);
+  //  margin-top: 20px;
+  //  & + .app-card {
+  //    margin-left: 0;
+  //  }
+  //}
 }
 
-@keyframes slideIn {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(0%); }
+::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-bg);
+  border-radius: 10px;
 }

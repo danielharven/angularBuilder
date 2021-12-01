@@ -1,13 +1,22 @@
-<div class="d-flex flex-wrap align-items-center">
-  <div>
-    <div class="slide-in  my-1 mr-4 font-size-36 flex-shrink-0">
-      <i class="fe {{data.icon}}"></i>
-    </div>
-    <div class="font-size-18 font-weight-bold text-dark">{{ data.title }}</div>
-    <div class="font-size-12 text-uppercase">{{ data.description }}</div>
-    <div class="font-size-12 text-uppercase">
-      <br>
-      <a href="{{data.url}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success  px-3">Visit </a>
+<div class='card app-card'>
+  <div class="align-items-center">
+    <div>
+      <div class='data'>
+
+      <div class="font-size-24 font-weight-bold text-dark title">{{ data.title }}</div>
+<!--        <div class="my-1 mr-4 font-size-24 flex-shrink-0">-->
+        <nz-divider [nzText]="dividerText" nzOrientation="center"></nz-divider>
+            <ng-template #dividerText>
+              <i class="fe {{data.icon}}"></i>
+            </ng-template>
+
+      <div class="font-size-12 text-uppercase">
+      <div class="font-size-12 text-uppercase">{{ data.description }}</div>
+        <br>
+        <a href="{{data.url}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success  px-3">Visit </a>
+      </div>
+      </div>
+
     </div>
   </div>
 </div>
