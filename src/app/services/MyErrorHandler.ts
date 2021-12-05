@@ -8,19 +8,27 @@ export class MyErrorHandler implements ErrorHandler {
   handleError(res) {
     // do something with the exception
     console.log(res);
-    console.log('heee')
-    let {error} = res;
-    if(error.message){
-      let err= error.message.message;
-      switch (err) {
-        case "Identifier or password invalid.":{
-          this.util.notifyUser.error('Password or Username is not correct')
-          break;
+    // handle graphQL errors
+    try {
+      let {errors} = res;
+        let { message }= errors[0];
+        switch (message) {
+          case "Identifier or password invalid.":{
+            this.util.notifyUser.error('Password or Username is not correct')
+            break;
+          }
+          case "Forbidden":{
+            this.util.notifyUser.error('You have no access to this service')
+            break;
+          }
+          default:{
+            break;
+          }
         }
-        default:{
-          break;
-        }
-      }
+
+    }catch (e) {
+
     }
+
   }
 }

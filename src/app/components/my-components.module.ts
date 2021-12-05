@@ -3,8 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar'
 import { SharedModule } from 'src/app/shared.module'
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
-// import { WidgetsComponentsModule } from 'src/app/@vb/widgets/widgets-components.module'
-// import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd'
 import { FormlyModule } from '@ngx-formly/core'
 import { FieldNgSelect } from './formly/quill/ng-select'
 import { FieldQuillType } from './formly/quill/quil-type'
@@ -34,6 +32,11 @@ import {MyErrorHandler} from '../services/MyErrorHandler';
 import { SettingsComponent } from './profile/settings/settings.component'
 import {NzPipesModule} from "ng-zorro-antd/pipes";
 import { RichtestPipe } from './pipes/richtest.pipe';
+import { UploadComponent } from './upload/upload.component';
+import { QuestionsListComponent } from './questions-list/questions-list.component'
+import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { QuestionsDetailsComponent } from './questions-details/questions-details.component';
+import { AnswersComponent } from './answers/answers.component'
 const COMPONENTS = [
   FieldNgSelect,
   FieldQuillType,
@@ -41,27 +44,28 @@ const COMPONENTS = [
   HeaderComponent, FooterComponent, HomeComponent, FaqComponent,
   ContactComponent, PrivacyComponent, TermsComponent, FeedbackComponent,
   AboutComponent, CareersComponent, AdvertsComponent, InviteComponent,
-  PricingPlansComponent, AskQuestionComponent, ProfileComponent
+  PricingPlansComponent, AskQuestionComponent, ProfileComponent, UploadComponent
 
 ]
 
 @NgModule({
-    imports: [
-        SharedModule,
-        FormsModule,
-        QuillModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        PerfectScrollbarModule,
-        FormlyModule,
-        FormlyBootstrapModule,
-        FormlySelectModule,
-        NgSelectModule,
-        NgxSpinnerModule,
-        NzPipesModule,
-    ],
+  imports: [
+    SharedModule,
+    FormsModule,
+    QuillModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    PerfectScrollbarModule,
+    FormlyModule,
+    FormlyBootstrapModule,
+    FormlySelectModule,
+    NgSelectModule,
+    NgxSpinnerModule,
+    NzPipesModule,
+    QuillModule,
+  ],
   providers:[{provide: ErrorHandler, useClass: MyErrorHandler}],
-  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, ],
+  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent ],
   exports: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent],
 })
 export class MyComponentsModule {}

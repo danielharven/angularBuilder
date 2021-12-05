@@ -9,8 +9,11 @@ import { select, Store } from '@ngrx/store'
 import * as Reducers from '../store/reducers'
 import Swal from 'sweetalert2'
 import * as Sto from 'store'
+import { BehaviorSubject } from 'rxjs'
+import { error } from '@ant-design/icons-angular'
+import { environment } from '../../environments/environment'
 // import {FlutterwaveCheckout} from "flutterwave-angular-v3/src/app/modules/models";
-
+const URRL= environment.url;
 @Injectable({
   providedIn: 'root'
 })
@@ -24,9 +27,11 @@ export class UtilitiesService {
               private router: Router,
               private store: Store<any>,
               public http: HttpClient) {
-    this.store.pipe(select(Reducers.getUser)).subscribe(state => {
+    this.store.pipe(select(Reducers.getUser))
+      .subscribe(state => {
       this.authorized = state.authorized
       this.user = state;
+      console.log(state)
       const accessToken = Sto.get('accessToken')
       if(!accessToken){
         this.router.navigate(['auth/login'])
@@ -59,6 +64,7 @@ export class UtilitiesService {
       })
     },
     error:(msg)=>{
+      console.log('inside i think',msg)
       Swal.fire({
         title: 'Error!',
         text: msg,
@@ -132,16 +138,12 @@ export class UtilitiesService {
       dislayName:"${data.displayName}"
       location:"${data.location}"
       about:"${data.about}"
-      avator:"${data.avator}"
     }
   }){
     profile{
       id
       dislayName
       location
-      avator{
-        url
-      }
       about
     }
   }
@@ -155,9 +157,6 @@ query{
   profiles(where:{user:"${this.user.id}"}){
     dislayName
     id
-    avator{
-      url
-    }
     location
     about
   }
@@ -179,16 +178,172 @@ query{
 }
       `
       return x;
+    },
+    getTopics:(): string=>{
+      let x = `
+query{
+    topics{
+        name
+        id
+        subject{
+            name
+            id
+        }
     }
+}
+      `
+      return x;
+    },
+    getQuestionDetails:({ id }): string=>{
+      let x = `
+query {
+    question(
+        id:"${id}"
+    ){
+        id
+        title
+        slug
+        body
+        comments{
+        id
+        commentor{
+                displayName
+            }
+        comment
+        image{
+        url
+        }
+        }
+         images{
+            id
+            url
+            previewUrl
+        }
+        askedby{
+            displayName
+        }
+        createdAt
+        topic{
+            subject{
+                name
+                grade
+                id
+            }
+            name
+            id
+        }
+    }
+}`
+      return x;
+    },
+    getPaginatedQuestions:({limit,start}): string=>{
+      let x = `
+  query {
+    questions(
+        limit:${limit}
+        start:${start}
+        sort:"createdAt:desc"
+    ){
+        id
+        title
+        body
+        slug
+        askedby{
+            displayName
+        }
+        createdAt
+        topic{
+            subject{
+                name
+                grade
+                id
+            }
+            name
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
+    createQuestion:({body,title,topic,askedby}): string=>{
+      let x = `
+      mutation {
+    createQuestion(
+        input:
+        {data: {body: "'${body}'",
+        askedby:"${askedby}",
+        title: "${title}",topic: "${topic}",}}
+    ){
+      question{
+          id
+      }
+    }
+}
+      `
+      return x;
+    },
+    createComment:({comment,commentor,question}): string=>{
+      let x = `
+     mutation {
+    createComment(
+        input: {data: {
+            question: "${question}"
+            commentor: "${commentor}"
+            comment: "${comment}"
+        }}
+    ){
+        comment{
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
+    createAnswer:({body,user,question}): string=>{
+      let x = `
+      mutation {
+    createAnswer( input: {data: {
+        question:"${question}"
+        body: "${body}"
+        user  :"${user}"
+    }}
+    ){
+        answer{
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
+    countQuestions:(): string=>{
+      let x = `
+query {
+    questionsConnection{
+        aggregate{
+            count
+        }
+    }
+}
+      `
+      return x;
+    },
   }
   constants={
     register_user_success:'User successfully registered ',
+    questioon_asked_success:'Question successfully asked, answer will soon be available',
     login_user_success:'Successfully logged in ',
     profile_Createduser_success:'Successfully Created profile',
     register_user_failed:'User registration failed ',
     login_user_failed:'Login failed.',
     profile_Createduser_failed:'profile Creation failed.',
     User_profile_retrieval_failed:'"User profile retrieval failed"',
+    session_expired: "Session has expired, kindly login",
+    comment_success: "Comment has been posted successfully",
+    answer_success: "Answer has been submitted for Approval",
+
   }
   purchasePlan(x){
     this.loadScreen();
@@ -202,12 +357,13 @@ query{
       country: "ZM",
       payment_options: " ",
       redirect_url: // specified redirect URL
-        "http://localhost:1337/payment-made-well",
+        URRL+"/payment-made-well",
       customer: {
         id:this.user.id,
         email: this.user.email,
         phone_number: "",
         name: this.profile.displayName,
+        plan:x.id
       },
       callback: function (data) {
         console.log(data);
@@ -221,5 +377,57 @@ query{
         logo: "https://assets.piedpiper.com/logo.png",
       },
     });
+    this.stopLoadScreen()
   }
+  evaluateError(err){
+    if(err[0].message){
+      let msg =err[0].message
+      switch (msg) {
+        case "Invalid token.":{
+          this.router.navigate(['/auth/login'])
+          msg = this.constants.session_expired
+        }
+      }
+      return msg
+    }
+    return err
+  }
+  async graphqlRequests(x) : Promise <{data}> {
+    let results = await this.graphql.request(x).toPromise()
+      .catch(err => {
+        this.notifyUser.error( this.evaluateError(err));
+        this.stopLoadScreen()
+        return {}
+      })
+    //@ts-ignore
+    let {errors} = results;
+    if(errors){
+      this.stopLoadScreen()
+      this.notifyUser.error( this.evaluateError(errors))
+      return {data:{}}
+    }
+    //@ts-ignore
+    return results || {data:{}}
+  }
+  async uploadFiles(file,ref,refId,field){
+    try {
+      let form = new FormData();
+      form.append('files',file )
+      form.append('ref', ref)
+      //@ts-ignore
+      form.append('refId', refId)
+      form.append('field', field)
+      let method = "POST";
+      let body = form;
+      let api = `${URRL}/upload`;
+      let res = await this.http.post(api, body).toPromise()
+      return res
+    }
+    catch (e) {
+      this.evaluateError(e);
+      this.stopLoadScreen()
+      return
+    }
+  }
+
 }

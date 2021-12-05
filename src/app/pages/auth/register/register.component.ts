@@ -4,6 +4,9 @@ import { FormlyFieldConfig } from '@ngx-formly/core'
 import { FormGroup } from '@angular/forms'
 import { UtilitiesService } from '../../../services/utilities.service'
 import Swal from 'sweetalert2'
+import * as UserActions from '../../../store/user/actions'
+import { Store } from '@ngrx/store'
+
 @Component({
   selector: 'vb-system-register-page',
   templateUrl: './register.component.html',
@@ -77,6 +80,7 @@ export class RegisterPage {
   ];
   constructor(private acR : ActivatedRoute,
               private route: Router,
+              private store: Store<any>,
               private utilities: UtilitiesService) {
   }
   ngOnInit(){
@@ -87,6 +91,7 @@ export class RegisterPage {
     )
   }
   submit(){
+    localStorage.clear();
     this.utilities.loadScreen();
     if(!this.form.valid) {
       this.utilities.stopLoadScreen();
@@ -115,32 +120,7 @@ export class RegisterPage {
           confirmButtonText: 'Cool'
         }).then(data=>{
           if(data.isConfirmed){
-            switch (this.option){
-              case 0:{
-                this.route.navigate(['/profile'])
-                break;
-              }
-              case 1:{
-                this.route.navigate(['/profile/1'])
-                break;
-              }
-              case 2:{
-                this.route.navigate(['/profile/2'])
-                break;
-              }
-              case 3:{
-                this.route.navigate(['/profile/3'])
-                break;
-              }
-              case 4:{
-                this.route.navigate(['/profile/4'])
-                break;
-              }
-              default:{
-                this.route.navigate(['/profile'])
-                break;
-              }
-            }
+           this.route.navigate(['/login'])
           }
         })
       },error => {

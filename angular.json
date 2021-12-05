@@ -43,10 +43,15 @@
               }
             ],
             "styles": [
-              "src/assets/css/style.css",
+              "./src/assets/css/style.css",
               "./src/assets/css/selectize.css",
               "./src/assets/css/upvotejs.min.css",
               "./node_modules/ng-zorro-antd/style/entry.less",
+              "./node_modules/ng-zorro-antd/pagination/style/entry.less",
+              "./node_modules/ng-zorro-antd/select/style/entry.less",
+              "./node_modules/ng-zorro-antd/upload/style/entry.less",
+              "./node_modules/ng-zorro-antd/skeleton/style/entry.less",
+              "./node_modules/ng-zorro-antd/image/style/entry.less",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.snow.css"

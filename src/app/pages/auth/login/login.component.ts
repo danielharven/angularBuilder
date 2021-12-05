@@ -61,43 +61,7 @@ export class LoginPage {
       email: this.model.identifier,
       password: this.model.password
     }
+    // console.log(payload)
     this.store.dispatch(new UserActions.Login(payload))
-    // let q = this.utilities.queries.loginUser(this.model)
-    // // console.log(q)
-    // this.utilities.graphql.request(q).subscribe(
-    //   data=>{
-    //     this.utilities.stopLoadScreen();
-    //     if(data.errors){
-    //       Swal.fire({
-    //         title: 'Error!',
-    //         text: this.utilities.constants.login_user_failed,
-    //         icon: 'error',
-    //         confirmButtonText: 'close'
-    //       })
-    //       return
-    //     }
-    //     Swal.fire({
-    //       title: 'done!',
-    //       text: this.utilities.constants.login_user_success,
-    //       icon: 'success',
-    //       confirmButtonText: 'Cool'
-    //     }).then(
-    //       dd=>{
-    //         if(dd.isConfirmed){
-    //           //@ts-ignore
-    //           this.utilities.usersModule.manualLoadCurrentUser(data.login);
-    //         }
-    //       }
-    //     )
-    //   },error => {
-    //     this.utilities.stopLoadScreen();
-    //     Swal.fire({
-    //       title: 'Error!',
-    //       text: this.utilities.constants.login_user_failed,
-    //       icon: 'error',
-    //       confirmButtonText: 'close'
-    //     })
-    //   }
-    // )
   }
 }

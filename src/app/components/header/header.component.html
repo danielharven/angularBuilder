@@ -3,13 +3,16 @@
     <div class="row align-items-center">
       <div class="col-lg-2">
         <div class="logo-box">
-          <a routerLink='' class="logo">
-            <img src="assets/images/logo-black.png" alt="Tadya Logo"></a>
+          <a routerLink='/home' class="logo">
+            <img src="assets/images/logo-black.png"
+                 alt="Tadya Logo"></a>
           <div class="user-action">
-            <div class="search-menu-toggle icon-element icon-element-xs shadow-sm mr-1" data-toggle="tooltip" data-placement="top" title="Search">
+            <div class="search-menu-toggle icon-element icon-element-xs shadow-sm mr-1"
+                 data-toggle="tooltip" data-placement="top" title="Search">
               <i class="la la-search"></i>
             </div>
-            <div class="off-canvas-menu-toggle icon-element icon-element-xs shadow-sm" data-toggle="tooltip" data-placement="top" title="Main menu">
+            <div class="off-canvas-menu-toggle icon-element icon-element-xs shadow-sm"
+                 data-toggle="tooltip" data-placement="top" title="Main menu">
               <i class="la la-bars"></i>
             </div>
           </div>
@@ -162,6 +165,7 @@
     <div *ngIf='authorized' class="off-canvas-btn-box px-4 pt-5 text-center">
 
         <a routerLink="/profile" class="btn theme-btn"><i class="la la-user mr-1"></i> Account</a>
+        <a (click)='signOut()' class="btn theme-btn"><i class="la la-user mr-1"></i> SignOut</a>
     </div>
   </div><!-- end off-canvas-menu -->
   <div class="mobile-search-form">

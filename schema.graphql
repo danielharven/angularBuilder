@@ -1,0 +1,2725 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+union Morph = Answers | AnswersAggregator | AnswersConnection | AnswersConnectionBody | AnswersConnectionCreatedAt | AnswersConnectionId | AnswersConnectionPublished_at | AnswersConnectionQuestion | AnswersConnectionUpdatedAt | AnswersConnectionUser | AnswersConnection_id | AnswersGroupBy | Blogs | BlogsAggregator | BlogsConnection | BlogsConnectionApproved | BlogsConnectionBody | BlogsConnectionComment | BlogsConnectionCreatedAt | BlogsConnectionId | BlogsConnectionOwner | BlogsConnectionPublished_at | BlogsConnectionTitle | BlogsConnectionTopic | BlogsConnectionUpdatedAt | BlogsConnection_id | BlogsGroupBy | Comments | CommentsAggregator | CommentsConnection | CommentsConnectionComment | CommentsConnectionCommentor | CommentsConnectionCreatedAt | CommentsConnectionId | CommentsConnectionPublished_at | CommentsConnectionQuestion | CommentsConnectionUpdatedAt | CommentsConnection_id | CommentsGroupBy | ComponentBillingHistory | Feedback | FeedbackAggregator | FeedbackAggregatorAvg | FeedbackAggregatorMax | FeedbackAggregatorMin | FeedbackAggregatorSum | FeedbackConnection | FeedbackConnectionAnswer | FeedbackConnectionComment | FeedbackConnectionCreatedAt | FeedbackConnectionId | FeedbackConnectionPublished_at | FeedbackConnectionRatedby | FeedbackConnectionRating | FeedbackConnectionReason | FeedbackConnectionUpdatedAt | FeedbackConnection_id | FeedbackGroupBy | Payments | PaymentsAggregator | PaymentsConnection | PaymentsConnectionCreatedAt | PaymentsConnectionId | PaymentsConnectionPublished_at | PaymentsConnectionUpdatedAt | PaymentsConnectionUser | PaymentsConnection_id | PaymentsGroupBy | Plans | PlansAggregator | PlansAggregatorAvg | PlansAggregatorMax | PlansAggregatorMin | PlansAggregatorSum | PlansConnection | PlansConnectionAmount | PlansConnectionCreatedAt | PlansConnectionDays | PlansConnectionDesc | PlansConnectionId | PlansConnectionLabel | PlansConnectionName | PlansConnectionPeriod | PlansConnectionPublished_at | PlansConnectionUpdatedAt | PlansConnection_id | PlansGroupBy | Profile | ProfileAggregator | ProfileConnection | ProfileConnectionAbout | ProfileConnectionAvator | ProfileConnectionCreatedAt | ProfileConnectionDislayName | ProfileConnectionId | ProfileConnectionLocation | ProfileConnectionUpdatedAt | ProfileConnectionUser | ProfileConnection_id | ProfileGroupBy | Questions | QuestionsAggregator | QuestionsConnection | QuestionsConnectionAskedby | QuestionsConnectionBody | QuestionsConnectionCreatedAt | QuestionsConnectionId | QuestionsConnectionPublished_at | QuestionsConnectionSlug | QuestionsConnectionTitle | QuestionsConnectionTopic | QuestionsConnectionUpdatedAt | QuestionsConnection_id | QuestionsGroupBy | Rate | RateAggregator | RateAggregatorAvg | RateAggregatorMax | RateAggregatorMin | RateAggregatorSum | RateConnection | RateConnectionCreatedAt | RateConnectionId | RateConnectionPublished_at | RateConnectionRatedby | RateConnectionTeacher | RateConnectionUpdatedAt | RateConnectionValue | RateConnection_id | RateGroupBy | Reasons | ReasonsAggregator | ReasonsAggregatorAvg | ReasonsAggregatorMax | ReasonsAggregatorMin | ReasonsAggregatorSum | ReasonsConnection | ReasonsConnectionCreatedAt | ReasonsConnectionId | ReasonsConnectionName | ReasonsConnectionPublished_at | ReasonsConnectionRank | ReasonsConnectionUpdatedAt | ReasonsConnection_id | ReasonsGroupBy | Subcription | SubcriptionAggregator | SubcriptionConnection | SubcriptionConnectionActive | SubcriptionConnectionCreatedAt | SubcriptionConnectionEnddate | SubcriptionConnectionId | SubcriptionConnectionPlan | SubcriptionConnectionPublished_at | SubcriptionConnectionStartdate | SubcriptionConnectionUpdatedAt | SubcriptionConnectionUser | SubcriptionConnection_id | SubcriptionGroupBy | Subject | SubjectAggregator | SubjectConnection | SubjectConnectionActive | SubjectConnectionCreatedAt | SubjectConnectionGrade | SubjectConnectionId | SubjectConnectionName | SubjectConnectionPublished_at | SubjectConnectionUpdatedAt | SubjectConnection_id | SubjectGroupBy | Teacher | TeacherAggregator | TeacherAggregatorAvg | TeacherAggregatorMax | TeacherAggregatorMin | TeacherAggregatorSum | TeacherConnection | TeacherConnectionBank | TeacherConnectionCreatedAt | TeacherConnectionId | TeacherConnectionPhone | TeacherConnectionPublished_at | TeacherConnectionUpdatedAt | TeacherConnectionUser | TeacherConnection_id | TeacherGroupBy | Topic | TopicAggregator | TopicConnection | TopicConnectionCreatedAt | TopicConnectionId | TopicConnectionName | TopicConnectionPublished_at | TopicConnectionSubject | TopicConnectionUpdatedAt | TopicConnection_id | TopicGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionDisplayName | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionOptin | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | Withdraw | WithdrawAggregator | WithdrawAggregatorAvg | WithdrawAggregatorMax | WithdrawAggregatorMin | WithdrawAggregatorSum | WithdrawConnection | WithdrawConnectionAmount | WithdrawConnectionCreatedAt | WithdrawConnectionId | WithdrawConnectionPublished_at | WithdrawConnectionReference | WithdrawConnectionTeacher | WithdrawConnectionUpdatedAt | WithdrawConnection_id | WithdrawGroupBy | createAnswerPayload | createBlogPayload | createCommentPayload | createFeedbackPayload | createPaymentPayload | createPlanPayload | createProfilePayload | createQuestionPayload | createRatePayload | createReasonPayload | createRolePayload | createSubcriptionPayload | createSubjectPayload | createTeacherPayload | createTopicPayload | createUserPayload | createWithdrawPayload | deleteAnswerPayload | deleteBlogPayload | deleteCommentPayload | deleteFeedbackPayload | deleteFilePayload | deletePaymentPayload | deletePlanPayload | deleteProfilePayload | deleteQuestionPayload | deleteRatePayload | deleteReasonPayload | deleteRolePayload | deleteSubcriptionPayload | deleteSubjectPayload | deleteTeacherPayload | deleteTopicPayload | deleteUserPayload | deleteWithdrawPayload | updateAnswerPayload | updateBlogPayload | updateCommentPayload | updateFeedbackPayload | updatePaymentPayload | updatePlanPayload | updateProfilePayload | updateQuestionPayload | updateRatePayload | updateReasonPayload | updateRolePayload | updateSubcriptionPayload | updateSubjectPayload | updateTeacherPayload | updateTopicPayload | updateUserPayload | updateWithdrawPayload
+
+type AdminUser {
+  firstname: String!
+  id: ID!
+  lastname: String!
+  username: String
+}
+
+type Answers {
+  _id: ID!
+  body: String
+  createdAt: DateTime!
+  id: ID!
+  image(limit: Int, sort: String, start: Int, where: JSON): [UploadFile]
+  published_at: DateTime
+  question: Questions
+  updatedAt: DateTime!
+  user: UsersPermissionsUser
+}
+
+type AnswersAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type AnswersConnection {
+  aggregate: AnswersAggregator
+  groupBy: AnswersGroupBy
+  values: [Answers]
+}
+
+type AnswersConnectionBody {
+  connection: AnswersConnection
+  key: String
+}
+
+type AnswersConnectionCreatedAt {
+  connection: AnswersConnection
+  key: DateTime
+}
+
+type AnswersConnectionId {
+  connection: AnswersConnection
+  key: ID
+}
+
+type AnswersConnectionPublished_at {
+  connection: AnswersConnection
+  key: DateTime
+}
+
+type AnswersConnectionQuestion {
+  connection: AnswersConnection
+  key: ID
+}
+
+type AnswersConnectionUpdatedAt {
+  connection: AnswersConnection
+  key: DateTime
+}
+
+type AnswersConnectionUser {
+  connection: AnswersConnection
+  key: ID
+}
+
+type AnswersConnection_id {
+  connection: AnswersConnection
+  key: ID
+}
+
+type AnswersGroupBy {
+  _id: [AnswersConnection_id]
+  body: [AnswersConnectionBody]
+  createdAt: [AnswersConnectionCreatedAt]
+  id: [AnswersConnectionId]
+  published_at: [AnswersConnectionPublished_at]
+  question: [AnswersConnectionQuestion]
+  updatedAt: [AnswersConnectionUpdatedAt]
+  user: [AnswersConnectionUser]
+}
+
+type Blogs {
+  _id: ID!
+  approved: Boolean
+  body: String
+  comment: Comments
+  createdAt: DateTime!
+  id: ID!
+  owner: UsersPermissionsUser
+  published_at: DateTime
+  title: String
+  topic: Topic
+  updatedAt: DateTime!
+}
+
+type BlogsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type BlogsConnection {
+  aggregate: BlogsAggregator
+  groupBy: BlogsGroupBy
+  values: [Blogs]
+}
+
+type BlogsConnectionApproved {
+  connection: BlogsConnection
+  key: Boolean
+}
+
+type BlogsConnectionBody {
+  connection: BlogsConnection
+  key: String
+}
+
+type BlogsConnectionComment {
+  connection: BlogsConnection
+  key: ID
+}
+
+type BlogsConnectionCreatedAt {
+  connection: BlogsConnection
+  key: DateTime
+}
+
+type BlogsConnectionId {
+  connection: BlogsConnection
+  key: ID
+}
+
+type BlogsConnectionOwner {
+  connection: BlogsConnection
+  key: ID
+}
+
+type BlogsConnectionPublished_at {
+  connection: BlogsConnection
+  key: DateTime
+}
+
+type BlogsConnectionTitle {
+  connection: BlogsConnection
+  key: String
+}
+
+type BlogsConnectionTopic {
+  connection: BlogsConnection
+  key: ID
+}
+
+type BlogsConnectionUpdatedAt {
+  connection: BlogsConnection
+  key: DateTime
+}
+
+type BlogsConnection_id {
+  connection: BlogsConnection
+  key: ID
+}
+
+type BlogsGroupBy {
+  _id: [BlogsConnection_id]
+  approved: [BlogsConnectionApproved]
+  body: [BlogsConnectionBody]
+  comment: [BlogsConnectionComment]
+  createdAt: [BlogsConnectionCreatedAt]
+  id: [BlogsConnectionId]
+  owner: [BlogsConnectionOwner]
+  published_at: [BlogsConnectionPublished_at]
+  title: [BlogsConnectionTitle]
+  topic: [BlogsConnectionTopic]
+  updatedAt: [BlogsConnectionUpdatedAt]
+}
+
+type Comments {
+  _id: ID!
+  comment: String
+  commentor: UsersPermissionsUser
+  createdAt: DateTime!
+  id: ID!
+  image(limit: Int, sort: String, start: Int, where: JSON): [UploadFile]
+  published_at: DateTime
+  question: Questions
+  updatedAt: DateTime!
+}
+
+type CommentsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CommentsConnection {
+  aggregate: CommentsAggregator
+  groupBy: CommentsGroupBy
+  values: [Comments]
+}
+
+type CommentsConnectionComment {
+  connection: CommentsConnection
+  key: String
+}
+
+type CommentsConnectionCommentor {
+  connection: CommentsConnection
+  key: ID
+}
+
+type CommentsConnectionCreatedAt {
+  connection: CommentsConnection
+  key: DateTime
+}
+
+type CommentsConnectionId {
+  connection: CommentsConnection
+  key: ID
+}
+
+type CommentsConnectionPublished_at {
+  connection: CommentsConnection
+  key: DateTime
+}
+
+type CommentsConnectionQuestion {
+  connection: CommentsConnection
+  key: ID
+}
+
+type CommentsConnectionUpdatedAt {
+  connection: CommentsConnection
+  key: DateTime
+}
+
+type CommentsConnection_id {
+  connection: CommentsConnection
+  key: ID
+}
+
+type CommentsGroupBy {
+  _id: [CommentsConnection_id]
+  comment: [CommentsConnectionComment]
+  commentor: [CommentsConnectionCommentor]
+  createdAt: [CommentsConnectionCreatedAt]
+  id: [CommentsConnectionId]
+  published_at: [CommentsConnectionPublished_at]
+  question: [CommentsConnectionQuestion]
+  updatedAt: [CommentsConnectionUpdatedAt]
+}
+
+type ComponentBillingHistory {
+  _id: ID!
+  amountpaid: Float
+  endDate: Date
+  id: ID!
+  paymentData: Date
+  plan: Plans
+  receipt: String
+}
+
+type Feedback {
+  _id: ID!
+  answer: Answers
+  comment: String
+  createdAt: DateTime!
+  id: ID!
+  published_at: DateTime
+  ratedby: UsersPermissionsUser
+  rating: Int
+  reason: Reasons
+  updatedAt: DateTime!
+}
+
+type FeedbackAggregator {
+  avg: FeedbackAggregatorAvg
+  count: Int
+  max: FeedbackAggregatorMax
+  min: FeedbackAggregatorMin
+  sum: FeedbackAggregatorSum
+  totalCount: Int
+}
+
+type FeedbackAggregatorAvg {
+  rating: Float
+}
+
+type FeedbackAggregatorMax {
+  rating: Float
+}
+
+type FeedbackAggregatorMin {
+  rating: Float
+}
+
+type FeedbackAggregatorSum {
+  rating: Float
+}
+
+type FeedbackConnection {
+  aggregate: FeedbackAggregator
+  groupBy: FeedbackGroupBy
+  values: [Feedback]
+}
+
+type FeedbackConnectionAnswer {
+  connection: FeedbackConnection
+  key: ID
+}
+
+type FeedbackConnectionComment {
+  connection: FeedbackConnection
+  key: String
+}
+
+type FeedbackConnectionCreatedAt {
+  connection: FeedbackConnection
+  key: DateTime
+}
+
+type FeedbackConnectionId {
+  connection: FeedbackConnection
+  key: ID
+}
+
+type FeedbackConnectionPublished_at {
+  connection: FeedbackConnection
+  key: DateTime
+}
+
+type FeedbackConnectionRatedby {
+  connection: FeedbackConnection
+  key: ID
+}
+
+type FeedbackConnectionRating {
+  connection: FeedbackConnection
+  key: Int
+}
+
+type FeedbackConnectionReason {
+  connection: FeedbackConnection
+  key: ID
+}
+
+type FeedbackConnectionUpdatedAt {
+  connection: FeedbackConnection
+  key: DateTime
+}
+
+type FeedbackConnection_id {
+  connection: FeedbackConnection
+  key: ID
+}
+
+type FeedbackGroupBy {
+  _id: [FeedbackConnection_id]
+  answer: [FeedbackConnectionAnswer]
+  comment: [FeedbackConnectionComment]
+  createdAt: [FeedbackConnectionCreatedAt]
+  id: [FeedbackConnectionId]
+  published_at: [FeedbackConnectionPublished_at]
+  ratedby: [FeedbackConnectionRatedby]
+  rating: [FeedbackConnectionRating]
+  reason: [FeedbackConnectionReason]
+  updatedAt: [FeedbackConnectionUpdatedAt]
+}
+
+type Mutation {
+  createAnswer(input: createAnswerInput): createAnswerPayload
+  createBlog(input: createBlogInput): createBlogPayload
+  createComment(input: createCommentInput): createCommentPayload
+  createFeedback(input: createFeedbackInput): createFeedbackPayload
+  createPayment(input: createPaymentInput): createPaymentPayload
+  createPlan(input: createPlanInput): createPlanPayload
+  createProfile(input: createProfileInput): createProfilePayload
+  createQuestion(input: createQuestionInput): createQuestionPayload
+  createRate(input: createRateInput): createRatePayload
+  createReason(input: createReasonInput): createReasonPayload
+  "Create a new role"
+  createRole(input: createRoleInput): createRolePayload
+  createSubcription(input: createSubcriptionInput): createSubcriptionPayload
+  createSubject(input: createSubjectInput): createSubjectPayload
+  createTeacher(input: createTeacherInput): createTeacherPayload
+  createTopic(input: createTopicInput): createTopicPayload
+  "Create a new user"
+  createUser(input: createUserInput): createUserPayload
+  createWithdraw(input: createWithdrawInput): createWithdrawPayload
+  deleteAnswer(input: deleteAnswerInput): deleteAnswerPayload
+  deleteBlog(input: deleteBlogInput): deleteBlogPayload
+  deleteComment(input: deleteCommentInput): deleteCommentPayload
+  deleteFeedback(input: deleteFeedbackInput): deleteFeedbackPayload
+  "Delete one file"
+  deleteFile(input: deleteFileInput): deleteFilePayload
+  deletePayment(input: deletePaymentInput): deletePaymentPayload
+  deletePlan(input: deletePlanInput): deletePlanPayload
+  deleteProfile(input: deleteProfileInput): deleteProfilePayload
+  deleteQuestion(input: deleteQuestionInput): deleteQuestionPayload
+  deleteRate(input: deleteRateInput): deleteRatePayload
+  deleteReason(input: deleteReasonInput): deleteReasonPayload
+  "Delete an existing role"
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+  deleteSubcription(input: deleteSubcriptionInput): deleteSubcriptionPayload
+  deleteSubject(input: deleteSubjectInput): deleteSubjectPayload
+  deleteTeacher(input: deleteTeacherInput): deleteTeacherPayload
+  deleteTopic(input: deleteTopicInput): deleteTopicPayload
+  "Delete an existing user"
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  deleteWithdraw(input: deleteWithdrawInput): deleteWithdrawPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  multipleUpload(field: String, files: [Upload]!, ref: String, refId: ID, source: String): [UploadFile]!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
+  updateAnswer(input: updateAnswerInput): updateAnswerPayload
+  updateBlog(input: updateBlogInput): updateBlogPayload
+  updateComment(input: updateCommentInput): updateCommentPayload
+  updateFeedback(input: updateFeedbackInput): updateFeedbackPayload
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  updatePayment(input: updatePaymentInput): updatePaymentPayload
+  updatePlan(input: updatePlanInput): updatePlanPayload
+  updateProfile(input: updateProfileInput): updateProfilePayload
+  updateQuestion(input: updateQuestionInput): updateQuestionPayload
+  updateRate(input: updateRateInput): updateRatePayload
+  updateReason(input: updateReasonInput): updateReasonPayload
+  "Update an existing role"
+  updateRole(input: updateRoleInput): updateRolePayload
+  updateSubcription(input: updateSubcriptionInput): updateSubcriptionPayload
+  updateSubject(input: updateSubjectInput): updateSubjectPayload
+  updateTeacher(input: updateTeacherInput): updateTeacherPayload
+  updateTopic(input: updateTopicInput): updateTopicPayload
+  "Update an existing user"
+  updateUser(input: updateUserInput): updateUserPayload
+  updateWithdraw(input: updateWithdrawInput): updateWithdrawPayload
+  upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID, source: String): UploadFile!
+}
+
+type Payments {
+  History: [ComponentBillingHistory]
+  _id: ID!
+  createdAt: DateTime!
+  id: ID!
+  published_at: DateTime
+  updatedAt: DateTime!
+  user: UsersPermissionsUser
+}
+
+type PaymentsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PaymentsConnection {
+  aggregate: PaymentsAggregator
+  groupBy: PaymentsGroupBy
+  values: [Payments]
+}
+
+type PaymentsConnectionCreatedAt {
+  connection: PaymentsConnection
+  key: DateTime
+}
+
+type PaymentsConnectionId {
+  connection: PaymentsConnection
+  key: ID
+}
+
+type PaymentsConnectionPublished_at {
+  connection: PaymentsConnection
+  key: DateTime
+}
+
+type PaymentsConnectionUpdatedAt {
+  connection: PaymentsConnection
+  key: DateTime
+}
+
+type PaymentsConnectionUser {
+  connection: PaymentsConnection
+  key: ID
+}
+
+type PaymentsConnection_id {
+  connection: PaymentsConnection
+  key: ID
+}
+
+type PaymentsGroupBy {
+  _id: [PaymentsConnection_id]
+  createdAt: [PaymentsConnectionCreatedAt]
+  id: [PaymentsConnectionId]
+  published_at: [PaymentsConnectionPublished_at]
+  updatedAt: [PaymentsConnectionUpdatedAt]
+  user: [PaymentsConnectionUser]
+}
+
+type Plans {
+  _id: ID!
+  amount: Float
+  createdAt: DateTime!
+  days: Int
+  desc: String
+  id: ID!
+  label: String
+  name: String
+  period: String
+  published_at: DateTime
+  subcriptions(limit: Int, sort: String, start: Int, where: JSON): [Subcription]
+  updatedAt: DateTime!
+}
+
+type PlansAggregator {
+  avg: PlansAggregatorAvg
+  count: Int
+  max: PlansAggregatorMax
+  min: PlansAggregatorMin
+  sum: PlansAggregatorSum
+  totalCount: Int
+}
+
+type PlansAggregatorAvg {
+  amount: Float
+  days: Float
+}
+
+type PlansAggregatorMax {
+  amount: Float
+  days: Float
+}
+
+type PlansAggregatorMin {
+  amount: Float
+  days: Float
+}
+
+type PlansAggregatorSum {
+  amount: Float
+  days: Float
+}
+
+type PlansConnection {
+  aggregate: PlansAggregator
+  groupBy: PlansGroupBy
+  values: [Plans]
+}
+
+type PlansConnectionAmount {
+  connection: PlansConnection
+  key: Float
+}
+
+type PlansConnectionCreatedAt {
+  connection: PlansConnection
+  key: DateTime
+}
+
+type PlansConnectionDays {
+  connection: PlansConnection
+  key: Int
+}
+
+type PlansConnectionDesc {
+  connection: PlansConnection
+  key: String
+}
+
+type PlansConnectionId {
+  connection: PlansConnection
+  key: ID
+}
+
+type PlansConnectionLabel {
+  connection: PlansConnection
+  key: String
+}
+
+type PlansConnectionName {
+  connection: PlansConnection
+  key: String
+}
+
+type PlansConnectionPeriod {
+  connection: PlansConnection
+  key: String
+}
+
+type PlansConnectionPublished_at {
+  connection: PlansConnection
+  key: DateTime
+}
+
+type PlansConnectionUpdatedAt {
+  connection: PlansConnection
+  key: DateTime
+}
+
+type PlansConnection_id {
+  connection: PlansConnection
+  key: ID
+}
+
+type PlansGroupBy {
+  _id: [PlansConnection_id]
+  amount: [PlansConnectionAmount]
+  createdAt: [PlansConnectionCreatedAt]
+  days: [PlansConnectionDays]
+  desc: [PlansConnectionDesc]
+  id: [PlansConnectionId]
+  label: [PlansConnectionLabel]
+  name: [PlansConnectionName]
+  period: [PlansConnectionPeriod]
+  published_at: [PlansConnectionPublished_at]
+  updatedAt: [PlansConnectionUpdatedAt]
+}
+
+type Profile {
+  _id: ID!
+  about: String
+  avator: String
+  createdAt: DateTime!
+  dislayName: String
+  id: ID!
+  location: String
+  updatedAt: DateTime!
+  user: UsersPermissionsUser
+}
+
+type ProfileAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ProfileConnection {
+  aggregate: ProfileAggregator
+  groupBy: ProfileGroupBy
+  values: [Profile]
+}
+
+type ProfileConnectionAbout {
+  connection: ProfileConnection
+  key: String
+}
+
+type ProfileConnectionAvator {
+  connection: ProfileConnection
+  key: String
+}
+
+type ProfileConnectionCreatedAt {
+  connection: ProfileConnection
+  key: DateTime
+}
+
+type ProfileConnectionDislayName {
+  connection: ProfileConnection
+  key: String
+}
+
+type ProfileConnectionId {
+  connection: ProfileConnection
+  key: ID
+}
+
+type ProfileConnectionLocation {
+  connection: ProfileConnection
+  key: String
+}
+
+type ProfileConnectionUpdatedAt {
+  connection: ProfileConnection
+  key: DateTime
+}
+
+type ProfileConnectionUser {
+  connection: ProfileConnection
+  key: ID
+}
+
+type ProfileConnection_id {
+  connection: ProfileConnection
+  key: ID
+}
+
+type ProfileGroupBy {
+  _id: [ProfileConnection_id]
+  about: [ProfileConnectionAbout]
+  avator: [ProfileConnectionAvator]
+  createdAt: [ProfileConnectionCreatedAt]
+  dislayName: [ProfileConnectionDislayName]
+  id: [ProfileConnectionId]
+  location: [ProfileConnectionLocation]
+  updatedAt: [ProfileConnectionUpdatedAt]
+  user: [ProfileConnectionUser]
+}
+
+type Query {
+  answer(id: ID!, publicationState: PublicationState): Answers
+  answers(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Answers]
+  answersConnection(limit: Int, sort: String, start: Int, where: JSON): AnswersConnection
+  blog(id: ID!, publicationState: PublicationState): Blogs
+  blogs(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Blogs]
+  blogsConnection(limit: Int, sort: String, start: Int, where: JSON): BlogsConnection
+  comment(id: ID!, publicationState: PublicationState): Comments
+  comments(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Comments]
+  commentsConnection(limit: Int, sort: String, start: Int, where: JSON): CommentsConnection
+  feedback(id: ID!, publicationState: PublicationState): Feedback
+  feedbacks(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Feedback]
+  feedbacksConnection(limit: Int, sort: String, start: Int, where: JSON): FeedbackConnection
+  files(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UploadFile]
+  filesConnection(limit: Int, sort: String, start: Int, where: JSON): UploadFileConnection
+  me: UsersPermissionsMe
+  payment(id: ID!, publicationState: PublicationState): Payments
+  payments(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Payments]
+  paymentsConnection(limit: Int, sort: String, start: Int, where: JSON): PaymentsConnection
+  plan(id: ID!, publicationState: PublicationState): Plans
+  plans(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Plans]
+  plansConnection(limit: Int, sort: String, start: Int, where: JSON): PlansConnection
+  profile(id: ID!, publicationState: PublicationState): Profile
+  profiles(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Profile]
+  profilesConnection(limit: Int, sort: String, start: Int, where: JSON): ProfileConnection
+  question(id: ID!, publicationState: PublicationState): Questions
+  questions(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Questions]
+  questionsConnection(limit: Int, sort: String, start: Int, where: JSON): QuestionsConnection
+  rate(id: ID!, publicationState: PublicationState): Rate
+  rates(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Rate]
+  ratesConnection(limit: Int, sort: String, start: Int, where: JSON): RateConnection
+  reason(id: ID!, publicationState: PublicationState): Reasons
+  reasons(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Reasons]
+  reasonsConnection(limit: Int, sort: String, start: Int, where: JSON): ReasonsConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+  "Retrieve all the existing roles. You can't apply filters on this query."
+  roles(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsRoleConnection
+  subcription(id: ID!, publicationState: PublicationState): Subcription
+  subcriptions(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Subcription]
+  subcriptionsConnection(limit: Int, sort: String, start: Int, where: JSON): SubcriptionConnection
+  subject(id: ID!, publicationState: PublicationState): Subject
+  subjects(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Subject]
+  subjectsConnection(limit: Int, sort: String, start: Int, where: JSON): SubjectConnection
+  teacher(id: ID!, publicationState: PublicationState): Teacher
+  teachers(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Teacher]
+  teachersConnection(limit: Int, sort: String, start: Int, where: JSON): TeacherConnection
+  topic(id: ID!, publicationState: PublicationState): Topic
+  topics(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Topic]
+  topicsConnection(limit: Int, sort: String, start: Int, where: JSON): TopicConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsUserConnection
+  withdraw(id: ID!, publicationState: PublicationState): Withdraw
+  withdraws(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Withdraw]
+  withdrawsConnection(limit: Int, sort: String, start: Int, where: JSON): WithdrawConnection
+}
+
+type Questions {
+  _id: ID!
+  answers(limit: Int, sort: String, start: Int, where: JSON): [Answers]
+  askedby: UsersPermissionsUser
+  body: String
+  comments(limit: Int, sort: String, start: Int, where: JSON): [Comments]
+  createdAt: DateTime!
+  id: ID!
+  images(limit: Int, sort: String, start: Int, where: JSON): [UploadFile]
+  published_at: DateTime
+  slug: String
+  title: String
+  topic: Topic
+  updatedAt: DateTime!
+}
+
+type QuestionsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type QuestionsConnection {
+  aggregate: QuestionsAggregator
+  groupBy: QuestionsGroupBy
+  values: [Questions]
+}
+
+type QuestionsConnectionAskedby {
+  connection: QuestionsConnection
+  key: ID
+}
+
+type QuestionsConnectionBody {
+  connection: QuestionsConnection
+  key: String
+}
+
+type QuestionsConnectionCreatedAt {
+  connection: QuestionsConnection
+  key: DateTime
+}
+
+type QuestionsConnectionId {
+  connection: QuestionsConnection
+  key: ID
+}
+
+type QuestionsConnectionPublished_at {
+  connection: QuestionsConnection
+  key: DateTime
+}
+
+type QuestionsConnectionSlug {
+  connection: QuestionsConnection
+  key: String
+}
+
+type QuestionsConnectionTitle {
+  connection: QuestionsConnection
+  key: String
+}
+
+type QuestionsConnectionTopic {
+  connection: QuestionsConnection
+  key: ID
+}
+
+type QuestionsConnectionUpdatedAt {
+  connection: QuestionsConnection
+  key: DateTime
+}
+
+type QuestionsConnection_id {
+  connection: QuestionsConnection
+  key: ID
+}
+
+type QuestionsGroupBy {
+  _id: [QuestionsConnection_id]
+  askedby: [QuestionsConnectionAskedby]
+  body: [QuestionsConnectionBody]
+  createdAt: [QuestionsConnectionCreatedAt]
+  id: [QuestionsConnectionId]
+  published_at: [QuestionsConnectionPublished_at]
+  slug: [QuestionsConnectionSlug]
+  title: [QuestionsConnectionTitle]
+  topic: [QuestionsConnectionTopic]
+  updatedAt: [QuestionsConnectionUpdatedAt]
+}
+
+type Rate {
+  _id: ID!
+  createdAt: DateTime!
+  id: ID!
+  published_at: DateTime
+  ratedby: UsersPermissionsUser
+  teacher: UsersPermissionsUser
+  updatedAt: DateTime!
+  value: Int
+}
+
+type RateAggregator {
+  avg: RateAggregatorAvg
+  count: Int
+  max: RateAggregatorMax
+  min: RateAggregatorMin
+  sum: RateAggregatorSum
+  totalCount: Int
+}
+
+type RateAggregatorAvg {
+  value: Float
+}
+
+type RateAggregatorMax {
+  value: Float
+}
+
+type RateAggregatorMin {
+  value: Float
+}
+
+type RateAggregatorSum {
+  value: Float
+}
+
+type RateConnection {
+  aggregate: RateAggregator
+  groupBy: RateGroupBy
+  values: [Rate]
+}
+
+type RateConnectionCreatedAt {
+  connection: RateConnection
+  key: DateTime
+}
+
+type RateConnectionId {
+  connection: RateConnection
+  key: ID
+}
+
+type RateConnectionPublished_at {
+  connection: RateConnection
+  key: DateTime
+}
+
+type RateConnectionRatedby {
+  connection: RateConnection
+  key: ID
+}
+
+type RateConnectionTeacher {
+  connection: RateConnection
+  key: ID
+}
+
+type RateConnectionUpdatedAt {
+  connection: RateConnection
+  key: DateTime
+}
+
+type RateConnectionValue {
+  connection: RateConnection
+  key: Int
+}
+
+type RateConnection_id {
+  connection: RateConnection
+  key: ID
+}
+
+type RateGroupBy {
+  _id: [RateConnection_id]
+  createdAt: [RateConnectionCreatedAt]
+  id: [RateConnectionId]
+  published_at: [RateConnectionPublished_at]
+  ratedby: [RateConnectionRatedby]
+  teacher: [RateConnectionTeacher]
+  updatedAt: [RateConnectionUpdatedAt]
+  value: [RateConnectionValue]
+}
+
+type Reasons {
+  _id: ID!
+  createdAt: DateTime!
+  feedbacks(limit: Int, sort: String, start: Int, where: JSON): [Feedback]
+  id: ID!
+  name: String
+  published_at: DateTime
+  rank: Int
+  updatedAt: DateTime!
+}
+
+type ReasonsAggregator {
+  avg: ReasonsAggregatorAvg
+  count: Int
+  max: ReasonsAggregatorMax
+  min: ReasonsAggregatorMin
+  sum: ReasonsAggregatorSum
+  totalCount: Int
+}
+
+type ReasonsAggregatorAvg {
+  rank: Float
+}
+
+type ReasonsAggregatorMax {
+  rank: Float
+}
+
+type ReasonsAggregatorMin {
+  rank: Float
+}
+
+type ReasonsAggregatorSum {
+  rank: Float
+}
+
+type ReasonsConnection {
+  aggregate: ReasonsAggregator
+  groupBy: ReasonsGroupBy
+  values: [Reasons]
+}
+
+type ReasonsConnectionCreatedAt {
+  connection: ReasonsConnection
+  key: DateTime
+}
+
+type ReasonsConnectionId {
+  connection: ReasonsConnection
+  key: ID
+}
+
+type ReasonsConnectionName {
+  connection: ReasonsConnection
+  key: String
+}
+
+type ReasonsConnectionPublished_at {
+  connection: ReasonsConnection
+  key: DateTime
+}
+
+type ReasonsConnectionRank {
+  connection: ReasonsConnection
+  key: Int
+}
+
+type ReasonsConnectionUpdatedAt {
+  connection: ReasonsConnection
+  key: DateTime
+}
+
+type ReasonsConnection_id {
+  connection: ReasonsConnection
+  key: ID
+}
+
+type ReasonsGroupBy {
+  _id: [ReasonsConnection_id]
+  createdAt: [ReasonsConnectionCreatedAt]
+  id: [ReasonsConnectionId]
+  name: [ReasonsConnectionName]
+  published_at: [ReasonsConnectionPublished_at]
+  rank: [ReasonsConnectionRank]
+  updatedAt: [ReasonsConnectionUpdatedAt]
+}
+
+type Subcription {
+  _id: ID!
+  active: Boolean
+  createdAt: DateTime!
+  enddate: Date
+  id: ID!
+  plan: Plans
+  published_at: DateTime
+  startdate: Date
+  updatedAt: DateTime!
+  user: UsersPermissionsUser
+}
+
+type SubcriptionAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type SubcriptionConnection {
+  aggregate: SubcriptionAggregator
+  groupBy: SubcriptionGroupBy
+  values: [Subcription]
+}
+
+type SubcriptionConnectionActive {
+  connection: SubcriptionConnection
+  key: Boolean
+}
+
+type SubcriptionConnectionCreatedAt {
+  connection: SubcriptionConnection
+  key: DateTime
+}
+
+type SubcriptionConnectionEnddate {
+  connection: SubcriptionConnection
+  key: ID
+}
+
+type SubcriptionConnectionId {
+  connection: SubcriptionConnection
+  key: ID
+}
+
+type SubcriptionConnectionPlan {
+  connection: SubcriptionConnection
+  key: ID
+}
+
+type SubcriptionConnectionPublished_at {
+  connection: SubcriptionConnection
+  key: DateTime
+}
+
+type SubcriptionConnectionStartdate {
+  connection: SubcriptionConnection
+  key: ID
+}
+
+type SubcriptionConnectionUpdatedAt {
+  connection: SubcriptionConnection
+  key: DateTime
+}
+
+type SubcriptionConnectionUser {
+  connection: SubcriptionConnection
+  key: ID
+}
+
+type SubcriptionConnection_id {
+  connection: SubcriptionConnection
+  key: ID
+}
+
+type SubcriptionGroupBy {
+  _id: [SubcriptionConnection_id]
+  active: [SubcriptionConnectionActive]
+  createdAt: [SubcriptionConnectionCreatedAt]
+  enddate: [SubcriptionConnectionEnddate]
+  id: [SubcriptionConnectionId]
+  plan: [SubcriptionConnectionPlan]
+  published_at: [SubcriptionConnectionPublished_at]
+  startdate: [SubcriptionConnectionStartdate]
+  updatedAt: [SubcriptionConnectionUpdatedAt]
+  user: [SubcriptionConnectionUser]
+}
+
+type Subject {
+  _id: ID!
+  active: Boolean
+  createdAt: DateTime!
+  grade: String
+  id: ID!
+  name: String
+  published_at: DateTime
+  topics(limit: Int, sort: String, start: Int, where: JSON): [Topic]
+  updatedAt: DateTime!
+}
+
+type SubjectAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type SubjectConnection {
+  aggregate: SubjectAggregator
+  groupBy: SubjectGroupBy
+  values: [Subject]
+}
+
+type SubjectConnectionActive {
+  connection: SubjectConnection
+  key: Boolean
+}
+
+type SubjectConnectionCreatedAt {
+  connection: SubjectConnection
+  key: DateTime
+}
+
+type SubjectConnectionGrade {
+  connection: SubjectConnection
+  key: String
+}
+
+type SubjectConnectionId {
+  connection: SubjectConnection
+  key: ID
+}
+
+type SubjectConnectionName {
+  connection: SubjectConnection
+  key: String
+}
+
+type SubjectConnectionPublished_at {
+  connection: SubjectConnection
+  key: DateTime
+}
+
+type SubjectConnectionUpdatedAt {
+  connection: SubjectConnection
+  key: DateTime
+}
+
+type SubjectConnection_id {
+  connection: SubjectConnection
+  key: ID
+}
+
+type SubjectGroupBy {
+  _id: [SubjectConnection_id]
+  active: [SubjectConnectionActive]
+  createdAt: [SubjectConnectionCreatedAt]
+  grade: [SubjectConnectionGrade]
+  id: [SubjectConnectionId]
+  name: [SubjectConnectionName]
+  published_at: [SubjectConnectionPublished_at]
+  updatedAt: [SubjectConnectionUpdatedAt]
+}
+
+type Teacher {
+  _id: ID!
+  bank: Float
+  createdAt: DateTime!
+  id: ID!
+  phone: String
+  published_at: DateTime
+  updatedAt: DateTime!
+  user: UsersPermissionsUser
+  withdraws(limit: Int, sort: String, start: Int, where: JSON): [Withdraw]
+}
+
+type TeacherAggregator {
+  avg: TeacherAggregatorAvg
+  count: Int
+  max: TeacherAggregatorMax
+  min: TeacherAggregatorMin
+  sum: TeacherAggregatorSum
+  totalCount: Int
+}
+
+type TeacherAggregatorAvg {
+  bank: Float
+}
+
+type TeacherAggregatorMax {
+  bank: Float
+}
+
+type TeacherAggregatorMin {
+  bank: Float
+}
+
+type TeacherAggregatorSum {
+  bank: Float
+}
+
+type TeacherConnection {
+  aggregate: TeacherAggregator
+  groupBy: TeacherGroupBy
+  values: [Teacher]
+}
+
+type TeacherConnectionBank {
+  connection: TeacherConnection
+  key: Float
+}
+
+type TeacherConnectionCreatedAt {
+  connection: TeacherConnection
+  key: DateTime
+}
+
+type TeacherConnectionId {
+  connection: TeacherConnection
+  key: ID
+}
+
+type TeacherConnectionPhone {
+  connection: TeacherConnection
+  key: String
+}
+
+type TeacherConnectionPublished_at {
+  connection: TeacherConnection
+  key: DateTime
+}
+
+type TeacherConnectionUpdatedAt {
+  connection: TeacherConnection
+  key: DateTime
+}
+
+type TeacherConnectionUser {
+  connection: TeacherConnection
+  key: ID
+}
+
+type TeacherConnection_id {
+  connection: TeacherConnection
+  key: ID
+}
+
+type TeacherGroupBy {
+  _id: [TeacherConnection_id]
+  bank: [TeacherConnectionBank]
+  createdAt: [TeacherConnectionCreatedAt]
+  id: [TeacherConnectionId]
+  phone: [TeacherConnectionPhone]
+  published_at: [TeacherConnectionPublished_at]
+  updatedAt: [TeacherConnectionUpdatedAt]
+  user: [TeacherConnectionUser]
+}
+
+type Topic {
+  _id: ID!
+  blogs(limit: Int, sort: String, start: Int, where: JSON): [Blogs]
+  createdAt: DateTime!
+  id: ID!
+  name: String
+  published_at: DateTime
+  questions(limit: Int, sort: String, start: Int, where: JSON): [Questions]
+  subject: Subject
+  updatedAt: DateTime!
+}
+
+type TopicAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TopicConnection {
+  aggregate: TopicAggregator
+  groupBy: TopicGroupBy
+  values: [Topic]
+}
+
+type TopicConnectionCreatedAt {
+  connection: TopicConnection
+  key: DateTime
+}
+
+type TopicConnectionId {
+  connection: TopicConnection
+  key: ID
+}
+
+type TopicConnectionName {
+  connection: TopicConnection
+  key: String
+}
+
+type TopicConnectionPublished_at {
+  connection: TopicConnection
+  key: DateTime
+}
+
+type TopicConnectionSubject {
+  connection: TopicConnection
+  key: ID
+}
+
+type TopicConnectionUpdatedAt {
+  connection: TopicConnection
+  key: DateTime
+}
+
+type TopicConnection_id {
+  connection: TopicConnection
+  key: ID
+}
+
+type TopicGroupBy {
+  _id: [TopicConnection_id]
+  createdAt: [TopicConnectionCreatedAt]
+  id: [TopicConnectionId]
+  name: [TopicConnectionName]
+  published_at: [TopicConnectionPublished_at]
+  subject: [TopicConnectionSubject]
+  updatedAt: [TopicConnectionUpdatedAt]
+}
+
+type UploadFile {
+  _id: ID!
+  alternativeText: String
+  caption: String
+  createdAt: DateTime!
+  ext: String
+  formats: JSON
+  hash: String!
+  height: Int
+  id: ID!
+  mime: String!
+  name: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(limit: Int, sort: String, start: Int, where: JSON): [Morph]
+  size: Float!
+  updatedAt: DateTime!
+  url: String!
+  width: Int
+}
+
+type UploadFileAggregator {
+  avg: UploadFileAggregatorAvg
+  count: Int
+  max: UploadFileAggregatorMax
+  min: UploadFileAggregatorMin
+  sum: UploadFileAggregatorSum
+  totalCount: Int
+}
+
+type UploadFileAggregatorAvg {
+  height: Float
+  size: Float
+  width: Float
+}
+
+type UploadFileAggregatorMax {
+  height: Float
+  size: Float
+  width: Float
+}
+
+type UploadFileAggregatorMin {
+  height: Float
+  size: Float
+  width: Float
+}
+
+type UploadFileAggregatorSum {
+  height: Float
+  size: Float
+  width: Float
+}
+
+type UploadFileConnection {
+  aggregate: UploadFileAggregator
+  groupBy: UploadFileGroupBy
+  values: [UploadFile]
+}
+
+type UploadFileConnectionAlternativeText {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionCaption {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionCreatedAt {
+  connection: UploadFileConnection
+  key: DateTime
+}
+
+type UploadFileConnectionExt {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionFormats {
+  connection: UploadFileConnection
+  key: JSON
+}
+
+type UploadFileConnectionHash {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionHeight {
+  connection: UploadFileConnection
+  key: Int
+}
+
+type UploadFileConnectionId {
+  connection: UploadFileConnection
+  key: ID
+}
+
+type UploadFileConnectionMime {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionName {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionPreviewUrl {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionProvider {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionProvider_metadata {
+  connection: UploadFileConnection
+  key: JSON
+}
+
+type UploadFileConnectionSize {
+  connection: UploadFileConnection
+  key: Float
+}
+
+type UploadFileConnectionUpdatedAt {
+  connection: UploadFileConnection
+  key: DateTime
+}
+
+type UploadFileConnectionUrl {
+  connection: UploadFileConnection
+  key: String
+}
+
+type UploadFileConnectionWidth {
+  connection: UploadFileConnection
+  key: Int
+}
+
+type UploadFileConnection_id {
+  connection: UploadFileConnection
+  key: ID
+}
+
+type UploadFileGroupBy {
+  _id: [UploadFileConnection_id]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  createdAt: [UploadFileConnectionCreatedAt]
+  ext: [UploadFileConnectionExt]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  height: [UploadFileConnectionHeight]
+  id: [UploadFileConnectionId]
+  mime: [UploadFileConnectionMime]
+  name: [UploadFileConnectionName]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+  size: [UploadFileConnectionSize]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  url: [UploadFileConnectionUrl]
+  width: [UploadFileConnectionWidth]
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UsersPermissionsMe {
+  blocked: Boolean
+  confirmed: Boolean
+  email: String!
+  id: ID!
+  role: UsersPermissionsMeRole
+  username: String!
+}
+
+type UsersPermissionsMeRole {
+  description: String
+  id: ID!
+  name: String!
+  type: String
+}
+
+type UsersPermissionsPermission {
+  _id: ID!
+  action: String!
+  controller: String!
+  enabled: Boolean!
+  id: ID!
+  policy: String
+  role: UsersPermissionsRole
+  type: String!
+}
+
+type UsersPermissionsRole {
+  _id: ID!
+  description: String
+  id: ID!
+  name: String!
+  permissions(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsPermission]
+  type: String
+  users(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleConnection {
+  aggregate: UsersPermissionsRoleAggregator
+  groupBy: UsersPermissionsRoleGroupBy
+  values: [UsersPermissionsRole]
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  connection: UsersPermissionsRoleConnection
+  key: String
+}
+
+type UsersPermissionsRoleConnectionId {
+  connection: UsersPermissionsRoleConnection
+  key: ID
+}
+
+type UsersPermissionsRoleConnectionName {
+  connection: UsersPermissionsRoleConnection
+  key: String
+}
+
+type UsersPermissionsRoleConnectionType {
+  connection: UsersPermissionsRoleConnection
+  key: String
+}
+
+type UsersPermissionsRoleConnection_id {
+  connection: UsersPermissionsRoleConnection
+  key: ID
+}
+
+type UsersPermissionsRoleGroupBy {
+  _id: [UsersPermissionsRoleConnection_id]
+  description: [UsersPermissionsRoleConnectionDescription]
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsUser {
+  _id: ID!
+  answers(limit: Int, sort: String, start: Int, where: JSON): [Answers]
+  blocked: Boolean
+  comments(limit: Int, sort: String, start: Int, where: JSON): [Comments]
+  confirmed: Boolean
+  createdAt: DateTime!
+  displayName: String
+  email: String!
+  id: ID!
+  optin: Boolean
+  provider: String
+  questions(limit: Int, sort: String, start: Int, where: JSON): [Questions]
+  role: UsersPermissionsRole
+  subcriptions(limit: Int, sort: String, start: Int, where: JSON): [Subcription]
+  teachers(limit: Int, sort: String, start: Int, where: JSON): [Teacher]
+  updatedAt: DateTime!
+  username: String!
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserConnection {
+  aggregate: UsersPermissionsUserAggregator
+  groupBy: UsersPermissionsUserGroupBy
+  values: [UsersPermissionsUser]
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  connection: UsersPermissionsUserConnection
+  key: Boolean
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  connection: UsersPermissionsUserConnection
+  key: Boolean
+}
+
+type UsersPermissionsUserConnectionCreatedAt {
+  connection: UsersPermissionsUserConnection
+  key: DateTime
+}
+
+type UsersPermissionsUserConnectionDisplayName {
+  connection: UsersPermissionsUserConnection
+  key: String
+}
+
+type UsersPermissionsUserConnectionEmail {
+  connection: UsersPermissionsUserConnection
+  key: String
+}
+
+type UsersPermissionsUserConnectionId {
+  connection: UsersPermissionsUserConnection
+  key: ID
+}
+
+type UsersPermissionsUserConnectionOptin {
+  connection: UsersPermissionsUserConnection
+  key: Boolean
+}
+
+type UsersPermissionsUserConnectionProvider {
+  connection: UsersPermissionsUserConnection
+  key: String
+}
+
+type UsersPermissionsUserConnectionRole {
+  connection: UsersPermissionsUserConnection
+  key: ID
+}
+
+type UsersPermissionsUserConnectionUpdatedAt {
+  connection: UsersPermissionsUserConnection
+  key: DateTime
+}
+
+type UsersPermissionsUserConnectionUsername {
+  connection: UsersPermissionsUserConnection
+  key: String
+}
+
+type UsersPermissionsUserConnection_id {
+  connection: UsersPermissionsUserConnection
+  key: ID
+}
+
+type UsersPermissionsUserGroupBy {
+  _id: [UsersPermissionsUserConnection_id]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  createdAt: [UsersPermissionsUserConnectionCreatedAt]
+  displayName: [UsersPermissionsUserConnectionDisplayName]
+  email: [UsersPermissionsUserConnectionEmail]
+  id: [UsersPermissionsUserConnectionId]
+  optin: [UsersPermissionsUserConnectionOptin]
+  provider: [UsersPermissionsUserConnectionProvider]
+  role: [UsersPermissionsUserConnectionRole]
+  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
+  username: [UsersPermissionsUserConnectionUsername]
+}
+
+type Withdraw {
+  _id: ID!
+  amount: Float
+  createdAt: DateTime!
+  id: ID!
+  published_at: DateTime
+  reference: JSON
+  teacher: Teacher
+  updatedAt: DateTime!
+}
+
+type WithdrawAggregator {
+  avg: WithdrawAggregatorAvg
+  count: Int
+  max: WithdrawAggregatorMax
+  min: WithdrawAggregatorMin
+  sum: WithdrawAggregatorSum
+  totalCount: Int
+}
+
+type WithdrawAggregatorAvg {
+  amount: Float
+}
+
+type WithdrawAggregatorMax {
+  amount: Float
+}
+
+type WithdrawAggregatorMin {
+  amount: Float
+}
+
+type WithdrawAggregatorSum {
+  amount: Float
+}
+
+type WithdrawConnection {
+  aggregate: WithdrawAggregator
+  groupBy: WithdrawGroupBy
+  values: [Withdraw]
+}
+
+type WithdrawConnectionAmount {
+  connection: WithdrawConnection
+  key: Float
+}
+
+type WithdrawConnectionCreatedAt {
+  connection: WithdrawConnection
+  key: DateTime
+}
+
+type WithdrawConnectionId {
+  connection: WithdrawConnection
+  key: ID
+}
+
+type WithdrawConnectionPublished_at {
+  connection: WithdrawConnection
+  key: DateTime
+}
+
+type WithdrawConnectionReference {
+  connection: WithdrawConnection
+  key: JSON
+}
+
+type WithdrawConnectionTeacher {
+  connection: WithdrawConnection
+  key: ID
+}
+
+type WithdrawConnectionUpdatedAt {
+  connection: WithdrawConnection
+  key: DateTime
+}
+
+type WithdrawConnection_id {
+  connection: WithdrawConnection
+  key: ID
+}
+
+type WithdrawGroupBy {
+  _id: [WithdrawConnection_id]
+  amount: [WithdrawConnectionAmount]
+  createdAt: [WithdrawConnectionCreatedAt]
+  id: [WithdrawConnectionId]
+  published_at: [WithdrawConnectionPublished_at]
+  reference: [WithdrawConnectionReference]
+  teacher: [WithdrawConnectionTeacher]
+  updatedAt: [WithdrawConnectionUpdatedAt]
+}
+
+type createAnswerPayload {
+  answer: Answers
+}
+
+type createBlogPayload {
+  blog: Blogs
+}
+
+type createCommentPayload {
+  comment: Comments
+}
+
+type createFeedbackPayload {
+  feedback: Feedback
+}
+
+type createPaymentPayload {
+  payment: Payments
+}
+
+type createPlanPayload {
+  plan: Plans
+}
+
+type createProfilePayload {
+  profile: Profile
+}
+
+type createQuestionPayload {
+  question: Questions
+}
+
+type createRatePayload {
+  rate: Rate
+}
+
+type createReasonPayload {
+  reason: Reasons
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+type createSubcriptionPayload {
+  subcription: Subcription
+}
+
+type createSubjectPayload {
+  subject: Subject
+}
+
+type createTeacherPayload {
+  teacher: Teacher
+}
+
+type createTopicPayload {
+  topic: Topic
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+type createWithdrawPayload {
+  withdraw: Withdraw
+}
+
+type deleteAnswerPayload {
+  answer: Answers
+}
+
+type deleteBlogPayload {
+  blog: Blogs
+}
+
+type deleteCommentPayload {
+  comment: Comments
+}
+
+type deleteFeedbackPayload {
+  feedback: Feedback
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type deletePaymentPayload {
+  payment: Payments
+}
+
+type deletePlanPayload {
+  plan: Plans
+}
+
+type deleteProfilePayload {
+  profile: Profile
+}
+
+type deleteQuestionPayload {
+  question: Questions
+}
+
+type deleteRatePayload {
+  rate: Rate
+}
+
+type deleteReasonPayload {
+  reason: Reasons
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type deleteSubcriptionPayload {
+  subcription: Subcription
+}
+
+type deleteSubjectPayload {
+  subject: Subject
+}
+
+type deleteTeacherPayload {
+  teacher: Teacher
+}
+
+type deleteTopicPayload {
+  topic: Topic
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+type deleteWithdrawPayload {
+  withdraw: Withdraw
+}
+
+type updateAnswerPayload {
+  answer: Answers
+}
+
+type updateBlogPayload {
+  blog: Blogs
+}
+
+type updateCommentPayload {
+  comment: Comments
+}
+
+type updateFeedbackPayload {
+  feedback: Feedback
+}
+
+type updatePaymentPayload {
+  payment: Payments
+}
+
+type updatePlanPayload {
+  plan: Plans
+}
+
+type updateProfilePayload {
+  profile: Profile
+}
+
+type updateQuestionPayload {
+  question: Questions
+}
+
+type updateRatePayload {
+  rate: Rate
+}
+
+type updateReasonPayload {
+  reason: Reasons
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+type updateSubcriptionPayload {
+  subcription: Subcription
+}
+
+type updateSubjectPayload {
+  subject: Subject
+}
+
+type updateTeacherPayload {
+  teacher: Teacher
+}
+
+type updateTopicPayload {
+  topic: Topic
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+type updateWithdrawPayload {
+  withdraw: Withdraw
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+input AnswerInput {
+  body: String
+  created_by: ID
+  image: [ID]
+  published_at: DateTime
+  question: ID
+  updated_by: ID
+  user: ID
+}
+
+input BlogInput {
+  approved: Boolean
+  body: String
+  comment: ID
+  created_by: ID
+  owner: ID
+  published_at: DateTime
+  title: String
+  topic: ID
+  updated_by: ID
+}
+
+input CommentInput {
+  comment: String
+  commentor: ID
+  created_by: ID
+  image: [ID]
+  published_at: DateTime
+  question: ID
+  updated_by: ID
+}
+
+input ComponentBillingHistoryInput {
+  amountpaid: Float
+  endDate: Date
+  paymentData: Date
+  plan: ID
+  receipt: String
+}
+
+input FeedbackInput {
+  answer: ID
+  comment: String
+  created_by: ID
+  published_at: DateTime
+  ratedby: ID
+  rating: Int
+  reason: ID
+  updated_by: ID
+}
+
+input FileInfoInput {
+  alternativeText: String
+  caption: String
+  name: String
+}
+
+input FileInput {
+  alternativeText: String
+  caption: String
+  created_by: ID
+  ext: String
+  formats: JSON
+  hash: String!
+  height: Int
+  mime: String!
+  name: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  size: Float!
+  updated_by: ID
+  url: String!
+  width: Int
+}
+
+input InputID {
+  id: ID!
+}
+
+input PaymentInput {
+  History: [ComponentBillingHistoryInput]
+  created_by: ID
+  published_at: DateTime
+  updated_by: ID
+  user: ID
+}
+
+input PlanInput {
+  amount: Float
+  created_by: ID
+  days: Int
+  desc: String
+  label: String
+  name: String
+  period: String
+  published_at: DateTime
+  subcriptions: [ID]
+  updated_by: ID
+}
+
+input ProfileInput {
+  about: String
+  avator: String
+  created_by: ID
+  dislayName: String
+  location: String
+  updated_by: ID
+  user: ID
+}
+
+input QuestionInput {
+  answers: [ID]
+  askedby: ID
+  body: String
+  comments: [ID]
+  created_by: ID
+  images: [ID]
+  published_at: DateTime
+  slug: String
+  title: String
+  topic: ID
+  updated_by: ID
+}
+
+input RateInput {
+  created_by: ID
+  published_at: DateTime
+  ratedby: ID
+  teacher: ID
+  updated_by: ID
+  value: Int
+}
+
+input ReasonInput {
+  created_by: ID
+  feedbacks: [ID]
+  name: String
+  published_at: DateTime
+  rank: Int
+  updated_by: ID
+}
+
+input RoleInput {
+  created_by: ID
+  description: String
+  name: String!
+  permissions: [ID]
+  type: String
+  updated_by: ID
+  users: [ID]
+}
+
+input SubcriptionInput {
+  active: Boolean
+  created_by: ID
+  enddate: Date
+  plan: ID
+  published_at: DateTime
+  startdate: Date
+  updated_by: ID
+  user: ID
+}
+
+input SubjectInput {
+  active: Boolean
+  created_by: ID
+  grade: String
+  name: String
+  published_at: DateTime
+  topics: [ID]
+  updated_by: ID
+}
+
+input TeacherInput {
+  bank: Float
+  created_by: ID
+  phone: String
+  published_at: DateTime
+  updated_by: ID
+  user: ID
+  withdraws: [ID]
+}
+
+input TopicInput {
+  blogs: [ID]
+  created_by: ID
+  name: String
+  published_at: DateTime
+  questions: [ID]
+  subject: ID
+  updated_by: ID
+}
+
+input UserInput {
+  answers: [ID]
+  blocked: Boolean
+  comments: [ID]
+  confirmationToken: String
+  confirmed: Boolean
+  created_by: ID
+  displayName: String
+  email: String!
+  optin: Boolean
+  password: String
+  provider: String
+  questions: [ID]
+  resetPasswordToken: String
+  role: ID
+  subcriptions: [ID]
+  teachers: [ID]
+  updated_by: ID
+  username: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+input UsersPermissionsRegisterInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+input WithdrawInput {
+  amount: Float
+  created_by: ID
+  published_at: DateTime
+  reference: JSON
+  teacher: ID
+  updated_by: ID
+}
+
+input createAnswerInput {
+  data: AnswerInput
+}
+
+input createBlogInput {
+  data: BlogInput
+}
+
+input createCommentInput {
+  data: CommentInput
+}
+
+input createFeedbackInput {
+  data: FeedbackInput
+}
+
+input createPaymentInput {
+  data: PaymentInput
+}
+
+input createPlanInput {
+  data: PlanInput
+}
+
+input createProfileInput {
+  data: ProfileInput
+}
+
+input createQuestionInput {
+  data: QuestionInput
+}
+
+input createRateInput {
+  data: RateInput
+}
+
+input createReasonInput {
+  data: ReasonInput
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+input createSubcriptionInput {
+  data: SubcriptionInput
+}
+
+input createSubjectInput {
+  data: SubjectInput
+}
+
+input createTeacherInput {
+  data: TeacherInput
+}
+
+input createTopicInput {
+  data: TopicInput
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+input createWithdrawInput {
+  data: WithdrawInput
+}
+
+input deleteAnswerInput {
+  where: InputID
+}
+
+input deleteBlogInput {
+  where: InputID
+}
+
+input deleteCommentInput {
+  where: InputID
+}
+
+input deleteFeedbackInput {
+  where: InputID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+input deletePaymentInput {
+  where: InputID
+}
+
+input deletePlanInput {
+  where: InputID
+}
+
+input deleteProfileInput {
+  where: InputID
+}
+
+input deleteQuestionInput {
+  where: InputID
+}
+
+input deleteRateInput {
+  where: InputID
+}
+
+input deleteReasonInput {
+  where: InputID
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+input deleteSubcriptionInput {
+  where: InputID
+}
+
+input deleteSubjectInput {
+  where: InputID
+}
+
+input deleteTeacherInput {
+  where: InputID
+}
+
+input deleteTopicInput {
+  where: InputID
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+input deleteWithdrawInput {
+  where: InputID
+}
+
+input editAnswerInput {
+  body: String
+  created_by: ID
+  image: [ID]
+  published_at: DateTime
+  question: ID
+  updated_by: ID
+  user: ID
+}
+
+input editBlogInput {
+  approved: Boolean
+  body: String
+  comment: ID
+  created_by: ID
+  owner: ID
+  published_at: DateTime
+  title: String
+  topic: ID
+  updated_by: ID
+}
+
+input editCommentInput {
+  comment: String
+  commentor: ID
+  created_by: ID
+  image: [ID]
+  published_at: DateTime
+  question: ID
+  updated_by: ID
+}
+
+input editComponentBillingHistoryInput {
+  amountpaid: Float
+  endDate: Date
+  id: ID
+  paymentData: Date
+  plan: ID
+  receipt: String
+}
+
+input editFeedbackInput {
+  answer: ID
+  comment: String
+  created_by: ID
+  published_at: DateTime
+  ratedby: ID
+  rating: Int
+  reason: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  alternativeText: String
+  caption: String
+  created_by: ID
+  ext: String
+  formats: JSON
+  hash: String
+  height: Int
+  mime: String
+  name: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  size: Float
+  updated_by: ID
+  url: String
+  width: Int
+}
+
+input editPaymentInput {
+  History: [editComponentBillingHistoryInput]
+  created_by: ID
+  published_at: DateTime
+  updated_by: ID
+  user: ID
+}
+
+input editPlanInput {
+  amount: Float
+  created_by: ID
+  days: Int
+  desc: String
+  label: String
+  name: String
+  period: String
+  published_at: DateTime
+  subcriptions: [ID]
+  updated_by: ID
+}
+
+input editProfileInput {
+  about: String
+  avator: String
+  created_by: ID
+  dislayName: String
+  location: String
+  updated_by: ID
+  user: ID
+}
+
+input editQuestionInput {
+  answers: [ID]
+  askedby: ID
+  body: String
+  comments: [ID]
+  created_by: ID
+  images: [ID]
+  published_at: DateTime
+  slug: String
+  title: String
+  topic: ID
+  updated_by: ID
+}
+
+input editRateInput {
+  created_by: ID
+  published_at: DateTime
+  ratedby: ID
+  teacher: ID
+  updated_by: ID
+  value: Int
+}
+
+input editReasonInput {
+  created_by: ID
+  feedbacks: [ID]
+  name: String
+  published_at: DateTime
+  rank: Int
+  updated_by: ID
+}
+
+input editRoleInput {
+  created_by: ID
+  description: String
+  name: String
+  permissions: [ID]
+  type: String
+  updated_by: ID
+  users: [ID]
+}
+
+input editSubcriptionInput {
+  active: Boolean
+  created_by: ID
+  enddate: Date
+  plan: ID
+  published_at: DateTime
+  startdate: Date
+  updated_by: ID
+  user: ID
+}
+
+input editSubjectInput {
+  active: Boolean
+  created_by: ID
+  grade: String
+  name: String
+  published_at: DateTime
+  topics: [ID]
+  updated_by: ID
+}
+
+input editTeacherInput {
+  bank: Float
+  created_by: ID
+  phone: String
+  published_at: DateTime
+  updated_by: ID
+  user: ID
+  withdraws: [ID]
+}
+
+input editTopicInput {
+  blogs: [ID]
+  created_by: ID
+  name: String
+  published_at: DateTime
+  questions: [ID]
+  subject: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  answers: [ID]
+  blocked: Boolean
+  comments: [ID]
+  confirmationToken: String
+  confirmed: Boolean
+  created_by: ID
+  displayName: String
+  email: String
+  optin: Boolean
+  password: String
+  provider: String
+  questions: [ID]
+  resetPasswordToken: String
+  role: ID
+  subcriptions: [ID]
+  teachers: [ID]
+  updated_by: ID
+  username: String
+}
+
+input editWithdrawInput {
+  amount: Float
+  created_by: ID
+  published_at: DateTime
+  reference: JSON
+  teacher: ID
+  updated_by: ID
+}
+
+input updateAnswerInput {
+  data: editAnswerInput
+  where: InputID
+}
+
+input updateBlogInput {
+  data: editBlogInput
+  where: InputID
+}
+
+input updateCommentInput {
+  data: editCommentInput
+  where: InputID
+}
+
+input updateFeedbackInput {
+  data: editFeedbackInput
+  where: InputID
+}
+
+input updatePaymentInput {
+  data: editPaymentInput
+  where: InputID
+}
+
+input updatePlanInput {
+  data: editPlanInput
+  where: InputID
+}
+
+input updateProfileInput {
+  data: editProfileInput
+  where: InputID
+}
+
+input updateQuestionInput {
+  data: editQuestionInput
+  where: InputID
+}
+
+input updateRateInput {
+  data: editRateInput
+  where: InputID
+}
+
+input updateReasonInput {
+  data: editReasonInput
+  where: InputID
+}
+
+input updateRoleInput {
+  data: editRoleInput
+  where: InputID
+}
+
+input updateSubcriptionInput {
+  data: editSubcriptionInput
+  where: InputID
+}
+
+input updateSubjectInput {
+  data: editSubjectInput
+  where: InputID
+}
+
+input updateTeacherInput {
+  data: editTeacherInput
+  where: InputID
+}
+
+input updateTopicInput {
+  data: editTopicInput
+  where: InputID
+}
+
+input updateUserInput {
+  data: editUserInput
+  where: InputID
+}
+
+input updateWithdrawInput {
+  data: editWithdrawInput
+  where: InputID
+}
+
+
+"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
+scalar JSON
+
+"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar DateTime
+
+"A time string with format: HH:mm:ss.SSS"
+scalar Time
+
+"A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar Date
+
+"The `Long` scalar type represents 52-bit integers"
+scalar Long
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload

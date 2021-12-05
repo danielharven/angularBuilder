@@ -14,9 +14,20 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(req)
     }
     if(!req.headers.get('Authorization')){
-      const authReq = req.clone({
+      let authReq = req.clone({
         headers: req.headers.set('Authorization', 'Bearer '+authToken)
       });
+      authReq = authReq.clone({
+        headers: authReq.headers.delete('x-requested-with')
+      });
+      // send cloned request with header to the next handler.
+      return next.handle(authReq);
+    }
+    if(req.headers.get('x-requested-with')){
+      const authReq = req.clone({
+        headers: req.headers.delete('x-requested-with')
+      });
+      authReq.headers.set('Authorization', 'Bearer '+authToken)
       // send cloned request with header to the next handler.
       return next.handle(authReq);
     }

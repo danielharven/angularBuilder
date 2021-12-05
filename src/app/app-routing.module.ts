@@ -28,6 +28,7 @@ import { PricingPlansComponent } from './components/pricing-plans/pricing-plans.
 import { AskQuestionComponent } from './components/ask-question/ask-question.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { SettingsComponent } from './components/profile/settings/settings.component'
+import { QuestionsDetailsComponent } from './components/questions-details/questions-details.component'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -104,6 +105,18 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: { title: 'Ask' },
         component: AskQuestionComponent,
+      },
+      {
+        path: 'question-details/:id/:title',
+        canActivate: [AuthGuard],
+        data: { title: 'Full question' },
+        component: QuestionsDetailsComponent,
+      },
+      {
+        path: 'question-details/:id/',
+        canActivate: [AuthGuard],
+        data: { title: 'Full question' },
+        component: QuestionsDetailsComponent,
       },
       {
         path: 'profile',

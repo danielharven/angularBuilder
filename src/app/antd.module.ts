@@ -63,6 +63,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzAnchorModule } from 'ng-zorro-antd/anchor'
 import { NzBackTopModule } from 'ng-zorro-antd/back-top'
 import { NzDividerModule } from 'ng-zorro-antd/divider'
+import { NzImageModule } from 'ng-zorro-antd/image'
 
 /**
  * AntDesign Icons
@@ -122,6 +123,7 @@ const MODULES = [
   NzTagModule,
   NzTimelineModule,
   NzToolTipModule,
+  NzToolTipModule,
   NzTreeModule,
   NzAlertModule,
   NzDrawerModule,
@@ -136,6 +138,7 @@ const MODULES = [
   NzAnchorModule,
   NzBackTopModule,
   NzDividerModule,
+  NzImageModule
 ]
 
 @NgModule({

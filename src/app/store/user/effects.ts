@@ -42,7 +42,7 @@ export class UserEffects implements OnInitEffects {
           map(response => {
             if (response && response.jwt) {
               store.set('accessToken', response.jwt)
-              this.notification.success('Logged In', 'You have successfully logged in!')
+              this.notification.success('Logged In', 'You have successfully logged in!');
               return new UserActions.LoadCurrentAccount()
             }
             this.notification.warning('Auth Failed', response)

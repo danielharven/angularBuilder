@@ -1,0 +1,90 @@
+<!-- ================================
+         START QUESTION AREA
+================================= -->
+<section class="question-area pt-80px pb-30px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 px-0">
+        <div class="question-main-bar border-left border-left-gray pb-50px">
+          <div class="filters pb-4 pl-3 d-flex align-items-center justify-content-between">
+            <div class="mr-3">
+              <h3 class="fs-18 fw-medium">All Questions</h3>
+              <p class="pt-1 fs-14 fw-medium lh-20">{{totalQuestions}} questions</p>
+            </div>
+            <div class="filter-option-boxs w-20">
+              <nz-select
+                nzPlaceHolder="Select Topics"
+                nzAllowClear
+                nzShowSearch
+                nzServerSearch
+                [(ngModel)]="selectTopic"
+                (nzOnSearch)="onSearchTopic($event)"
+              >
+                <ng-container *ngFor="let o of topics">
+                  <nz-option *ngIf="!isLoading" [nzValue]="o.id" [nzLabel]="o.name+' - '+ o.subject.name+' - '+o.subject.grade"></nz-option>
+                </ng-container>
+                <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+                  <i nz-icon nzType="loading" class="loading-icon"></i>
+                  Loading Data...
+                </nz-option>
+              </nz-select>
+            </div><!-- end filter-option-box -->
+          </div><!-- end filters -->
+          <ng-container *ngFor='let x of questions'>
+            <div class="questions-snippet border-top border-top-gray">
+              <div class="media media-card rounded-0 shadow-none mb-0 bg-transparent p-3 border-bottom border-bottom-gray">
+<!--                <div class="votes text-center votes-2">-->
+<!--                  <div class="vote-block">-->
+<!--                    <span class="vote-counts d-block text-center pr-0 lh-20 fw-medium">3</span>-->
+<!--                    <span class="vote-text d-block fs-13 lh-18">votes</span>-->
+<!--                  </div>-->
+<!--                  <div class="answer-block answered my-2">-->
+<!--                    <span class="answer-counts d-block lh-20 fw-medium">3</span>-->
+<!--                    <span class="answer-text d-block fs-13 lh-18">answers</span>-->
+<!--                  </div>-->
+<!--                  <div class="view-block">-->
+<!--                    <span class="view-counts d-block lh-20 fw-medium">12</span>-->
+<!--                    <span class="view-text d-block fs-13 lh-18">views</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+                <div class="media-body">
+                  <h5 class="mb-2 fw-medium"><a [routerLink]="['/question-details',x.id,x?.slug]">{{x?.title}}</a></h5>
+                  <p class="mb-2 truncate lh-20 fs-15">{{x?.body}}</p>
+                  <div class="tags">
+                    <a href="#" class="tag-link">{{x.topic?.subject?.name}}</a>
+                    <a href="#" class="tag-link">{{x.topic?.subject?.grade}}</a>
+                    <a href="#" class="tag-link">{{x?.topic?.name}}</a>
+                  </div>
+                  <div class="media media-card user-media align-items-center px-0 border-bottom-0 pb-0">
+                    <a href="user-profile.html" class="media-img d-block">
+                      <img src="assets/images/img3.jpg" alt="avatar">
+                    </a>
+                    <div class="media-body d-flex flex-wrap align-items-center justify-content-between">
+                      <div>
+                        <h5 class="pb-1"><a >{{x?.askedby?.displayName}}</a></h5>
+                      </div>
+                      <small class="meta d-block text-right">
+                        <span class="text-black d-block lh-18">asked</span>
+                        <span class="d-block lh-18 fs-12">{{x.createdAt|dateAgo}}</span>
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- end media -->
+            </div><!-- end questions-snippet -->
+          </ng-container>
+
+          <div class="pager d-flex flex-wrap align-items-center justify-content-between pt-30px px-3">
+            <div>
+                <nz-pagination (nzPageIndexChange)='indexChange($event)'  [nzTotal]="totalQuestions" nzShowSizeChanger [nzPageSize]="limit"></nz-pagination>
+              <p class="fs-13 pt-2">Showing {{listNumber}}-{{listLimit}} results of {{totalQuestions}} questions</p>
+            </div>
+          </div>
+        </div><!-- end question-main-bar -->
+      </div><!-- end col-lg-7 -->
+    </div><!-- end row -->
+  </div><!-- end container -->
+</section><!-- end question-area -->
+<!-- ================================
+         END QUESTION AREA
+================================= -->

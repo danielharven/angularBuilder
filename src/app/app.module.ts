@@ -107,12 +107,14 @@ export function fieldMatchValidator(control: AbstractControl) {
     },
     jwtAuthService,
     configureGraphQL({
-      url: environment.url+"/graphql" // <-- configure GraphQL
+      url: environment.url + '/graphql', // <-- configure GraphQL
     }),
     // locale providers
     ...LOCALE_PROVIDERS,
 
   ],
   bootstrap: [AppComponent],
+  exports: [
+  ],
 })
 export class AppModule {}
