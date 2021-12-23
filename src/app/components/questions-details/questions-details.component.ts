@@ -17,7 +17,7 @@ export class QuestionsDetailsComponent implements OnInit {
   answerForm: FormGroup
   shareUrl = ''
   myUploadFilesComments: any=[]
-  myUploadFilesAnswers: any=[]
+
 
   myModules = {
     toolbar: [
@@ -54,6 +54,7 @@ export class QuestionsDetailsComponent implements OnInit {
     this.getQuestionDetails()
     this.setupForms()
   }
+
  async getQuestionDetails(){
     let id =this.quetion_id
    let y = await this.utility.graphqlRequests(this.utility.queries.getQuestionDetails({id}))
@@ -122,7 +123,6 @@ export class QuestionsDetailsComponent implements OnInit {
     this.commentImages = []
     this.answerImages = []
     this.myUploadFilesComments = []
-    this.myUploadFilesAnswers = []
     this.getQuestionDetails()
     this.commentForm.patchValue({
       comment:''

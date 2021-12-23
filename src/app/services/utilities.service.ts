@@ -63,6 +63,14 @@ export class UtilitiesService {
         confirmButtonText: 'close'
       })
     },
+    info:(msg)=>{
+      Swal.fire({
+        title: 'Information!',
+        text: msg,
+        icon: 'info',
+        confirmButtonText: 'OK'
+      })
+    },
     error:(msg)=>{
       console.log('inside i think',msg)
       Swal.fire({
@@ -164,6 +172,28 @@ query{
       `
       return x;
     },
+    getAnswers:(qid): string=>{
+      let x = `query{
+    answers(where: {
+        question:{
+            id:"${qid}"
+        }
+    }){
+        body
+        user{
+            displayName
+        }
+        createdAt
+        id
+        image{
+            url
+        }
+    }
+}
+
+      `
+      return x;
+    },
     getPlans:(): string=>{
       let x = `
 query{
@@ -236,6 +266,48 @@ query {
 }`
       return x;
     },
+    getTutorialDetails:({ id }): string=>{
+      let x = `
+query {
+    blog(
+        id:"${id}"
+    ){
+    comments{
+            id
+            commentor{
+                displayName
+            }
+            comment
+            createdAt
+              image{
+                url
+            }
+        }
+         id
+        title
+        body
+        slug
+        owner{
+            displayName
+            id
+        }
+        createdAt
+        topic{
+            image{
+                url
+            }
+            subject{
+                name
+                grade
+                id
+            }
+            name
+            id
+        }
+    }
+}`
+      return x;
+    },
     getPaginatedQuestions:({limit,start}): string=>{
       let x = `
   query {
@@ -266,6 +338,73 @@ query {
       `
       return x;
     },
+    getPaginatedTutorials:({limit,start}): string=>{
+      let x = `
+ query {
+    blogs(
+        limit:${limit}
+        start:${start}
+        sort:"createdAt:desc"
+    ){
+        id
+        title
+        body
+        slug
+        owner{
+            displayName
+            id
+        }
+        createdAt
+        topic{
+        image{
+                url
+            }
+            subject{
+                name
+                grade
+                id
+            }
+            name
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
+    getSearchTutorials:(search): string=>{
+      let x = `
+ query {
+    blogs(
+        sort:"createdAt:desc"
+        where:{_or:[{ title_contains:"${search}"},{topic:{name_contains:"${search}"}}]
+        }
+    ){
+        id
+        title
+        slug
+        owner{
+            displayName
+            id
+        }
+        createdAt
+        topic{
+        image{
+                url
+            }
+            subject{
+                name
+                grade
+                id
+            }
+            name
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
     createQuestion:({body,title,topic,askedby}): string=>{
       let x = `
       mutation {
@@ -283,12 +422,49 @@ query {
       `
       return x;
     },
+    createBlog:({body,title,topic,owner}): string=>{
+      let x = `
+      mutation {
+    createBlog(
+        input:
+        {data: {
+            body: "${body}",
+            owner: "${owner}"
+            title: "${title}",
+            topic: "${topic}",}}
+    ){
+        blog{
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
     createComment:({comment,commentor,question}): string=>{
       let x = `
      mutation {
     createComment(
         input: {data: {
             question: "${question}"
+            commentor: "${commentor}"
+            comment: "${comment}"
+        }}
+    ){
+        comment{
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
+    createTutorialComment:({comment,commentor,question}): string=>{
+      let x = `
+     mutation {
+    createComment(
+        input: {data: {
+            blog: "${question}"
             commentor: "${commentor}"
             comment: "${comment}"
         }}
@@ -330,10 +506,23 @@ query {
       `
       return x;
     },
+    countTutorials:(): string=>{
+      let x = `
+query {
+   blogsConnection{
+        aggregate{
+            count
+        }
+    }
+}
+      `
+      return x;
+    },
   }
   constants={
     register_user_success:'User successfully registered ',
     questioon_asked_success:'Question successfully asked, answer will soon be available',
+    tutorial_created_success:'Tutorial has been created successfully',
     login_user_success:'Successfully logged in ',
     profile_Createduser_success:'Successfully Created profile',
     register_user_failed:'User registration failed ',
@@ -342,6 +531,7 @@ query {
     User_profile_retrieval_failed:'"User profile retrieval failed"',
     session_expired: "Session has expired, kindly login",
     comment_success: "Comment has been posted successfully",
+    uploadin_imaged: "Uploading attached images",
     answer_success: "Answer has been submitted for Approval",
 
   }

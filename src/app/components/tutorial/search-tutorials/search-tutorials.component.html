@@ -1,0 +1,36 @@
+<div class="card card-item">
+  <div class="card-body">
+    <h3 class="fs-17 pb-3">Search tutorials</h3>
+    <div class="divider"><span></span></div>
+    <div class="pt-4">
+      <div class="form-group mb-0">
+        <input [(ngModel)]='searchText' class="form-control form--control form--control-bg-gray"
+               type="text" name="search" placeholder="Type your search words...">
+        <button (click)='search()' class="form-btn" type="button"><i class="la la-search"></i></button>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <ul class="list-unstyled mb-0">
+        <ng-container *ngFor='let x of results'>
+          <li class="item">
+            <div class="itemHead mb-3">
+              <div class="mr-2">
+                <div>{{x.title}}</div>
+                <div class="text-muted">{{x?.owner?.displayName}}</div>
+              </div>
+              <div [routerLink]="['/tutorial/view',x.id,x?.slug]" class="text-success ml-auto">Open</div>
+            </div>
+            <p class="mb-4">
+             Topic:  {{x.topic.name}} <br>
+              Subject : {{x.topic.subject.name}} <br>
+              Grade: {{x.topic.subject.grade}} <br>
+            </p>
+            <hr>
+          </li>
+        </ng-container>
+      </ul>
+
+    </div>
+  </div>
+</div><!-- end card -->

@@ -29,6 +29,10 @@ import { AskQuestionComponent } from './components/ask-question/ask-question.com
 import { ProfileComponent } from './components/profile/profile.component'
 import { SettingsComponent } from './components/profile/settings/settings.component'
 import { QuestionsDetailsComponent } from './components/questions-details/questions-details.component'
+import { TeacherGuard } from './components/Guard/teacher.guard'
+import { CreteTutorialComponent } from './components/tutorial/crete-tutorial/crete-tutorial.component'
+import { ViewTutorialDetailsComponent } from './components/tutorial/view-tutorial-details/view-tutorial-details.component'
+import { ViewTutorialsComponent } from './components/tutorial/view-tutorials/view-tutorials.component'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -123,6 +127,28 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: { title: 'profile' },
         component: ProfileComponent,
+      },
+      {
+        path: 'tutorials',
+        canActivate: [AuthGuard],
+        data: { title: 'All tutorials' },
+        component: ViewTutorialsComponent,
+      },{
+        path: 'tutorial/create',
+        canActivate: [AuthGuard],
+        data: { title: 'create tutorial' },
+        component: CreteTutorialComponent,
+      },
+      {
+        path: 'tutorial/view/:id/',
+        canActivate: [AuthGuard],
+        data: { title: 'view tutorial' },
+        component: ViewTutorialDetailsComponent,
+      },   {
+        path: 'tutorial/view/:id/:title',
+        canActivate: [AuthGuard],
+        data: { title: 'view tutorial' },
+        component: ViewTutorialDetailsComponent,
       },
       {
         path:'settings',

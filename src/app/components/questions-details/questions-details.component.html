@@ -42,11 +42,11 @@
                 <p>{{question.title}}</p>
 
                 <p>{{question.body}}</p>
-                <img *ngFor='let x of question.images' class='ml-1'
+                <img *ngFor='let x of question?.images' class='ml-1'
                   nz-image
                   width="200px"
                   height="200px"
-                  [nzSrc]='x.url'
+                  [nzSrc]='x?.url'
                   alt="Attached image"
                 />
               </div><!-- end question-post-body -->
@@ -181,248 +181,16 @@
           <!-- end subheader -->
           <app-answers [question]='quetion_id'></app-answers>
           <!-- end answer-wrap -->
-          <div class="subheader">
-            <div class="subheader-title">
-              <h3 class="fs-16">Your Answer</h3>
-            </div><!-- end subheader-title -->
-          </div>
           <!-- end subheader -->
-          <div class="post-form">
-            <form [formGroup]='answerForm' class="pt-3">
-              <div class="input-box">
-                <label class="fs-13 text-black lh-20">Answer</label>
-                <div class="form-group">
-                  <div class="editor">
-                    <quill-editor style="height: 200px;"
-                                  formControlName='body'
-                                  [modules]='myModules'>
-                    </quill-editor>
-                  </div>
-                </div>
-              </div>
-              <div class="input-box">
-                <label class="fs-13 text-black lh-20">Attachment</label>
-                <div class="form-group">
-                  <div>
-                    <label class="fs-14 text-black fw-medium">Image
-                      (Upload any supporting photo or file, max size 5mb)</label>
-                    <div class="form-group">
-                      <nz-upload nzMultiple
-                        nzAccept='image/*,.pdf,.doc,.docx,.xls,.xlsx'
-                        nzSize='5000'
-                        [nzFileList]='myUploadFilesAnswers'
-                        [nzCustomRequest]='uploadModule.uploadFilesAnswer'
-                      >
-                        <button nz-button>
-                          <i nz-icon nzType="upload"></i>
-                          Click to Upload
-                        </button>
-                      </nz-upload>
-                    </div>
-                  </div><!-- end input-box -->
-                </div>
-              </div>
-              <!-- end input-box -->
-              <button class="btn btn-primary theme-btn theme-btn-sm"
-                      (click)='createAnswer()'
-                      type="submit">Post Your Answer</button>
-            </form>
-          </div>
+          <app-question-answer [qid]='quetion_id' ></app-question-answer>
         </div><!-- end question-main-bar -->
+
       </div><!-- end col-lg-9 -->
       <div *ngIf='loadingQuestion' class="col-lg-9">
         <nz-skeleton [nzActive]='true'></nz-skeleton>
       </div><!-- end col-lg-9 -->
       <div class="col-lg-3">
-        <div class="sidebar">
-          <div class="card card-item">
-            <div class="card-body">
-              <h3 class="fs-17 pb-3">Number Achievement</h3>
-              <div class="divider"><span></span></div>
-              <div class="row no-gutters text-center">
-                <div class="col-lg-6 responsive-column-half">
-                  <div class="icon-box pt-3">
-                    <span class="fs-20 fw-bold text-color">980k</span>
-                    <p class="fs-14">Questions</p>
-                  </div><!-- end icon-box -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-half">
-                  <div class="icon-box pt-3">
-                    <span class="fs-20 fw-bold text-color-2">610k</span>
-                    <p class="fs-14">Answers</p>
-                  </div><!-- end icon-box -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-half">
-                  <div class="icon-box pt-3">
-                    <span class="fs-20 fw-bold text-color-3">650k</span>
-                    <p class="fs-14">Answer accepted</p>
-                  </div><!-- end icon-box -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-half">
-                  <div class="icon-box pt-3">
-                    <span class="fs-20 fw-bold text-color-4">320k</span>
-                    <p class="fs-14">Users</p>
-                  </div><!-- end icon-box -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-12 pt-3">
-                  <p class="fs-14">To get answer of question <a href="signup.html" class="text-color hover-underline">Join<i class="la la-arrow-right ml-1"></i></a></p>
-                </div>
-              </div><!-- end row -->
-            </div>
-          </div><!-- end card -->
-          <div class="card card-item">
-            <div class="card-body">
-              <div class="d-flex align-items-center pb-3">
-                <svg class="mr-2" width="18" height="18" viewBox="0 0 18 18" fill="#6c727c"><path d="M1 6l8 5 8-5V4L9 9 1 4c0-1.1.9-2 2-2h12c1.09 0 2 .91 2 2v10c0 1.09-.91 2-2 2H3c-1.09 0-2-.91-2-2V6z"></path></svg>
-                <h3 class="fs-17">Love this site?</h3>
-              </div>
-              <div class="divider"><span></span></div>
-              <p class="fs-14 lh-20 py-3">Get the <span class="text-dark fw-medium">weekly newsletter!</span> In it, you'll get:</p>
-              <ul class="generic-list-item generic-list-item-bullet fs-14 pb-3">
-                <li class="lh-20">The week's top questions and answers</li>
-                <li class="lh-20">Important community announcements</li>
-                <li class="lh-20">Questions that need answers</li>
-              </ul>
-              <button class="btn theme-btn theme-btn-gray w-100">Sign up for the digest</button>
-              <p class="fs-14 pt-1 text-center">See an example newsletter</p>
-            </div>
-          </div><!-- end card -->
-          <div class="card card-item">
-            <div class="card-body">
-              <h3 class="fs-17 pb-3">Related Questions</h3>
-              <div class="divider"><span></span></div>
-              <div class="sidebar-questions pt-3">
-                <div class="media media-card media--card media--card-2">
-                  <div class="media-body">
-                    <h5><a href="question-details.html">How to select the dom element with event.target</a></h5>
-                    <small class="meta">
-                      <span class="pr-1">2 mins ago</span>
-                      <span class="pr-1">. by</span>
-                      <a href="#" class="author">Sudhir Kumbhare</a>
-                    </small>
-                  </div>
-                </div><!-- end media -->
-                <div class="media media-card media--card media--card-2">
-                  <div class="media-body">
-                    <h5><a href="question-details.html">How can you cut an onion without crying?</a></h5>
-                    <small class="meta">
-                      <span class="pr-1">48 mins ago</span>
-                      <span class="pr-1">. by</span>
-                      <a href="#" class="author">wimax</a>
-                    </small>
-                  </div>
-                </div><!-- end media -->
-                <div class="media media-card media--card media--card-2">
-                  <div class="media-body">
-                    <h5><a href="question-details.html">How to change the behavior of dropdown buttons in HTML</a></h5>
-                    <small class="meta">
-                      <span class="pr-1">1 hour ago</span>
-                      <span class="pr-1">. by</span>
-                      <a href="#" class="author">Antonin gavrel</a>
-                    </small>
-                  </div>
-                </div><!-- end media -->
-              </div><!-- end sidebar-questions -->
-            </div>
-          </div><!-- end card -->
-          <div class="card card-item">
-            <div class="card-body">
-              <h3 class="fs-17 pb-3">Trending Tags</h3>
-              <div class="divider"><span></span></div>
-              <div class="tags pt-4">
-                <div class="tag-item">
-                  <a href="#" class="tag-link tag-link-md">analytics</a>
-                  <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                </div><!-- end tag-item -->
-                <div class="tag-item">
-                  <a href="#" class="tag-link tag-link-md">computer</a>
-                  <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                </div><!-- end tag-item -->
-                <div class="tag-item">
-                  <a href="#" class="tag-link tag-link-md">python</a>
-                  <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                </div><!-- end tag-item -->
-                <div class="tag-item">
-                  <a href="#" class="tag-link tag-link-md">javascript</a>
-                  <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                </div><!-- end tag-item -->
-                <div class="tag-item">
-                  <a href="#" class="tag-link tag-link-md">c#</a>
-                  <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                </div><!-- end tag-item -->
-                <div class="collapse" id="showMoreTags">
-                  <div class="tag-item">
-                    <a href="#" class="tag-link tag-link-md">java</a>
-                    <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                  </div><!-- end tag-item -->
-                  <div class="tag-item">
-                    <a href="#" class="tag-link tag-link-md">swift</a>
-                    <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                  </div><!-- end tag-item -->
-                  <div class="tag-item">
-                    <a href="#" class="tag-link tag-link-md">html</a>
-                    <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                  </div><!-- end tag-item -->
-                  <div class="tag-item">
-                    <a href="#" class="tag-link tag-link-md">angular</a>
-                    <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                  </div><!-- end tag-item -->
-                  <div class="tag-item">
-                    <a href="#" class="tag-link tag-link-md">flutter</a>
-                    <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                  </div><!-- end tag-item -->
-                  <div class="tag-item">
-                    <a href="#" class="tag-link tag-link-md">machine-language</a>
-                    <span class="item-multiplier fs-13">
-                                    <span>×</span>
-                                    <span>32924</span>
-                                </span>
-                  </div><!-- end tag-item -->
-                </div><!-- end collapse -->
-                <a class="collapse-btn fs-13" data-toggle="collapse" href="#showMoreTags" role="button" aria-expanded="false" aria-controls="showMoreTags">
-                  <span class="collapse-btn-hide">Show more<i class="la la-angle-down ml-1 fs-11"></i></span>
-                  <span class="collapse-btn-show">Show less<i class="la la-angle-up ml-1 fs-11"></i></span>
-                </a>
-              </div>
-            </div>
-          </div><!-- end card -->
-          <div class="ad-card">
-            <h4 class="text-gray text-uppercase fs-13 pb-3 text-center">Advertisements</h4>
-            <div class="ad-banner mb-4 mx-auto">
-              <span class="ad-text">290x500</span>
-            </div>
-          </div><!-- end ad-card -->
-        </div><!-- end sidebar -->
+        <app-counts></app-counts>
       </div><!-- end col-lg-3 -->
     </div><!-- end row -->
   </div><!-- end container -->

@@ -5,7 +5,7 @@ schema {
   mutation: Mutation
 }
 
-union Morph = Answers | AnswersAggregator | AnswersConnection | AnswersConnectionBody | AnswersConnectionCreatedAt | AnswersConnectionId | AnswersConnectionPublished_at | AnswersConnectionQuestion | AnswersConnectionUpdatedAt | AnswersConnectionUser | AnswersConnection_id | AnswersGroupBy | Blogs | BlogsAggregator | BlogsConnection | BlogsConnectionApproved | BlogsConnectionBody | BlogsConnectionComment | BlogsConnectionCreatedAt | BlogsConnectionId | BlogsConnectionOwner | BlogsConnectionPublished_at | BlogsConnectionTitle | BlogsConnectionTopic | BlogsConnectionUpdatedAt | BlogsConnection_id | BlogsGroupBy | Comments | CommentsAggregator | CommentsConnection | CommentsConnectionComment | CommentsConnectionCommentor | CommentsConnectionCreatedAt | CommentsConnectionId | CommentsConnectionPublished_at | CommentsConnectionQuestion | CommentsConnectionUpdatedAt | CommentsConnection_id | CommentsGroupBy | ComponentBillingHistory | Feedback | FeedbackAggregator | FeedbackAggregatorAvg | FeedbackAggregatorMax | FeedbackAggregatorMin | FeedbackAggregatorSum | FeedbackConnection | FeedbackConnectionAnswer | FeedbackConnectionComment | FeedbackConnectionCreatedAt | FeedbackConnectionId | FeedbackConnectionPublished_at | FeedbackConnectionRatedby | FeedbackConnectionRating | FeedbackConnectionReason | FeedbackConnectionUpdatedAt | FeedbackConnection_id | FeedbackGroupBy | Payments | PaymentsAggregator | PaymentsConnection | PaymentsConnectionCreatedAt | PaymentsConnectionId | PaymentsConnectionPublished_at | PaymentsConnectionUpdatedAt | PaymentsConnectionUser | PaymentsConnection_id | PaymentsGroupBy | Plans | PlansAggregator | PlansAggregatorAvg | PlansAggregatorMax | PlansAggregatorMin | PlansAggregatorSum | PlansConnection | PlansConnectionAmount | PlansConnectionCreatedAt | PlansConnectionDays | PlansConnectionDesc | PlansConnectionId | PlansConnectionLabel | PlansConnectionName | PlansConnectionPeriod | PlansConnectionPublished_at | PlansConnectionUpdatedAt | PlansConnection_id | PlansGroupBy | Profile | ProfileAggregator | ProfileConnection | ProfileConnectionAbout | ProfileConnectionAvator | ProfileConnectionCreatedAt | ProfileConnectionDislayName | ProfileConnectionId | ProfileConnectionLocation | ProfileConnectionUpdatedAt | ProfileConnectionUser | ProfileConnection_id | ProfileGroupBy | Questions | QuestionsAggregator | QuestionsConnection | QuestionsConnectionAskedby | QuestionsConnectionBody | QuestionsConnectionCreatedAt | QuestionsConnectionId | QuestionsConnectionPublished_at | QuestionsConnectionSlug | QuestionsConnectionTitle | QuestionsConnectionTopic | QuestionsConnectionUpdatedAt | QuestionsConnection_id | QuestionsGroupBy | Rate | RateAggregator | RateAggregatorAvg | RateAggregatorMax | RateAggregatorMin | RateAggregatorSum | RateConnection | RateConnectionCreatedAt | RateConnectionId | RateConnectionPublished_at | RateConnectionRatedby | RateConnectionTeacher | RateConnectionUpdatedAt | RateConnectionValue | RateConnection_id | RateGroupBy | Reasons | ReasonsAggregator | ReasonsAggregatorAvg | ReasonsAggregatorMax | ReasonsAggregatorMin | ReasonsAggregatorSum | ReasonsConnection | ReasonsConnectionCreatedAt | ReasonsConnectionId | ReasonsConnectionName | ReasonsConnectionPublished_at | ReasonsConnectionRank | ReasonsConnectionUpdatedAt | ReasonsConnection_id | ReasonsGroupBy | Subcription | SubcriptionAggregator | SubcriptionConnection | SubcriptionConnectionActive | SubcriptionConnectionCreatedAt | SubcriptionConnectionEnddate | SubcriptionConnectionId | SubcriptionConnectionPlan | SubcriptionConnectionPublished_at | SubcriptionConnectionStartdate | SubcriptionConnectionUpdatedAt | SubcriptionConnectionUser | SubcriptionConnection_id | SubcriptionGroupBy | Subject | SubjectAggregator | SubjectConnection | SubjectConnectionActive | SubjectConnectionCreatedAt | SubjectConnectionGrade | SubjectConnectionId | SubjectConnectionName | SubjectConnectionPublished_at | SubjectConnectionUpdatedAt | SubjectConnection_id | SubjectGroupBy | Teacher | TeacherAggregator | TeacherAggregatorAvg | TeacherAggregatorMax | TeacherAggregatorMin | TeacherAggregatorSum | TeacherConnection | TeacherConnectionBank | TeacherConnectionCreatedAt | TeacherConnectionId | TeacherConnectionPhone | TeacherConnectionPublished_at | TeacherConnectionUpdatedAt | TeacherConnectionUser | TeacherConnection_id | TeacherGroupBy | Topic | TopicAggregator | TopicConnection | TopicConnectionCreatedAt | TopicConnectionId | TopicConnectionName | TopicConnectionPublished_at | TopicConnectionSubject | TopicConnectionUpdatedAt | TopicConnection_id | TopicGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionDisplayName | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionOptin | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | Withdraw | WithdrawAggregator | WithdrawAggregatorAvg | WithdrawAggregatorMax | WithdrawAggregatorMin | WithdrawAggregatorSum | WithdrawConnection | WithdrawConnectionAmount | WithdrawConnectionCreatedAt | WithdrawConnectionId | WithdrawConnectionPublished_at | WithdrawConnectionReference | WithdrawConnectionTeacher | WithdrawConnectionUpdatedAt | WithdrawConnection_id | WithdrawGroupBy | createAnswerPayload | createBlogPayload | createCommentPayload | createFeedbackPayload | createPaymentPayload | createPlanPayload | createProfilePayload | createQuestionPayload | createRatePayload | createReasonPayload | createRolePayload | createSubcriptionPayload | createSubjectPayload | createTeacherPayload | createTopicPayload | createUserPayload | createWithdrawPayload | deleteAnswerPayload | deleteBlogPayload | deleteCommentPayload | deleteFeedbackPayload | deleteFilePayload | deletePaymentPayload | deletePlanPayload | deleteProfilePayload | deleteQuestionPayload | deleteRatePayload | deleteReasonPayload | deleteRolePayload | deleteSubcriptionPayload | deleteSubjectPayload | deleteTeacherPayload | deleteTopicPayload | deleteUserPayload | deleteWithdrawPayload | updateAnswerPayload | updateBlogPayload | updateCommentPayload | updateFeedbackPayload | updatePaymentPayload | updatePlanPayload | updateProfilePayload | updateQuestionPayload | updateRatePayload | updateReasonPayload | updateRolePayload | updateSubcriptionPayload | updateSubjectPayload | updateTeacherPayload | updateTopicPayload | updateUserPayload | updateWithdrawPayload
+union Morph = Answers | AnswersAggregator | AnswersConnection | AnswersConnectionBody | AnswersConnectionCreatedAt | AnswersConnectionId | AnswersConnectionPublished_at | AnswersConnectionQuestion | AnswersConnectionUpdatedAt | AnswersConnectionUser | AnswersConnection_id | AnswersGroupBy | Blogs | BlogsAggregator | BlogsConnection | BlogsConnectionApproved | BlogsConnectionBody | BlogsConnectionCreatedAt | BlogsConnectionId | BlogsConnectionOwner | BlogsConnectionPublished_at | BlogsConnectionSlug | BlogsConnectionTitle | BlogsConnectionTopic | BlogsConnectionUpdatedAt | BlogsConnection_id | BlogsGroupBy | Comments | CommentsAggregator | CommentsConnection | CommentsConnectionBlog | CommentsConnectionComment | CommentsConnectionCommentor | CommentsConnectionCreatedAt | CommentsConnectionId | CommentsConnectionPublished_at | CommentsConnectionQuestion | CommentsConnectionUpdatedAt | CommentsConnection_id | CommentsGroupBy | ComponentBillingHistory | Feedback | FeedbackAggregator | FeedbackAggregatorAvg | FeedbackAggregatorMax | FeedbackAggregatorMin | FeedbackAggregatorSum | FeedbackConnection | FeedbackConnectionAnswer | FeedbackConnectionComment | FeedbackConnectionCreatedAt | FeedbackConnectionId | FeedbackConnectionPublished_at | FeedbackConnectionRatedby | FeedbackConnectionRating | FeedbackConnectionReason | FeedbackConnectionUpdatedAt | FeedbackConnection_id | FeedbackGroupBy | Payments | PaymentsAggregator | PaymentsConnection | PaymentsConnectionCreatedAt | PaymentsConnectionId | PaymentsConnectionPublished_at | PaymentsConnectionUpdatedAt | PaymentsConnectionUser | PaymentsConnection_id | PaymentsGroupBy | Plans | PlansAggregator | PlansAggregatorAvg | PlansAggregatorMax | PlansAggregatorMin | PlansAggregatorSum | PlansConnection | PlansConnectionAmount | PlansConnectionCreatedAt | PlansConnectionDays | PlansConnectionDesc | PlansConnectionId | PlansConnectionLabel | PlansConnectionName | PlansConnectionPeriod | PlansConnectionPublished_at | PlansConnectionUpdatedAt | PlansConnection_id | PlansGroupBy | Profile | ProfileAggregator | ProfileConnection | ProfileConnectionAbout | ProfileConnectionAvator | ProfileConnectionCreatedAt | ProfileConnectionDislayName | ProfileConnectionId | ProfileConnectionLocation | ProfileConnectionUpdatedAt | ProfileConnectionUser | ProfileConnection_id | ProfileGroupBy | Questions | QuestionsAggregator | QuestionsConnection | QuestionsConnectionAskedby | QuestionsConnectionBody | QuestionsConnectionCreatedAt | QuestionsConnectionId | QuestionsConnectionPublished_at | QuestionsConnectionSlug | QuestionsConnectionTitle | QuestionsConnectionTopic | QuestionsConnectionUpdatedAt | QuestionsConnection_id | QuestionsGroupBy | Rate | RateAggregator | RateAggregatorAvg | RateAggregatorMax | RateAggregatorMin | RateAggregatorSum | RateConnection | RateConnectionCreatedAt | RateConnectionId | RateConnectionPublished_at | RateConnectionRatedby | RateConnectionTeacher | RateConnectionUpdatedAt | RateConnectionValue | RateConnection_id | RateGroupBy | Reasons | ReasonsAggregator | ReasonsAggregatorAvg | ReasonsAggregatorMax | ReasonsAggregatorMin | ReasonsAggregatorSum | ReasonsConnection | ReasonsConnectionCreatedAt | ReasonsConnectionId | ReasonsConnectionName | ReasonsConnectionPublished_at | ReasonsConnectionRank | ReasonsConnectionUpdatedAt | ReasonsConnection_id | ReasonsGroupBy | Subcription | SubcriptionAggregator | SubcriptionConnection | SubcriptionConnectionActive | SubcriptionConnectionCreatedAt | SubcriptionConnectionEnddate | SubcriptionConnectionId | SubcriptionConnectionPlan | SubcriptionConnectionPublished_at | SubcriptionConnectionStartdate | SubcriptionConnectionUpdatedAt | SubcriptionConnectionUser | SubcriptionConnection_id | SubcriptionGroupBy | Subject | SubjectAggregator | SubjectConnection | SubjectConnectionActive | SubjectConnectionCreatedAt | SubjectConnectionGrade | SubjectConnectionId | SubjectConnectionName | SubjectConnectionPublished_at | SubjectConnectionUpdatedAt | SubjectConnection_id | SubjectGroupBy | Teacher | TeacherAggregator | TeacherAggregatorAvg | TeacherAggregatorMax | TeacherAggregatorMin | TeacherAggregatorSum | TeacherConnection | TeacherConnectionBank | TeacherConnectionCreatedAt | TeacherConnectionId | TeacherConnectionPhone | TeacherConnectionPublished_at | TeacherConnectionUpdatedAt | TeacherConnectionUser | TeacherConnection_id | TeacherGroupBy | Topic | TopicAggregator | TopicConnection | TopicConnectionCreatedAt | TopicConnectionId | TopicConnectionImage | TopicConnectionName | TopicConnectionPublished_at | TopicConnectionSubject | TopicConnectionUpdatedAt | TopicConnection_id | TopicGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionDisplayName | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionOptin | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | Withdraw | WithdrawAggregator | WithdrawAggregatorAvg | WithdrawAggregatorMax | WithdrawAggregatorMin | WithdrawAggregatorSum | WithdrawConnection | WithdrawConnectionAmount | WithdrawConnectionCreatedAt | WithdrawConnectionId | WithdrawConnectionPublished_at | WithdrawConnectionReference | WithdrawConnectionTeacher | WithdrawConnectionUpdatedAt | WithdrawConnection_id | WithdrawGroupBy | createAnswerPayload | createBlogPayload | createCommentPayload | createFeedbackPayload | createPaymentPayload | createPlanPayload | createProfilePayload | createQuestionPayload | createRatePayload | createReasonPayload | createRolePayload | createSubcriptionPayload | createSubjectPayload | createTeacherPayload | createTopicPayload | createUserPayload | createWithdrawPayload | deleteAnswerPayload | deleteBlogPayload | deleteCommentPayload | deleteFeedbackPayload | deleteFilePayload | deletePaymentPayload | deletePlanPayload | deleteProfilePayload | deleteQuestionPayload | deleteRatePayload | deleteReasonPayload | deleteRolePayload | deleteSubcriptionPayload | deleteSubjectPayload | deleteTeacherPayload | deleteTopicPayload | deleteUserPayload | deleteWithdrawPayload | updateAnswerPayload | updateBlogPayload | updateCommentPayload | updateFeedbackPayload | updatePaymentPayload | updatePlanPayload | updateProfilePayload | updateQuestionPayload | updateRatePayload | updateReasonPayload | updateRolePayload | updateSubcriptionPayload | updateSubjectPayload | updateTeacherPayload | updateTopicPayload | updateUserPayload | updateWithdrawPayload
 
 type AdminUser {
   firstname: String!
@@ -92,11 +92,12 @@ type Blogs {
   _id: ID!
   approved: Boolean
   body: String
-  comment: Comments
+  comments(limit: Int, sort: String, start: Int, where: JSON): [Comments]
   createdAt: DateTime!
   id: ID!
   owner: UsersPermissionsUser
   published_at: DateTime
+  slug: String
   title: String
   topic: Topic
   updatedAt: DateTime!
@@ -123,11 +124,6 @@ type BlogsConnectionBody {
   key: String
 }
 
-type BlogsConnectionComment {
-  connection: BlogsConnection
-  key: ID
-}
-
 type BlogsConnectionCreatedAt {
   connection: BlogsConnection
   key: DateTime
@@ -146,6 +142,11 @@ type BlogsConnectionOwner {
 type BlogsConnectionPublished_at {
   connection: BlogsConnection
   key: DateTime
+}
+
+type BlogsConnectionSlug {
+  connection: BlogsConnection
+  key: String
 }
 
 type BlogsConnectionTitle {
@@ -172,11 +173,11 @@ type BlogsGroupBy {
   _id: [BlogsConnection_id]
   approved: [BlogsConnectionApproved]
   body: [BlogsConnectionBody]
-  comment: [BlogsConnectionComment]
   createdAt: [BlogsConnectionCreatedAt]
   id: [BlogsConnectionId]
   owner: [BlogsConnectionOwner]
   published_at: [BlogsConnectionPublished_at]
+  slug: [BlogsConnectionSlug]
   title: [BlogsConnectionTitle]
   topic: [BlogsConnectionTopic]
   updatedAt: [BlogsConnectionUpdatedAt]
@@ -184,6 +185,7 @@ type BlogsGroupBy {
 
 type Comments {
   _id: ID!
+  blog: Blogs
   comment: String
   commentor: UsersPermissionsUser
   createdAt: DateTime!
@@ -203,6 +205,11 @@ type CommentsConnection {
   aggregate: CommentsAggregator
   groupBy: CommentsGroupBy
   values: [Comments]
+}
+
+type CommentsConnectionBlog {
+  connection: CommentsConnection
+  key: ID
 }
 
 type CommentsConnectionComment {
@@ -247,6 +254,7 @@ type CommentsConnection_id {
 
 type CommentsGroupBy {
   _id: [CommentsConnection_id]
+  blog: [CommentsConnectionBlog]
   comment: [CommentsConnectionComment]
   commentor: [CommentsConnectionCommentor]
   createdAt: [CommentsConnectionCreatedAt]
@@ -1290,6 +1298,7 @@ type Topic {
   blogs(limit: Int, sort: String, start: Int, where: JSON): [Blogs]
   createdAt: DateTime!
   id: ID!
+  image: UploadFile
   name: String
   published_at: DateTime
   questions(limit: Int, sort: String, start: Int, where: JSON): [Questions]
@@ -1314,6 +1323,11 @@ type TopicConnectionCreatedAt {
 }
 
 type TopicConnectionId {
+  connection: TopicConnection
+  key: ID
+}
+
+type TopicConnectionImage {
   connection: TopicConnection
   key: ID
 }
@@ -1347,6 +1361,7 @@ type TopicGroupBy {
   _id: [TopicConnection_id]
   createdAt: [TopicConnectionCreatedAt]
   id: [TopicConnectionId]
+  image: [TopicConnectionImage]
   name: [TopicConnectionName]
   published_at: [TopicConnectionPublished_at]
   subject: [TopicConnectionSubject]
@@ -2040,16 +2055,18 @@ input AnswerInput {
 input BlogInput {
   approved: Boolean
   body: String
-  comment: ID
+  comments: [ID]
   created_by: ID
   owner: ID
   published_at: DateTime
+  slug: String
   title: String
   topic: ID
   updated_by: ID
 }
 
 input CommentInput {
+  blog: ID
   comment: String
   commentor: ID
   created_by: ID
@@ -2215,6 +2232,7 @@ input TeacherInput {
 input TopicInput {
   blogs: [ID]
   created_by: ID
+  image: ID
   name: String
   published_at: DateTime
   questions: [ID]
@@ -2417,16 +2435,18 @@ input editAnswerInput {
 input editBlogInput {
   approved: Boolean
   body: String
-  comment: ID
+  comments: [ID]
   created_by: ID
   owner: ID
   published_at: DateTime
+  slug: String
   title: String
   topic: ID
   updated_by: ID
 }
 
 input editCommentInput {
+  blog: ID
   comment: String
   commentor: ID
   created_by: ID
@@ -2583,6 +2603,7 @@ input editTeacherInput {
 input editTopicInput {
   blogs: [ID]
   created_by: ID
+  image: ID
   name: String
   published_at: DateTime
   questions: [ID]

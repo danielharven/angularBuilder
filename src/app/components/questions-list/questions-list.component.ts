@@ -76,7 +76,7 @@ export class QuestionsListComponent implements OnInit {
   async indexChange($event: number) {
     // get the data according to the page
     let limit = this.limit;
-    let start = $event;
+    let start = ($event-1)*limit;
     let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start}));
     this.questions = x.data?.questions || []
   }

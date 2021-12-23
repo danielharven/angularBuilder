@@ -36,7 +36,18 @@ import { UploadComponent } from './upload/upload.component';
 import { QuestionsListComponent } from './questions-list/questions-list.component'
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { QuestionsDetailsComponent } from './questions-details/questions-details.component';
-import { AnswersComponent } from './answers/answers.component'
+import { AnswersComponent } from './answers/answers.component';
+import { QuestionAskComponent } from './question-ask/question-ask.component';
+import { QuestionAnswerComponent } from './question-answer/question-answer.component';
+import { CountsComponent } from './counts/counts.component';
+import { CreteTutorialComponent } from './tutorial/crete-tutorial/crete-tutorial.component';
+import { ViewTutorialsComponent } from './tutorial/view-tutorials/view-tutorials.component';
+import { ViewTutorialDetailsComponent } from './tutorial/view-tutorial-details/view-tutorial-details.component';
+import { ViewMyTutorialDetailsComponent } from './tutorial/view-my-tutorial-details/view-my-tutorial-details.component';
+import { RelatedTutorialsComponent } from './tutorial/related-tutorials/related-tutorials.component';
+import { SearchTutorialsComponent } from './tutorial/search-tutorials/search-tutorials.component';
+import { SideWidgetComponent } from './socialmedia/side-widget/side-widget.component';
+import { CommentsWidgetTutorialsComponent } from './widgets/comments-widget-tutorials/comments-widget-tutorials.component'
 const COMPONENTS = [
   FieldNgSelect,
   FieldQuillType,
@@ -65,7 +76,7 @@ const COMPONENTS = [
     QuillModule,
   ],
   providers:[{provide: ErrorHandler, useClass: MyErrorHandler}],
-  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent ],
+  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent, QuestionAskComponent, QuestionAnswerComponent, CountsComponent, CreteTutorialComponent, ViewTutorialsComponent, ViewTutorialDetailsComponent, ViewMyTutorialDetailsComponent, RelatedTutorialsComponent, SearchTutorialsComponent, SideWidgetComponent, CommentsWidgetTutorialsComponent ],
   exports: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent],
 })
 export class MyComponentsModule {}

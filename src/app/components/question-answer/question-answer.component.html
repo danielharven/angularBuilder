@@ -1,0 +1,46 @@
+<div class="subheader">
+  <div class="subheader-title">
+    <h3 class="fs-16">Your Answer</h3>
+  </div><!-- end subheader-title -->
+</div>
+<div class="post-form">
+  <form [formGroup]='answerForm' class="pt-3">
+    <div class="input-box">
+      <label class="fs-13 text-black lh-20">Answer</label>
+      <div class="form-group">
+        <div class="editor">
+          <quill-editor style="height: 200px;"
+                        formControlName='body'
+                        [modules]='myModules'>
+          </quill-editor>
+        </div>
+      </div>
+    </div>
+    <div class="input-box">
+      <label class="fs-13 text-black lh-20">Attachment</label>
+      <div class="form-group">
+        <div>
+          <label class="fs-14 text-black fw-medium">Image
+            (Upload any supporting photo or file, max size 5mb)</label>
+          <div class="form-group">
+            <nz-upload nzMultiple
+                       nzAccept='image/*,.pdf,.doc,.docx,.xls,.xlsx'
+                       nzSize='5000'
+                       [nzFileList]='myUploadFilesAnswers'
+                       [nzCustomRequest]='uploadModule.uploadFilesAnswer'
+            >
+              <button nz-button>
+                <i nz-icon nzType="upload"></i>
+                Click to Upload
+              </button>
+            </nz-upload>
+          </div>
+        </div><!-- end input-box -->
+      </div>
+    </div>
+    <!-- end input-box -->
+    <button class="btn btn-primary theme-btn theme-btn-sm"
+            (click)='createAnswer()'
+            type="submit">Post Your Answer</button>
+  </form>
+</div>
