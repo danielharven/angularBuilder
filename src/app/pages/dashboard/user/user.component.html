@@ -1,20 +1,12 @@
-<!--<div>-->
-<!--  <div class="row">-->
-<!--    <div class=" col-md-12">-->
-<!--      <div class="card card-top card-top-primary">-->
-<!--        <div class="card-header">-->
-<!--          <vb-headers-heading-2-->
-<!--            [data]="{'title':'@mary.ableton (Mary Stanform)','description':'17,256 followers'}"-->
-<!--          ></vb-headers-heading-2>-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--        -->
-<!--        </div>-->
-<!--&lt;!&ndash;        <div class="card-body"><vb-app-partials-wp-write></vb-app-partials-wp-write></div>&ndash;&gt;-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>\-->
-<!--</div>-->
-<headedcard>
 
-</headedcard>
+<nz-tabset>
+  <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate">
+    <ng-template #titleTemplate>
+      <i nz-icon [nzType]="tab.icon"></i>
+      {{ tab.name }}
+    </ng-template>
+    <app-users *ngIf="tab.component=='user'"></app-users>
+    <app-payslips *ngIf="tab.component=='payslips'"></app-payslips>
+    <app-queries *ngIf="tab.component=='queries'"></app-queries>
+  </nz-tab>
+</nz-tabset>

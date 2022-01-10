@@ -2,5 +2,6 @@ export const environment = {
   production: true,
   authenticated: false,
   hmr: false,
-  url:''
+  url: '',
+  app: 'ePayslip - PMEC Portal',
 }

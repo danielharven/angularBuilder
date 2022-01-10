@@ -10,11 +10,12 @@ import * as Reducers from 'src/app/store/reducers'
 })
 export class AuthGuard implements CanActivate {
   authorized: boolean
+  role: any = {}
 
-  constructor(private store: Store<any>, public router: Router,
-              ) {
+  constructor(private store: Store<any>, public router: Router) {
     this.store.pipe(select(Reducers.getUser)).subscribe(state => {
       this.authorized = state.authorized
+      this.role = state.role
     })
   }
 
@@ -27,10 +28,21 @@ export class AuthGuard implements CanActivate {
       return true
     }
 
-    if (this.authorized) {
+    if (this.authorized && this.pmecRole()) {
       return true
     }
     this.router.navigate(['auth/login'], { queryParams: { returnUrl: state.url } })
+    return false
+  }
+  pmecRole(): boolean {
+    if (
+      this.role.name
+        .toString()
+        .toLowerCase()
+        .includes('pmec')
+    ) {
+      return true
+    }
     return false
   }
 }

@@ -25,6 +25,8 @@ import { NzProgressModule } from 'ng-zorro-antd/progress'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzAnchorModule } from 'ng-zorro-antd/anchor'
 import { NzDrawerModule } from 'ng-zorro-antd/drawer'
+import { NzMessageModule } from 'ng-zorro-antd/message'
+import { NzUploadModule } from 'ng-zorro-antd/upload'
 
 /**
  * AntDesign Icons
@@ -66,7 +68,7 @@ const MODULES = [
   // NzTimePickerModule,
   // NzTransferModule,
   // NzTreeSelectModule,
-  // NzUploadModule,
+  NzUploadModule,
   // NzAvatarModule,
   // NzBadgeModule,
   // NzCalendarModule,
@@ -87,7 +89,7 @@ const MODULES = [
   // NzTreeModule,
   // NzAlertModule,
   NzDrawerModule,
-  // NzMessageModule,
+  NzMessageModule,
   // NzModalModule,
   NzNotificationModule,
   // NzPopconfirmModule,

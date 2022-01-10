@@ -2,7 +2,8 @@
   <div class="vb__sidebar" [ngClass]="settings.isSidebarOpen ? 'vb__sidebar__toggled' : ''">
     <perfect-scrollbar>
       <div class="vb__sidebar__inner">
-        <a href="javascript: void(0);" class="fe fe-x vb__sidebar__close" (click)="toggleSettings()"></a>
+        <a href="javascript: void(0);"
+           class="fe fe-x vb__sidebar__close" (click)="toggleSettings()"></a>
         <h5 class="mb-4">
           <strong>Settings</strong>
         </h5>
@@ -562,7 +563,8 @@
 
 <ng-template #colorTpl let-setting let-colors="colors" let-active="active">
   <ng-container *ngFor="let item of colors">
-    <a href="javascript: void(0);" (click)="settingChange(item, setting)" class="vb__sidebar__select__item" [ngClass]="{
+    <a href="javascript: void(0);"
+       (click)="settingChange(item, setting)" class="vb__sidebar__select__item" [ngClass]="{
         vb__sidebar__select__item__active: active === item, vb__sidebar__select__item__black: item === 'dark',
         vb__sidebar__select__item__white: item === 'white', vb__sidebar__select__item__gray: item === 'gray',
         vb__sidebar__select__item__blue: item === 'blue', vb__sidebar__select__item__img: item === 'image'}"></a>

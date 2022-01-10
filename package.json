@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=4300",
+    "start": "ng serve --port=4330",
     "hmr": "ng serve --configuration=hmr --open",
-    "build": "ng build --prod --build-optimizer --output-hashing=none",
+    "build": "ng build --prod --build-optimizer --output-hashing=all",
     "test": "ng test",
     "e2e": "ng e2e",
     "lint-staged": "lint-staged",

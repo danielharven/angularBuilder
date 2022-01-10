@@ -21,13 +21,14 @@ import { reducers, metaReducers } from './store/reducers'
 import { UserEffects } from './store/user/effects'
 // import { firebaseConfig, firebaseAuthService } from './services/firebase'
 import { jwtAuthService } from './services/jwt'
-// import { MockHttpCallInterceptor } from './services/fakeApi'
+import { MockHttpCallInterceptor } from './services/fakeApi'
 
 // locale resistration
 import { registerLocaleData } from '@angular/common'
 import { default as localeEn } from '@angular/common/locales/en'
-import { NZ_I18N, en_US as localeZorro } from 'ng-zorro-antd/i18n';
+import { NZ_I18N, en_US as localeZorro } from 'ng-zorro-antd/i18n'
 import { RemoveZerosPipe } from './pipe/remove-zeros.pipe'
+import { AuthInterceptor } from './services/interscept'
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
   { provide: NZ_I18N, useValue: localeZorro },
@@ -71,11 +72,11 @@ registerLocaleData(localeEn, 'en')
     jwtAuthService,
 
     // fake http interceptors
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: MockHttpCallInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
 
     // locale providers
     ...LOCALE_PROVIDERS,
@@ -84,8 +85,6 @@ registerLocaleData(localeEn, 'en')
     // { provide: SETTINGS, useValue: {} },
   ],
   bootstrap: [AppComponent],
-  exports: [
-    RemoveZerosPipe,
-  ],
+  exports: [RemoveZerosPipe],
 })
 export class AppModule {}

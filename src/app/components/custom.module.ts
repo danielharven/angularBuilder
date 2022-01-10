@@ -7,10 +7,10 @@ import { SharedModule } from '../shared.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CardHeaderTabbedComponent } from './tabbedHeader/card-header-tabbed-6.component'
 import { PayslipList8Component } from './lists/8/8.component'
-import { NzTypographyModule } from 'ng-zorro-antd/typography';
-import { PayslipComponent } from './templates/payslip/payslip.component';
-import { RemoveZerosPipe } from './pipe/remove-zeros.pipe';
-import { MonthsyearPipe } from './pipe/monthsyear.pipe';
+import { NzTypographyModule } from 'ng-zorro-antd/typography'
+import { PayslipComponent } from './templates/payslip/payslip.component'
+import { RemoveZerosPipe } from './pipe/remove-zeros.pipe'
+import { MonthsyearPipe } from './pipe/monthsyear.pipe'
 import { TransposeminusPipe } from './pipe/transposeminus.pipe'
 import { FormlyModule } from '@ngx-formly/core'
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd'
@@ -25,7 +25,11 @@ import { NzRadioModule } from 'ng-zorro-antd/radio'
 import { NzAlertModule } from 'ng-zorro-antd/alert'
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
-
+import { UsersComponent } from './users/users.component'
+import { PayslipsComponent } from './payslips/payslips.component'
+import { QueriesComponent } from './queries/queries.component'
+import { UploadComponent } from './upload/upload.component'
+import { NzUploadModule } from 'ng-zorro-antd/upload'
 
 const COMPONENTS = [
   MyLoginComponent,
@@ -34,15 +38,52 @@ const COMPONENTS = [
   FooterComponent,
   BreadcrumbsComponent,
   MenuClassicTopComponent,
-  MenuClassicLeftComponent
+  MenuClassicLeftComponent,
 ]
-const MODULES = [CommonModule,FormsModule, ReactiveFormsModule,
-  RouterModule,SharedModule, TranslateModule, NzTypographyModule,
-  FormlyNgZorroAntdModule,NgxPrintModule]
+const MODULES = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  RouterModule,
+  SharedModule,
+  TranslateModule,
+  NzTypographyModule,
+  FormlyNgZorroAntdModule,
+  NgxPrintModule,
+]
 
 @NgModule({
-  imports: [...MODULES, FormlyModule.forRoot(), PerfectScrollbarModule, NzRadioModule, NzAlertModule, NzSkeletonModule, NzToolTipModule],
-  declarations: [...COMPONENTS, PayslipComponent, RemoveZerosPipe, MonthsyearPipe, TransposeminusPipe],
-  exports: [...MODULES, MyLoginComponent, CardHeaderTabbedComponent, BreadcrumbsComponent, FooterComponent, MenuClassicLeftComponent, MenuClassicTopComponent],
+  imports: [
+    ...MODULES,
+    FormlyModule.forRoot(),
+    PerfectScrollbarModule,
+    NzRadioModule,
+    NzAlertModule,
+    NzSkeletonModule,
+    NzToolTipModule,
+  ],
+  declarations: [
+    ...COMPONENTS,
+    PayslipComponent,
+    RemoveZerosPipe,
+    MonthsyearPipe,
+    TransposeminusPipe,
+    UsersComponent,
+    PayslipsComponent,
+    QueriesComponent,
+    UploadComponent,
+  ],
+  exports: [
+    ...MODULES,
+    MyLoginComponent,
+    CardHeaderTabbedComponent,
+    BreadcrumbsComponent,
+    FooterComponent,
+    MenuClassicLeftComponent,
+    MenuClassicTopComponent,
+    UsersComponent,
+    PayslipsComponent,
+    QueriesComponent,
+  ],
 })
 export class CustomModule {}
