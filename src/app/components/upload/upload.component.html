@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-12">
+    // TODO: send authenticated requests
+    <nz-upload
+      nzType="drag"
+      [nzSize]="200000"
+      [nzMultiple]="true"
+      [nzRemove]="downloadModule.removeFile"
+      [nzDownload]="downloadFile()"
+      (nzChange)="handleChange($event)"
+      [nzAction]="myUploadLink"
+    >
+      <p class="ant-upload-drag-icon">
+        <i nz-icon nzType="upload"></i>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+    </nz-upload>
+  </div>
+</div>
+

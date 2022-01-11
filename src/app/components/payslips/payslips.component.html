@@ -1,0 +1,16 @@
+<nz-tabset
+  nzTabPosition="left">
+  <nz-tab nzTitle="Upload Payslips">
+    <div class="row">
+      <div [style]="{'height':'50vh','overflowY':'scroll'}" class="col-6">
+        <app-upload
+        ></app-upload>
+      </div>
+      <div class="col-6">
+        <button (click)="startGeneratingPayslips()" nz-button nzType="primary">Generate Payslips</button>
+      </div>
+    </div>
+
+  </nz-tab>
+  <nz-tab nzTitle="View Payslips"></nz-tab>
+</nz-tabset>
