@@ -1,16 +1,15 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
-  name: 'transposeminus'
+  name: 'transposeminus',
 })
 export class TransposeminusPipe implements PipeTransform {
-
   transform(value: string, ...args: unknown[]): unknown {
     let v = ''
+    if (value == null) return v
     let arr = value.split('-')
-    v = arr[1]+'-'
-    if(arr.length ==1) return value
+    v = arr[1] + '-'
+    if (arr.length == 1) return value
     return v
   }
-
 }

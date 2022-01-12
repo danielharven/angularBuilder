@@ -128,10 +128,25 @@ export class PayslipComponent implements OnInit {
     //find out if there is a dot
     let tt = t.deductionAmount?.toString() || ''
     if (!tt.includes('.')) {
+      console.log(tt)
       return (tt.length + 3) * this.transactionsSettings.space
     }
 
     return tt.length * this.transactionsSettings.space
+  }
+  calculateSpaceAccumukation(t: any) {
+    //find out if there is a dot
+    let tt = t.accumulation?.toString() || ''
+    if (!tt.includes('.')) {
+      return (tt.length + 3) * this.transactionsSettings.space
+    }
+    let x = tt.split('.')
+    if (x[1].length == 1) {
+      return (tt.length + 2) * this.transactionsSettings.space
+    }
+
+    return tt.length * this.transactionsSettings.space
+    // return len
   }
   getFooter() {
     let api = '/footers?current=true'

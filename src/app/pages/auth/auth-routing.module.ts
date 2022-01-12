@@ -15,7 +15,13 @@ const routes: Routes = [
     path: 'login',
     component: LoginPage,
     data: { title: 'Login' },
-  },  {
+  },
+  {
+    path: 'login/:token',
+    component: LoginPage,
+    data: { title: 'Login' },
+  },
+  {
     path: 'logout',
     component: LoginPage,
     data: { title: 'Logged out' },

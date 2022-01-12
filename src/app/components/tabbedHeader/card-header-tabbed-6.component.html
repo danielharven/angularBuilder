@@ -9,7 +9,7 @@
         </thead>
         <tbody>
         <tr  *ngFor="let data of basicTable.data">
-          <td (click)="getPayslip(data)"> Click here to open {{data|monthsyear |date}}</td>
+          <td (click)="getPayslip(data)"> Click here to open {{data|monthsyear |date:"MMMM YYYY"}} Payslip</td>
         </tr>
         </tbody>
       </nz-table>

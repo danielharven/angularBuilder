@@ -105,7 +105,7 @@
   </div>
   <div style="position:absolute;"
        [style.top.px]="341.46+(i*transactionsSettings.top_dif)"
-       [style.left.px]="transactionsSettings.accum_left_limit - (t.accumulation?.toString().length * transactionsSettings.space)"
+       [style.left.px]="transactionsSettings.accum_left_limit - (calculateSpaceAccumukation(t))"
        class="cls_002"><span class="cls_002">{{t.accumulation|currency:'ZMW':''|transposeminus|removeZeros}}</span>
   </div>
   </div>
