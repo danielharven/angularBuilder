@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   signOut(){
+    console.log('hello')
     this.store.dispatch(new UserActions.Logout())
   }
 

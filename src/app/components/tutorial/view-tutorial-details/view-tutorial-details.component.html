@@ -21,7 +21,7 @@
       <div class="media media-card align-items-center shadow-none p-0 mb-0
       rounded-0 mt-4 bg-transparent">
         <div class="media-body">
-          <h5 class="fs-14 fw-medium">By <a href="#">{{question?.owner?.displayName}}</a></h5>
+          <h5 class="fs-14 fw-medium">By <a>{{question?.owner?.displayName}}</a></h5>
           <small class="meta d-block lh-20">
             <span class="mr-2">{{question.createdAt|date}}</span>
             <span class="mr-2 fs-15">.</span>
@@ -45,7 +45,12 @@
       <div class="col-lg-8">
         <div class="card card-item">
           <div class="card-body">
-            <quill-view-html [content]='question?.body'></quill-view-html>
+            <div>
+              <button nz-button (click)='view=!view'><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+              <hr>
+            </div>
+            <quill-view-html *ngIf='view' [content]='question?.body'></quill-view-html>
+           <app-crete-tutorial *ngIf='!view' [update]='true' [question]='question'></app-crete-tutorial>
 <!--           <div [innerHTML]='question?.body'></div>-->
           </div><!-- end card-body -->
         </div><!-- end card -->
@@ -63,7 +68,9 @@
         <div class="sidebar">
 
           <app-search-tutorials></app-search-tutorials>
-          <app-related-tutorials></app-related-tutorials>
+          <app-related-tutorials *ngIf='question?.id'
+          [tutorial]='question'
+          ></app-related-tutorials>
           <app-side-widget></app-side-widget>
         </div><!-- end sidebar -->
       </div><!-- end col-lg-4 -->

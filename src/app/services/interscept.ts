@@ -5,15 +5,23 @@ import { throwError } from 'rxjs'
 import { NzNotificationComponent, NzNotificationService } from 'ng-zorro-antd/notification'
 import { environment } from '../../environments/environment'
 import store from 'store'
+import Swal from 'sweetalert2'
+// import { UtilitiesService } from './utilities.service'
+import { NgxSpinnerService } from 'ngx-spinner'
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private msg: NzNotificationService) {}
+  constructor(private msg: NzNotificationService,private loader : NgxSpinnerService,) {}
   notifyUser(msg) {
-    this.msg.error(environment.app, msg)
+    Swal.fire({
+      title: 'Error!',
+      text: msg,
+      icon: 'error',
+      confirmButtonText: 'close'
+    })
   }
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // Get the auth token from the service.
-    const authToken = localStorage.getItem('cross')
+    let authToken = store.get('accessToken')
 
     if (!authToken || req.url.includes('auth/local')) {
       return next.handle(req).pipe(
@@ -99,10 +107,12 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private evaluateError(error: HttpErrorResponse) {
+    this.loader.hide();
     let codes = error.status + ''
+    console.log(codes)
     switch (codes) {
       case '403': {
-        this.notifyUser('Forbidden')
+        this.notifyUser(error?.error?.message || error?.error?.error)
         break
       }
       case '405': {
@@ -125,7 +135,7 @@ export class AuthInterceptor implements HttpInterceptor {
         break
       }
       default: {
-        this.notifyUser('An error occurred in network')
+        this.notifyUser(error?.error?.message || error?.error?.error)
         break
       }
     }

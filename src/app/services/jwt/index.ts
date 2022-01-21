@@ -3,11 +3,12 @@ import { Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import store from 'store'
 import { environment } from '../../../environments/environment'
+import { Router } from '@angular/router'
 
 @Injectable()
 export class jwtAuthService {
   url =  environment.url
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router:Router) {}
 
   login(email: string, password: string): Observable<any> {
     let identifier = email;
@@ -34,6 +35,12 @@ export class jwtAuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.get(this.url+'/auth/logout')
+    console.log('logging out')
+    localStorage.clear();
+    store.remove('accessToken');
+    this.router.navigate(['/auth/login'])
+    return new Observable<any>(observable=>{
+      return observable.complete()
+    })
   }
 }

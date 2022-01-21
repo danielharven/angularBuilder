@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 import { environment } from '../../../environments/environment'
 import { BehaviorSubject, Observable, of } from 'rxjs'
 import { UtilitiesService } from '../../services/utilities.service'
 import { HttpClient } from '@angular/common/http'
 import { catchError, debounceTime, map, switchMap } from 'rxjs/operators'
+import { ActivatedRoute } from '@angular/router'
 const URL = environment.url
 @Component({
   selector: 'app-questions-list',
@@ -11,6 +12,7 @@ const URL = environment.url
   styleUrls: ['./questions-list.component.scss']
 })
 export class QuestionsListComponent implements OnInit {
+  @Input('view') view : string ='all'
     totalQuestions: number =0
   topics: any =[]
   selectTopic: any = ''
@@ -24,29 +26,101 @@ export class QuestionsListComponent implements OnInit {
   listLimit = 0
 
   paginations = 0
-
+  state$: Observable<object>;
   constructor(private utilities:UtilitiesService,
-              private http: HttpClient,) {  }
+              private activatedRoute: ActivatedRoute,
+              private http: HttpClient,) {
+
+  }
 
   ngOnInit(): void {
-    this.getTopics()
-    this.getQuestions()
+    this.state$ = this.activatedRoute.paramMap
+      .pipe(map(() => window.history.state))
+    this.state$.subscribe(data=>{
+      //@ts-ignore
+      if(data?.value) this.view=data?.value
+      switch (this.view) {
+        case 'yes':{
+          this.getPagnatedQuesitons(true);
+          break;
+        }
+        case 'no':{
+          this.getPagnatedQuesitons(false);
+          break;
+        }
+        case 'res':{
+          this.getPagnatedReservedQuesitons(true);
+          break;
+        }
+        default:{
+          this.getAllPagematedQuestions()
+          break;
+        }
+      }
+      this.getTopics()
+      this.getQuestions()
+    })
+
   }
   async getQuestions(){
-    let x = await this.utilities.graphqlRequests(this.utilities.queries.countQuestions())
-    let {data}=x;
-    this.totalQuestions= data?.questionsConnection.aggregate.count || 0
+    switch (this.view) {
+      case 'yes':{
+        let x = await this.utilities.graphqlRequests(this.utilities.queries.countAnsweredQuestions())
+        let {data}=x;
+        this.totalQuestions= data?.questionsConnection.aggregate.count || 0
+        break;
+      }
+      case 'no':{
+        let x = await this.utilities.graphqlRequests(this.utilities.queries.countUnAnsweredQuestions())
+        let {data}=x;
+        this.totalQuestions= data?.questionsConnection.aggregate.count || 0
+        break;
+      }
+      case 'res':{
+        let x = await this.utilities.graphqlRequests(this.utilities.queries.countResAnsweredQuestions())
+        let {data}=x;
+        this.totalQuestions= data?.questionsConnection.aggregate.count || 0
+        break;
+      }
+      default:{
+        let x = await this.utilities.graphqlRequests(this.utilities.queries.countQuestions())
+        let {data}=x;
+        this.totalQuestions= data?.questionsConnection.aggregate.count || 0
+        break;
+      }
+    }
 
+
+
+  }
+  async getPagnatedQuesitons(answered){
     {
       let limit = this.limit;
       let start = 0;
       let x  = await this.utilities
-        .graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start}));
+        .graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
       this.questions = x.data?.questions || []
+      if(limit=>x?.data?.questions?.length){
+        this.listLimit=limit
+      }else {
+        this.listLimit=x?.data?.questions?.length
+      }
     }
   }
-  getPagnatedQuesitons(){
+  async getPagnatedReservedQuesitons(reserved){
+    {
+      let limit = this.limit;
+      let start = 0;
+      let x  = await this.utilities
+        .graphqlRequests(this.utilities.queries.getPaginatedResQuestions({limit,start,reserved}));
+      this.questions = x.data?.questions || []
+      if(limit=>x?.data?.questions?.length){
+        this.listLimit=x?.data?.questions?.length
+      }else {
 
+        this.listLimit=limit
+      }
+    }
   }
   async getTopics() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -77,7 +151,36 @@ export class QuestionsListComponent implements OnInit {
     // get the data according to the page
     let limit = this.limit;
     let start = ($event-1)*limit;
-    let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start}));
+
+    switch (this.view) {
+      case 'yes':{
+        let answered = true
+        let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
+        this.questions = x.data?.questions || []
+        break;
+      }
+      case 'no':{
+        let answered = false
+        let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
+        this.questions = x.data?.questions || []
+        break;
+      }
+      case 'res':{
+        let reserved = true
+        let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedResQuestions({limit,start,reserved}));
+        this.questions = x.data?.questions || []
+        break;
+      }
+      default:{
+        let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedAllQuestions({limit,start}));
+        this.questions = x.data?.questions || []
+        break;
+      }
+    }
+  }
+
+  private async getAllPagematedQuestions() {
+    let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedAllQuestions({limit:this.limit,start:this.page}));
     this.questions = x.data?.questions || []
   }
 }

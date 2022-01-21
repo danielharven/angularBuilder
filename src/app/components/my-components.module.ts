@@ -47,7 +47,12 @@ import { ViewMyTutorialDetailsComponent } from './tutorial/view-my-tutorial-deta
 import { RelatedTutorialsComponent } from './tutorial/related-tutorials/related-tutorials.component';
 import { SearchTutorialsComponent } from './tutorial/search-tutorials/search-tutorials.component';
 import { SideWidgetComponent } from './socialmedia/side-widget/side-widget.component';
-import { CommentsWidgetTutorialsComponent } from './widgets/comments-widget-tutorials/comments-widget-tutorials.component'
+import { CommentsWidgetTutorialsComponent } from './widgets/comments-widget-tutorials/comments-widget-tutorials.component';
+import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
+import { ReservedenquiryPipe } from './pipes/reservedenquiry.pipe';
+import { MyQuestionsComponent } from './questions/my-questions/my-questions.component';
+import { MyTutorialsComponent } from './tutorials/my-tutorials/my-tutorials.component';
+import { AllSubjectsComponent } from './subjects/all-subjects/all-subjects.component'
 const COMPONENTS = [
   FieldNgSelect,
   FieldQuillType,
@@ -76,7 +81,7 @@ const COMPONENTS = [
     QuillModule,
   ],
   providers:[{provide: ErrorHandler, useClass: MyErrorHandler}],
-  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent, QuestionAskComponent, QuestionAnswerComponent, CountsComponent, CreteTutorialComponent, ViewTutorialsComponent, ViewTutorialDetailsComponent, ViewMyTutorialDetailsComponent, RelatedTutorialsComponent, SearchTutorialsComponent, SideWidgetComponent, CommentsWidgetTutorialsComponent ],
+  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent, QuestionAskComponent, QuestionAnswerComponent, CountsComponent, CreteTutorialComponent, ViewTutorialsComponent, ViewTutorialDetailsComponent, ViewMyTutorialDetailsComponent, RelatedTutorialsComponent, SearchTutorialsComponent, SideWidgetComponent, CommentsWidgetTutorialsComponent, LoadingScreenComponent, ReservedenquiryPipe, MyQuestionsComponent, MyTutorialsComponent, AllSubjectsComponent ],
   exports: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent],
 })
 export class MyComponentsModule {}

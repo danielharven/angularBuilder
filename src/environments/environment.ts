@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   authenticated: false,
   hmr: false,
-  url:'http://localhost:1337'
+  url:'http://localhost:1337',
+  app:"Tadya"
 }
 
 /*

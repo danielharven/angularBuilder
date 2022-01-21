@@ -33,6 +33,9 @@ import { TeacherGuard } from './components/Guard/teacher.guard'
 import { CreteTutorialComponent } from './components/tutorial/crete-tutorial/crete-tutorial.component'
 import { ViewTutorialDetailsComponent } from './components/tutorial/view-tutorial-details/view-tutorial-details.component'
 import { ViewTutorialsComponent } from './components/tutorial/view-tutorials/view-tutorials.component'
+import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component'
+import { QuestionsListComponent } from './components/questions-list/questions-list.component'
+import { AllSubjectsComponent } from './components/subjects/all-subjects/all-subjects.component'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -53,6 +56,10 @@ const routes: Routes = [
         path: 'home',
         data: { title: 'home' },
         component: DashboardComponent,
+      },{
+        path: 'loading',
+        data: { title: 'loading' },
+        component: LoadingScreenComponent,
       },
       {
         path: 'faq',
@@ -111,6 +118,18 @@ const routes: Routes = [
         component: AskQuestionComponent,
       },
       {
+        path: 'questions',
+        canActivate: [AuthGuard],
+        data: { title: 'Questions' },
+        component: QuestionsListComponent,
+      },
+      {
+        path: 'questions/unanswered',
+        canActivate: [AuthGuard],
+        data: { title: 'Questions' },
+        component: QuestionsListComponent,
+      },
+      {
         path: 'question-details/:id/:title',
         canActivate: [AuthGuard],
         data: { title: 'Full question' },
@@ -121,6 +140,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: { title: 'Full question' },
         component: QuestionsDetailsComponent,
+      },
+      {
+        path: 'subjects',
+        data: { title: 'Subjects' },
+        component: AllSubjectsComponent,
       },
       {
         path: 'profile',

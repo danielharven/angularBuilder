@@ -109,10 +109,29 @@
         </div><!-- end sidebar -->
       </div><!-- end col-lg-2 -->
       <div class="col-lg-10 px-0">
-        <app-questions-list *ngIf='current==0'>
-        </app-questions-list>
+        <nz-tabset nzCentered *ngIf='current===0'>
+          <nz-tab nzTitle='Answered'>
+            <app-questions-list
+              view='yes'
+              *ngIf='current==0'>
+            </app-questions-list>
+          </nz-tab>
+          <nz-tab nzTitle='Being Answered'>
+            <app-questions-list
+              view='res'
+              *ngIf='current==0'>
+            </app-questions-list>
+          </nz-tab>
+          <nz-tab nzTitle='Un Answered'>
+            <app-questions-list
+              view='no'
+              *ngIf='current==0'>
+            </app-questions-list>
+          </nz-tab>
+        </nz-tabset>
        <app-view-tutorials *ngIf='current==3'>
          </app-view-tutorials>
+       <app-all-subjects *ngIf='current===5'></app-all-subjects>
       </div><!-- end col-lg-7 -->
     </div><!-- end row -->
   </div><!-- end container -->

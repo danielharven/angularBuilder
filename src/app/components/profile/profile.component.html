@@ -43,6 +43,15 @@
                href="#user-plans" role="tab" aria-controls="user-plans" aria-selected="true">Plans</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" id="user-profile-tab" data-toggle="tab" href="#user-questions" role="tab" aria-controls="user-questions" aria-selected="false">My Questions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="user-profile-tab" data-toggle="tab" href="#user-tutorials" role="tab" aria-controls="user-tutorials" aria-selected="false">My Tutorials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="user-profile-tab" data-toggle="tab" href="#user-answered" role="tab" aria-controls="user-answered" aria-selected="false">My Answers</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" id="user-profile-tab" data-toggle="tab" href="#user-profile" role="tab" aria-controls="user-profile" aria-selected="false">Profile</a>
           </li>
           <li class="nav-item">
@@ -86,6 +95,30 @@
                 </div><!-- end card -->
               </div>
               </div><!-- end col-lg-4 -->
+          </div><!-- end tab-pane -->
+          <div class="tab-pane fade" id="user-questions" role="tabpanel"
+               aria-labelledby="user-profile-tab">
+            <div class="user-panel-main-bar">
+              <h5> My Questions</h5>
+              <a routerLink='/ask'>Ask a Question</a>
+              <app-my-questions view='1'></app-my-questions>
+            </div><!-- end user-panel-main-bar -->
+          </div><!-- end tab-pane -->
+          <div class="tab-pane fade" id="user-answered" role="tabpanel"
+               aria-labelledby="user-profile-tab">
+            <div class="user-panel-main-bar">
+              <h5> My Answers</h5>
+              <a routerLink='/questions/unanswered' [state]='{value:"no"}'>Answer another question</a>
+              <app-my-questions view='2'></app-my-questions>
+            </div><!-- end user-panel-main-bar -->
+          </div><!-- end tab-pane -->
+          <div class="tab-pane fade" id="user-tutorials" role="tabpanel"
+               aria-labelledby="user-profile-tab">
+            <div class="user-panel-main-bar">
+              <h5> My Tutorials</h5>
+              <a routerLink='/tutorial/create'>Create a tutorial</a>
+              <app-view-my-tutorial-details></app-view-my-tutorial-details>
+            </div><!-- end user-panel-main-bar -->
           </div><!-- end tab-pane -->
           <div class="tab-pane fade" id="user-profile" role="tabpanel"
                aria-labelledby="user-profile-tab">

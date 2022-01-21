@@ -1,6 +1,7 @@
 <!-- ================================
          START QUESTION AREA
 ================================= -->
+
 <section class="question-area pt-80px pb-30px">
   <div class="container">
     <div class="row">
@@ -44,9 +45,12 @@
                   <h5 class="mb-2 fw-medium"><a [routerLink]="['/question-details',x.id,x?.slug]">{{x?.title}}</a></h5>
                   <p class="mb-2 truncate lh-20 fs-15">{{x?.body}}</p>
                   <div class="tags">
-                    <a href="#" class="tag-link">{{x.topic?.subject?.name}}</a>
-                    <a href="#" class="tag-link">{{x.topic?.subject?.grade}}</a>
-                    <a href="#" class="tag-link">{{x?.topic?.name}}</a>
+                    <a  class="tag-link">{{x.topic?.subject?.name}}</a>
+                    <a  class="tag-link">{{x.topic?.subject?.grade}}</a>
+                    <a  class="tag-link">{{x?.topic?.name}}</a>
+                  </div>
+                  <div class='tags text-success text-capitalize'>
+                    <a>{{x?.reserved | reservedenquiry|async}}</a>
                   </div>
                   <div class="media media-card user-media align-items-center px-0 border-bottom-0 pb-0">
                     <div class="media-body d-flex flex-wrap align-items-center justify-content-between">

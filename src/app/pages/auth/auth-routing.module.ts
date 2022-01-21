@@ -26,7 +26,7 @@ const routes: Routes = [
     data: { title: 'Sign Up' },
   },
   {
-    path: 'locksreen',
+    path: 'logout',
     component: LockscreenPage,
     data: { title: 'Lockscreen' },
   },

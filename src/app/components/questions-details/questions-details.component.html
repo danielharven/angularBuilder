@@ -1,7 +1,12 @@
 <!-- ================================
          START QUESTION AREA
 ================================= -->
-<section class="question-area pt-40px pb-40px">
+<section class="question-area pt-40px pb-40px" #target>
+  <nz-affix *ngIf='reserved' [nzTarget]="target" id="affix-container-target">
+    <button nz-button [nzType]="'primary'">
+      <nz-countdown [nzValue]="deadline" [nzTitle]="'Countdown'"></nz-countdown>
+    </button>
+  </nz-affix>
   <div class="container">
     <div class="row">
       <div *ngIf='!loadingQuestion' class="col-lg-9">
@@ -163,9 +168,21 @@
               </div><!-- end comments-wrap -->
             </div><!-- end question-post-body-wrap -->
           </div><!-- end question -->
+          <div class='row'>
+            <div *ngIf='reserving' class='col-12'>
+            <nz-spin></nz-spin> Reserving question
+          </div>
+            <div class='col-12'>
+              <button class='btn btn-primary' (click)='reserveQuestion()' nz-button *ngIf='!reserved || !question?.answered || question?.reserved || !reserving'>Reserve Question</button>
+              <button class='btn btn-secondary ml-2' (click)='extendQuestion()' nz-button *ngIf='reserved'>Extend Time By 15m</button>
+            </div>
+            <div class='col-12' *ngIf='reserved'>
+              <nz-countdown [nzValue]="deadline" [nzTitle]="'Countdown'"></nz-countdown>
+            </div>
+          </div>
           <div class="subheader d-flex align-items-center justify-content-between">
             <div class="subheader-title">
-              <h3 class="fs-16">1 Answer</h3>
+              <h3 class="fs-16">Answer</h3>
             </div><!-- end subheader-title -->
 <!--            <div class="subheader-actions d-flex align-items-center lh-1">-->
 <!--              <label class="fs-13 fw-regular mr-1 mb-0">Order by</label>-->
@@ -179,10 +196,11 @@
 <!--            </div>&lt;!&ndash; end subheader-actions &ndash;&gt;-->
           </div>
           <!-- end subheader -->
-          <app-answers [question]='quetion_id'></app-answers>
+
           <!-- end answer-wrap -->
           <!-- end subheader -->
-          <app-question-answer [qid]='quetion_id' ></app-question-answer>
+         <app-question-answer [qid]='quetion_id'  *ngIf='reserved'></app-question-answer>
+          <app-answers [question]='quetion_id'></app-answers>
         </div><!-- end question-main-bar -->
 
       </div><!-- end col-lg-9 -->

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 import { BehaviorSubject, Observable, of } from 'rxjs'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { UtilitiesService } from '../../../services/utilities.service'
@@ -12,7 +12,8 @@ const URL = environment.url
   styleUrls: ['./crete-tutorial.component.scss']
 })
 export class CreteTutorialComponent implements OnInit {
-
+  @Input('update') update : boolean = false;
+  @Input('question') question:any ={}
   topics: any =[]
   selectTopic: any = ''
   isLoading = true;
@@ -45,13 +46,24 @@ export class CreteTutorialComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTopics()
+    if(!this.update){
+      this.createForm = new FormGroup(
+        {
+          title : new FormControl('',Validators.required),
+          topic : new FormControl('',Validators.required),
+          body : new FormControl('',Validators.required),
+        }
+      )
+      return
+    }
     this.createForm = new FormGroup(
       {
-        title : new FormControl('',Validators.required),
-        topic : new FormControl('',Validators.required),
-        body : new FormControl('',Validators.required),
+        title : new FormControl(this.question.title,Validators.required),
+        topic : new FormControl(this.question.topic,Validators.required),
+        body : new FormControl(this.question.body,Validators.required),
       }
     )
+
   }
   async getTopics() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -79,12 +91,24 @@ export class CreteTutorialComponent implements OnInit {
   }
 
   async createQuestion() {
-    console.log(this.createForm.value)
     this.utilities.loadScreen()
     let mdata= {
-      ...this.createForm.value,
-      owner:this.utilities.user.id
+      ...this.createForm.value
     }
+
+    if(this.update){
+      let {id} =this.question
+      let x =  await this.utilities.http.put(URL+'/blogs/'+id,mdata).toPromise()
+      //@ts-ignore
+      if(x?.id){
+        this.utilities.notifyUser.success(this.utilities.constants.tutorial_update_success)
+        this.utilities.stopLoadScreen()
+      }else{
+        this.utilities.stopLoadScreen()
+      }
+      return
+    }
+
     let x =  await this.utilities.http.post(URL+'/blogs',mdata).toPromise()
     //@ts-ignore
     let {id} =x;

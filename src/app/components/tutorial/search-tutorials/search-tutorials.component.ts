@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilitiesService } from '../../../services/utilities.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-search-tutorials',
@@ -11,7 +12,7 @@ export class SearchTutorialsComponent implements OnInit {
   isVisible = false;
   isConfirmLoading = false;
   results = []
-  constructor(private utilities:UtilitiesService) { }
+  constructor(private utilities:UtilitiesService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -40,5 +41,13 @@ export class SearchTutorialsComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+  moveToTutorial(id: any, slug: any) {
+
+    setTimeout(()=>{
+      this.router.navigate([`/tutorial/view/${id}/${slug}`])
+    },400)
+    this.router.navigate([`/loading`])
   }
 }

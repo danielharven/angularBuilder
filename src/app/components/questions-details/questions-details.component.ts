@@ -17,8 +17,8 @@ export class QuestionsDetailsComponent implements OnInit {
   answerForm: FormGroup
   shareUrl = ''
   myUploadFilesComments: any=[]
-
-
+  reserved: boolean =false;
+  deadline=0
   myModules = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -53,6 +53,7 @@ export class QuestionsDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getQuestionDetails()
     this.setupForms()
+    this.checkIfQuestionIsReservedByMe()
   }
 
  async getQuestionDetails(){
@@ -117,6 +118,8 @@ export class QuestionsDetailsComponent implements OnInit {
       this.commentImages.push(item)
     }
   }
+  reserving: boolean =false
+
 
 
   reset(){
@@ -132,4 +135,50 @@ export class QuestionsDetailsComponent implements OnInit {
     })
   }
 
+  async reserveQuestion() {
+     // show a loading modal
+this.reserving=true
+    let api ='/questions/reserve/'+this.quetion_id
+    let method ='get'
+    let res = await this.utility.httpRequest({api,method})
+
+    if (res?.status){
+      this.deadline =Date.now() + 15*60*1000
+       this.reserving = false
+      this.reserved = true;
+      this.utility.notifyUser.success('Question has been reserved for 15 minutes')
+    }else{
+      this.reserving = false
+    }
+    // ask for reservation
+  }
+
+  async extendQuestion() {
+     this.reserving=true;
+    let api ='/questions/reserve/extend/'+this.quetion_id
+    let method ='get'
+    let res = await this.utility.httpRequest({api,method})
+
+    if (res?.status){
+      this.deadline =this.deadline + 15*60*1000
+      this.reserving = false
+      this.reserved = true;
+      this.utility.notifyUser.success('Reserve time has been extended for 15 minutes')
+    }else{
+      this.utility.notifyUser.error('Failed to extend question for another 15 minutes')
+      this.reserving = false
+    }
+  }
+  async checkIfQuestionIsReservedByMe(){
+     this.reserved=false
+    let api ='/questions/reserve/me/'+this.quetion_id
+    let method ='get'
+    let res = await this.utility.httpRequest({api,method})
+
+    if (res?.status){
+      this.deadline =Date.parse( res?.deadline)
+      this.reserving = false
+      this.reserved = true;
+    }
+  }
 }

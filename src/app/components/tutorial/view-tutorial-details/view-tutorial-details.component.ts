@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { UtilitiesService } from '../../../services/utilities.service'
+import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-view-tutorial-details',
@@ -9,7 +10,9 @@ import { UtilitiesService } from '../../../services/utilities.service'
   styleUrls: ['./view-tutorial-details.component.scss']
 })
 export class ViewTutorialDetailsComponent implements OnInit {
+
   quetion_id = ''
+  view: any =true
   loadingQuestion=true
   question:any={}
   answer:any={}
@@ -17,8 +20,6 @@ export class ViewTutorialDetailsComponent implements OnInit {
   answerForm: FormGroup
   shareUrl = ''
   myUploadFilesComments: any=[]
-
-
   myModules = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -41,9 +42,8 @@ export class ViewTutorialDetailsComponent implements OnInit {
       ['link']                         // link and image, video
     ]
   };
-  commentImages: any =[]
-  answerImages: any =[]
-  constructor(private route : ActivatedRoute, private utility: UtilitiesService) {
+
+  constructor(private route : ActivatedRoute, private utility: UtilitiesService, private titleService: Title,) {
     this.route.params.subscribe(par=>{
       this.quetion_id=par.id
     })
@@ -67,4 +67,9 @@ export class ViewTutorialDetailsComponent implements OnInit {
     this.getQuestionDetails()
 
   }
+  setTitle = () => {
+    // this.titleService.setTitle(`${this.logo} | ${this.pageTitle}`)
+  }
+
+
 }

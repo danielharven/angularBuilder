@@ -30,7 +30,7 @@ import { FieldQuillType } from './components/formly/quill/quil-type'
 import { NgxSpinnerModule } from 'ngx-spinner'
 import { configureGraphQL } from 'ngx-graphql'
 import { environment } from '../environments/environment'
-import {AuthInterceptor} from "./services/fakeApi";
+import {AuthInterceptor} from "./services/interscept";
 // import {FlutterwaveModule} from "flutterwave-angular-v3";
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },

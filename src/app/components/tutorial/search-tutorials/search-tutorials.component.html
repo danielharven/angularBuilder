@@ -19,7 +19,9 @@
                 <div>{{x.title}}</div>
                 <div class="text-muted">{{x?.owner?.displayName}}</div>
               </div>
-              <div [routerLink]="['/tutorial/view',x.id,x?.slug]" class="text-success ml-auto">Open</div>
+              <div  class="text-success ml-auto">
+                <a (click)='moveToTutorial(x?.id,x?.slug)'>Open</a>
+              </div>
             </div>
             <p class="mb-4">
              Topic:  {{x.topic.name}} <br>

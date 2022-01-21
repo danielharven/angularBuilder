@@ -59,12 +59,19 @@ export class QuestionAnswerComponent implements OnInit {
     let {body}  =this.answerForm.value;
     let user = this.utility.user.id
     let question = this.qid
-    let y = await this.utility.graphqlRequests(this.utility.queries.createAnswer({body,user,question}))
-    let {data}= y
+    let api ='/answers'
+    let method='post'
+    let y = await this.utility.httpRequest({api,method,body:{body,user,question}}).catch(err=>{
+      this.utility.stopLoadScreen()
+      this.utility.notifyUser.error( this.utility.evaluateError(err));
+      return
+    })
+      // this.utility.graphqlRequests(this.utility.queries.createAnswer({body,user,question}))
+    let {id}= y
     for (let x of this.answerImages){
       let field = 'image'
       let ref = 'answers'
-      let refId = data?.createAnswer?.answer?.id
+      let refId = id
       let {file} = x
       await this.utility.uploadFiles(file,ref,refId,field)
     }

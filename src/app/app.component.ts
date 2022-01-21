@@ -90,6 +90,7 @@ export class AppComponent implements OnInit {
       .subscribe(event => {
         this.pageTitle = event['title']
         this.setTitle()
+        window.scrollTo(0, 0)
       })
 
     // listen url query params and set them to ngrx store

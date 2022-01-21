@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import ApolloClient from 'apollo-client'
 import { GraphQL } from 'ngx-graphql'
 import * as UserActions from '../store/user/actions'
@@ -9,10 +9,7 @@ import { select, Store } from '@ngrx/store'
 import * as Reducers from '../store/reducers'
 import Swal from 'sweetalert2'
 import * as Sto from 'store'
-import { BehaviorSubject } from 'rxjs'
-import { error } from '@ant-design/icons-angular'
 import { environment } from '../../environments/environment'
-// import {FlutterwaveCheckout} from "flutterwave-angular-v3/src/app/modules/models";
 const URRL= environment.url;
 @Injectable({
   providedIn: 'root'
@@ -31,7 +28,7 @@ export class UtilitiesService {
       .subscribe(state => {
       this.authorized = state.authorized
       this.user = state;
-      console.log(state)
+      // console.log(state)
       const accessToken = Sto.get('accessToken')
       if(!accessToken){
         this.router.navigate(['auth/login'])
@@ -72,7 +69,7 @@ export class UtilitiesService {
       })
     },
     error:(msg)=>{
-      console.log('inside i think',msg)
+      // console.log('inside i think',msg)
       Swal.fire({
         title: 'Error!',
         text: msg,
@@ -308,13 +305,75 @@ query {
 }`
       return x;
     },
-    getPaginatedQuestions:({limit,start}): string=>{
+    getPaginatedQuestions:({limit,start,answered}): string=>{
       let x = `
   query {
     questions(
         limit:${limit}
         start:${start}
         sort:"createdAt:desc"
+        where:{answered:${answered}}
+    ){
+        id
+        title
+        body
+        slug
+        askedby{
+            displayName
+        }
+        createdAt
+        topic{
+            subject{
+                name
+                grade
+                id
+            }
+            name
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
+    getPaginatedAllQuestions:({limit,start}): string=>{
+      let x = `
+  query {
+    questions(
+        limit:${limit}
+        start:${start}
+        sort:"createdAt:desc"
+    ){
+        id
+        title
+        body
+        slug
+        askedby{
+            displayName
+        }
+        createdAt
+        topic{
+            subject{
+                name
+                grade
+                id
+            }
+            name
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
+    getPaginatedResQuestions:({limit,start,reserved}): string=>{
+      let x = `
+  query {
+    questions(
+        limit:${limit}
+        start:${start}
+        sort:"createdAt:desc"
+        where:{reserved:"${reserved}"}
     ){
         id
         title
@@ -379,6 +438,39 @@ query {
         sort:"createdAt:desc"
         where:{_or:[{ title_contains:"${search}"},{topic:{name_contains:"${search}"}}]
         }
+    ){
+        id
+        title
+        slug
+        owner{
+            displayName
+            id
+        }
+        createdAt
+        topic{
+        image{
+                url
+            }
+            subject{
+                name
+                grade
+                id
+            }
+            name
+            id
+        }
+    }
+}
+      `
+      return x;
+    },
+    getRelatedTutorials:(topic): string=>{
+      let x = `
+ query {
+    blogs(
+        sort:"createdAt:desc"
+        limit:10
+        where:{topic:"${topic}"}
     ){
         id
         title
@@ -506,6 +598,42 @@ query {
       `
       return x;
     },
+    countAnsweredQuestions:(): string=>{
+      let x = `
+query {
+    questionsConnection(where:{answered:true}){
+        aggregate{
+            count
+        }
+    }
+}
+      `
+      return x;
+    },
+    countUnAnsweredQuestions:(): string=>{
+      let x = `
+query {
+    questionsConnection(where:{answered:false}){
+        aggregate{
+            count
+        }
+    }
+}
+      `
+      return x;
+    },
+    countResAnsweredQuestions:(): string=>{
+      let x = `
+query {
+    questionsConnection(where:{reserved:true}){
+        aggregate{
+            count
+        }
+    }
+}
+      `
+      return x;
+    },
     countTutorials:(): string=>{
       let x = `
 query {
@@ -523,6 +651,7 @@ query {
     register_user_success:'User successfully registered ',
     questioon_asked_success:'Question successfully asked, answer will soon be available',
     tutorial_created_success:'Tutorial has been created successfully',
+    tutorial_update_success:'Tutorial has been updated successfully',
     login_user_success:'Successfully logged in ',
     profile_Createduser_success:'Successfully Created profile',
     register_user_failed:'User registration failed ',
@@ -598,6 +727,98 @@ query {
     }
     //@ts-ignore
     return results || {data:{}}
+  }
+  async httpRequest({ api,method,body={} }) : Promise <any> {
+    api = environment.url+api
+    switch (method) {
+      case 'get':{
+        let results = await this.http.get(api).toPromise()
+          .catch(err => {
+            this.notifyUser.error( this.evaluateError(err));
+            this.stopLoadScreen()
+            return {}
+          })
+        //@ts-ignore
+        let {error} = results;
+        if(error){
+          this.stopLoadScreen()
+          this.notifyUser.error( this.evaluateError(error))
+          return {}
+        }
+        //@ts-ignore
+        return results || {}
+        break
+      }
+      case 'post':{
+        let results = await this.http.post(api,body).toPromise()
+          .catch(err => {
+            this.notifyUser.error( this.evaluateError(err));
+            this.stopLoadScreen()
+            return {}
+          })
+        //@ts-ignore
+        let {error} = results;
+        if(error){
+          this.stopLoadScreen()
+          this.notifyUser.error( this.evaluateError(error))
+          return {}
+        }
+        //@ts-ignore
+        return results || {}
+        break
+      }
+
+    }
+
+  }
+  async httpPaginatedRequest({ limit,start,api,body={},method='' }) : Promise <any> {
+    api = environment.url+api
+    start = (start-1)*limit
+    let params = new HttpParams()
+      .append('_start', `${start}`)
+      .append('_limit', `${limit}`)
+      .append('_sort', `createdAt:desc`)
+    let results = await this.http.get(api,{params}).toPromise()
+      .catch(err => {
+        this.notifyUser.error( this.evaluateError(err));
+        this.stopLoadScreen()
+        return {}
+      })
+    //@ts-ignore
+    let {error} = results;
+    if(error){
+      this.stopLoadScreen()
+      this.notifyUser.error( this.evaluateError(error))
+      return {}
+    }
+    //@ts-ignore
+    return results || {}
+    // switch (method) {
+    //   case 'get':{
+    //
+    //     break
+    //   }
+    //   case 'post':{
+    //     let results = await this.http.post(api,body).toPromise()
+    //       .catch(err => {
+    //         this.notifyUser.error( this.evaluateError(err));
+    //         this.stopLoadScreen()
+    //         return {}
+    //       })
+    //     //@ts-ignore
+    //     let {error} = results;
+    //     if(error){
+    //       this.stopLoadScreen()
+    //       this.notifyUser.error( this.evaluateError(error))
+    //       return {}
+    //     }
+    //     //@ts-ignore
+    //     return results || {}
+    //     break
+    //   }
+    //
+    // }
+
   }
   async uploadFiles(file,ref,refId,field){
     try {

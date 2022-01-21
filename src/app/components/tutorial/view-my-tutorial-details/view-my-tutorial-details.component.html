@@ -1,1 +1,53 @@
-<p>view-my-tutorial-details works!</p>
+<!-- ================================
+         START BLOG AREA
+================================= -->
+<section class="blog-area pt-80px pb-80px">
+  <div class="container">
+    <div class="row">
+      <div class='col-12'>
+        <div class="filters pb-4 pl-3 d-flex align-items-center justify-content-between">
+          <div class="mr-3">
+            <h3 class="fs-18 fw-medium">My Tutorials</h3>
+            <p class="pt-1 fs-14 fw-medium lh-20">{{total}} tutorials</p>
+          </div>
+          <div class="filter-option-boxs w-20">
+          </div><!-- end filter-option-box -->
+        </div><!-- end filters -->
+      </div>
+      <ng-container *ngFor='let x of tutorials'>
+        <div class="col-lg-4 responsive-column-half">
+          <div class="card card-item hover-y">
+            <a [routerLink]="['/tutorial/view',x.id,x?.slug]" class="card-img">
+              <img class="lazy" [src]="x?.topic?.image?.url" alt="Card image">
+            </a>
+            <div class="card-body pt-0">
+              <a href="#" class="card-link">{{x.topic.name}} - {{x.topic.subject.name}} - {{x.topic.subject.grade}}</a>
+              <h5 class="card-title fw-medium"><a  [routerLink]="['/tutorial/view',x.id,x?.slug]">{{x?.title}}</a></h5>
+              <div class="media media-card align-items-center shadow-none p-0 mb-0 rounded-0 mt-4 bg-transparent">
+                <!--                <a href="#" class="media-img media-img&#45;&#45;sm d-block mr-2 rounded-full">-->
+                <!--                  <img src="images/img1.jpg" alt="avatar" class="rounded-full">-->
+                <!--                </a>-->
+                <div class="media-body">
+                  <h5 class="fs-14 fw-medium">By <a href="#">{{x.owner.displayName}}</a></h5>
+                  <small class="meta d-block lh-20">
+                    <span>{{x.createdAt|date}}</span>
+                  </small>
+                </div>
+              </div>
+            </div><!-- end card-body -->
+          </div><!-- end card -->
+        </div><!-- end col-lg-4 -->
+      </ng-container>
+
+    </div><!-- end row -->
+    <div class="pager text-center pt-30px">
+      <ng-container>
+        <nz-pagination (nzPageIndexChange)='indexChange($event)'  [nzTotal]="total" nzShowSizeChanger [(nzPageSize)]="limit"></nz-pagination>
+        <p class="fs-13 pt-2">Showing {{listNumber}}-{{listLimit}} results of {{total}} Tutorials</p>
+      </ng-container>
+    </div>
+  </div><!-- end container -->
+</section><!-- end blog-area -->
+<!-- ================================
+         END BLOG AREA
+================================= -->
