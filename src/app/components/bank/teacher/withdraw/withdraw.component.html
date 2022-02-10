@@ -1,0 +1,33 @@
+<div class="card card-item">
+    <div class="card-body">
+        <h5 class="bg-gray fs-20 py-2 px-4 rounded-rounded d-inline-block">Withdraws</h5>
+        <p class="card-text pt-3 pb-5">Your Past Withdraws Made</p>
+        <div>
+            <nz-table #basicTable [nzData]="withdraws" nzShowSizeChanger [nzFrontPagination]="false" [nzLoading]="loading" [nzTotal]="totalWithdraws" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQueryParamsChange($event)">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Account</th>
+                        <th>Completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{data.createdAt|date}}</td>
+                        <td>{{data.amount|currency:'ZMW':'K'}}</td>
+                        <td>{{data.teacher.phone}}</td>
+                        <td>
+                            {{data.completed}}
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+        <div class="card-price border-bottom border-bottom-gray mb-4 pb-4">
+            <!-- <span class="fs-35 fw-bold text-black"> -->
+            <!-- {{x.amount|currency:'ZMW':'K'}}</span> -->
+            <!-- <p class="card-text pt-1 fs-15">{{x.period}}</p> -->
+        </div>
+    </div>
+</div>

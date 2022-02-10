@@ -19,6 +19,7 @@ export class ViewTutorialDetailsComponent implements OnInit {
   commentForm: FormGroup
   answerForm: FormGroup
   shareUrl = ''
+  iOwnTutorial = false
   myUploadFilesComments: any=[]
   myModules = {
     toolbar: [
@@ -56,10 +57,13 @@ export class ViewTutorialDetailsComponent implements OnInit {
 
   async getQuestionDetails(){
     let id =this.quetion_id
-    let y = await this.utility.graphqlRequests(this.utility.queries.getTutorialDetails({id}))
-    let {data}=y
-    this.question=data?.blog
+    let api = '/blogs/'+id
+    let method='get'
+    let y = await this.utility.httpRequest({method,api}) ||{}
+    // let {data}=y
+    this.question=y
     this.loadingQuestion=false
+    this.doIownTutorial()
   }
 
   refresh($event: { status: boolean }) {
@@ -70,6 +74,10 @@ export class ViewTutorialDetailsComponent implements OnInit {
   setTitle = () => {
     // this.titleService.setTitle(`${this.logo} | ${this.pageTitle}`)
   }
-
+  doIownTutorial(){
+    if(this.utility.user.id==this.question.owner.id){
+      this.iOwnTutorial=true;
+    }
+  }
 
 }

@@ -52,7 +52,10 @@ import { LoadingScreenComponent } from './loading-screen/loading-screen.componen
 import { ReservedenquiryPipe } from './pipes/reservedenquiry.pipe';
 import { MyQuestionsComponent } from './questions/my-questions/my-questions.component';
 import { MyTutorialsComponent } from './tutorials/my-tutorials/my-tutorials.component';
-import { AllSubjectsComponent } from './subjects/all-subjects/all-subjects.component'
+import { AllSubjectsComponent } from './subjects/all-subjects/all-subjects.component';
+import { WithdrawComponent } from './bank/teacher/withdraw/withdraw.component';
+import { AccountComponent } from './bank/student/account/account.component'
+import { NzRateModule } from 'ng-zorro-antd/rate';
 const COMPONENTS = [
   FieldNgSelect,
   FieldQuillType,
@@ -78,10 +81,11 @@ const COMPONENTS = [
     NgSelectModule,
     NgxSpinnerModule,
     NzPipesModule,
+    NzRateModule,
     QuillModule,
   ],
   providers:[{provide: ErrorHandler, useClass: MyErrorHandler}],
-  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent, QuestionAskComponent, QuestionAnswerComponent, CountsComponent, CreteTutorialComponent, ViewTutorialsComponent, ViewTutorialDetailsComponent, ViewMyTutorialDetailsComponent, RelatedTutorialsComponent, SearchTutorialsComponent, SideWidgetComponent, CommentsWidgetTutorialsComponent, LoadingScreenComponent, ReservedenquiryPipe, MyQuestionsComponent, MyTutorialsComponent, AllSubjectsComponent ],
+  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent, QuestionAskComponent, QuestionAnswerComponent, CountsComponent, CreteTutorialComponent, ViewTutorialsComponent, ViewTutorialDetailsComponent, ViewMyTutorialDetailsComponent, RelatedTutorialsComponent, SearchTutorialsComponent, SideWidgetComponent, CommentsWidgetTutorialsComponent, LoadingScreenComponent, ReservedenquiryPipe, MyQuestionsComponent, MyTutorialsComponent, AllSubjectsComponent, WithdrawComponent, AccountComponent ],
   exports: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent],
 })
 export class MyComponentsModule {}

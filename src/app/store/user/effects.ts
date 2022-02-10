@@ -13,6 +13,8 @@ import { jwtAuthService } from 'src/app/services/jwt'
 import { firebaseAuthService } from 'src/app/services/firebase'
 import { UtilitiesService } from '../../services/utilities.service'
 
+import qs from 'qs'
+
 @Injectable()
 export class UserEffects implements OnInitEffects {
   constructor(
@@ -103,11 +105,19 @@ export class UserEffects implements OnInitEffects {
       if (settings.authProvider === 'jwt') {
         return this.jwtAuthService.currentAccount().pipe(
           map(response => {
+            console.log(this.route);
+            let pass = qs.parse(window.location.hash.split('?')[1]);
             if (response && (response.email || response.user)) {
+
               if (this.route.snapshot.queryParams.returnUrl) {
+
                 this.router.navigate([this.route.snapshot.queryParams.returnUrl]) // // redirect to returnUrl
-              } else if (this.router.url.includes('/auth')) {
+              }
+               else if (this.router.url.includes('/auth')) {
                 this.router.navigate(['/']) // redirect to root route on auth pages
+
+              }else if(pass?.returnUrl){
+                this.router.navigate([pass?.returnUrl]) // // redirect to returnUrl
 
               }
               this.utilities.stopLoadScreen();
@@ -117,7 +127,6 @@ export class UserEffects implements OnInitEffects {
             return new UserActions.LoadCurrentAccountUnsuccessful()
           }),
           catchError(error => {
-            console.log('ACCOUNT LOAD ERROR: ', error)
             this.utilities.stopLoadScreen();
             return from([{ type: UserActions.LOGIN_UNSUCCESSFUL }])
           }),

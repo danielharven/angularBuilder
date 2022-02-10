@@ -34,16 +34,21 @@ export class ViewTutorialsComponent implements OnInit {
   }
   async getQuestions(){
     let url  = URL+'/blogs'
-    let x = await this.utilities.graphqlRequests(this.utilities.queries.countTutorials())
-    let {data}=x;
-    this.total= data?.blogsConnection?.aggregate?.count || 0
-
+    let x = await this.utilities.httpRequest({api:'/blogs/count',method:'get'}).catch((e)=>{
+    })
+    if(x) this.total = x;
     {
       let limit = this.limit;
-      let start = 0;
-      let x  = await this.utilities
-        .graphqlRequests(this.utilities.queries.getPaginatedTutorials({limit,start}));
-      this.tutorials = x.data?.blogs || []
+      let start = 1;
+      let api='/blogs'
+      let x  = await this.utilities.httpPaginatedRequest({limit,start,api}).catch(e=>{
+        this.tutorials = []
+        return
+      })
+      if(x) this.tutorials=x;
+
+      //   .graphqlRequests(this.utilities.queries.getPaginatedTutorials({limit,start}));
+      // this.tutorials = x.data?.blogs || []
     }
   }
   getPagnatedQuesitons(){

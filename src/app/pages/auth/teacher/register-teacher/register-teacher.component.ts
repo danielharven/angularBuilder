@@ -1,24 +1,22 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
 import { FormlyFieldConfig } from '@ngx-formly/core'
 import { FormGroup } from '@angular/forms'
-import { UtilitiesService } from '../../../services/utilities.service'
-import Swal from 'sweetalert2'
-import * as UserActions from '../../../store/user/actions'
 import { Store } from '@ngrx/store'
-
+import Swal from 'sweetalert2'
+import { UtilitiesService } from 'src/app/services/utilities.service';
 @Component({
-  selector: 'vb-system-register-page',
-  templateUrl: './register.component.html',
-  styleUrls:['./s.scss']
+  selector: 'app-register-teacher',
+  templateUrl: './register-teacher.component.html',
+  styleUrls: ['./register-teacher.component.scss']
 })
-export class RegisterPage {
+export class RegisterTeacherComponent implements OnInit {
+
   option =0;
   form = new FormGroup({});
   model = {
     username: "",
-    optin:false,
-    role:''
+    optin:false
   };
   fields: FormlyFieldConfig[] = [
 
@@ -85,9 +83,9 @@ export class RegisterPage {
               private utilities: UtilitiesService) {
   }
   ngOnInit(){
-    // this.getRoles()
     this.acR.queryParams.subscribe(
       data=>{
+        console.log(data)
        this.option = data.option || 0
       }
     )
@@ -101,13 +99,12 @@ export class RegisterPage {
     localStorage.clear();
     let username ='_' + Math.random().toString(36).substr(2, 9);
     this.model.username = username;
-    let api = '/users-permissions/users/students';
+    let api = '/users';
     let method='post'
     let body = {
       ...this.model
     }
     let q = await this.utilities.httpRequest({method,api,body}).catch(err=>{
-      this.utilities.stopLoadScreen();
       Swal.fire({
         title: 'Error!',
         text: 'Registration failed, try again',
@@ -117,7 +114,7 @@ export class RegisterPage {
       return
     })
     if(q){
-      this.utilities.stopLoadScreen();
+      this.utilities.stopLoadScreen()
       Swal.fire({
               title: 'done!',
               text: 'Registration completed!',
@@ -125,7 +122,8 @@ export class RegisterPage {
               confirmButtonText: 'Cool'
             }).then(data=>{
               if(data.isConfirmed){
-               this.route.navigate(['/auth/login'])
+                // console.log('mooo')
+               this.route.navigate(['/teacher/setup'])
               }
             })
     }

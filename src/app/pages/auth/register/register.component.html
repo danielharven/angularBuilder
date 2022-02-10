@@ -4,50 +4,52 @@
         START SIGN UP AREA
 ======================================-->
 <section class="sign-up-area pt-80px pb-80px position-relative">
-  <div class="container">
-    <!--        <form  class="card card-item">-->
-    <div class="card-body row p-0">
-      <div class="col-lg-6">
-        <div class="form-content py-4 pr-60px pl-60px
+    <div class="container">
+        <!--        <form  class="card card-item">-->
+        <div class="card-body row p-0">
+            <div class="col-lg-6">
+                <div class="form-content py-4 pr-60px pl-60px
                     border-right border-right-gray h-100 d-flex align-items-center
                      justify-content-center">
-          <img src="assets/images/undraw-remotely.svg" alt="Image" class="img-fluid">
-        </div>
-      </div><!-- end col-lg-6 -->
-      <div class="col-lg-5 mx-auto">
-        <form class="form-action-wrapper py-5" [formGroup]="form" (ngSubmit)="submit()">
-          <div class="form-group">
-            <h3 class="fs-22 pb-3 fw-bold">Join the Tadya Family</h3>
-            <div class="divider"><span></span></div>
-            <p class="pt-3">Give us some of your information to get access to Tadya.</p>
-          </div>
-          <formly-form
-            [form]="form"
-            [model]="model"
-            [fields]="fields">
-          </formly-form>
-          <div class='mb-2 mt-2'>
-            <button class="btn btn-outline-primary mr-3" type="submit">
+                    <img src="assets/images/undraw-remotely.svg" alt="Image" class="img-fluid">
+                </div>
+            </div>
+            <!-- end col-lg-6 -->
+            <div class="col-lg-5 mx-auto">
+                <form class="form-action-wrapper py-5" [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="form-group">
+                        <h3 class="fs-22 pb-3 fw-bold">Join the Tadya Family</h3>
+                        <div class="divider"><span></span></div>
+                        <p class="pt-3">Give us some of your information to get access to Tadya.</p>
+                        <p class="text-success"> <a routerLink='/auth/teacher/join'>Are you a teacher? Join us</a></p>
+                    </div>
+                    <formly-form [form]="form" [model]="model" [fields]="fields">
+                    </formly-form>
+                    <div class='mb-2 mt-2'>
+                        <button class="btn btn-outline-primary mr-3" type="submit">
               Sign up
             </button>
-            <button class="btn btn-outline-danger" type="reset">
+                        <button class="btn btn-outline-danger" type="reset">
               Reset
             </button>
-          </div>
+                    </div>
 
-          <p class="fs-13 lh-18 pb-3">By clicking “Sign up”, you agree to our <a routerLink='/terms' class="text-color hover-underline">terms of conditions</a>,
-            <a routerLink='/policy' class="text-color hover-underline">privacy policy</a></p>
-        </form>
-      </div><!-- end col-lg-5 -->
-    </div><!-- end row -->
-    <!--        </form>-->
-    <p class="text-black text-center fs-15">Already have an account? <a routerLink='/auth/login' class="text-color hover-underline">Log in</a></p>
-  </div><!-- end container -->
-  <div class="position-absolute top-0 left-0 w-100 h-100 z-index-n1">
-    <svg class="w-100 h-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <p class="fs-13 lh-18 pb-3">By clicking “Sign up”, you agree to our <a routerLink='/terms' class="text-color hover-underline">terms of conditions</a>,
+                        <a routerLink='/policy' class="text-color hover-underline">privacy policy</a></p>
+                </form>
+            </div>
+            <!-- end col-lg-5 -->
+        </div>
+        <!-- end row -->
+        <!--        </form>-->
+        <p class="text-black text-center fs-15">Already have an account? <a routerLink='/auth/login' class="text-color hover-underline">Log in</a></p>
+    </div>
+    <!-- end container -->
+    <div class="position-absolute top-0 left-0 w-100 h-100 z-index-n1">
+        <svg class="w-100 h-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
       <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" fill="#2d86eb" opacity="0.06"></path>
     </svg>
-  </div>
+    </div>
 </section>
 <!--======================================
         END SIGN UP AREA

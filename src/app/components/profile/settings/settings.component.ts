@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { FormlyFieldConfig } from '@ngx-formly/core'
 import { UtilitiesService } from '../../../services/utilities.service'
 import {NzNotificationService} from "ng-zorro-antd/notification";
 import {environment} from "../../../../environments/environment";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -15,13 +16,7 @@ export class SettingsComponent implements OnInit {
   paasswordForm = new FormGroup({});
   updateMode = true
   gotProfile = true;
-  constructor(private utility: UtilitiesService, private notification: NzNotificationService) {
-    this.model = this.utility.user
-  }
-  ngOnInit(): void {
-    this.model.id = this.utility.user.id;
-    this.getProfile()
-  }
+  teacher = false;
   model = {id:''};
   fields: FormlyFieldConfig[] = [
     {
@@ -38,18 +33,11 @@ export class SettingsComponent implements OnInit {
       type: 'textarea',
       templateOptions: {
         label: 'About Me',
-        placeholder: 'I am a .....',
+        placeholder: 'I am a student at.....',
         required: false,
       }
     },
-    {
-      key: 'avator',
-      type: 'file',
-      templateOptions: {
-        label: 'Profile Picture',
-        required: false,
-      }
-    },    {
+     {
       key: 'location',
       type: 'input',
       templateOptions: {
@@ -58,6 +46,7 @@ export class SettingsComponent implements OnInit {
       }
     },
   ];
+
   passwordModel = {id:'', newPassword: "",
     confirmPassword: ""
   };
@@ -87,38 +76,128 @@ export class SettingsComponent implements OnInit {
       }
     },
   ];
+  teacherProfileForm: FormGroup;
+  profileForm: FormGroup;
+  teacherProfile = false
+  subjects =[]
+  constructor(private utility: UtilitiesService,
+    private acR: ActivatedRoute,
+    private notification: NzNotificationService) {
+    this.model = this.utility.user
+  }
+  ngOnInit(): void {
+    this.getProfile()
+    if(this.acR.snapshot.data?.teacher){
+      this.teacherProfile =true;
+      this.getSubejcts();
+      this.teacherProfileForm = new FormGroup({
+        displayName : new FormControl('',Validators.required),
+        location : new FormControl('',Validators.required),
+        about : new FormControl('',Validators.required),
+        subject : new FormControl('',Validators.required),
+        phone : new FormControl('',Validators.required),
+      })
+      return;
+    }
+    this.profileForm = new FormGroup({
+      id : new FormControl(''),
+      displayName : new FormControl('',Validators.required),
+      location : new FormControl('',Validators.required),
+      about : new FormControl('',Validators.required)
+    })
 
-  onSubmit() {
-    if (this.form.valid) {
+  }
+
+
+  async updateProfile() {
       //create pose
-     console.log(this.model)
-      this.model.id=this.utility.user.id;
-      let q = this.utility.queries.updateProfile(this.model)
-    this.utility.graphql.request(q).subscribe(
-      ({data,errors})=>{
-        console.log(errors)
-        console.log(data)
-      }
-    )
 
+     let {id} = this.profileForm.value;
+      let api = '/profiles/'+id
+      let method  ='post'
+      let body = {
+        ...this.profileForm.value
+      }
+      this.utility.loadScreen();
+
+
+      let q = await this.utility.httpRequest({api,method,body}).catch(err=>{
+        this.utility.notifyUser.error(this.utility.constants.profile_Update_user_failed);
+        return
+      })
+      if(q){
+        this.utility.notifyUser.success(this.utility.constants.profile_Update_user_succeed);
+      }
+
+  }
+  async onSubmitTeacher() {
+      //create pose
+
+      // this.model.id=this.utility.user.id;
+      let api = '/profiles/teacher/complete'
+      let method  ='post'
+      let body = {
+        ...this.teacherProfileForm.value
+      }
+      this.utility.loadScreen();
+
+
+      let q = await this.utility.httpRequest({api,method,body}).catch(err=>{
+        this.utility.notifyUser.error(this.utility.constants.profile_Update_user_failed);
+        return
+      })
+      if(q){
+        this.utility.notifyUser.success(this.utility.constants.profile_Createduser_success);
+      }
+
+  }
+ async getSubejcts(){
+    let api = '/subjects'
+    let method = 'get'
+    let d = await this.utility.httpRequest({api,method}).catch(err=>{
+      // this.utility.notifyUser.error(this.utility.constants.User_profile_retrieval_failed);
+      return
+    })
+    if(d){
+      this.subjects =d
     }
   }
-  getProfile(){
-    let q = this.utility.queries.getProfile();
-    this.utility.graphql.request(q).subscribe(
-      ({data,errors})=>{
-        if(errors){
-          this.utility.notifyUser.error(this.utility.constants.User_profile_retrieval_failed);
-          return
-        }
-        this.gotProfile=true;
-        if(!data.profiles || data.profiles.length==0){
-          this.updateMode = false
-          return
-        }
-        this.model= data.profiles[0];
+ async getProfile(){
+
+    let api = '/profiles/me'
+    let method = 'get'
+    let d = await this.utility.httpRequest({api,method}).catch(err=>{
+      this.utility.notifyUser.error(this.utility.constants.User_profile_retrieval_failed);
+      return
+    })
+    if(d){
+      console.log(d)
+      if(this.teacherProfile){
+          this.teacherProfileForm.patchValue({
+        ...d
+      });
+      }else{
+        this.profileForm.patchValue({
+          ...d
+        });
       }
-    )
+
+      this.gotProfile=true;
+    }
+    // this.utility.graphql.request(q).subscribe(
+    //   ({data,errors})=>{
+    //     if(errors){
+    //       this.utility.notifyUser.error(this.utility.constants.User_profile_retrieval_failed);
+    //       return
+    //     }
+    //     this.gotProfile=true;
+    //     if(!data.profiles || data.profiles.length==0){
+    //       this.updateMode = false
+    //       return
+    //     }
+    //     this.model= data.profiles[0];
+    //   }
+    // )
   }
 
   changePassword() {

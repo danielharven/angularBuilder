@@ -175,6 +175,11 @@ const routes: Routes = [
         component: ViewTutorialDetailsComponent,
       },
       {
+        path:'teacher/setup',
+        canActivate: [AuthGuard],
+        data: { title: 'profile settings',teacher:true },
+        component: SettingsComponent,
+      }, {
         path:'settings',
         canActivate: [AuthGuard],
         data: { title: 'profile settings' },

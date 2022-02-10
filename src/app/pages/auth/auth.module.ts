@@ -12,7 +12,8 @@ import { LockscreenPage } from './lockscreen/lockscreen.component'
 import { ForgotPasswordPage } from './forgot-password/forgot-password.component'
 import { Error500Page } from './500/500.component'
 import { Error404Page } from './404/404.component'
-import { FormlyModule } from '@ngx-formly/core'
+import { FormlyModule } from '@ngx-formly/core';
+import { RegisterTeacherComponent } from './teacher/register-teacher/register-teacher.component'
 
 const COMPONENTS = [
   LoginPage,
@@ -31,6 +32,6 @@ const COMPONENTS = [
     ReactiveFormsModule,
     FormlyModule,
   ],
-  declarations: [...COMPONENTS],
+  declarations: [...COMPONENTS, RegisterTeacherComponent],
 })
 export class AuthModule {}

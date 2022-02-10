@@ -8,12 +8,15 @@ import store from 'store'
 import Swal from 'sweetalert2'
 // import { UtilitiesService } from './utilities.service'
 import { NgxSpinnerService } from 'ngx-spinner'
+import { Router } from '@angular/router'
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private msg: NzNotificationService,private loader : NgxSpinnerService,) {}
+  constructor(private msg: NzNotificationService,
+    private router: Router,
+    private loader : NgxSpinnerService,) {}
   notifyUser(msg) {
     Swal.fire({
-      title: 'Error!',
+      title: 'oops!',
       text: msg,
       icon: 'error',
       confirmButtonText: 'close'
@@ -109,9 +112,11 @@ export class AuthInterceptor implements HttpInterceptor {
   private evaluateError(error: HttpErrorResponse) {
     this.loader.hide();
     let codes = error.status + ''
-    console.log(codes)
+    // console.log(codes)
+    let {href} = window.location
     switch (codes) {
       case '403': {
+        if(!href.includes('home'))
         this.notifyUser(error?.error?.message || error?.error?.error)
         break
       }
@@ -122,12 +127,29 @@ export class AuthInterceptor implements HttpInterceptor {
       }
       case '401': {
         localStorage.clear()
-        store.remove()
+        store.remove();
+        let loc =window.location.href;
+        if(localStorage.includes('auth/login')){
+
+          break;
+        }
         this.notifyUser('Kindly login to proceed')
         break
       }
       case '400': {
         // data field error
+        break
+      }
+      case '444': {
+        // plan expired redirect to purchase plan
+        this.router.navigate(['/profile'])
+        this.notifyUser('You need to purchase a plan')
+        break
+      }
+      case '445': {
+        // plan expired redirect to purchase plan
+        // this.router.navigate(['/profile'])
+        this.notifyUser('You Are Not Apporved to Answer Questions')
         break
       }
       case '500': {

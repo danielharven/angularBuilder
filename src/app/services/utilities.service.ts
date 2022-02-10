@@ -17,31 +17,39 @@ const URRL= environment.url;
 export class UtilitiesService {
   authorized: boolean =false
   user :any={}
+  studentAccount = false
+  teacherAccount=false
   profile :any={}
+  configuration:any = {}
   constructor(private loader : NgxSpinnerService,
               public graphql: GraphQL,
               private route: ActivatedRoute,
               private router: Router,
               private store: Store<any>,
               public http: HttpClient) {
+                this.getConfigurations()
     this.store.pipe(select(Reducers.getUser))
       .subscribe(state => {
       this.authorized = state.authorized
       this.user = state;
+      this.studentAccount = false
+      this.teacherAccount  =false
+      switch(state.role.type){
+        case 'teacher':{
+          this.teacherAccount = true;
+          break
+        }
+        case 'student':{
+          this.studentAccount  =true;
+        }
+      }
       // console.log(state)
       const accessToken = Sto.get('accessToken')
-      if(!accessToken){
-        this.router.navigate(['auth/login'])
-        return;
-      }
-      this.graphql.request(this.queries.getProfile()).subscribe(
-        ({data,errors})=>{
-          if(errors){
-            return
-          }
-          this.profile=data.profiles[0];
-        }
-      )
+      let {href}=window.location;
+      // if(!accessToken && href.includes('home')){
+      //   this.router.navigate(['auth/login'])
+      //   return;
+      // }
     })
   }
 
@@ -53,6 +61,7 @@ export class UtilitiesService {
   }
   notifyUser={
     success:(msg)=>{
+      this.stopLoadScreen()
       Swal.fire({
         title: 'Success!',
         text: msg,
@@ -61,6 +70,7 @@ export class UtilitiesService {
       })
     },
     info:(msg)=>{
+      this.stopLoadScreen()
       Swal.fire({
         title: 'Information!',
         text: msg,
@@ -69,6 +79,7 @@ export class UtilitiesService {
       })
     },
     error:(msg)=>{
+      this.stopLoadScreen()
       // console.log('inside i think',msg)
       Swal.fire({
         title: 'Error!',
@@ -657,6 +668,8 @@ query {
     register_user_failed:'User registration failed ',
     login_user_failed:'Login failed.',
     profile_Createduser_failed:'profile Creation failed.',
+    profile_Update_user_failed:'profile update failed.',
+    profile_Update_user_succeed:'profile update succeeded.',
     User_profile_retrieval_failed:'"User profile retrieval failed"',
     session_expired: "Session has expired, kindly login",
     comment_success: "Comment has been posted successfully",
@@ -665,6 +678,9 @@ query {
 
   }
   purchasePlan(x){
+let user = this.user;
+let profile= this.profile
+
     this.loadScreen();
     let rd = Math.floor(Math.random()*100000);
     //@ts-ignore
@@ -676,12 +692,12 @@ query {
       country: "ZM",
       payment_options: " ",
       redirect_url: // specified redirect URL
-        URRL+"/payment-made-well",
+        URRL+"/payment/paln",
       customer: {
-        id:this.user.id,
-        email: this.user.email,
+        id:user.id,
+        email: user.email,
         phone_number: "",
-        name: this.profile.displayName,
+        name: profile.displayName,
         plan:x.id
       },
       callback: function (data) {
@@ -689,6 +705,48 @@ query {
       },
       onclose: function() {
         // close modal
+        console.log('closed');
+
+      },
+      customizations: {
+        title: "Tadya",
+        description: "kindly complete the payment process to continue",
+        logo: "https://assets.piedpiper.com/logo.png",
+      },
+    });
+    this.stopLoadScreen()
+  }
+  purchaseQuestion(x){
+    // console.log(this.configuration.questionpayment)
+    x.amount =this.configuration.questionpayment
+   let user = this.user
+   let profile = this.profile
+    this.loadScreen();
+    let rd = Date.now();
+    //@ts-ignore
+    window.FlutterwaveCheckout({
+      public_key: "FLWPUBK_TEST-e1318d5dca8ee3c2128a34be9a7e2dd4-X",
+      tx_ref: "inv-"+rd,
+      amount:x.amount,
+      currency: "ZMW",
+      country: "ZM",
+      payment_options: " ",
+      redirect_url: // specified redirect URL
+        URRL+"/payment/question",
+      customer: {
+        id:user.id,
+        email: user.email,
+        phone_number: "",
+        name: profile.displayName,
+        question:x.id
+      },
+      callback: function (data) {
+        console.log(data);
+      },
+      onclose: function() {
+        // close modal
+        console.log('closed');
+        console.log(this)
       },
       customizations: {
         title: "Tadya",
@@ -751,6 +809,25 @@ query {
       }
       case 'post':{
         let results = await this.http.post(api,body).toPromise()
+          .catch(err => {
+            console.log(err)
+            this.notifyUser.error( this.evaluateError(err));
+            this.stopLoadScreen()
+            return {}
+          })
+        //@ts-ignore
+        let {error} = results;
+        if(error){
+          this.stopLoadScreen()
+          this.notifyUser.error( this.evaluateError(error))
+          return {}
+        }
+        //@ts-ignore
+        return results || {}
+        break
+      }
+       case 'put':{
+        let results = await this.http.put(api,body).toPromise()
           .catch(err => {
             this.notifyUser.error( this.evaluateError(err));
             this.stopLoadScreen()
@@ -838,6 +915,16 @@ query {
       this.evaluateError(e);
       this.stopLoadScreen()
       return
+    }
+  }
+  async getConfigurations(){
+    let api  = '/configurations';
+    let method = 'get'
+    let x  =await this.httpRequest({api,method})
+    if(x){
+      console.log(x);
+
+      this.configuration = x
     }
   }
 

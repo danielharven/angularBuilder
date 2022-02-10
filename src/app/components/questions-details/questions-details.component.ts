@@ -43,7 +43,7 @@ export class QuestionsDetailsComponent implements OnInit {
   };
    commentImages: any =[]
    answerImages: any =[]
-  constructor(private route : ActivatedRoute, private utility: UtilitiesService) {
+  constructor(private route : ActivatedRoute, public utility: UtilitiesService) {
     this.route.params.subscribe(par=>{
       this.quetion_id=par.id
     })
@@ -58,6 +58,7 @@ export class QuestionsDetailsComponent implements OnInit {
 
  async getQuestionDetails(){
     let id =this.quetion_id
+    let api = ''
    let y = await this.utility.graphqlRequests(this.utility.queries.getQuestionDetails({id}))
    let {data}=y
    this.question=data?.question

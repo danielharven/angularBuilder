@@ -3,60 +3,117 @@
 ================================= -->
 
 <section class="question-area pt-80px pb-30px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 px-0">
-        <div class="question-main-bar border-left border-left-gray pb-50px">
-          <div class="filters pb-4 pl-3 d-flex align-items-center justify-content-between">
-            <div class="mr-3">
-              <h3 class="fs-18 fw-medium">My Questions</h3>
-              <p class="pt-1 fs-14 fw-medium lh-20">{{totalQuestions}} questions</p>
-            </div>
-            <!-- end filter-option-box -->
-          </div>
-          <!-- end filters -->
+    <div class="container">
+        <div class="row">
+            <div *ngIf="view=='2'" class="col-lg-12 px-0">
+                <div class="question-main-bar border-left border-left-gray pb-50px">
+                    <div class="filters pb-4 pl-3 d-flex align-items-center justify-content-between">
+                        <div class="mr-3">
+                            <h3 class="fs-18 fw-medium">My Answers</h3>
+                            <p class="pt-1 fs-14 fw-medium lh-20">{{totalQuestions}} Answers</p>
+                        </div>
+                        <!-- end filter-option-box -->
+                    </div>
+                    <!-- end filters -->
+                    <ng-container *ngFor='let x of questions'>
+                        <div class="questions-snippet border-top border-top-gray">
+                            <div class="media media-card rounded-0 shadow-none mb-0 bg-transparent p-3 border-bottom border-bottom-gray">
+                                <div class="media-body">
+                                    <h5 class="mb-2 fw-medium"><a [routerLink]="['/question-details',x?.id,x?.slug]">{{x?.title}}</a></h5>
+                                    <quill-view-html [content]="x.body"></quill-view-html>
+                                    <!-- <div class="tags">
+                                        <a class="tag-link">{{x.approved}}</a>
+                                        <a class="tag-link">{{x.topic?.subject?.grade}}</a>
+                                        <a class="tag-link">{{x?.topic?.name}}</a>
+                                    </div> -->
+                                    <div [class]="{'text-success':x?.approved, 'text-danger':!x?.approved}" class='tags text-capitalize'>
+                                        <a>Approved: {{x?.approved}}</a>
+                                    </div>
+                                    <div class="media media-card user-media align-items-center px-0 border-bottom-0 pb-0">
+                                        <div class="media-body d-flex flex-wrap align-items-center justify-content-between">
+                                            <!-- <div>
+                                                <h5 class="pb-1"><a>{{x?.askedby?.displayName}}</a></h5>
+                                            </div> -->
+                                            <small class="meta d-block text-right">
+                        <span class="text-black d-block lh-18">answered</span>
+                        <span class="d-block lh-18 fs-12">{{x.createdAt|dateAgo}}</span>
+                      </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end media -->
+                        </div>
+                        <!-- end questions-snippet -->
+                    </ng-container>
 
-          <ng-container *ngFor='let x of questions'>
-            <div class="questions-snippet border-top border-top-gray">
-              <div class="media media-card rounded-0 shadow-none mb-0 bg-transparent p-3 border-bottom border-bottom-gray">
-                <div class="media-body">
-                  <h5 class="mb-2 fw-medium"><a [routerLink]="['/question-details',x.id,x?.slug]">{{x?.title}}</a></h5>
-                  <p class="mb-2 truncate lh-20 fs-15">{{x?.body}}</p>
-                  <div class="tags">
-                    <a  class="tag-link">{{x.topic?.subject?.name}}</a>
-                    <a  class="tag-link">{{x.topic?.subject?.grade}}</a>
-                    <a  class="tag-link">{{x?.topic?.name}}</a>
-                  </div>
-                  <div class='tags text-success text-capitalize'>
-                    <a>{{x?.reserved | reservedenquiry|async}}</a>
-                  </div>
-                  <div class="media media-card user-media align-items-center px-0 border-bottom-0 pb-0">
-                    <div class="media-body d-flex flex-wrap align-items-center justify-content-between">
-                      <div>
-                        <h5 class="pb-1"><a >{{x?.askedby?.displayName}}</a></h5>
-                      </div>
-                      <small class="meta d-block text-right">
+                    <div class="pager d-flex flex-wrap align-items-center justify-content-between pt-30px px-3">
+                        <div>
+                            <nz-pagination (nzPageIndexChange)='indexChange($event)' [nzTotal]="totalQuestions" nzShowSizeChanger [(nzPageSize)]="limit"></nz-pagination>
+                            <p class="fs-13 pt-2">Showing {{listNumber}}-{{listLimit}} results of {{totalQuestions}} questions</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end question-main-bar -->
+            </div>
+            <div *ngIf="view=='1'" class="col-lg-12 px-0">
+                <div class="question-main-bar border-left border-left-gray pb-50px">
+                    <div class="filters pb-4 pl-3 d-flex align-items-center justify-content-between">
+                        <div class="mr-3">
+                            <h3 class="fs-18 fw-medium">My Questions</h3>
+                            <p class="pt-1 fs-14 fw-medium lh-20">{{totalQuestions}} questions</p>
+                        </div>
+                        <!-- end filter-option-box -->
+                    </div>
+                    <!-- end filters -->
+                    <ng-container *ngFor='let x of questions'>
+                        <div class="questions-snippet border-top border-top-gray">
+                            <div class="media media-card rounded-0 shadow-none mb-0 bg-transparent p-3 border-bottom border-bottom-gray">
+                                <div class="media-body">
+                                    <h5 class="mb-2 fw-medium"><a [routerLink]="['/question-details',x?.id,x?.slug]">{{x?.title}}</a></h5>
+                                    <p class="mb-2 truncate lh-20 fs-15">{{x?.body}}</p>
+                                    <div class="tags">
+                                        <a class="tag-link">{{x.topic?.subject?.name}}</a>
+                                        <a class="tag-link">{{x.topic?.subject?.grade}}</a>
+                                        <a class="tag-link">{{x?.topic?.name}}</a>
+                                    </div>
+                                    <div class='tags text-success text-capitalize'>
+                                        <a>{{x?.reserved | reservedenquiry|async}}</a>
+                                    </div>
+                                    <div class="media media-card user-media align-items-center px-0 border-bottom-0 pb-0">
+                                        <div class="media-body d-flex flex-wrap align-items-center justify-content-between">
+                                            <div>
+                                                <h5 class="pb-1"><a>{{x?.askedby?.displayName}}</a></h5>
+                                            </div>
+                                            <small class="meta d-block text-right">
                         <span class="text-black d-block lh-18">asked</span>
                         <span class="d-block lh-18 fs-12">{{x.createdAt|dateAgo}}</span>
                       </small>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- end media -->
-            </div><!-- end questions-snippet -->
-          </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end media -->
+                        </div>
+                        <!-- end questions-snippet -->
+                    </ng-container>
 
-          <div class="pager d-flex flex-wrap align-items-center justify-content-between pt-30px px-3">
-            <div>
-              <nz-pagination (nzPageIndexChange)='indexChange($event)'  [nzTotal]="totalQuestions" nzShowSizeChanger [(nzPageSize)]="limit"></nz-pagination>
-              <p class="fs-13 pt-2">Showing {{listNumber}}-{{listLimit}} results of {{totalQuestions}} questions</p>
+                    <div class="pager d-flex flex-wrap align-items-center justify-content-between pt-30px px-3">
+                        <div>
+                            <nz-pagination (nzPageIndexChange)='indexChange($event)' [nzTotal]="totalQuestions" nzShowSizeChanger [(nzPageSize)]="limit"></nz-pagination>
+                            <p class="fs-13 pt-2">Showing {{listNumber}}-{{listLimit}} results of {{totalQuestions}} questions</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end question-main-bar -->
             </div>
-          </div>
-        </div><!-- end question-main-bar -->
-      </div><!-- end col-lg-7 -->
-    </div><!-- end row -->
-  </div><!-- end container -->
-</section><!-- end question-area -->
+            <!-- end col-lg-7 -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</section>
+<!-- end question-area -->
 <!-- ================================
          END QUESTION AREA
 ================================= -->

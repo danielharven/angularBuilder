@@ -2,217 +2,215 @@
          START QUESTION AREA
 ================================= -->
 <section class="question-area pt-40px pb-40px" #target>
-  <nz-affix *ngIf='reserved' [nzTarget]="target" id="affix-container-target">
-    <button nz-button [nzType]="'primary'">
+    <nz-affix *ngIf='reserved' [nzTarget]="target" id="affix-container-target">
+        <button nz-button [nzType]="'primary'">
       <nz-countdown [nzValue]="deadline" [nzTitle]="'Countdown'"></nz-countdown>
     </button>
-  </nz-affix>
-  <div class="container">
-    <div class="row">
-      <div *ngIf='!loadingQuestion' class="col-lg-9">
-        <div class="question-main-bar mb-50px">
-          <div class="question-highlight">
-            <div class="media media-card shadow-none rounded-0 mb-0 bg-transparent p-0">
-              <div class="media-body">
-                <h5 class="fs-20"><a>{{question.title}}</a></h5>
-                <div class="meta d-flex flex-wrap align-items-center fs-13 lh-20 py-1">
-                  <div class="pr-3">
-                    <span>Asked</span>
-                    <span class="text-black">{{question.createdAt|dateAgo}}</span>
-                  </div>
-                  <div class="pr-3">
-                    <span class="pr-1">by</span>
-                    <a href="#" class="text-black">{{question?.askedby?.displayName}}</a>
-                  </div>
-                </div>
-                <div class="tags">
-                  <a href="#" class="tag-link">{{question.topic.name}}</a>
-                  <a href="#" class="tag-link">{{question.topic.subject.name}}</a>
-                  <a href="#" class="tag-link">{{question.topic.subject.grade}}</a>
-                </div>
-              </div>
-            </div><!-- end media -->
-          </div><!-- end question-highlight -->
-          <div class="question d-flex">
-            <div class="votes votes-styled w-auto">
-              <div id="vote" class="upvotejs">
-                <a class="upvote upvote-on" data-toggle="tooltip" data-placement="right" title="This question is useful"></a>
-                <span class="count">1</span>
-                <a class="downvote" data-toggle="tooltip" data-placement="right" title="This question is not useful"></a>
-                <a class="star" data-toggle="tooltip" data-placement="right" title="Bookmark this question."></a>
-              </div>
-            </div><!-- end votes -->
-            <div class="question-post-body-wrap flex-grow-1">
-              <div class="question-post-body">
-                <p>{{question.title}}</p>
-
-                <p>{{question.body}}</p>
-                <img *ngFor='let x of question?.images' class='ml-1'
-                  nz-image
-                  width="200px"
-                  height="200px"
-                  [nzSrc]='x?.url'
-                  alt="Attached image"
-                />
-              </div><!-- end question-post-body -->
-              <div class="question-post-user-action">
-                <div class="post-menu">
-                  <div class="btn-group">
-                    <button class="btn dropdown-toggle after-none" type="button" id="shareDropdownMenu"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</button>
-                    <div class="dropdown-menu dropdown--menu dropdown--menu-2 mt-2" aria-labelledby="shareDropdownMenu">
-                      <div class="py-3 px-4">
-                        <h4 class="fs-15 pb-2">Share a link to this question</h4>
-                        <form action="#" class="copy-to-clipboard">
-                          <span class="text-success-message">Link Copied!</span>
-                          <input type="text" class="form-control form--control form-control-sm copy-input" [value]="shareUrl">
-                          <div class="btn-box pt-2 d-flex align-items-center justify-content-between">
-                            <a href="#" class="btn-text copy-btn">Copy link</a>
-                            <ul class="social-icons social-icons-sm">
-                              <li><a href="#" class="bg-8 text-white shadow-none" title="Share link to this question on Facebook"><i class="la la-facebook"></i></a></li>
-                              <li><a href="#" class="bg-9 text-white shadow-none" title="Share link to this question on Twitter"><i class="la la-twitter"></i></a></li>
-                              <li><a href="#" class="bg-dark text-white shadow-none" title="Share link to this question on DEV"><i class="lab la-dev"></i></a></li>
-                            </ul>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div><!-- btn-group -->
-                  <button class="btn">Follow</button>
-                </div><!-- end post-menu -->
-              </div><!-- end question-post-user-action -->
-              <div class="comments-wrap">
-                <ul class="comments-list">
-                  <ng-container *ngFor='let x of question?.comments'>
-                    <li>
-                      <div class="comment-body">
-                        <div [innerHTML]='x.comment'></div>
-                        <div class='row'>
-                          <div class='col-12'>
-                            <img *ngFor='let y of x.image'
-                                 class='ml-1'
-                                 nz-image
-                                 width="200px"
-                                 height="200px"
-                                 [nzSrc]='y.url'
-                                 alt="Attached image"
-                            />
-                          </div>
-                        </div>
-                        <span class="comment-separated">-</span>
-                        <a class="comment-user" title="commented by">{{x.commentor.displayName}}</a>
-                        <span class="comment-separated">-</span>
-                        <a href="#" class="comment-date"> -{{x.createdAt|dateAgo}}</a>
-                      </div>
-                    </li>
-                  </ng-container>
-
-                </ul>
-                <div class="comment-form">
-                  <div class="comment-link-wrap text-center">
-                    <a class="collapse-btn comment-link" data-toggle="collapse"
-                       href="#addCommentCollapse" role="button" aria-expanded="false" aria-controls="addCommentCollapse" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">Add a comment</a>
-                  </div>
-                  <div class="collapse border-top border-top-gray mt-2 pt-3" id="addCommentCollapse">
-                    <form [formGroup]='commentForm' class="row pb-3">
-                      <div class="col-lg-12">
-                        <h4 class="fs-16 pb-2">Leave a Comment</h4>
-                        <div class="divider mb-2"><span></span></div>
-                      </div><!-- end col-lg-12 -->
-                      <div class="col-lg-12">
-                        <div class="input-box">
-                          <label class="fs-13 text-black lh-20">Message</label>
-                          <div class="form-group">
-                            <div class="editor">
-                              <quill-editor style="height: 200px;"
-                                            formControlName='comment'
-                                            [modules]='myModules'>
-                              </quill-editor>
+    </nz-affix>
+    <div class="container">
+        <div class="row">
+            <div *ngIf='!loadingQuestion' class="col-lg-9">
+                <div class="question-main-bar mb-50px">
+                    <div class="question-highlight">
+                        <div class="media media-card shadow-none rounded-0 mb-0 bg-transparent p-0">
+                            <div class="media-body">
+                                <h5 class="fs-20"><a>{{question.title}}</a></h5>
+                                <div class="meta d-flex flex-wrap align-items-center fs-13 lh-20 py-1">
+                                    <div class="pr-3">
+                                        <span>Asked</span>
+                                        <span class="text-black">{{question.createdAt|dateAgo}}</span>
+                                    </div>
+                                    <div class="pr-3">
+                                        <span class="pr-1">by</span>
+                                        <a href="#" class="text-black">{{question?.askedby?.displayName}}</a>
+                                    </div>
+                                </div>
+                                <div class="tags">
+                                    <a href="#" class="tag-link">{{question.topic.name}}</a>
+                                    <a href="#" class="tag-link">{{question.topic.subject.name}}</a>
+                                    <a href="#" class="tag-link">{{question.topic.subject.grade}}</a>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                          <div class="input-box">
-                            <label class="fs-13 text-black lh-20">Attachment</label>
-                            <div class="form-group">
-                              <div>
-                                <label class="fs-14 text-black fw-medium">Image
+                        <!-- end media -->
+                    </div>
+                    <!-- end question-highlight -->
+                    <div class="question d-flex">
+                        <div class="votes votes-styled w-auto">
+                            <div id="vote" class="upvotejs">
+                                <a class="upvote upvote-on" data-toggle="tooltip" data-placement="right" title="This question is useful"></a>
+                                <span class="count">1</span>
+                                <a class="downvote" data-toggle="tooltip" data-placement="right" title="This question is not useful"></a>
+                                <a class="star" data-toggle="tooltip" data-placement="right" title="Bookmark this question."></a>
+                            </div>
+                        </div>
+                        <!-- end votes -->
+                        <div class="question-post-body-wrap flex-grow-1">
+                            <div class="question-post-body">
+                                <p>{{question.title}}</p>
+
+                                <p>{{question.body}}</p>
+                                <img *ngFor='let x of question?.images' class='ml-1' nz-image width="200px" height="200px" [nzSrc]='x?.url' alt="Attached image" />
+                            </div>
+                            <!-- end question-post-body -->
+                            <div class="question-post-user-action">
+                                <div class="post-menu">
+                                    <div class="btn-group">
+                                        <button class="btn dropdown-toggle after-none" type="button" id="shareDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</button>
+                                        <div class="dropdown-menu dropdown--menu dropdown--menu-2 mt-2" aria-labelledby="shareDropdownMenu">
+                                            <div class="py-3 px-4">
+                                                <h4 class="fs-15 pb-2">Share a link to this question</h4>
+                                                <form action="#" class="copy-to-clipboard">
+                                                    <span class="text-success-message">Link Copied!</span>
+                                                    <input type="text" class="form-control form--control form-control-sm copy-input" [value]="shareUrl">
+                                                    <div class="btn-box pt-2 d-flex align-items-center justify-content-between">
+                                                        <a href="#" class="btn-text copy-btn">Copy link</a>
+                                                        <ul class="social-icons social-icons-sm">
+                                                            <li><a href="#" class="bg-8 text-white shadow-none" title="Share link to this question on Facebook"><i class="la la-facebook"></i></a></li>
+                                                            <li><a href="#" class="bg-9 text-white shadow-none" title="Share link to this question on Twitter"><i class="la la-twitter"></i></a></li>
+                                                            <li><a href="#" class="bg-dark text-white shadow-none" title="Share link to this question on DEV"><i class="lab la-dev"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- btn-group -->
+                                    <button class="btn">Follow</button>
+                                </div>
+                                <!-- end post-menu -->
+                            </div>
+                            <!-- end question-post-user-action -->
+                            <div class="comments-wrap">
+                                <ul class="comments-list">
+                                    <ng-container *ngFor='let x of question?.comments'>
+                                        <li>
+                                            <div class="comment-body">
+                                                <div [innerHTML]='x.comment'></div>
+                                                <div class='row'>
+                                                    <div class='col-12'>
+                                                        <img *ngFor='let y of x.image' class='ml-1' nz-image width="200px" height="200px" [nzSrc]='y.url' alt="Attached image" />
+                                                    </div>
+                                                </div>
+                                                <span class="comment-separated">-</span>
+                                                <a class="comment-user" title="commented by">{{x.commentor.displayName}}</a>
+                                                <span class="comment-separated">-</span>
+                                                <a href="#" class="comment-date"> -{{x.createdAt|dateAgo}}</a>
+                                            </div>
+                                        </li>
+                                    </ng-container>
+
+                                </ul>
+                                <div class="comment-form">
+                                    <div class="comment-link-wrap text-center">
+                                        <a class="collapse-btn comment-link" data-toggle="collapse" href="#addCommentCollapse" role="button" aria-expanded="false" aria-controls="addCommentCollapse" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">Add a comment</a>
+                                    </div>
+                                    <div class="collapse border-top border-top-gray mt-2 pt-3" id="addCommentCollapse">
+                                        <form [formGroup]='commentForm' class="row pb-3">
+                                            <div class="col-lg-12">
+                                                <h4 class="fs-16 pb-2">Leave a Comment</h4>
+                                                <div class="divider mb-2"><span></span></div>
+                                            </div>
+                                            <!-- end col-lg-12 -->
+                                            <div class="col-lg-12">
+                                                <div class="input-box">
+                                                    <label class="fs-13 text-black lh-20">Message</label>
+                                                    <div class="form-group">
+                                                        <div class="editor">
+                                                            <quill-editor style="height: 200px;" formControlName='comment' [modules]='myModules'>
+                                                            </quill-editor>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="input-box">
+                                                    <label class="fs-13 text-black lh-20">Attachment</label>
+                                                    <div class="form-group">
+                                                        <div>
+                                                            <label class="fs-14 text-black fw-medium">Image
                                   (Upload any supporting photo or file, max size 5mb)</label>
-                                <div class="form-group">
-                                  <nz-upload
-                                    nzAccept='image/*,.pdf,.doc,.docx,.xls,.xlsx'
-                                    nzSize='5000'
-                                    [nzFileList]='myUploadFilesComments'
-                                    [nzCustomRequest]='uploadModule.uploadFiles'
-                                  >
-                                    <button nz-button>
+                                                            <div class="form-group">
+                                                                <nz-upload nzAccept='image/*,.pdf,.doc,.docx,.xls,.xlsx' nzSize='5000' [nzFileList]='myUploadFilesComments' [nzCustomRequest]='uploadModule.uploadFiles'>
+                                                                    <button nz-button>
                                       <i nz-icon nzType="upload"></i>
                                       Click to Upload
                                     </button>
-                                  </nz-upload>
+                                                                </nz-upload>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end input-box -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end col-lg-12 -->
+                                            <div class="col-lg-12">
+                                                <div class="input-box d-flex flex-wrap align-items-center justify-content-between">
+                                                    <button [disabled]='!commentForm.valid' (click)='createComment()' class="btn btn-primary theme-btn theme-btn-sm theme-btn-outline theme-btn-outline-gray" type="submit">Post Comment</button>
+                                                </div>
+                                            </div>
+                                            <!-- end col-lg-12 -->
+                                        </form>
+                                    </div>
+                                    <!-- end collapse -->
                                 </div>
-                              </div><!-- end input-box -->
                             </div>
-                          </div>
-                      </div><!-- end col-lg-12 -->
-                      <div class="col-lg-12">
-                        <div class="input-box d-flex flex-wrap align-items-center justify-content-between">
-                          <button [disabled]='!commentForm.valid'
-                                  (click)='createComment()'
-                                  class="btn btn-primary theme-btn theme-btn-sm theme-btn-outline theme-btn-outline-gray"
-                                  type="submit">Post Comment</button>
+                            <!-- end comments-wrap -->
                         </div>
-                      </div><!-- end col-lg-12 -->
-                    </form>
-                  </div><!-- end collapse -->
+                        <!-- end question-post-body-wrap -->
+                    </div>
+                    <!-- end question -->
+                    <div class='row'>
+                        <div *ngIf='reserving' class='col-12'>
+                            <nz-spin></nz-spin> Reserving question
+                        </div>
+                        <div class='col-12'>
+                            <button class='btn btn-primary' (click)='reserveQuestion()' nz-button *ngIf='(!reserved || !question?.answered || question?.reserved || !reserving) && utility.teacherAccount'>Reserve Question</button>
+                            <button class='btn btn-secondary ml-2' (click)='extendQuestion()' nz-button *ngIf='reserved'>Extend Time By 15m</button>
+                        </div>
+                        <div class='col-12' *ngIf='reserved'>
+                            <nz-countdown [nzValue]="deadline" [nzTitle]="'Countdown'"></nz-countdown>
+                        </div>
+                    </div>
+                    <div class="subheader d-flex align-items-center justify-content-between">
+                        <div class="subheader-title">
+                            <h3 class="fs-16">Answer</h3>
+                        </div>
+                        <!-- end subheader-title -->
+                        <!--            <div class="subheader-actions d-flex align-items-center lh-1">-->
+                        <!--              <label class="fs-13 fw-regular mr-1 mb-0">Order by</label>-->
+                        <!--              <div class="w-100px">-->
+                        <!--                <select class="select-container">-->
+                        <!--                  <option value="active">active</option>-->
+                        <!--                  <option value="oldest">oldest</option>-->
+                        <!--                  <option value="votes" selected="selected">votes</option>-->
+                        <!--                </select>-->
+                        <!--              </div>-->
+                        <!--            </div>&lt;!&ndash; end subheader-actions &ndash;&gt;-->
+                    </div>
+                    <!-- end subheader -->
+
+                    <!-- end answer-wrap -->
+                    <!-- end subheader -->
+                    <app-question-answer [qid]='quetion_id' *ngIf='reserved'></app-question-answer>
+                    <app-answers *ngIf="utility.studentAccount" [question]='quetion_id'></app-answers>
                 </div>
-              </div><!-- end comments-wrap -->
-            </div><!-- end question-post-body-wrap -->
-          </div><!-- end question -->
-          <div class='row'>
-            <div *ngIf='reserving' class='col-12'>
-            <nz-spin></nz-spin> Reserving question
-          </div>
-            <div class='col-12'>
-              <button class='btn btn-primary' (click)='reserveQuestion()' nz-button *ngIf='!reserved || !question?.answered || question?.reserved || !reserving'>Reserve Question</button>
-              <button class='btn btn-secondary ml-2' (click)='extendQuestion()' nz-button *ngIf='reserved'>Extend Time By 15m</button>
-            </div>
-            <div class='col-12' *ngIf='reserved'>
-              <nz-countdown [nzValue]="deadline" [nzTitle]="'Countdown'"></nz-countdown>
-            </div>
-          </div>
-          <div class="subheader d-flex align-items-center justify-content-between">
-            <div class="subheader-title">
-              <h3 class="fs-16">Answer</h3>
-            </div><!-- end subheader-title -->
-<!--            <div class="subheader-actions d-flex align-items-center lh-1">-->
-<!--              <label class="fs-13 fw-regular mr-1 mb-0">Order by</label>-->
-<!--              <div class="w-100px">-->
-<!--                <select class="select-container">-->
-<!--                  <option value="active">active</option>-->
-<!--                  <option value="oldest">oldest</option>-->
-<!--                  <option value="votes" selected="selected">votes</option>-->
-<!--                </select>-->
-<!--              </div>-->
-<!--            </div>&lt;!&ndash; end subheader-actions &ndash;&gt;-->
-          </div>
-          <!-- end subheader -->
+                <!-- end question-main-bar -->
 
-          <!-- end answer-wrap -->
-          <!-- end subheader -->
-         <app-question-answer [qid]='quetion_id'  *ngIf='reserved'></app-question-answer>
-          <app-answers [question]='quetion_id'></app-answers>
-        </div><!-- end question-main-bar -->
-
-      </div><!-- end col-lg-9 -->
-      <div *ngIf='loadingQuestion' class="col-lg-9">
-        <nz-skeleton [nzActive]='true'></nz-skeleton>
-      </div><!-- end col-lg-9 -->
-      <div class="col-lg-3">
-        <app-counts></app-counts>
-      </div><!-- end col-lg-3 -->
-    </div><!-- end row -->
-  </div><!-- end container -->
-</section><!-- end question-area -->
+            </div>
+            <!-- end col-lg-9 -->
+            <div *ngIf='loadingQuestion' class="col-lg-9">
+                <nz-skeleton [nzActive]='true'></nz-skeleton>
+            </div>
+            <!-- end col-lg-9 -->
+            <div class="col-lg-3">
+                <app-counts></app-counts>
+            </div>
+            <!-- end col-lg-3 -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</section>
+<!-- end question-area -->
 <!-- ================================
          END QUESTION AREA
 ================================= -->

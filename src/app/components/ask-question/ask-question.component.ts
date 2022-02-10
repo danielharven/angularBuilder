@@ -15,10 +15,12 @@ export class AskQuestionComponent implements OnInit {
   topics: any =[]
   selectTopic: any = ''
   isLoading = true;
+  isVisible = false;
   files = [];
   searchChange$ = new BehaviorSubject('');
   createForm : FormGroup
-  constructor(private utilities : UtilitiesService,  private http: HttpClient) { }
+  postedQuestion ={}
+  constructor(public utilities : UtilitiesService,  private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getTopics()
@@ -66,6 +68,7 @@ export class AskQuestionComponent implements OnInit {
     //@ts-ignore
     let {data} =x;
   if(data?.createQuestion.question){
+    this.postedQuestion = data?.createQuestion.question;
     //upload images
     // console.log(this.files)
     for(let x of this.files){
@@ -74,10 +77,11 @@ export class AskQuestionComponent implements OnInit {
       let field = 'images'
       let {file} = x
       let up = await this.utilities.uploadFiles(file,ref,refId,field)
-      console.log(up);
     }
-    this.utilities.notifyUser.success(this.utilities.constants.questioon_asked_success)
+
+    // this.utilities.notifyUser.success(this.utilities.constants.questioon_asked_success)
     this.utilities.stopLoadScreen()
+    this.isVisible=true
   }else{
     this.utilities.stopLoadScreen()
   }
@@ -87,5 +91,20 @@ export class AskQuestionComponent implements OnInit {
       this.files.push(item)
     }
   }
+  showModal(): void {
+    this.isVisible = true;
+  }
 
+  handleOk(): void {
+    this.choosePlan()
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
+  }
+  choosePlan() {
+
+    this.utilities.purchaseQuestion(this.postedQuestion)
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { UtilitiesService } from '../../../services/utilities.service'
 import qs from 'qs'
+import store from 'store'
 @Component({
   selector: 'app-my-questions',
   templateUrl: './my-questions.component.html',
@@ -27,6 +28,11 @@ questions = []
       this.api = '/questions/mine'
       let method ='get'
       this.questions  = await this.utility.httpRequest({api:this.api,method})
+      let questionKeep=[]
+      this.questions.forEach(ele=>{
+        questionKeep.push(ele.id)
+        store.set('questions',questionKeep)
+      })
       break
     }
     case '2':{
