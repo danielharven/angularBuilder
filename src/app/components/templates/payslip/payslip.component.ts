@@ -105,7 +105,29 @@ export class PayslipComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFooter()
-    this.transactions = this.payslip.empTransactions
+    // How many records are present
+    let len = this.payslip.empTransactions.length
+    console.log(len)
+    if (len < 13) {
+      this.transactions = this.payslip.empTransactions
+    } else if (len > 12) {
+      // let trans = this.payslip.empTransactions[12];
+      for (let x = 0; x < 13; x++) {
+        this.transactions.push(this.payslip.empTransactions[x])
+      }
+      {
+        for (let x = 13; x <= len - 1; x++) {
+          let trans = this.payslip.empTransactions[x]
+          console.log(trans)
+          // the issue is that one has any array
+          //@ts-ignore
+          for (let y of trans) {
+            this.transactions.push(y)
+          }
+        }
+      }
+    }
+
     //@ts-ignore
     this.details = this.payslip.empDetails
     // console.log(parseFloat(this.transactions[7].deductionAmount))

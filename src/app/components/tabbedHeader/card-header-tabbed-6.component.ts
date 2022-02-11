@@ -21,7 +21,7 @@ export class CardHeaderTabbedComponent implements OnInit {
     // this.aRoute.snapshot.params
     this.utility.getAvailbalePayslips(this.user.username).subscribe(
       (d: any) => {
-        this.data = d[0]?.months
+        this.data = d[0]?.months.sort((a, b) => b - a)
       },
       error => {
         this.utility.notifyUser.error('An error occurred')
