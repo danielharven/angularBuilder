@@ -7,5 +7,6 @@ services:
     volumes:
       - ./dist:/usr/share/nginx/html
     container_name: nginx
+    restart: always
     environment:
       - NGINX_HOST=portal.e-sapp.gov.zm
