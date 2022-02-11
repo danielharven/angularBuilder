@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators'
 import store from 'store'
 import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router'
 import { UtilitiesService } from '../../../services/utilities.service'
+import { environment } from 'src/environments/environment'
 @Component({
   selector: 'mylogin',
   templateUrl: './login.component.html',
@@ -105,11 +106,28 @@ export class MyLoginComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(d => {
       let { token } = d
-      // console.log(token)
+      console.log(d)
       if (token) {
-        store.set('accessToken', token)
+        this.loginStufff(token)
+      }
+    })
+  }
+
+  async loginStufff(token) {
+    //get the actual token
+    store.set('ktoken', token)
+    let method = 'GET'
+    let api = environment.url + '/tokens/' + token
+
+    this.utilitie.sendUnAuthenticatedRequests({ method, api, body: {} }).subscribe(t => {
+      // console.log(token)
+      if (t) {
+        //@ts-ignore
+        store.set('accessToken', t?.jwt)
         // load account
         this.stores.dispatch(new UserActions.LoadCurrentAccount())
+      } else {
+        this.utilitie.notifyUser.error('token expired')
       }
     })
   }

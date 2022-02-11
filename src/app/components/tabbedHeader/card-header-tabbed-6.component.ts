@@ -4,6 +4,9 @@ import { UtilitiesService } from '../../services/utilities.service'
 import { payslips } from '../templates/payslip/payslip.component'
 import { FormGroup } from '@angular/forms'
 import { FormlyFieldConfig } from '@ngx-formly/core'
+import { Store } from '@ngrx/store'
+import * as UserActions from 'src/app/store/user/actions'
+import * as Reducers from 'src/app/store/reducers'
 @Component({
   selector: 'headedcard',
   templateUrl: './card-header-tabbed-6.component.html',
@@ -16,7 +19,7 @@ export class CardHeaderTabbedComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('ucross')) || {}
   visible: boolean = false
   payslipdownloaded: any = false
-  constructor(private utility: UtilitiesService) {}
+  constructor(private utility: UtilitiesService, private mstore: Store<any>) {}
   ngOnInit() {
     // this.aRoute.snapshot.params
     this.utility.getAvailbalePayslips(this.user.username).subscribe(
@@ -100,5 +103,9 @@ export class CardHeaderTabbedComponent implements OnInit {
       return
     }
     this.loading = true
+  }
+  logout() {
+    console.log('Loggin out')
+    this.mstore.dispatch(new UserActions.Logout())
   }
 }
