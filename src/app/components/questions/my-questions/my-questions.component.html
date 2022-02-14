@@ -78,8 +78,15 @@
                                         <a class="tag-link">{{x?.topic?.name}}</a>
                                     </div>
                                     <div class='tags text-success text-capitalize'>
-                                        <a>{{x?.reserved | reservedenquiry|async}}</a>
+                                        <a>{{x?.reserved | reservedenquiry|async}}</a> <br>
+
                                     </div>
+                                    <div [class]="{'text-danger':!x?.answered,
+                                    'text-success': x.answered}" class='tags text-capitalize'>
+                                        <a> Answered : {{x?.answered}}</a>
+
+                                    </div>
+
                                     <div class="media media-card user-media align-items-center px-0 border-bottom-0 pb-0">
                                         <div class="media-body d-flex flex-wrap align-items-center justify-content-between">
                                             <div>

@@ -62,6 +62,7 @@
                             "./node_modules/ng-zorro-antd/modal/style/entry.less",
                             "./node_modules/ng-zorro-antd/table/style/entry.less",
                             "./node_modules/ng-zorro-antd/rate/style/entry.less",
+                            "./node_modules/ng-zorro-antd/collapse/style/entry.less",
                             "./node_modules/ng-zorro-antd/resizable/style/index.min.css",
                             "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "./node_modules/quill/dist/quill.core.css",

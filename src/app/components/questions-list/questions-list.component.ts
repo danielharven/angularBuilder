@@ -27,40 +27,52 @@ export class QuestionsListComponent implements OnInit {
 
   paginations = 0
   state$: Observable<object>;
+  setView: boolean = false
   constructor(private utilities:UtilitiesService,
               private activatedRoute: ActivatedRoute,
               private http: HttpClient,) {
 
+
   }
 
   ngOnInit(): void {
-    this.state$ = this.activatedRoute.paramMap
+    this.setView=false;
+    let status = this.activatedRoute.snapshot.data?.status;
+    console.log(status)
+    if(status?.includes('unaswered')){
+    this.view='no'
+    this.setView=true;
+    }
+    if(!this.setView){
+      this.state$ = this.activatedRoute.paramMap
       .pipe(map(() => window.history.state))
     this.state$.subscribe(data=>{
       //@ts-ignore
       if(data?.value) this.view=data?.value
-      switch (this.view) {
-        case 'yes':{
-          this.getPagnatedQuesitons(true);
-          break;
-        }
-        case 'no':{
-          this.getPagnatedQuesitons(false);
-          break;
-        }
-        case 'res':{
-          this.getPagnatedReservedQuesitons(true);
-          break;
-        }
-        default:{
-          this.getAllPagematedQuestions()
-          break;
-        }
-      }
-      this.getTopics()
-      this.getQuestions()
     })
+    }
 
+
+    switch (this.view) {
+      case 'yes':{
+        this.getPagnatedQuesitons(true);
+        break;
+      }
+      case 'no':{
+        this.getPagnatedQuesitons(false);
+        break;
+      }
+      case 'res':{
+        this.getPagnatedReservedQuesitons(true);
+        break;
+      }
+      default:{
+        this.getAllPagematedQuestions()
+        break;
+      }
+    }
+    this.getTopics()
+    this.getQuestions()
   }
   async getQuestions(){
     switch (this.view) {

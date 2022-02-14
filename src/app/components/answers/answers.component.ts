@@ -53,13 +53,14 @@ export class AnswersComponent implements OnInit {
       answer:this.answers[0].id,
       accept:true
     }
-    console.log(body)
+    // console.log(body)
     let x = await this.utility.httpRequest({method,api,body})
     if(x){
       this.utility.notifyUser.success('A Billion Thank you!')
+      this.isLoading=true;
     }
-
     this.isVisible = false;
+    this.getAnswers()
   }
 
   handleCancel(): void {

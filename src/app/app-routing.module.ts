@@ -126,7 +126,7 @@ const routes: Routes = [
       {
         path: 'questions/unanswered',
         canActivate: [AuthGuard],
-        data: { title: 'Questions' },
+        data: { title: 'Questions', status:'unaswered'},
         component: QuestionsListComponent,
       },
       {

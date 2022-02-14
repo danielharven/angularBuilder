@@ -48,7 +48,7 @@
                                 <div class="card card-item">
                                     <div class="card-body">
                                         <h5 class="bg-gray fs-20 py-2 px-4 rounded-rounded d-inline-block">{{x.name}}</h5>
-                                        <p class="card-text pt-3 pb-5">{{x.label}}</p>
+                                        <p *ngIf="currentPlans.includes(x.id)" class="card-text pt-3 pb-5 text-danger">ACTIVE PLAN</p>
                                         <div class="card-price border-bottom border-bottom-gray mb-4 pb-4">
                                             <span class="fs-35 fw-bold text-black">
                     {{x.amount|currency:'ZMW':'K'}}</span>

@@ -4,6 +4,7 @@ import * as Reducers from '../../store/reducers'
 import * as UserActions from '../../store/user/actions'
 import store from 'store'
 import { Router } from '@angular/router';
+import { UtilitiesService } from 'src/app/services/utilities.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   authorized: boolean =false
-  constructor(private mstore: Store<any>, private router : Router) {
+  constructor(private mstore: Store<any>, private router : Router,
+    public utility: UtilitiesService) {
     this.mstore.pipe(select(Reducers.getUser))
     .subscribe(state => {
       this.authorized = state.authorized

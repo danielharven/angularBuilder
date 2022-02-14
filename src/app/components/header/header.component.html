@@ -19,9 +19,9 @@
                 <li routerLink="/subjects" nz-menu-item>
                     <i nz-icon nzType="profile" nzTheme="outline"></i> Subjects
                 </li>
-                <li nz-submenu nzTitle="Teachers" nzIcon="setting">
+                <li *ngIf="utility.teacherAccount || !authorized" nz-submenu nzTitle="Teachers" nzIcon="setting">
                     <ul>
-                        <li *ngIf="!authorized" routerLink="/auth/teacher/join" nz-menu-item nzTitle="Join "> Join</li>
+                        <li *ngIf="!authorized" routerLink="/auth/teacher/join" nz-menu-item nzTitle="Join"> Join</li>
                         <li *ngIf="authorized" routerLink="/tutorial/create" nz-menu-item nzTitle="Create a Tutorial">Create a Tutorial</li>
                         <li *ngIf="authorized" routerLink="/questions/unanswered" nz-menu-item nzTitle="Unanswered Questions">Unanswered Questions
                             <!-- <ul>
@@ -31,20 +31,21 @@
                         </li>
                     </ul>
                 </li>
-                <li nz-submenu nzTitle="Students" nzIcon="setting">
+                <li *ngIf="utility.studentAccount || !authorized" nz-submenu nzTitle="Students" nzIcon="setting">
                     <ul>
                         <li routerLink="/ask" nz-menu-item nzTitle="Ask Question">Ask Question</li>
-                        <li *ngIf="authorized" routerLink="/questions/mine" nz-menu-item nzTitle="My Questions">My Questions
-                            <!-- <ul>
+                        <li *ngIf="!authorized" routerLink="/auth/register" nz-menu-item nzTitle="Register Now">Register Now</li>
+                        <!-- <li *ngIf="authorized" routerLink="/questions/mine" nz-menu-item nzTitle="My Questions">My Questions -->
+                        <!-- <ul>
                 <li nz-menu-item>Option 1</li>
                 <li nz-menu-item>Option 2</li>
               </ul> -->
-                        </li>
+                        <!-- </li> -->
                     </ul>
                 </li>
                 <li nz-submenu nzTitle="Account" nzIcon="tool">
                     <ul *ngIf="authorized">
-                        <li routerLink="/profile" nz-menu-item nzTitle="Profile">Profile</li>
+                        <li routerLink="/profile" nz-menu-item nzTitle="Dashboard">Dashboard</li>
                         <li (click)="signOut()" nz-menu-item nzTitle="Sign Out">Sign Out
                         </li>
                     </ul>

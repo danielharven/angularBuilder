@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   user :any={}
   plans=[]
   todos=[]
+  currentPlans=[]
 
   teacher={bank:0, phone:0,limit:0}
   profile={
@@ -35,6 +36,7 @@ export class ProfileComponent implements OnInit {
 
     if(this.utilities.studentAccount){
       this.getPlans()
+      this.getActivePlans()
     }
     if(this.utilities.teacherAccount){
       this.getTodos();
@@ -88,6 +90,17 @@ export class ProfileComponent implements OnInit {
       this.todos = x
       console.log(x)
     }
+  }
+  async getActivePlans(){
+        // let x = ;
+        let api = '/plans/me'
+        let method ='get'
+        let x = await this.utilities.httpRequest({api,method})
+        if(x){
+          console.log(x);
+
+          this.currentPlans = x
+        }
   }
   getPlans(){
     // let x = ;
