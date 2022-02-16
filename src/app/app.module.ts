@@ -59,7 +59,7 @@ export function fieldMatchValidator(control: AbstractControl) {
   declarations: [AppComponent],
   imports: [
     HttpClientModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,

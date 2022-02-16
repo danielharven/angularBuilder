@@ -142,8 +142,8 @@ export class AuthInterceptor implements HttpInterceptor {
       }
       case '444': {
         // plan expired redirect to purchase plan
-        this.router.navigate(['/profile'])
-        this.notifyUser('You need to purchase a plan')
+        // this.router.navigate(['/profile'])
+        // this.notifyUser('You need to purchase a plan')
         break
       }
       case '445': {

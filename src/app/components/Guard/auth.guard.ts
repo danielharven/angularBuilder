@@ -23,15 +23,16 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (environment.authenticated) {
-      // skip guard checking on demo environment serve/build, remove it in your app
-      return true
-    }
 
-    if (this.authorized) {
-      return true
-    }
-    this.router.navigate(['auth/login'], { queryParams: { returnUrl: state.url } })
-    return false
+    return new Promise((res,rej)=>{
+      setTimeout(() =>{
+        if (this.authorized) {
+          return res(true)
+        }
+        this.router.navigate(['auth/login'], { queryParams: { returnUrl: state.url } })
+      return res(false)
+      },1000)
+    })
+
   }
 }

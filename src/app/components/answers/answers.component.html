@@ -3,31 +3,62 @@
         <nz-skeleton nzActive></nz-skeleton>
     </div>
     <div *ngIf='!isLoading' class='col-12'>
-        <ng-container></ng-container>
+        <ng-container *ngIf="!activePlan">
+            <!-- ================================
+         START ERROR AREA
+================================= -->
+            <section class="error-area section-padding position-relative">
+                <span class="icon-shape icon-shape-1"></span>
+                <span class="icon-shape icon-shape-2"></span>
+                <span class="icon-shape icon-shape-3"></span>
+                <span class="icon-shape icon-shape-4"></span>
+                <span class="icon-shape icon-shape-5"></span>
+                <span class="icon-shape icon-shape-6"></span>
+                <span class="icon-shape icon-shape-7"></span>
+                <div class="container">
+                    <div class="media align-items-center justify-content-center error-content">
+                        <img src="assets/images/404.svg" alt="error-image" class="img-fluid mr-5 error-content-img">
+                        <div class="media-body flex-inherit">
+                            <h2 class="section-title pb-3">
+                                <a routerLink="/profile"> Upgrade Now </a>
+                            </h2>
+                            <p class="section-desc pb-4">To view the answer you need an active plan</p>
+                            <ul class="generic-list-item">
+                                <li>Try <a routerLink="/profile" class="d-inline-block text-color hover-underline">Go to plans</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- end container -->
+            </section>
+            <!-- ================================
+       END ERROR AREA
+================================= -->
+        </ng-container>
         <ng-container>
             <div *ngFor='let x of answers' class="answer-wrap d-flex">
                 <div class="votes votes-styled w-auto">
                 </div>
                 <!-- end votes -->
                 <div class="answer-body-wrap flex-grow-1">
-                    <div class="pb-5" *ngIf="myAnswer && !x?.approved">
+                    <div class="pb-5" *ngIf="myAnswer && !x?.approved && x?.answered">
                         <button class="btn btn-primary mr-2" (click)="showModal()">I Accept this Answer</button>
                         <button class="btn btn-danger">I Reject this Answer</button>
                     </div>
                     <div class="answer-body">
                         <div [innerHTML]='x?.body'></div>
-                        <img *ngFor='let x of x?.image' class='ml-1' nz-image width="200px" height="200px" [nzSrc]='x?.url' alt="Attached image" />
+                        <img *ngFor='let x of x?.image' class='ml-1' nz-image width="400px" height="400px" [nzSrc]='x?.url' alt="Attached image" />
                     </div>
                     <!-- end answer-body -->
                     <div class="question-post-user-action">
                         <div class="media media-card user-media align-items-center">
                             <div class="media-body d-flex align-items-center justify-content-between">
                                 <div>
-                                    <h5 class="pb-1"><a>{{x.user.displayName}}</a></h5>
+                                    <h5 class="pb-1"><a>{{x?.user?.displayName}}</a></h5>
                                 </div>
                                 <small class="meta d-block text-right">
                   <span class="text-black d-block lh-18">answered</span>
-                  <span class="d-block lh-18 fs-12">{{x.createdAt|dateAgo}}</span>
+                  <span class="d-block lh-18 fs-12">{{x?.createdAt|dateAgo}}</span>
                 </small>
                             </div>
                         </div>
@@ -37,6 +68,9 @@
                 </div>
                 <!-- end answer-body-wrap -->
             </div>
+        </ng-container>
+        <ng-container>
+
         </ng-container>
     </div>
 </div>

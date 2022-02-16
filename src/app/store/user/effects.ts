@@ -71,7 +71,7 @@ export class UserEffects implements OnInitEffects {
     switchMap(([payload, settings]) => {
       // jwt register
       if (settings.authProvider === 'jwt') {
-        return this.jwtAuthService.register(payload.email, payload.password, payload.name).pipe(
+        return this.jwtAuthService.register(payload.email, payload.password, payload.name,payload.tk).pipe(
           map(response => {
             if (response && response.id) {
               if (response.accessToken) {

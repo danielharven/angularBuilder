@@ -37,14 +37,18 @@ export class CommentsWidgetTutorialsComponent implements OnInit {
     ]
   };
   commentImages: any =[]
+  tk: any=''
 
   ngOnInit(): void {
     this.commentForm = new FormGroup({
       comment: new FormControl('',Validators.required)
     })
+    this.getToken()
   }
   //TODO: Get comments refresh
-
+  async getToken(){
+    this.tk= await this.utility.getToken();
+  }
   uploadModule={
     uploadFiles:(item)=>{
       this.commentImages.push(item)
@@ -52,18 +56,26 @@ export class CommentsWidgetTutorialsComponent implements OnInit {
   }
   async createComment() {
     this.utility.loadScreen()
+    let api = '/comments'
+    let method = 'post'
+    let {tk}=this.tk
     let {comment}  =this.commentForm.value;
     let commentor = this.utility.user.id
     let question = this.item?.id
-    let y = await this.utility.graphqlRequests(this.utility.queries.createTutorialComment({comment,commentor,question}))
-    let {data}= y
+    let body = {
+      comment,commentor,question,tk
+    }
+    let y = await this.utility.httpRequest({method,api,body})
+    this.getToken()
+    // graphqlRequests(this.utility.queries.createTutorialComment({comment,commentor,question}))
+    // let {data}= y
 
     this.utility.notifyUser.info(this.utility.constants.uploadin_imaged)
     this.utility.stopLoadScreen()
     for (let x of this.commentImages){
       let field = 'image'
       let ref = 'comments'
-      let refId = data?.createComment?.comment?.id
+      let refId = y.id
       let {file} = x
       await this.utility.uploadFiles(file,ref,refId,field)
     }

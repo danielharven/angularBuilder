@@ -43,6 +43,7 @@ export class QuestionsDetailsComponent implements OnInit {
   };
    commentImages: any =[]
    answerImages: any =[]
+   tk: any=''
   constructor(private route : ActivatedRoute, public utility: UtilitiesService) {
     this.route.params.subscribe(par=>{
       this.quetion_id=par.id
@@ -54,8 +55,12 @@ export class QuestionsDetailsComponent implements OnInit {
     this.getQuestionDetails()
     this.setupForms()
     this.checkIfQuestionIsReservedByMe()
+    this.getToken()
   }
-
+  //TODO: Get comments refresh
+  async getToken(){
+    this.tk= await this.utility.getToken();
+  }
  async getQuestionDetails(){
     let id =this.quetion_id
     let api = ''
@@ -78,12 +83,20 @@ export class QuestionsDetailsComponent implements OnInit {
     let {comment}  =this.commentForm.value;
     let commentor = this.utility.user.id
     let question = this.quetion_id
-    let y = await this.utility.graphqlRequests(this.utility.queries.createComment({comment,commentor,question}))
-    let {data}= y
+    let api = '/comments'
+    let method = 'post'
+    let {tk}=this.tk
+    let body = {
+      comment,commentor,question,tk
+    }
+    let y = await this.utility.httpRequest({method,api,body})
+    this.getToken()
+    // .graphqlRequests(this.utility.queries.createComment({comment,commentor,question}))
+    // let {data}= y
     for (let x of this.commentImages){
       let field = 'image'
       let ref = 'comments'
-      let refId = data?.createComment?.comment?.id
+      let refId = y?.id
       let {file} = x
       await this.utility.uploadFiles(file,ref,refId,field)
     }

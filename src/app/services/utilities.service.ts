@@ -175,6 +175,7 @@ query{
     id
     location
     about
+    createdAt
   }
 }
       `
@@ -711,7 +712,7 @@ let profile= this.profile
       customizations: {
         title: "Tadya",
         description: "kindly complete the payment process to continue",
-        logo: "https://assets.piedpiper.com/logo.png",
+        logo: "https://tadya.org/assets/images/logo-black.png",
       },
     });
     this.stopLoadScreen()
@@ -751,7 +752,7 @@ let profile= this.profile
       customizations: {
         title: "Tadya",
         description: "kindly complete the payment process to continue",
-        logo: "https://assets.piedpiper.com/logo.png",
+        logo: "https://tadya.org/assets/images/logo-black.png",
       },
     });
     this.stopLoadScreen()
@@ -927,5 +928,10 @@ let profile= this.profile
       this.configuration = x
     }
   }
-
+  async getToken(){
+    let api='/formtokens/mine'
+    let method='get'
+    let tk = await this.httpRequest({api,method});
+    return tk;
+  }
 }

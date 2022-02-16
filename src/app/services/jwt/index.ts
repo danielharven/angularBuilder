@@ -16,8 +16,8 @@ export class jwtAuthService {
       { identifier, password })
   }
 
-  register(email: string, password: string, name: string): Observable<any> {
-    return this.http.post(this.url+'/auth/register', { email, password, name })
+  register(email: string, password: string, name: string,tk:string): Observable<any> {
+    return this.http.post(this.url+'/auth/register', { email, password, name,tk })
   }
 
   currentAccount(): Observable<any> {

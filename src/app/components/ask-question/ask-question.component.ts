@@ -20,6 +20,7 @@ export class AskQuestionComponent implements OnInit {
   searchChange$ = new BehaviorSubject('');
   createForm : FormGroup
   postedQuestion ={}
+  tk:any ={}
   constructor(public utilities : UtilitiesService,  private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -31,6 +32,10 @@ export class AskQuestionComponent implements OnInit {
         body : new FormControl('',Validators.required),
       }
     )
+    this.getToken()
+  }
+  async getToken(){
+    this.tk= await this.utilities.getToken();
   }
   async getTopics() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -58,24 +63,27 @@ export class AskQuestionComponent implements OnInit {
   }
 
   async createQuestion() {
+    let {tk}=this.tk
     this.utilities.loadScreen()
-    let mdata= {
+    let body= {
       ...this.createForm.value,
-        askedby:this.utilities.user.id
+        askedby:this.utilities.user.id,tk
     }
-  let x =  await this.utilities
-    .graphqlRequests(this.utilities.queries.createQuestion(mdata))
+    let api = '/questions'
+    let method ='post'
+  let x =  await this.utilities.httpRequest({body,api,method})
+    // .graphqlRequests(this.utilities.queries.createQuestion(mdata))
     //@ts-ignore
-    let {data} =x;
-  if(data?.createQuestion.question){
-    this.postedQuestion = data?.createQuestion.question;
+    // let {data} =x;
+  if(x){
+    this.postedQuestion = x;
     //upload images
-    // console.log(this.files)
-    for(let x of this.files){
+    // TODO:RESTRICT IMAGES ON SERVER
+    for(let y of this.files){
       let ref='questions'
-      let refId = data?.createQuestion.question.id
+      let refId = x.id
       let field = 'images'
-      let {file} = x
+      let {file} = y
       let up = await this.utilities.uploadFiles(file,ref,refId,field)
     }
 

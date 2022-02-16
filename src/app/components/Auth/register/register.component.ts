@@ -4,6 +4,7 @@ import { select, Store } from '@ngrx/store'
 import * as Reducers from 'src/app/store/reducers'
 import * as UserActions from 'src/app/store/user/actions'
 import * as SettingsActions from 'src/app/store/settings/actions'
+import { UtilitiesService } from 'src/app/services/utilities.service'
 
 @Component({
   selector: 'vb-system-register',
@@ -12,9 +13,10 @@ import * as SettingsActions from 'src/app/store/settings/actions'
 })
 export class RegisterComponent {
   form: FormGroup
-  loading: boolean = false
+  loading: boolean = false;
+  tk =''
 
-  constructor(private fb: FormBuilder, private store: Store<any>) {
+  constructor(private fb: FormBuilder, private store: Store<any>,private utility:UtilitiesService) {
     this.form = fb.group({
       email: [, [Validators.required, Validators.minLength(4)]],
       password: [, [Validators.required]],
@@ -23,8 +25,11 @@ export class RegisterComponent {
     this.store.pipe(select(Reducers.getUser)).subscribe(state => {
       this.loading = state.loading
     })
-  }
 
+  }
+ async getToken(){
+    this.tk= await this.utility.getToken();
+  }
   get email() {
     return this.form.controls.email
   }
@@ -49,6 +54,7 @@ export class RegisterComponent {
       email: this.email.value,
       password: this.password.value,
       name: this.name.value,
+      tk:this.tk
     }
     this.store.dispatch(new UserActions.Register(payload))
   }

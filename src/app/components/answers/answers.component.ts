@@ -14,6 +14,7 @@ export class AnswersComponent implements OnInit {
   answers:any=[]
   myAnswer=false
   isVisible = false;
+  activePlan=true;
   rate=3
   positiveFeedbackForm : FormGroup
   tooltips = ['terrible', 'bad', 'normal', 'good', 'excellent'];
@@ -31,7 +32,10 @@ export class AnswersComponent implements OnInit {
     this.answers=[]
     let api = '/questions/answers/'+this.question
     let method = 'get'
-    let x = await this.utility.httpRequest({method,api});
+    let x = await this.utility.httpRequest({method,api}).catch(err=>{
+      this.activePlan=false
+
+    });
     if(x){
       let questions =store.get('questions')
       if(questions?.includes(this.question)) this.myAnswer=true

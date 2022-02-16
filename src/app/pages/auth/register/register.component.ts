@@ -38,7 +38,30 @@ export class RegisterPage {
         label: 'Email',
         placeholder: 'i.e daniel.chirwa@gmail.com',
         required: true,
-      }
+        blur:(data)=>{
+          // console.log(this.model.email)
+        }
+      },
+      asyncValidators: {
+        ip: {
+          expression: (c) => {
+            return new Promise((resolve, reject) => {
+              let api='/profiles/email-available/'+c.value;
+              let method="get"
+              this.utilities.httpRequest({api,method}).then(d=>{
+                console.log(d);
+
+                if(d?.message){
+                 return resolve(true)
+                }else{
+                  return resolve(false)
+                }
+              })
+          })
+        },
+          message: (error, field: FormlyFieldConfig) => `"${field.formControl.value}" is not available`,
+        },
+      },
     },
     {
       validators: {
@@ -79,6 +102,7 @@ export class RegisterPage {
       }
     },
   ];
+  tk: any=''
   constructor(private acR : ActivatedRoute,
               private route: Router,
               private store: Store<any>,
@@ -91,6 +115,10 @@ export class RegisterPage {
        this.option = data.option || 0
       }
     )
+    this.getToken()
+  }
+  async getToken(){
+    this.tk= await this.utilities.getToken();
   }
   async submit(){
     this.utilities.loadScreen();
@@ -103,8 +131,9 @@ export class RegisterPage {
     this.model.username = username;
     let api = '/users-permissions/users/students';
     let method='post'
+    let {tk}=this.tk
     let body = {
-      ...this.model
+      ...this.model,tk
     }
     let q = await this.utilities.httpRequest({method,api,body}).catch(err=>{
       this.utilities.stopLoadScreen();
@@ -164,5 +193,8 @@ export class RegisterPage {
     //     })
     //   }
     // )
+  }
+  checkEmailExists(){
+
   }
 }
