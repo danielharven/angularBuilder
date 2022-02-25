@@ -27,6 +27,7 @@ export class LayoutMainComponent implements OnInit {
 
   ngOnInit() {
     this.bindMobileSlide()
+    // console.log(this.settings)
   }
 
   onCollapse(value: any) {

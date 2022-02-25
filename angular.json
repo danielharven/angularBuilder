@@ -43,13 +43,12 @@
                             }
                         ],
                         "styles": [
-                            "./src/assets/css/style.css",
-                            "./src/assets/css/selectize.css",
-                            "./src/assets/css/upvotejs.min.css",
                             "./src/assets/css/jquery.fancybox.min.css",
                             "./src/assets/css/jquery-te-1.4.0.css",
                             "./src/assets/css/line-awesome.css",
                             "./node_modules/ng-zorro-antd/style/entry.less",
+                            "./node_modules/ng-zorro-antd/layout/style/entry.less",
+                            "./node_modules/ng-zorro-antd/drawer/style/entry.less",
                             "./node_modules/ng-zorro-antd/pagination/style/entry.less",
                             "./node_modules/ng-zorro-antd/select/style/entry.less",
                             "./node_modules/ng-zorro-antd/tabs/style/entry.less",
@@ -66,26 +65,29 @@
                             "./node_modules/ng-zorro-antd/resizable/style/index.min.css",
                             "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "./node_modules/quill/dist/quill.core.css",
-                            "./node_modules/quill/dist/quill.snow.css"
+                            "./node_modules/quill/dist/quill.snow.css",
+                            "./src/assets/css/style.css",
+                            "./src/assets/css/selectize.css",
+                            "./src/assets/css/upvotejs.min.css"
                         ],
                         "scripts": [
                             "./node_modules/c3/c3.min.js",
-                            "./src/assets/js/selectize.min.js",
-                            "./src/assets/js/bootstrap.bundle.min.js",
-                            "./src/assets/js/intlTelInput-jquery.min.js",
                             "./src/assets/js/jquery-3.4.1.min.js",
                             "./src/assets/js/jquery-te-1.4.0.min.js",
                             "./src/assets/js/jquery.fancybox.min.js",
                             "./src/assets/js/jquery.lazy.min.js",
                             "./src/assets/js/jquery.multi-file.min.js",
+                            "./src/assets/js/bootstrap.bundle.min.js",
+                            "./src/assets/js/intlTelInput-jquery.min.js",
                             "./src/assets/js/owl.carousel.min.js",
                             "./src/assets/js/main.js",
-                            "./src/assets/js/map.js",
                             "./src/assets/js/signup.js",
                             "./src/assets/js/utils.js",
                             "./src/assets/js/upvote-script.js",
                             "./src/assets/js/upvote.vanilla.js",
-                            "./src/assets/js/leaflet.js"
+                            "./src/assets/js/leaflet.js",
+                            "./src/assets/js/selectize.min.js",
+                            "./src/assets/js/map.js"
                         ]
                     },
                     "configurations": {

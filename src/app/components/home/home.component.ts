@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 autherised=false
   isLoading = true;
 current = 0
-  constructor(private utilities:UtilitiesService,
+  constructor(public utilities:UtilitiesService,
               private http: HttpClient,
               private store: Store<any>,) {
     this.store.pipe(select(Reducers.getUser)).subscribe(state => {

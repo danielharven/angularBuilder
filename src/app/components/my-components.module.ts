@@ -56,8 +56,12 @@ import { AllSubjectsComponent } from './subjects/all-subjects/all-subjects.compo
 import { WithdrawComponent } from './bank/teacher/withdraw/withdraw.component';
 import { AccountComponent } from './bank/student/account/account.component'
 import { NzRateModule } from 'ng-zorro-antd/rate';
+import { MenuClassicLeftComponent } from './MenuClassic/MenuLeft/menu-left.component';
+import { MenuClassicTopComponent } from './MenuClassic/MenuTop/menu-top.component';
 const COMPONENTS = [
   FieldNgSelect,
+  MenuClassicLeftComponent,
+  MenuClassicTopComponent,
   FieldQuillType,
   FormlyFieldFile,FileValueAccessor,
   HeaderComponent, FooterComponent, HomeComponent, FaqComponent,

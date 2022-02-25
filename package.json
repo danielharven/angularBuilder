@@ -71,6 +71,7 @@
     "@ngx-progressbar/http": "^5.3.2",
     "@ngx-progressbar/router": "^5.3.2",
     "@ngx-translate/core": "^12.1.2",
+    "@scullyio/init": "^2.1.14",
     "angular-us-map": "^1.2.0",
     "angular2-chartjs": "^0.5.1",
     "apexcharts": "^3.19.0",

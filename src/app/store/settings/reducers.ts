@@ -26,7 +26,7 @@ export const initialState: object = {
     isMenuCollapsed: false,
     isPreselectedOpen: false,
     preselectedVariant: 'waves',
-    menuLayoutType: 'left',
+    menuLayoutType: 'top',
     routerAnimation: 'zoom-fadein',
     menuColor: 'white',
     authPagesColor: 'gray',

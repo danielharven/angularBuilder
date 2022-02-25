@@ -32,6 +32,21 @@ export class ViewTutorialsComponent implements OnInit {
     this.getTopics()
     this.getQuestions()
   }
+  async updateTutotrials(info){
+   if(info){
+    let api='/topics/blogs/'+info;
+    let method='get';
+    let x = await this.utilities.httpRequest({api,method})
+    // console.log(x);
+    if(x){
+      this.tutorials=x
+    }
+    return
+   }
+   this.getQuestions();
+
+  }
+
   async getQuestions(){
     let url  = URL+'/blogs'
     let x = await this.utilities.httpRequest({api:'/blogs/count',method:'get'}).catch((e)=>{

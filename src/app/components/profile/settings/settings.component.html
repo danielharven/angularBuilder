@@ -28,23 +28,168 @@
             <!-- end col-lg-4 -->
         </div>
         <!-- end row -->
-        <ul class="nav nav-tabs generic-tabs generic--tabs generic--tabs-2 mt-4" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="edit-profile-tab" data-toggle="tab" href="#edit-profile" role="tab" aria-controls="edit-profile" aria-selected="false">Edit Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="change-password-tab" data-toggle="tab" href="#change-password" role="tab" aria-controls="change-password" aria-selected="false">Change Password</a>
-            </li>
-            <!--      <li class="nav-item">-->
-            <!--        <a class="nav-link" id="email-settings-tab" data-toggle="tab" href="#plans" role="tab" aria-controls="plans" aria-selected="true">Plans</a>-->
-            <!--      </li>-->
-            <!--      <li class="nav-item">-->
-            <!--        <a class="nav-link" id="privacy-tab" data-toggle="tab" href="#privacy" role="tab" aria-controls="privacy" aria-selected="false">Privacy</a>-->
-            <!--      </li>-->
-            <li class="nav-item">
-                <a class="nav-link" id="delete-account-tab" data-toggle="tab" href="#delete-account" role="tab" aria-controls="delete-account" aria-selected="false">Block Account</a>
-            </li>
-        </ul>
+        <nz-tabset>
+            <nz-tab nzTitle="Profile">
+                <div class="user-panel">
+                    <div class="bg-gray p-3 rounded-rounded">
+                        <!-- <h3 class="fs-17" *ngIf="!teacherProfile">Edit your profile</h3> -->
+                        <h3 *ngIf="teacherProfile" class="fs-17">Complete your profile</h3>
+                        <h3 *ngIf="!teacherProfile" class="fs-17">Update your profile</h3>
+                    </div>
+
+                    <form *ngIf="teacherProfile" class="pt-35px" [formGroup]="teacherProfileForm" (ngSubmit)="onSubmitTeacher()">
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">Display Name</label>
+                            <p class="fs-13 pb-3 lh-20">This is the name that will be displayed on the platform</p>
+                            <div class="form-group">
+                                <input formControlName="displayName" class="form-control form--control" type="text" name="text" placeholder="e.g. Daniel The Math Teacher">
+                            </div>
+                        </div>
+                        <!-- end input-box -->
+
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">Location</label>
+                            <p class="fs-13 pb-3 lh-20">Enter the name of the town or district you are from </p>
+                            <div class="form-group">
+                                <input formControlName="location" class="form-control form--control" type="text" name="text" placeholder="e.g. Ndola">
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">About Me</label>
+                            <p class="fs-13 pb-3 lh-20">Type something about yourself an introduction to others or a sell to others</p>
+                            <div class="form-group">
+                                <textarea formControlName="about" class="form-control form--control user-text-editor" rows="10" cols="40" placeholder="e.g. I am a"></textarea>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">Subject</label>
+                            <p class="fs-13 pb-3 lh-20">Please choose the appropriate subject you would like to apply your services on Tadya</p>
+                            <div class="form-group">
+                                <select formControlName="subject" class="select-container select--container" data-placeholder="Select a subject">
+                            <option *ngFor="let x of subjects" selected [value]="x.id">{{x.name}} - Grade {{x.grade}}</option>
+                        </select>
+                            </div>
+                        </div>
+                        <!-- end input-box -->
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">Phone</label>
+                            <p class="fs-13 pb-3 lh-20">This phone will be used for communication between Tadya and yourself </p>
+                            <div class="form-group">
+                                <input formControlName="phone" class="form-control form--control" type="text" name="text" placeholder="e.g. 0964862067">
+                            </div>
+                        </div>
+
+                        <button (click)="onSubmitTeacher()" [disabled]="!teacherProfileForm.valid" class="btn btn-primary" type="submit">
+                Save Changes
+              </button>
+                    </form>
+                    <form *ngIf="!teacherProfile" class="pt-35px" [formGroup]="profileForm">
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">Display Name</label>
+                            <p class="fs-13 pb-3 lh-20">This is the name that will be displayed on the platform</p>
+                            <div class="form-group">
+                                <input formControlName="displayName" class="form-control form--control" type="text" name="text" placeholder="e.g. Daniel The Math Teacher">
+                            </div>
+                        </div>
+                        <!-- end input-box -->
+
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">Location</label>
+                            <p class="fs-13 pb-3 lh-20">Enter the name of the town or district you are from </p>
+                            <div class="form-group">
+                                <input formControlName="location" class="form-control form--control" type="text" name="text" placeholder="e.g. Ndola">
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">About Me </label>
+                            <p class="fs-13 pb-3 lh-20">Type something about yourself <b><i>(do not type anything personal)</i></b></p>
+                            <div class="form-group">
+                                <textarea formControlName="about" class="form-control form--control user-text-editor" rows="10" cols="40" placeholder="e.g. I am a"></textarea>
+                            </div>
+                        </div>
+
+
+                        <button (click)="updateProfile()" [disabled]="!profileForm.valid" class="btn btn-primary" type="submit">
+                Save Changes
+              </button>
+                    </form>
+
+
+
+                    <div *ngIf="!gotProfile" (click)="getProfile()" class="btn btn-outline-primary">Get Profile</div>
+                </div>
+            </nz-tab>
+            <nz-tab nzTitle="Password">
+                <div class="user-panel">
+                    <div class="bg-gray p-3 rounded-rounded">
+                        <h3 class="fs-17">Change password</h3>
+                    </div>
+                    <form *ngIf="gotProfile" class="pt-35px" [formGroup]="form" (ngSubmit)="changePassword()">
+                        <formly-form [form]="paasswordForm" [model]="passwordModel" [fields]="passwordFields">
+                        </formly-form>
+
+                        <button class="btn btn-primary" type="submit">
+  Change Password
+</button>
+                    </form>
+                </div>
+            </nz-tab>
+            <nz-tab *ngIf="false" nzTitle="Plans">
+                <div class="user-panel">
+                    <div class="bg-gray p-3 rounded-rounded">
+                        <h3 class="fs-17">Plans</h3>
+                    </div>
+                    <div class="card card-item p-4">
+                        <div class="card-body">
+                            <h3 class="fs-17 pb-3">Choose Plan</h3>
+                            <div class="divider"><span></span></div>
+                            <div class="row no-gutters text-center">
+                                <div class="col-lg-6 responsive-column-half">
+                                    <div class="icon-box pt-3">
+                                        <span class="fs-20 fw-bold text-color">980k</span>
+                                        <p class="fs-14">Questions</p>
+                                    </div>
+                                    <!-- end icon-box -->
+                                </div>
+                                <!-- end col-lg-6 -->
+                                <div class="col-lg-6 responsive-column-half">
+                                    <div class="icon-box pt-3">
+                                        <span class="fs-20 fw-bold text-color-2">610k</span>
+                                        <p class="fs-14">Answers</p>
+                                    </div>
+                                    <!-- end icon-box -->
+                                </div>
+                                <!-- end col-lg-6 -->
+                                <div class="col-lg-6 responsive-column-half">
+                                    <div class="icon-box pt-3">
+                                        <span class="fs-20 fw-bold text-color-3">650k</span>
+                                        <p class="fs-14">Answer accepted</p>
+                                    </div>
+                                    <!-- end icon-box -->
+                                </div>
+                                <!-- end col-lg-6 -->
+                                <div class="col-lg-6 responsive-column-half">
+                                    <div class="icon-box pt-3">
+                                        <span class="fs-20 fw-bold text-color-4">320k</span>
+                                        <p class="fs-14">Users</p>
+                                    </div>
+                                    <!-- end icon-box -->
+                                </div>
+                                <!-- end col-lg-6 -->
+                                <div class="col-lg-12 pt-3">
+                                    <p class="fs-14">To get answer of question <a href="signup.html" class="text-color hover-underline">Join<i class="la la-arrow-right ml-1"></i></a></p>
+                                </div>
+                            </div>
+                            <!-- end row -->
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div>
+            </nz-tab>
+
+        </nz-tabset>
     </div>
     <!-- end container -->
 </section>
@@ -55,270 +200,7 @@
 <!-- ================================
          START USER DETAILS AREA
 ================================= -->
-<section class="user-details-area pt-40px pb-40px">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
-                <div class="tab-content mb-50px" id="myTabContent">
-                    <div class="tab-pane fade show active" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
-                        <div class="user-panel-main-bar">
-                            <div class="user-panel">
 
-                                <div class="bg-gray p-3 rounded-rounded">
-                                    <!-- <h3 class="fs-17" *ngIf="!teacherProfile">Edit your profile</h3> -->
-                                    <h3 *ngIf="teacherProfile" class="fs-17">Complete your profile</h3>
-                                    <h3 *ngIf="!teacherProfile" class="fs-17">Update your profile</h3>
-                                </div>
-
-                                <form *ngIf="teacherProfile" class="pt-35px" [formGroup]="teacherProfileForm" (ngSubmit)="onSubmitTeacher()">
-                                    <div class="input-box">
-                                        <label class="fs-14 text-black fw-medium mb-0">Display Name</label>
-                                        <p class="fs-13 pb-3 lh-20">This is the name that will be displayed on the platform</p>
-                                        <div class="form-group">
-                                            <input formControlName="displayName" class="form-control form--control" type="text" name="text" placeholder="e.g. Daniel The Math Teacher">
-                                        </div>
-                                    </div>
-                                    <!-- end input-box -->
-
-                                    <div class="input-box">
-                                        <label class="fs-14 text-black fw-medium mb-0">Location</label>
-                                        <p class="fs-13 pb-3 lh-20">Enter the name of the town or district you are from </p>
-                                        <div class="form-group">
-                                            <input formControlName="location" class="form-control form--control" type="text" name="text" placeholder="e.g. Ndola">
-                                        </div>
-                                    </div>
-
-                                    <div class="input-box">
-                                        <label class="fs-14 text-black fw-medium mb-0">About Me</label>
-                                        <p class="fs-13 pb-3 lh-20">Type something about yourself an introduction to others or a sell to others</p>
-                                        <div class="form-group">
-                                            <textarea formControlName="about" class="form-control form--control user-text-editor" rows="10" cols="40" placeholder="e.g. I am a"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="input-box">
-                                        <label class="fs-14 text-black fw-medium mb-0">Subject</label>
-                                        <p class="fs-13 pb-3 lh-20">Please choose the appropriate subject you would like to apply your services on Tadya</p>
-                                        <div class="form-group">
-                                            <select formControlName="subject" class="select-container select--container" data-placeholder="Select a subject">
-                                              <option *ngFor="let x of subjects" selected [value]="x.id">{{x.name}} - Grade {{x.grade}}</option>
-                                          </select>
-                                        </div>
-                                    </div>
-                                    <!-- end input-box -->
-                                    <div class="input-box">
-                                        <label class="fs-14 text-black fw-medium mb-0">Phone</label>
-                                        <p class="fs-13 pb-3 lh-20">This phone will be used for communication between Tadya and yourself </p>
-                                        <div class="form-group">
-                                            <input formControlName="phone" class="form-control form--control" type="text" name="text" placeholder="e.g. 0964862067">
-                                        </div>
-                                    </div>
-
-                                    <button (click)="onSubmitTeacher()" [disabled]="!teacherProfileForm.valid" class="btn btn-primary" type="submit">
-                                  Save Changes
-                                </button>
-                                </form>
-                                <form *ngIf="!teacherProfile" class="pt-35px" [formGroup]="profileForm">
-                                    <div class="input-box">
-                                        <label class="fs-14 text-black fw-medium mb-0">Display Name</label>
-                                        <p class="fs-13 pb-3 lh-20">This is the name that will be displayed on the platform</p>
-                                        <div class="form-group">
-                                            <input formControlName="displayName" class="form-control form--control" type="text" name="text" placeholder="e.g. Daniel The Math Teacher">
-                                        </div>
-                                    </div>
-                                    <!-- end input-box -->
-
-                                    <div class="input-box">
-                                        <label class="fs-14 text-black fw-medium mb-0">Location</label>
-                                        <p class="fs-13 pb-3 lh-20">Enter the name of the town or district you are from </p>
-                                        <div class="form-group">
-                                            <input formControlName="location" class="form-control form--control" type="text" name="text" placeholder="e.g. Ndola">
-                                        </div>
-                                    </div>
-
-                                    <div class="input-box">
-                                        <label class="fs-14 text-black fw-medium mb-0">About Me </label>
-                                        <p class="fs-13 pb-3 lh-20">Type something about yourself <b><i>(do not type anything personal)</i></b></p>
-                                        <div class="form-group">
-                                            <textarea formControlName="about" class="form-control form--control user-text-editor" rows="10" cols="40" placeholder="e.g. I am a"></textarea>
-                                        </div>
-                                    </div>
-
-
-                                    <button (click)="updateProfile()" [disabled]="!profileForm.valid" class="btn btn-primary" type="submit">
-                                  Save Changes
-                                </button>
-                                </form>
-
-
-
-                                <div *ngIf="!gotProfile" (click)="getProfile()" class="btn btn-outline-primary">Get Profile</div>
-                            </div>
-                            <!-- end user-panel -->
-                        </div>
-                        <!-- end user-panel-main-bar -->
-                    </div>
-                    <!-- end tab-pane -->
-                    <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
-                        <div class="user-panel-main-bar">
-                            <div class="user-panel">
-                                <div class="bg-gray p-3 rounded-rounded">
-                                    <h3 class="fs-17">Change password</h3>
-                                </div>
-                                <form *ngIf="gotProfile" class="pt-35px" [formGroup]="form" (ngSubmit)="changePassword()">
-                                    <formly-form [form]="paasswordForm" [model]="passwordModel" [fields]="passwordFields">
-                                    </formly-form>
-
-                                    <button class="btn btn-primary" type="submit">
-                    Change Password
-                  </button>
-                                </form>
-                            </div>
-                            <!-- end user-panel -->
-                        </div>
-                        <!-- end user-panel-main-bar -->
-                    </div>
-                    <!-- end tab-pane -->
-                    <div class="tab-pane fade" id="plans" role="tabpanel" aria-labelledby="email-settings-tab">
-                        <div class="user-panel-main-bar">
-                            <div class="user-panel">
-                                <div class="bg-gray p-3 rounded-rounded">
-                                    <h3 class="fs-17">Plans</h3>
-                                </div>
-                                <div class="card card-item p-4">
-                                    <div class="card-body">
-                                        <h3 class="fs-17 pb-3">Choose Plan</h3>
-                                        <div class="divider"><span></span></div>
-                                        <div class="row no-gutters text-center">
-                                            <div class="col-lg-6 responsive-column-half">
-                                                <div class="icon-box pt-3">
-                                                    <span class="fs-20 fw-bold text-color">980k</span>
-                                                    <p class="fs-14">Questions</p>
-                                                </div>
-                                                <!-- end icon-box -->
-                                            </div>
-                                            <!-- end col-lg-6 -->
-                                            <div class="col-lg-6 responsive-column-half">
-                                                <div class="icon-box pt-3">
-                                                    <span class="fs-20 fw-bold text-color-2">610k</span>
-                                                    <p class="fs-14">Answers</p>
-                                                </div>
-                                                <!-- end icon-box -->
-                                            </div>
-                                            <!-- end col-lg-6 -->
-                                            <div class="col-lg-6 responsive-column-half">
-                                                <div class="icon-box pt-3">
-                                                    <span class="fs-20 fw-bold text-color-3">650k</span>
-                                                    <p class="fs-14">Answer accepted</p>
-                                                </div>
-                                                <!-- end icon-box -->
-                                            </div>
-                                            <!-- end col-lg-6 -->
-                                            <div class="col-lg-6 responsive-column-half">
-                                                <div class="icon-box pt-3">
-                                                    <span class="fs-20 fw-bold text-color-4">320k</span>
-                                                    <p class="fs-14">Users</p>
-                                                </div>
-                                                <!-- end icon-box -->
-                                            </div>
-                                            <!-- end col-lg-6 -->
-                                            <div class="col-lg-12 pt-3">
-                                                <p class="fs-14">To get answer of question <a href="signup.html" class="text-color hover-underline">Join<i class="la la-arrow-right ml-1"></i></a></p>
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                            <!-- end user-panel -->
-                        </div>
-                        <!-- end user-panel-main-bar -->
-                    </div>
-                    <!-- end tab-pane -->
-                    <div class="tab-pane fade" id="delete-account" role="tabpanel" aria-labelledby="delete-account-tab">
-                        <div class="user-panel-main-bar">
-                            <div class="user-panel">
-                                <div class="delete-account-info card card-item border border-danger">
-                                    <div class="card-body">
-                                        <h3 class="fs-22 text-danger fw-bold">Block Account</h3>
-                                        <p class="pb-3 pt-2 lh-22 fs-15">Before confirming that you would like your profile blocked, we'd like to take a moment to explain the implications of blocking:</p>
-                                        <ul class="generic-list-item generic-list-item-bullet fs-15">
-                                            <li>Deletion is irreversible, and you will have no way to regain any of your original content, should this deletion be carried out and you change your mind later on.</li>
-                                            <li>Your questions and answers will remain on the site, but will be disassociated and anonymized (the author will be listed as "user15319675") and will not indicate your authorship even if you later return to the
-                                                site.
-                                            </li>
-                                        </ul>
-                                        <p class="pb-3 pt-2 lh-22 fs-15">Once you block your account, there is no going back. Please be certain.</p>
-                                        <div class="custom-control custom-checkbox fs-15 mb-4">
-                                            <input type="checkbox" class="custom-control-input" id="delete-terms">
-                                            <label class="custom-control-label custom--control-label lh-22" for="delete-terms">I have read the information stated above and understand the implications of having my profile blocked. I wish to proceed with the blocking of my profile.</label>
-                                        </div>
-                                        <button (click)="deleteAccount()" type="button" class="btn btn-danger fw-medium" data-toggle="modal" data-target="#deleteModal" id="delete-button" disabled><i class="la la-trash mr-1"></i> Block your account</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end user-panel -->
-                        </div>
-                        <!-- end user-panel-main-bar -->
-                    </div>
-                    <!-- end tab-pane -->
-                </div>
-            </div>
-            <!-- end col-lg-9 -->
-            <div *ngIf="false" class="col-lg-3">
-                <div class="sidebar">
-                    <div class="card card-item p-4">
-                        <div class="card-body">
-                            <h3 class="fs-17 pb-3">My Questions</h3>
-                            <div class="divider"><span></span></div>
-                            <div class="sidebar-questions pt-3">
-                                <div class="media media-card media--card media--card-2">
-                                    <div class="media-body">
-                                        <h5><a href="question-details.html">Using web3 to call precompile contract</a></h5>
-                                        <small class="meta">
-                      <span class="pr-1">2 mins ago</span>
-                      <span class="pr-1">. by</span>
-                      <a href="#" class="author">Sudhir Kumbhare</a>
-                    </small>
-                                    </div>
-                                </div>
-                                <!-- end media -->
-                                <div class="media media-card media--card media--card-2">
-                                    <div class="media-body">
-                                        <h5><a href="question-details.html">Is it true while finding Time Complexity of the algorithm [closed]</a></h5>
-                                        <small class="meta">
-                      <span class="pr-1">48 mins ago</span>
-                      <span class="pr-1">. by</span>
-                      <a href="#" class="author">wimax</a>
-                    </small>
-                                    </div>
-                                </div>
-                                <!-- end media -->
-                                <div class="media media-card media--card media--card-2">
-                                    <div class="media-body">
-                                        <h5><a href="question-details.html">image picker and store them into firebase with flutter</a></h5>
-                                        <small class="meta">
-                      <span class="pr-1">1 hour ago</span>
-                      <span class="pr-1">. by</span>
-                      <a href="#" class="author">Antonin gavrel</a>
-                    </small>
-                                    </div>
-                                </div>
-                                <!-- end media -->
-                            </div>
-                            <!-- end sidebar-questions -->
-                        </div>
-                    </div>
-                    <!-- end card -->
-                </div>
-                <!-- end sidebar -->
-            </div>
-            <!-- end col-lg-3 -->
-        </div>
-        <!-- end row -->
-    </div>
-    <!-- end container -->
-</section>
 <!-- end user-details-area -->
 <!-- ================================
          END USER DETAILS AREA

@@ -1,7 +1,7 @@
 <div [ngClass]="{
   'vb__layout__grayBackground': settings.isGrayBackground
 }">
-  <nz-layout [ngClass]="{
+    <nz-layout [ngClass]="{
   'vb__layout': true,
   'vb__layout__contentMaxWidth': settings.isContentMaxWidth,
   'vb__layout__appMaxWidth': settings.isAppMaxWidth,
@@ -10,28 +10,41 @@
   'vb__layout__borderless': settings.isBorderless
 }">
 
-<!--    <vb-variants></vb-variants>-->
-   <!-- <vb-sidebar></vb-sidebar> -->
-<!--    <vb-support-chat></vb-support-chat>-->
+        <!--    <vb-variants></vb-variants>-->
+        <!-- <vb-sidebar></vb-sidebar> -->
+        <!--    <vb-support-chat></vb-support-chat>-->
 
-    <!-- classic left menu -->
-
-
-    <nz-layout>
-<app-header></app-header>
-<!--      <vb-breadcrumbs *ngIf="settings.layoutBreadcrumbs === 'v1'"></vb-breadcrumbs>-->
-<!--      <vb-breadcrumbs-2 *ngIf="settings.layoutBreadcrumbs === 'v2'"></vb-breadcrumbs-2>-->
-      <nz-content class="vb__layout__content">
-        <div [@slideFadeinUp]="routeAnimation(outlet, 'slideFadeinUp')"
-          [@slideFadeinRight]="routeAnimation(outlet, 'slideFadeinRight')"
-          [@zoomFadein]="routeAnimation(outlet, 'zoomFadein')" [@fadein]="routeAnimation(outlet, 'fadein')">
-          <router-outlet #outlet="outlet"></router-outlet>
+        <!-- classic left menu -->
+        <!-- <div>Hello</div> -->
+        <nz-sider *ngIf="settings.layoutMenu === 'classic' && settings.menuLayoutType === 'left'
+        && !settings.isMobileView" [nzWidth]="settings.isMenuCollapsed ? 80 : settings.leftMenuWidth" style="transition: none !important">
+            <vb-menu-classic-left></vb-menu-classic-left>
+        </nz-sider>
+        <div *ngIf="settings.layoutMenu === 'classic' && settings.isMobileView">
+            <div class="handler" (click)="toggleMobileMenu()">
+                <div class="handlerIcon"></div>
+            </div>
+            <nz-drawer [nzClosable]="false" [nzWrapClassName]="'mobileMenu'" [nzVisible]="settings.isMobileMenuOpen" nzPlacement="left" (nzOnClose)="toggleMobileMenu()">
+                <vb-menu-classic-left></vb-menu-classic-left>
+            </nz-drawer>
         </div>
-      </nz-content>
-      <nz-footer *ngIf="settings.layoutFooter === 'v1'">
-<app-footer></app-footer>
-      </nz-footer>
+        <div *ngIf="settings.layoutMenu === 'classic' && settings.menuLayoutType === 'top' && !settings.isMobileView">
+            <vb-menu-classic-top></vb-menu-classic-top>
+        </div>
+
+        <nz-layout>
+            <!-- <app-header></app-header> -->
+            <!--      <vb-breadcrumbs *ngIf="settings.layoutBreadcrumbs === 'v1'"></vb-breadcrumbs>-->
+            <!--      <vb-breadcrumbs-2 *ngIf="settings.layoutBreadcrumbs === 'v2'"></vb-breadcrumbs-2>-->
+            <nz-content class="vb__layout__content">
+                <div [@slideFadeinUp]="routeAnimation(outlet, 'slideFadeinUp')" [@slideFadeinRight]="routeAnimation(outlet, 'slideFadeinRight')" [@zoomFadein]="routeAnimation(outlet, 'zoomFadein')" [@fadein]="routeAnimation(outlet, 'fadein')">
+                    <router-outlet #outlet="outlet"></router-outlet>
+                </div>
+            </nz-content>
+            <nz-footer *ngIf="settings.layoutFooter === 'v1'">
+                <app-footer></app-footer>
+            </nz-footer>
+        </nz-layout>
     </nz-layout>
-  </nz-layout>
 </div>
 <ngx-spinner></ngx-spinner>

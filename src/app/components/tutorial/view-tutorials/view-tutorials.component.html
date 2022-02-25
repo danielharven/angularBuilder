@@ -14,7 +14,7 @@
                     </div>
                     <!-- end filter-option-box -->
                     <ng-container>
-                        <nz-select [style]='{"width":"70vw"}' nzPlaceHolder="Select Topics" nzAllowClear nzShowSearch nzServerSearch [(ngModel)]="selectTopic" (nzOnSearch)="onSearchTopic($event)">
+                        <nz-select [style]='{"width":"70vw"}' nzPlaceHolder="Select Topics" nzAllowClear nzShowSearch nzServerSearch (ngModelChange)="updateTutotrials($event)" [(ngModel)]="selectTopic" (nzOnSearch)="onSearchTopic($event)">
                             <ng-container *ngFor="let o of topics">
                                 <nz-option *ngIf="!isLoading" nzCustomContent [nzValue]="o.id" [nzLabel]="o.name">
                                     {{o?.name}}-{{o?.subject?.name}}-{{o?.subject?.grade}}

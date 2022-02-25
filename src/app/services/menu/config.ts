@@ -1,144 +1,82 @@
 export const getMenuData: any[] = [
   // VB:REPLACE-START:MENU-CONFIG
   {
-    title: 'Dashboard',
+    title: 'Home',
     key: '__dashboard',
-    url: '/dashboard',
+    url: '/home',
     icon: 'fe fe-home',
   },
   {
-    title: 'L&K Management',
+    title: 'Tutorials',
     key: 'pxo5b',
-    url: '/lkm',
+    url: '/tutorials',
     icon: 'fe fe-book-open',
+  },
+  {
+    title: 'Questions',
+    key: 'pxo5b',
+    url: '/questions',
+    icon: 'fe fe-edit-3',
     children: [
       {
-        title: 'Interview Guide',
-        key: 'h7aad',
-        url: '/lkm/interviews',
+        title: 'Ask Questions',
+        key: 'exxjo53',
+        url: '/ask',
       },
       {
-        title: 'My Stories',
-        key: 'rniyi9',
-        url: '/lkm/mystories',
-      },
-      {
-        title: 'Stories of Change',
-        key: 'tx7k6w',
-        url: '/lkm/soc',
+        title: 'Answered Questions',
+        key: 'exxjo5e3',
+        url: '/questions',
       },
     ],
   },
   {
-    title: 'Matching Grant Facility',
+    title: 'Subjects',
+    key: 'pxo5b',
+    url: '/tutorials',
+    icon: 'fe fe-briefcase',
+  },
+  {
+    title: 'Teachers',
     key: 'osk3u',
     url: '/mgf',
-    icon: 'fe fe-briefcase',
+    icon: 'fe fe-feather',
     children: [
       {
-        title: 'Organizations',
+        title: 'Join Tadya teacher',
         key: 'exxjo5',
-        url: '/mgf/org',
+        url: '/auth/teacher/join',
       },
       {
-        title: 'Evaluations',
-        key: 'pyo5qw',
-        url: '/mgf/evaluations',
-      },
-      {
-        title: 'Proposals',
-        key: 'ou0wkk',
-        url: '/mgf/proposals',
-      },
-      {
-        title: 'Applications',
-        key: '4hmw',
-        url: '/mgf/applications',
-      },
-      {
-        title: 'Applicants',
-        key: '7019oh',
-        url: '/mgf/applicants',
-      },
-      {
-        title: 'Approvals',
-        key: '7s4gfn',
-        url: '/mgf/approvals',
-      },
-      {
-        title: 'Concept Notes',
-        key: 'hl3ks8',
-        url: '/mgf/concept-notes',
+        title: 'Create tutorial',
+        key: 'exxjo5ws',
+        url: '/tutoral/create',
       },
     ],
   },
+  // {
+  //   title: 'Students',
+  //   key: 'o9b8f',
+  //   url: '/me',
+  //   icon: 'fe fe-activity',
+  //   children: [
+  //     {
+  //       title: 'Ask Question',
+  //       key: 'appnddsar',
+  //       url: '/ask',
+  //     },
+  //   ],
+  // },
   {
-    title: 'Monitoring and Evaluation',
-    key: 'o9b8f',
-    url: '/me',
-    icon: 'fe fe-activity',
-    children: [
-      {
-        title: 'Camp Monthly Schedules',
-        key: 'appnar',
-        url: '/me/schedules',
-      },
-    ],
-  },
-  {
-    title: 'Capacity Building',
-    key: '65z1s9',
-    url: '/cbb',
-    icon: 'fe fe-package',
-    children: [
-      {
-        title: 'FaaBS Training Topics',
-        key: 'n2afl',
-        url: '/cbb/topics',
-      },
-      {
-        title: 'FaaBS Training Attendance',
-        key: 'ih5ba',
-        url: '/cbb/attendance',
-      },
-    ],
-  },
-  {
-    title: 'Market Data',
-    key: '80pi8',
-    url: '/market',
-    icon: 'fe fe-bar-chart-2',
-    children: [
-      {
-        title: 'Commodity Prices',
-        key: 'ss6dve',
-        url: '/prices',
-      },
-    ],
-  },
-  {
-    title: 'Reports',
-    key: 'cwm04g',
-    url: '/reports',
-    icon: 'fe fe-file-text',
-    children: [
-      {
-        title: 'Training attendance cumulative',
-        key: 'rfl2mw',
-        url: '/cumulative',
-      },
-    ],
-  },
-  {
-    title: 'User Administration',
+    title: 'Accounts',
     key: '2hfvfk',
     url: '/user',
     icon: 'fe fe-users',
     children: [
       {
-        title: 'My Profile',
+        title: 'Dashboard',
         key: 'oalt1lm',
-        url: '/user/profile',
+        url: '/profile',
       },
     ],
   },

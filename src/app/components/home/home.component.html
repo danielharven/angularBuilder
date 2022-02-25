@@ -100,10 +100,10 @@
             <div class="col-lg-2 pr-0">
                 <div class="sidebar pb-45px position-sticky top-0">
                     <ul class="generic-list-item generic-list-item-highlight fs-15 row">
-                        <li (click)='current=1' [class.active]='current==1' class="lh-26 col-md-4 col-lg-12"><a hrefs="index.html"><i class="la la-home mr-1 text-black"></i> Home</a></li>
+                        <!-- <li (click)='current=1' [class.active]='current==1' class="lh-26 col-md-4 col-lg-12"><a hrefs="index.html"><i class="la la-home mr-1 text-black"></i> Home</a></li> -->
                         <li (click)='current=0' [class.active]='current==0' class="lh-26 col-md-4 col-lg-12"><a><i class="la la-globe mr-1 text-black"></i> Questions</a></li>
                         <li (click)='current=3' [class.active]='current==3' class="lh-26 col-md-4 col-lg-12"><a hrefs="tags-list.html"><i class="la la-tags mr-1 text-black"></i> Tutorials</a></li>
-                        <li (click)='current=2' [class.active]='current==2' class="lh-26 col-md-4 col-lg-12"><a hrefs="badges-list.html"><i class="la la-id-badge mr-1 text-black"></i> Badges</a></li>
+                        <!-- <li (click)='current=2' [class.active]='current==2' class="lh-26 col-md-4 col-lg-12"><a hrefs="badges-list.html"><i class="la la-id-badge mr-1 text-black"></i> Badges</a></li> -->
                         <li (click)='current=4' [class.active]='current==4' class="lh-26 col-md-4 col-lg-12"><a hrefs="user-list.html"><i class="la la-user mr-1 text-black"></i> Teachers</a></li>
                         <li (click)='current=5' [class.active]='current==5' class="lh-26 col-md-4 col-lg-12"><a hrefs="category-list.html"><i class="la la-sort mr-1 text-black"></i> Subjects</a></li>
 
@@ -120,11 +120,11 @@
                         <app-questions-list view='yes' *ngIf='current==0'>
                         </app-questions-list>
                     </nz-tab>
-                    <nz-tab nzTitle='Being Answered'>
+                    <nz-tab *ngIf="utilities.studentAccount" nzTitle='Being Answered'>
                         <app-questions-list view='res' *ngIf='current==0'>
                         </app-questions-list>
                     </nz-tab>
-                    <nz-tab nzTitle='Un Answered'>
+                    <nz-tab *ngIf="utilities.teacherAccount" nzTitle='Un Answered'>
                         <app-questions-list view='no' *ngIf='current==0'>
                         </app-questions-list>
                     </nz-tab>
@@ -155,8 +155,8 @@
             <img src="assets/images/undraw-team-up.svg" alt="undraw-questions" class="undraw-illustration mr-5">
             <div class="media-body flex-inherit">
                 <h2 class="section-title pb-3 theme-font-2">Invite Friends to Tadya </h2>
-                <p class="section-desc pb-4">– Invite 5 friends to get free question.</p>
-                <a routerLink="/invite" class="btn theme-btn">Invite</a>
+                <!-- <p class="section-desc pb-4">– Invite friends to get free question.</p> -->
+                <!-- <a routerLink="/invite" class="btn theme-btn">Invite</a> -->
             </div>
         </div>
         <!-- end cta-heading -->

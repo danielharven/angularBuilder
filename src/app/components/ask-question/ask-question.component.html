@@ -2,7 +2,7 @@
     nz-select {
         width: 100%;
     }
-
+    
     .loading-icon {
         margin-right: 8px;
     }
@@ -85,11 +85,32 @@
             <div class="col-lg-4">
                 <div class="sidebar">
                     <div class="card card-item p-4">
-                        <h3 class="fs-17 pb-3">Step 1: Draft your question</h3>
+                        <h3 class="fs-17 pb-3">Guide to draft a perfect question</h3>
                         <div class="divider"><span></span></div>
-                        <p class="fs-14 lh-22 pb-2 pt-3">Tadya is here to help you with every question you may have. To get the best result follow these simple rules</p>
-                        <p class="fs-14 lh-22">Avoid asking opinion-based questions.</p>
-                        <div id="accordion" class="generic-accordion pt-4">
+                        <p class="fs-14 lh-22 pb-2 pt-3">Tadya is here to help you with every question you may have. To get the best result follow these simple guidelines</p>
+                        <!-- <p class="fs-14 lh-22">Avoid asking opinion-based questions.</p> -->
+                        <nz-collapse>
+                            <nz-collapse-panel nzHeader="Ask a single question at a time.">
+                                <div class="card-body">
+                                    <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet-2 fs-14">
+                                        <li class="lh-18 text-black-50">asking more than one questions in a question may result in not getting the expected answer</li>
+                                        <li class="lh-18 text-black-50">If the question has sub question look for either ask each question separately or choose the most critical question</li>
+                                    </ul>
+                                </div>
+                            </nz-collapse-panel>
+                            <nz-collapse-panel nzHeader="Upload all necessary documents (i.e. photo, image, pdf, link)">
+                                <div class="card-body">
+                                    <div class="card-body">
+                                        <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet-2 fs-14">
+                                            <li class="lh-18 text-black-50">If the question is best explained by an image ensure to upload the image.</li>
+                                            <li class="lh-18 text-black-50">If the question is from a webpage ensure to add the link into the details.</li>
+                                            <li class="lh-18 text-black-50">Ensure all supporting documents are uploaded and properly referenced in the questions details</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nz-collapse-panel>
+                        </nz-collapse>
+                        <div *ngIf="false" id="accordion" class="generic-accordion pt-4">
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <button class="btn btn-link fs-15" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -155,7 +176,7 @@
             <div class="col-lg-4 responsive-column-half">
                 <div class="card card-item hover-y text-center">
                     <div class="card-body">
-                        <img src="images/bubble.png" alt="bubble">
+                        <img src="assets/images/bubble.png" alt="bubble">
                         <h5 class="card-title pt-4 pb-2">Expert Teachers.</h5>
                         <p class="card-text">We have top notch teachers on the platform ready to assist you with any questions.</p>
                     </div>
@@ -167,9 +188,9 @@
             <div class="col-lg-4 responsive-column-half">
                 <div class="card card-item hover-y text-center">
                     <div class="card-body">
-                        <img src="images/vote.png" alt="vote">
+                        <img src="assets/images/vote.png" alt="vote">
                         <h5 class="card-title pt-4 pb-2">The right answer always and explained.</h5>
-                        <p class="card-text">Each time a teacher gives an answer it is always the right answer explained for you to clear understand the entire work</p>
+                        <p class="card-text">Each time a teacher gives an answer: it is always the right answer, easily explained for you, and understandable working</p>
                     </div>
                     <!-- end card-body -->
                 </div>
@@ -179,9 +200,9 @@
             <div class="col-lg-4 responsive-column-half">
                 <div class="card card-item hover-y text-center">
                     <div class="card-body">
-                        <img src="images/check.png" alt="check">
+                        <img src="assets/images/check.png" alt="check">
                         <h5 class="card-title pt-4 pb-2">Hundreds of tutorials.</h5>
-                        <p class="card-text">Tadya has many blogs accessible to everyone on a tadya plan, these blogs are tutorals by teachers in different topics, carefully explained and doibled checked by other experts.</p>
+                        <p class="card-text">Tadya has many blogs accessible to everyone on a tadya plan, these blogs are tutorals by teachers in different topics, carefully explained and checked by other experts.</p>
                     </div>
                     <!-- end card-body -->
                 </div>

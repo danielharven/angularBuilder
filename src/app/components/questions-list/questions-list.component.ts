@@ -74,6 +74,22 @@ export class QuestionsListComponent implements OnInit {
     this.getTopics()
     this.getQuestions()
   }
+  async updateTutotrials(info){
+    if(info){
+      let api='/topics/questions/'+info;
+      let method='get';
+      let x = await this.utilities.httpRequest({api,method})
+      // console.log(x);
+      if(x){
+        this.questions=x
+      }
+      return
+    }
+    this.getQuestions()
+
+
+
+  }
   async getQuestions(){
     switch (this.view) {
       case 'yes':{

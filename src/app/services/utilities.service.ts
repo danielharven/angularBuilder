@@ -686,14 +686,14 @@ let profile= this.profile
     let rd = Math.floor(Math.random()*100000);
     //@ts-ignore
     window.FlutterwaveCheckout({
-      public_key: "FLWPUBK_TEST-e1318d5dca8ee3c2128a34be9a7e2dd4-X",
+      public_key: "FLWPUBK-cb51197817c218eae1146db95c9b4f47-X",
       tx_ref: "inv-"+rd,
       amount: x.amount,
       currency: "ZMW",
       country: "ZM",
       payment_options: " ",
       redirect_url: // specified redirect URL
-        URRL+"/payment/paln",
+        URRL+"/payments/plan",
       customer: {
         id:user.id,
         email: user.email,

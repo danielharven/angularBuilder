@@ -51,7 +51,34 @@
                             <button *ngIf='iOwnTutorial' nz-button (click)='view=!view'><i nz-icon nzType="edit" nzTheme="outline"></i>Update Tutorial</button>
                             <hr>
                         </div>
-                        <quill-view-html *ngIf='view' [content]='question?.body'></quill-view-html>
+                        <div *ngIf='view'>
+                            <quill-view-html *ngIf="question?.body" [content]='question?.body'></quill-view-html>
+                            <section *ngIf="!question?.body" class="error-area section-padding position-relative">
+                                <span class="icon-shape icon-shape-1"></span>
+                                <span class="icon-shape icon-shape-2"></span>
+                                <span class="icon-shape icon-shape-3"></span>
+                                <span class="icon-shape icon-shape-4"></span>
+                                <span class="icon-shape icon-shape-5"></span>
+                                <span class="icon-shape icon-shape-6"></span>
+                                <span class="icon-shape icon-shape-7"></span>
+                                <div class="container">
+                                    <div class="media align-items-center justify-content-center error-content">
+                                        <img src="assets/images/404.svg" alt="error-image" class="img-fluid mr-5 error-content-img">
+                                        <div class="media-body flex-inherit">
+                                            <h2 class="section-title pb-3">
+                                                <a routerLink="/profile"> Upgrade Now </a>
+                                            </h2>
+                                            <p class="section-desc pb-4">To view this you need an active plan</p>
+                                            <ul class="generic-list-item">
+                                                <li>Try <a routerLink="/profile" class="d-inline-block text-color hover-underline">Go to plans</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end container -->
+                            </section>
+                        </div>
+
                         <app-crete-tutorial *ngIf='!view' [update]='true' [question]='question'></app-crete-tutorial>
                         <!--           <div [innerHTML]='question?.body'></div>-->
                     </div>
