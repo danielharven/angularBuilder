@@ -13,9 +13,8 @@ export const getMenuData: any[] = [
     icon: 'fe fe-book-open',
   },
   {
-    title: 'Questions',
+    title: 'Q & A',
     key: 'pxo5b',
-    url: '/questions',
     icon: 'fe fe-edit-3',
     children: [
       {
@@ -24,7 +23,7 @@ export const getMenuData: any[] = [
         url: '/ask',
       },
       {
-        title: 'Answered Questions',
+        title: 'Answers',
         key: 'exxjo5e3',
         url: '/questions',
       },
@@ -33,7 +32,7 @@ export const getMenuData: any[] = [
   {
     title: 'Subjects',
     key: 'pxo5b',
-    url: '/tutorials',
+    url: '/subjects',
     icon: 'fe fe-briefcase',
   },
   {

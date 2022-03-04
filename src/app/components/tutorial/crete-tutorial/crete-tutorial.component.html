@@ -1,135 +1,134 @@
 <style>
-  nz-select {
-    width: 100%;
-  }
+    nz-select {
+        width: 100%;
+    }
 
-  .loading-icon {
-    margin-right: 8px;
-  }
+    .loading-icon {
+        margin-right: 8px;
+    }
 </style>
 
 <!-- ================================
          START QUESTION AREA
 ================================= -->
 <section class="question-area pt-80px pb-40px">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="card card-item">
-          <form [formGroup]='createForm' class="card-body">
-            <div class="input-box">
-              <label class="fs-14 text-black fw-medium mb-0">Tutorial Title</label>
-              <p class="fs-13 pb-3 lh-20">Title your tutorial for easy access.</p>
-              <div class="form-group">
-                <input formControlName='title' class="form-control form--control" type="text" name="text" placeholder="e.g. How to find the square root of a number">
-              </div>
-            </div><!-- end input-box -->
-            <div class="input-box">
-              <label class="fs-14 text-black fw-medium mb-0">Topic</label>
-              <p class="fs-13 pb-3 lh-20">Please choose an appropriate topic for the tutorial.</p>
-              <div class="form-group">
-                <nz-select
-                  formControlName='topic'
-                  nzPlaceHolder="Select Topics"
-                  nzAllowClear
-                  nzShowSearch
-                  nzServerSearch
-                  [(ngModel)]="selectTopic"
-                  (nzOnSearch)="onSearchTopic($event)"
-                >
-                  <ng-container *ngFor="let o of topics">
-                    <nz-option *ngIf="!isLoading" [nzValue]="o.id" [nzLabel]="o.name+' - '+ o.subject.name+' - '+o.subject.grade"></nz-option>
-                  </ng-container>
-                  <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
-                    <i nz-icon nzType="loading" class="loading-icon"></i>
-                    Loading Data...
-                  </nz-option>
-                </nz-select>
-              </div>
-            </div><!-- end input-box -->
-            <div class="input-box">
-              <label class="fs-14 text-black fw-medium mb-0">Full Details</label>
-              <p class="fs-13 pb-3 lh-20"></p>
-              <div class="form-group">
-                <div class="editor">
-                  <quill-editor style="height: 500px;"
-                                formControlName='body'
-                                [modules]='myModules'>
-                  </quill-editor>
+    <div class="container">
+        <div class="row">
+            <div [class]="{'col-lg-8':!update,'col-lg12':update}">
+                <div class="card card-item">
+                    <form [formGroup]='createForm' class="card-body">
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">Tutorial Title</label>
+                            <p class="fs-13 pb-3 lh-20">Title your tutorial for easy access.</p>
+                            <div class="form-group">
+                                <input formControlName='title' class="form-control form--control" type="text" name="text" placeholder="e.g. How to find the square root of a number">
+                            </div>
+                        </div>
+                        <!-- end input-box -->
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">Topic</label>
+                            <p class="fs-13 pb-3 lh-20">Please choose an appropriate topic for the tutorial.</p>
+                            <div class="form-group">
+                                <nz-select formControlName='topic' nzPlaceHolder="Select Topics" nzAllowClear nzShowSearch nzServerSearch [(ngModel)]="selectTopic" (nzOnSearch)="onSearchTopic($event)">
+                                    <ng-container *ngFor="let o of topics">
+                                        <nz-option *ngIf="!isLoading" [nzValue]="o.id" [nzLabel]="o.name+' - '+ o.subject.name+' - '+o.subject.grade"></nz-option>
+                                    </ng-container>
+                                    <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+                                        <i nz-icon nzType="loading" class="loading-icon"></i> Loading Data...
+                                    </nz-option>
+                                </nz-select>
+                            </div>
+                        </div>
+                        <!-- end input-box -->
+                        <div class="input-box">
+                            <label class="fs-14 text-black fw-medium mb-0">Full Details</label>
+                            <p class="fs-13 pb-3 lh-20"></p>
+                            <div class="form-group">
+                                <div class="editor">
+                                    <quill-editor style="height: 500px;" formControlName='body' [modules]='myModules'>
+                                    </quill-editor>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end input-box -->
+                        <div class="input-box pt-2">
+                            <!--              <div class="form-group">-->
+                            <!--                <div class="custom-control custom-checkbox fs-13 mb-1">-->
+                            <!--                  <input type="checkbox" class="custom-control-input" id="notifiedMe">-->
+                            <!--                  <label class="custom-control-label custom&#45;&#45;control-label" for="notifiedMe">Get notified by email when someone answers this question.</label>-->
+                            <!--                </div>-->
+                            <!--                <div class="custom-control custom-checkbox fs-13">-->
+                            <!--                  <input type="checkbox" class="custom-control-input" id="youAgreeCheckBox">-->
+                            <!--                  <label class="custom-control-label custom&#45;&#45;control-label" for="youAgreeCheckBox">By asking your question, you agree to the <a href="privacy-policy.html" class="text-color hover-underline">Privacy Policy.</a></label>-->
+                            <!--                </div>-->
+                            <!--              </div>-->
+                            <div class="btn-box">
+                                <button (click)='createQuestion()' type="submit" class="btn btn-primary">Publish your tutorial</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-              </div>
-            </div><!-- end input-box -->
-            <div class="input-box pt-2">
-              <!--              <div class="form-group">-->
-              <!--                <div class="custom-control custom-checkbox fs-13 mb-1">-->
-              <!--                  <input type="checkbox" class="custom-control-input" id="notifiedMe">-->
-              <!--                  <label class="custom-control-label custom&#45;&#45;control-label" for="notifiedMe">Get notified by email when someone answers this question.</label>-->
-              <!--                </div>-->
-              <!--                <div class="custom-control custom-checkbox fs-13">-->
-              <!--                  <input type="checkbox" class="custom-control-input" id="youAgreeCheckBox">-->
-              <!--                  <label class="custom-control-label custom&#45;&#45;control-label" for="youAgreeCheckBox">By asking your question, you agree to the <a href="privacy-policy.html" class="text-color hover-underline">Privacy Policy.</a></label>-->
-              <!--                </div>-->
-              <!--              </div>-->
-              <div class="btn-box">
-                <button
-                        (click)='createQuestion()'
-                        type="submit" class="btn btn-primary">Publish your tutorial</button>
-              </div>
+                <!-- end card -->
             </div>
-          </form>
-        </div><!-- end card -->
-      </div><!-- end col-lg-8 -->
-      <div *ngIf='!update' class="col-lg-4">
-        <div class="sidebar">
-          <div class="card card-item p-4">
-            <h3 class="fs-17 pb-3">Step 1: Draft your tutorial</h3>
-            <div class="divider"><span></span></div>
-            <p class="fs-14 lh-22 pb-2 pt-3">Tadya is here to help many students. To get a good tutorial done follow these simple rules</p>
-            <p class="fs-14 lh-22">Be as clear as possible.</p>
-            <div id="accordion" class="generic-accordion pt-4">
-              <div class="card">
-                <div class="card-header" id="headingOne">
-                  <button class="btn btn-link fs-15" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <!-- end col-lg-8 -->
+            <div *ngIf='!update' class="col-lg-4">
+                <div class="sidebar">
+                    <div class="card card-item p-4">
+                        <h3 class="fs-17 pb-3">Step 1: Draft your tutorial</h3>
+                        <div class="divider"><span></span></div>
+                        <p class="fs-14 lh-22 pb-2 pt-3">Tadya is here to help many students. To get a good tutorial done follow these simple rules</p>
+                        <p class="fs-14 lh-22">Be as clear as possible.</p>
+                        <div id="accordion" class="generic-accordion pt-4">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <button class="btn btn-link fs-15" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <span><span class="text-color pr-2 fs-16">1.</span>Be as clear as possible.</span>
                     <i class="la la-angle-down collapse-icon"></i>
                   </button>
-                </div>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                  <div class="card-body">
-                    <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet-2 fs-14">
-                      <li class="lh-18 text-black-50">Ensure you are as clear as possible, avoid assuming that the reader knows what you are talking about.</li>
-                      <li class="lh-18 text-black-50">If a new term is being introduced ensure that you explain what it means.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div><!-- end card -->
-              <div class="card">
-                <div class="card-header" id="headingTwo">
-                  <button class="btn btn-link collapsed fs-15"
-                          data-toggle="collapse" data-target="#collapseTwo"
-                          aria-expanded="false" aria-controls="collapseTwo">
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet-2 fs-14">
+                                            <li class="lh-18 text-black-50">Ensure you are as clear as possible, avoid assuming that the reader knows what you are talking about.</li>
+                                            <li class="lh-18 text-black-50">If a new term is being introduced ensure that you explain what it means.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card -->
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <button class="btn btn-link collapsed fs-15" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     <span><span class="text-color pr-2 fs-16">2.
                     </span>Show as much working as possible</span>
                     <i class="la la-angle-down collapse-icon"></i>
                   </button>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet-2 fs-14">
+                                            <li class="lh-18 text-black-50">If the tutorial is best explained by an image ensure to upload the image.</li>
+                                            <li class="lh-18 text-black-50">Add any reference links to the tutorial that might help a student.</li>
+                                            <li class="lh-18 text-black-50">Give examples when possible to clearly state the point being drived at.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end accordion -->
+                    </div>
+                    <!-- end card -->
                 </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                  <div class="card-body">
-                    <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet-2 fs-14">
-                      <li class="lh-18 text-black-50">If the tutorial is best explained by an image ensure to upload the image.</li>
-                      <li class="lh-18 text-black-50">Add any reference links to the tutorial that might help a student.</li>
-                      <li class="lh-18 text-black-50">Give examples when possible to clearly state the point being drived at.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div><!-- end card -->
-            </div><!-- end accordion -->
-          </div><!-- end card -->
-        </div><!-- end sidebar -->
-      </div><!-- end col-lg-4 -->
-    </div><!-- end row -->
-  </div><!-- end container -->
-</section><!-- end question-area -->
+                <!-- end sidebar -->
+            </div>
+            <!-- end col-lg-4 -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</section>
+<!-- end question-area -->
 <!-- ================================
          END QUESTION AREA
 ================================= -->
@@ -138,40 +137,51 @@
          START CTA AREA
 ================================= -->
 <section class="get-started-area pt-80px pb-50px pattern-bg bg-gray">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-title">Tadya is just so helpful. <br> Here's how</h2>
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-title">Tadya is just so helpful. <br> Here's how</h2>
+        </div>
+        <div class="row pt-50px">
+            <div class="col-lg-4 responsive-column-half">
+                <div class="card card-item hover-y text-center">
+                    <div class="card-body">
+                        <img src="images/bubble.png" alt="bubble">
+                        <h5 class="card-title pt-4 pb-2">Expert Teachers.</h5>
+                        <p class="card-text">We have top notch teachers on the platform ready to assist you with any questions.</p>
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column-half">
+                <div class="card card-item hover-y text-center">
+                    <div class="card-body">
+                        <img src="images/vote.png" alt="vote">
+                        <h5 class="card-title pt-4 pb-2">The right answer always and explained.</h5>
+                        <p class="card-text">Each time a teacher gives an answer it is always the right answer explained for you to clear understand the entire work</p>
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column-half">
+                <div class="card card-item hover-y text-center">
+                    <div class="card-body">
+                        <img src="images/check.png" alt="check">
+                        <h5 class="card-title pt-4 pb-2">Hundreds of tutorials.</h5>
+                        <p class="card-text">Tadya has many blogs accessible to everyone on a tadya plan, these blogs are tutorals by teachers in different topics, carefully explained and doibled checked by other experts.</p>
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end col-lg-4 -->
+        </div>
+        <!-- end row -->
     </div>
-    <div class="row pt-50px">
-      <div class="col-lg-4 responsive-column-half">
-        <div class="card card-item hover-y text-center">
-          <div class="card-body">
-            <img src="images/bubble.png" alt="bubble">
-            <h5 class="card-title pt-4 pb-2">Expert Teachers.</h5>
-            <p class="card-text">We have top notch teachers on the platform ready to assist you with any questions.</p>
-          </div><!-- end card-body -->
-        </div><!-- end card -->
-      </div><!-- end col-lg-4 -->
-      <div class="col-lg-4 responsive-column-half">
-        <div class="card card-item hover-y text-center">
-          <div class="card-body">
-            <img src="images/vote.png" alt="vote">
-            <h5 class="card-title pt-4 pb-2">The right answer always and explained.</h5>
-            <p class="card-text">Each time a teacher gives an answer it is always the right answer explained for you to clear understand the entire work</p>
-          </div><!-- end card-body -->
-        </div><!-- end card -->
-      </div><!-- end col-lg-4 -->
-      <div class="col-lg-4 responsive-column-half">
-        <div class="card card-item hover-y text-center">
-          <div class="card-body">
-            <img src="images/check.png" alt="check">
-            <h5 class="card-title pt-4 pb-2">Hundreds of tutorials.</h5>
-            <p class="card-text">Tadya has many blogs accessible to everyone on a tadya plan, these blogs are tutorals by teachers in different topics, carefully explained and doibled checked by other experts.</p>
-          </div><!-- end card-body -->
-        </div><!-- end card -->
-      </div><!-- end col-lg-4 -->
-    </div><!-- end row -->
-  </div><!-- end container -->
+    <!-- end container -->
 </section>
 <!-- ================================
          END CTA AREA

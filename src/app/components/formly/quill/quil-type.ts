@@ -22,6 +22,7 @@ export class FieldQuillType extends FieldType {
       [{ color: [] }, { background: [] }],
       ['link'],
       ['clean'],
+      ['formula']
     ],
   }
 }

@@ -14,16 +14,16 @@ const URL = environment.url
 export class QuestionsListComponent implements OnInit {
   @Input('view') view : string ='all'
     totalQuestions: number =0
-  topics: any =[]
   selectTopic: any = ''
   isLoading = true;
-  searchChange$ = new BehaviorSubject('');
+
   questions: []=[]
 
   limit: any = 20
-  page = 0
+  page = 1
   listNumber = 0
   listLimit = 0
+  api='/questions?'
 
   paginations = 0
   state$: Observable<object>;
@@ -38,7 +38,7 @@ export class QuestionsListComponent implements OnInit {
   ngOnInit(): void {
     this.setView=false;
     let status = this.activatedRoute.snapshot.data?.status;
-    console.log(status)
+    // console.log(status)
     if(status?.includes('unaswered')){
     this.view='no'
     this.setView=true;
@@ -51,45 +51,10 @@ export class QuestionsListComponent implements OnInit {
       if(data?.value) this.view=data?.value
     })
     }
-
-
-    switch (this.view) {
-      case 'yes':{
-        this.getPagnatedQuesitons(true);
-        break;
-      }
-      case 'no':{
-        this.getPagnatedQuesitons(false);
-        break;
-      }
-      case 'res':{
-        this.getPagnatedReservedQuesitons(true);
-        break;
-      }
-      default:{
-        this.getAllPagematedQuestions()
-        break;
-      }
-    }
-    this.getTopics()
-    this.getQuestions()
+    // this.getSubjects()
+    this.getNewPaginatedQuestions()
   }
-  async updateTutotrials(info){
-    if(info){
-      let api='/topics/questions/'+info;
-      let method='get';
-      let x = await this.utilities.httpRequest({api,method})
-      // console.log(x);
-      if(x){
-        this.questions=x
-      }
-      return
-    }
-    this.getQuestions()
 
-
-
-  }
   async getQuestions(){
     switch (this.view) {
       case 'yes':{
@@ -117,9 +82,6 @@ export class QuestionsListComponent implements OnInit {
         break;
       }
     }
-
-
-
   }
   async getPagnatedQuesitons(answered){
     {
@@ -128,6 +90,7 @@ export class QuestionsListComponent implements OnInit {
       let x  = await this.utilities
         .graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
       this.questions = x.data?.questions || []
+      this.isLoading=false
       if(limit=>x?.data?.questions?.length){
         this.listLimit=limit
       }else {
@@ -142,6 +105,7 @@ export class QuestionsListComponent implements OnInit {
       let x  = await this.utilities
         .graphqlRequests(this.utilities.queries.getPaginatedResQuestions({limit,start,reserved}));
       this.questions = x.data?.questions || []
+      this.isLoading=false
       if(limit=>x?.data?.questions?.length){
         this.listLimit=x?.data?.questions?.length
       }else {
@@ -150,65 +114,91 @@ export class QuestionsListComponent implements OnInit {
       }
     }
   }
-  async getTopics() {
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    const getRandomNameList = (name: string): Observable<any> =>
-      this.http
-        .get(`${URL}/topics?name_contains=${name}`)
-        .pipe(
-          catchError(() => of({ results: [] })),
-          map((res: any) => res)
-        )
-        .pipe(map((list: any) => list?.map((item: any) => item)));
-    const optionList$: Observable<string[]> = this.searchChange$
-      .asObservable()
-      .pipe(debounceTime(500))
-      .pipe(switchMap(getRandomNameList));
-    optionList$.subscribe(data => {
-      // console.log(data)
-      this.topics = data;
-      this.isLoading = false;
-    });
-  }
-  onSearchTopic(value: string): void {
-    this.isLoading = true;
-    this.searchChange$.next(value);
-  }
+
 
   async indexChange($event: number) {
     // get the data according to the page
     let limit = this.limit;
-    let start = ($event-1)*limit;
-
-    switch (this.view) {
-      case 'yes':{
-        let answered = true
-        let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
-        this.questions = x.data?.questions || []
-        break;
-      }
-      case 'no':{
-        let answered = false
-        let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
-        this.questions = x.data?.questions || []
-        break;
-      }
-      case 'res':{
-        let reserved = true
-        let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedResQuestions({limit,start,reserved}));
-        this.questions = x.data?.questions || []
-        break;
-      }
-      default:{
-        let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedAllQuestions({limit,start}));
-        this.questions = x.data?.questions || []
-        break;
-      }
-    }
+    this.page = ($event-1)*limit;
+    this.getNewPaginatedQuestions()
+    // switch (this.view) {
+    //   case 'yes':{
+    //     let api=this.api+"&answered=true"
+    //     let answered = true
+    //     let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
+    //     this.questions = x.data?.questions || []
+    //     break;
+    //   }
+    //   case 'no':{
+    //     let answered = false
+    //     let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
+    //     this.questions = x.data?.questions || []
+    //     break;
+    //   }
+    //   case 'res':{
+    //     let reserved = true
+    //     let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedResQuestions({limit,start,reserved}));
+    //     this.questions = x.data?.questions || []
+    //     break;
+    //   }
+    //   default:{
+    //     let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedAllQuestions({limit,start}));
+    //     this.questions = x.data?.questions || []
+    //     break;
+    //   }
+    // }
   }
 
   private async getAllPagematedQuestions() {
     let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedAllQuestions({limit:this.limit,start:this.page}));
     this.questions = x.data?.questions || []
+  }
+  async updateQuestions(topik){
+    console.log(topik)
+    this.api = '/questions?topic='+topik
+    this.page=1;
+    this.limit =20;
+    this.getNewPaginatedQuestions()
+    this.totalQuestions= await this.utilities.httpRequest({api:'/questions/count?topic='+topik,method:'get'})
+  }
+  async getNewPaginatedQuestions(){
+    let api = this.api;
+    let limit = this.limit;
+    let start = this.page
+    switch (this.view) {
+      case 'yes':{
+        // let api=this.api+"&answered=true"
+        // let answered = true
+        api=api+"&answered=true"
+        // let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
+        // this.questions = x.data?.questions || []
+        break;
+      }
+      case 'no':{
+        // let answered = false
+        api=api+"&answered=false"
+        // let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
+        // this.questions = x.data?.questions || []
+        break;
+      }
+      case 'res':{
+        api=api+"&reserved=true"
+        // let reserved = true
+        // let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedResQuestions({limit,start,reserved}));
+        // this.questions = x.data?.questions || []
+        break;
+      }
+      default:{
+        // let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedAllQuestions({limit,start}));
+        // this.questions = x.data?.questions || []
+        break;
+      }
+    }
+
+   let x = await this.utilities.httpPaginatedRequest({start,limit,api})
+   this.isLoading=false
+   if(x){
+this.questions=x;
+   }
   }
 }

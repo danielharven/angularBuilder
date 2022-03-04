@@ -1,0 +1,33 @@
+<ng-container>
+    <form nz-form nzLayout="horizontal">
+        <nz-form-item>
+            <!-- <label for="">Select Subject</label> -->
+            <!-- <nz-form-label [nzSpan]="12" nzFor="subjects">Subject</nz-form-label> -->
+            <nz-select name="subjects" nzPlaceHolder="Select Subjects" nzAllowClear nzShowSearch nzServerSearch [(ngModel)]="selectSubject" (ngModelChange)="updateTopics($event)" (nzOnSearch)="onSearchSubject($event)">
+                <ng-container *ngFor="let o of subjects">
+                    <nz-option *ngIf="!isSubjectingLoading" nzCustomContent [nzValue]="o.id" [nzLabel]="o.name">
+                        {{o?.name}}
+
+                    </nz-option>
+                </ng-container>
+                <nz-option *ngIf="isSubjectingLoading" nzDisabled nzCustomContent>
+                    <i nz-icon nzType="loading" class="loading-icon"></i> Loading Data...
+                </nz-option>
+            </nz-select>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-select name="topics" nzPlaceHolder="Select Topics" [(ngModel)]="selectTopic" (ngModelChange)="updateTutotrials($event)">
+                <ng-container *ngFor="let o of topics">
+                    <nz-option nzCustomContent [nzValue]="o.id" [nzLabel]="o.name">
+                        {{o.name}}
+
+                    </nz-option>
+                </ng-container>
+            </nz-select>
+        </nz-form-item>
+    </form>
+
+
+
+
+</ng-container>

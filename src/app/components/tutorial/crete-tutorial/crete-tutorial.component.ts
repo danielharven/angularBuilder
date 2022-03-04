@@ -39,13 +39,16 @@ export class CreteTutorialComponent implements OnInit {
 
       ['clean'],                                         // remove formatting button
 
-      ['link','image']                         // link and image, video
+      ['link','image']      ,                   // link and image, video
+      ['formula']
     ]
   };
+  tk = {tk:''};
   constructor(private utilities : UtilitiesService,  private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getTopics()
+    this.getTopics();
+     this.getToken()
     if(!this.update){
       this.createForm = new FormGroup(
         {
@@ -64,6 +67,9 @@ export class CreteTutorialComponent implements OnInit {
       }
     )
 
+  }
+  async getToken(){
+    this.tk= await this.utilities.getToken();
   }
   async getTopics() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -91,9 +97,10 @@ export class CreteTutorialComponent implements OnInit {
   }
 
   async createQuestion() {
+    let {tk} = this.tk
     this.utilities.loadScreen()
     let mdata= {
-      ...this.createForm.value
+      ...this.createForm.value,tk
     }
 
     if(this.update){
@@ -103,6 +110,7 @@ export class CreteTutorialComponent implements OnInit {
       if(x?.id){
         this.utilities.notifyUser.success(this.utilities.constants.tutorial_update_success)
         this.utilities.stopLoadScreen()
+
       }else{
         this.utilities.stopLoadScreen()
       }
@@ -114,7 +122,8 @@ export class CreteTutorialComponent implements OnInit {
     let {id} =x;
     if(id){
       this.utilities.notifyUser.success(this.utilities.constants.tutorial_created_success)
-      this.utilities.stopLoadScreen()
+      this.utilities.stopLoadScreen();
+       this.createForm.reset();
     }else{
       this.utilities.stopLoadScreen()
     }

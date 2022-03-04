@@ -58,6 +58,7 @@ import { AccountComponent } from './bank/student/account/account.component'
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { MenuClassicLeftComponent } from './MenuClassic/MenuLeft/menu-left.component';
 import { MenuClassicTopComponent } from './MenuClassic/MenuTop/menu-top.component';
+import { ContentFiltersComponent } from './content-filters/content-filters.component';
 const COMPONENTS = [
   FieldNgSelect,
   MenuClassicLeftComponent,
@@ -89,7 +90,7 @@ const COMPONENTS = [
     QuillModule,
   ],
   providers:[{provide: ErrorHandler, useClass: MyErrorHandler}],
-  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent, QuestionAskComponent, QuestionAnswerComponent, CountsComponent, CreteTutorialComponent, ViewTutorialsComponent, ViewTutorialDetailsComponent, ViewMyTutorialDetailsComponent, RelatedTutorialsComponent, SearchTutorialsComponent, SideWidgetComponent, CommentsWidgetTutorialsComponent, LoadingScreenComponent, ReservedenquiryPipe, MyQuestionsComponent, MyTutorialsComponent, AllSubjectsComponent, WithdrawComponent, AccountComponent ],
+  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent, QuestionAskComponent, QuestionAnswerComponent, CountsComponent, CreteTutorialComponent, ViewTutorialsComponent, ViewTutorialDetailsComponent, ViewMyTutorialDetailsComponent, RelatedTutorialsComponent, SearchTutorialsComponent, SideWidgetComponent, CommentsWidgetTutorialsComponent, LoadingScreenComponent, ReservedenquiryPipe, MyQuestionsComponent, MyTutorialsComponent, AllSubjectsComponent, WithdrawComponent, AccountComponent, ContentFiltersComponent ],
   exports: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent],
 })
 export class MyComponentsModule {}

@@ -13,19 +13,7 @@
                     <div class="filter-option-boxs w-20">
                     </div>
                     <!-- end filter-option-box -->
-                    <ng-container>
-                        <nz-select [style]='{"width":"70vw"}' nzPlaceHolder="Select Topics" nzAllowClear nzShowSearch nzServerSearch (ngModelChange)="updateTutotrials($event)" [(ngModel)]="selectTopic" (nzOnSearch)="onSearchTopic($event)">
-                            <ng-container *ngFor="let o of topics">
-                                <nz-option *ngIf="!isLoading" nzCustomContent [nzValue]="o.id" [nzLabel]="o.name">
-                                    {{o?.name}}-{{o?.subject?.name}}-{{o?.subject?.grade}}
-                                    <hr>
-                                </nz-option>
-                            </ng-container>
-                            <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
-                                <i nz-icon nzType="loading" class="loading-icon"></i> Loading Data...
-                            </nz-option>
-                        </nz-select>
-                    </ng-container>
+                    <app-content-filters (topik)="updateTutotrials($event)"></app-content-filters>
                 </div>
                 <!-- end filters -->
             </div>

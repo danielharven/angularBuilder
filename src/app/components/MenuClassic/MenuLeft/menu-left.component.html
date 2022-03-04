@@ -13,13 +13,13 @@
         <div class="logoContainer">
             <div class="logo">
                 <a routerLink="">
-                    <img src="assets/images/logo-black.png" alt="footer logo" class="footer-logo">
+                    <img src="assets/images/logo-black.png" alt="footer logo" class="logo-img">
                 </a>
-                <div class="name">{{ logo }}</div>
+                <div class="name">menu</div>
             </div>
         </div>
         <perfect-scrollbar>
-            <ul nz-menu class="navigation" [nzInlineIndent]="15" [nzMode]="'inline'" [nzInlineCollapsed]="isMenuCollapsed && !isMobileView">
+            <ul nz-menu class="navigation mt-2" [nzInlineIndent]="15" [nzMode]="'inline'" [nzInlineCollapsed]="isMenuCollapsed && !isMobileView">
                 <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menuDataActivated, level: 0}"></ng-container>
                 <ng-template #menuTpl let-menuDataActivated let-level="level">
                     <ng-container *ngFor="let item of menuDataActivated">

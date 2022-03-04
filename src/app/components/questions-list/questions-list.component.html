@@ -9,25 +9,16 @@
                 <div class="question-main-bar border-left border-left-gray pb-50px">
                     <div class="filters pb-4 pl-3 d-flex align-items-center justify-content-between">
                         <div class="mr-3">
-                            <h3 class="fs-18 fw-medium">All Questions</h3>
-                            <p class="pt-1 fs-14 fw-medium lh-20">{{totalQuestions}} questions</p>
+                            <h3 class="fs-18 fw-medium">Exam Questions And Answers</h3>
+                            <!-- <p class="pt-1 fs-14 fw-medium lh-20">{{totalQuestions}}</p> -->
                         </div>
-                        <ng-container>
-                            <nz-select [style]='{"width":"70vw"}' nzPlaceHolder="Select Topics" nzAllowClear nzShowSearch nzServerSearch [(ngModel)]="selectTopic" (ngModelChange)="updateTutotrials($event)" (nzOnSearch)="onSearchTopic($event)">
-                                <ng-container *ngFor="let o of topics">
-                                    <nz-option *ngIf="!isLoading" nzCustomContent [nzValue]="o.id" [nzLabel]="o.name">
-                                        {{o.name}}-{{o.subject.name}}-{{o.subject.grade}}
-                                        <hr>
-                                    </nz-option>
-                                </ng-container>
-                                <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
-                                    <i nz-icon nzType="loading" class="loading-icon"></i> Loading Data...
-                                </nz-option>
-                            </nz-select>
-                        </ng-container>
+                        <app-content-filters (topik)="updateQuestions($event)"></app-content-filters>
                         <!-- end filter-option-box -->
                     </div>
                     <!-- end filters -->
+                    <ng-container *ngIf="isLoading">
+                        <nz-skeleton nzActive="true"></nz-skeleton>
+                    </ng-container>
 
                     <ng-container *ngFor='let x of questions'>
                         <div class="questions-snippet border-top border-top-gray">
@@ -64,7 +55,7 @@
                     <div class="pager d-flex flex-wrap align-items-center justify-content-between pt-30px px-3">
                         <div>
                             <nz-pagination (nzPageIndexChange)='indexChange($event)' [nzTotal]="totalQuestions" nzShowSizeChanger [(nzPageSize)]="limit"></nz-pagination>
-                            <p class="fs-13 pt-2">Showing {{listNumber}}-{{listLimit}} results of {{totalQuestions}} questions</p>
+                            <p class="fs-13 pt-2">Showing {{listNumber}}-{{listLimit}} results of {{totalQuestions}}</p>
                         </div>
                     </div>
                 </div>

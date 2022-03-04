@@ -119,7 +119,6 @@ const routes: Routes = [
       },
       {
         path: 'questions',
-        canActivate: [AuthGuard],
         data: { title: 'Questions' },
         component: QuestionsListComponent,
       },
@@ -154,7 +153,6 @@ const routes: Routes = [
       },
       {
         path: 'tutorials',
-        canActivate: [AuthGuard],
         data: { title: 'All tutorials' },
         component: ViewTutorialsComponent,
       },{

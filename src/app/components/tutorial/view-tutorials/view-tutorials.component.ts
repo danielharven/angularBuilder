@@ -11,32 +11,32 @@ const URL = environment.url
   styleUrls: ['./view-tutorials.component.scss']
 })
 export class ViewTutorialsComponent implements OnInit {
-  topics: any =[]
-  selectTopic: any = ''
+
   isLoading = true;
-  searchChange$ = new BehaviorSubject('');
+  // searchChange$ = new BehaviorSubject('');
   tutorials: []=[]
   total
 
   limit: any = 20
-  page = 0
+  page = 1
   listNumber = 0
   listLimit = 0
-
+  api='/blogs'
   paginations = 0
 
   constructor(private utilities:UtilitiesService,
               private http: HttpClient,) {  }
 
   ngOnInit(): void {
-    this.getTopics()
     this.getQuestions()
   }
   async updateTutotrials(info){
    if(info){
-    let api='/topics/blogs/'+info;
-    let method='get';
-    let x = await this.utilities.httpRequest({api,method})
+    let api='/blogs?topic='+info;
+    this.api=api;
+    let start=1;
+    let limit= this.limit
+    let x = await this.utilities.httpPaginatedRequest({api,start,limit})
     // console.log(x);
     if(x){
       this.tutorials=x
@@ -48,6 +48,7 @@ export class ViewTutorialsComponent implements OnInit {
   }
 
   async getQuestions(){
+
     let url  = URL+'/blogs'
     let x = await this.utilities.httpRequest({api:'/blogs/count',method:'get'}).catch((e)=>{
     })
@@ -56,6 +57,7 @@ export class ViewTutorialsComponent implements OnInit {
       let limit = this.limit;
       let start = 1;
       let api='/blogs'
+      this.api=api;
       let x  = await this.utilities.httpPaginatedRequest({limit,start,api}).catch(e=>{
         this.tutorials = []
         return
@@ -66,39 +68,16 @@ export class ViewTutorialsComponent implements OnInit {
       // this.tutorials = x.data?.blogs || []
     }
   }
-  getPagnatedQuesitons(){
-
-  }
-  async getTopics() {
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    const getRandomNameList = (name: string): Observable<any> =>
-      this.http
-        .get(`${URL}/topics?name_contains=${name}`)
-        .pipe(
-          catchError(() => of({ results: [] })),
-          map((res: any) => res)
-        )
-        .pipe(map((list: any) => list?.map((item: any) => item)));
-    const optionList$: Observable<string[]> = this.searchChange$
-      .asObservable()
-      .pipe(debounceTime(500))
-      .pipe(switchMap(getRandomNameList));
-    optionList$.subscribe(data => {
-      // console.log(data)
-      this.topics = data;
-      this.isLoading = false;
-    });
-  }
-  onSearchTopic(value: string): void {
-    this.isLoading = true;
-    this.searchChange$.next(value);
-  }
 
   async indexChange($event: number) {
     // get the data according to the page
     let limit = this.limit;
     let start = ($event-1)*limit;
-    let x  = await this.utilities.graphqlRequests(this.utilities.queries.getPaginatedTutorials({limit,start}));
-    this.tutorials = x.data?.blogs || []
+    let api = this.api;
+    let x  = await this.utilities.httpPaginatedRequest({limit,start,api}).catch(e=>{
+      this.tutorials = []
+      return
+    })
+    if(x) this.tutorials=x;
   }
 }

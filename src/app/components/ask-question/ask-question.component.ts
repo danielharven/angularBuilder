@@ -87,9 +87,9 @@ export class AskQuestionComponent implements OnInit {
       let up = await this.utilities.uploadFiles(file,ref,refId,field)
     }
 
-    // this.utilities.notifyUser.success(this.utilities.constants.questioon_asked_success)
+    this.utilities.notifyUser.success(this.utilities.constants.questioon_asked_success)
     this.utilities.stopLoadScreen()
-    this.isVisible=true
+    // this.isVisible=true
   }else{
     this.utilities.stopLoadScreen()
   }
