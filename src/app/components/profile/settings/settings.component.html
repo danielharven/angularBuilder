@@ -28,168 +28,199 @@
             <!-- end col-lg-4 -->
         </div>
         <!-- end row -->
-        <nz-tabset>
-            <nz-tab nzTitle="Profile">
-                <div class="user-panel">
-                    <div class="bg-gray p-3 rounded-rounded">
-                        <!-- <h3 class="fs-17" *ngIf="!teacherProfile">Edit your profile</h3> -->
-                        <h3 *ngIf="teacherProfile" class="fs-17">Complete your profile</h3>
-                        <h3 *ngIf="!teacherProfile" class="fs-17">Update your profile</h3>
-                    </div>
-
-                    <form *ngIf="teacherProfile" class="pt-35px" [formGroup]="teacherProfileForm" (ngSubmit)="onSubmitTeacher()">
-                        <div class="input-box">
-                            <label class="fs-14 text-black fw-medium mb-0">Display Name</label>
-                            <p class="fs-13 pb-3 lh-20">This is the name that will be displayed on the platform</p>
-                            <div class="form-group">
-                                <input formControlName="displayName" class="form-control form--control" type="text" name="text" placeholder="e.g. Daniel The Math Teacher">
+        <div class="row">
+            <div class="col-md-8 col-lg-4">
+                <nz-tabset>
+                    <nz-tab nzTitle="Profile">
+                        <div class="user-panel">
+                            <div class="bg-gray p-3 rounded-rounded">
+                                <!-- <h3 class="fs-17" *ngIf="!teacherProfile">Edit your profile</h3> -->
+                                <h3 *ngIf="teacherProfile" class="fs-17">Complete your profile</h3>
+                                <h3 *ngIf="!teacherProfile" class="fs-17">Update your profile</h3>
                             </div>
-                        </div>
-                        <!-- end input-box -->
 
-                        <div class="input-box">
-                            <label class="fs-14 text-black fw-medium mb-0">Location</label>
-                            <p class="fs-13 pb-3 lh-20">Enter the name of the town or district you are from </p>
-                            <div class="form-group">
-                                <input formControlName="location" class="form-control form--control" type="text" name="text" placeholder="e.g. Ndola">
-                            </div>
-                        </div>
+                            <form *ngIf="teacherProfile" class="pt-35px" [formGroup]="teacherProfileForm">
+                                <div class="input-box">
+                                    <label class="fs-14 text-black fw-medium mb-0">Display Name</label>
+                                    <p class="fs-13 pb-3 lh-20">This is the name that will be displayed on the platform</p>
+                                    <div class="form-group">
+                                        <input id='1' #1 nz-popover [nzPopoverVisible]="tourCurrent===1" [nzPopoverContent]="contentTemplate" formControlName="displayName" class="form-control form--control" type="text" name="text" placeholder="e.g. Daniel The Math Teacher">
+                                    </div>
+                                    <ng-template #contentTemplate>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="bg-white">
+                                                    <p class="text-dark font-size-48 font-weight-bold mb-2">{{currentMessage?.title}}</p>
+                                                    <!-- <p class="text-uppercase text-muted mb-3">Revenue today</p> -->
+                                                    <p class="mb-4">
+                                                        {{currentMessage?.desc}} </p>
+                                                    <a (click)="cancel()" class="btn btn-outline-primary mb-1">
+                                 {{currentMessage?.reject}}
+                                </a>
+                                                    <a (click)="next()" class="btn btn-outline-primary mb-1 ml-1">
+                                 {{currentMessage?.accept}}
+                                </a>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                        <div class="input-box">
-                            <label class="fs-14 text-black fw-medium mb-0">About Me</label>
-                            <p class="fs-13 pb-3 lh-20">Type something about yourself an introduction to others or a sell to others</p>
-                            <div class="form-group">
-                                <textarea formControlName="about" class="form-control form--control user-text-editor" rows="10" cols="40" placeholder="e.g. I am a"></textarea>
-                            </div>
-                        </div>
-                        <div class="input-box">
-                            <label class="fs-14 text-black fw-medium mb-0">Subject</label>
-                            <p class="fs-13 pb-3 lh-20">Please choose the appropriate subject you would like to apply your services on Tadya</p>
-                            <div class="form-group">
-                                <select formControlName="subject" class="select-container select--container" data-placeholder="Select a subject">
+                                        <!-- <div style="background-color:green" class=" text-white w-75">
+                                    <p>{{currentMessage.desc}}</p>
+                                    <button nz-button nzType="link">{{currentMessage.reject}}</button>
+                                    <button nz-button nzType="link">{{currentMessage.accept}}</button>
+
+                                </div> -->
+
+                                    </ng-template>
+                                </div>
+                                <!-- end input-box -->
+
+                                <div class="input-box">
+                                    <label class="fs-14 text-black fw-medium mb-0">Location</label>
+                                    <p class="fs-13 pb-3 lh-20">Enter the name of the town or district you are from </p>
+                                    <div class="form-group">
+                                        <input id='2' #2 nz-popover [nzPopoverVisible]="tourCurrent===2" [nzPopoverContent]="contentTemplate" formControlName="location" class="form-control form--control" type="text" name="text" placeholder="e.g. Ndola">
+                                    </div>
+                                </div>
+
+                                <div class="input-box">
+                                    <label class="fs-14 text-black fw-medium mb-0">About Me</label>
+                                    <p class="fs-13 pb-3 lh-20">Type something about yourself an introduction to others or a sell to others</p>
+                                    <div class="form-group">
+                                        <textarea id='3' nz-popover [nzPopoverVisible]="tourCurrent===3" [nzPopoverContent]="contentTemplate" formControlName="about" class="form-control form--control user-text-editor" rows="10" cols="40" placeholder="e.g. I am a"></textarea>
+                                    </div>
+                                </div>
+                                <div class="input-box">
+                                    <label class="fs-14 text-black fw-medium mb-0">Subject</label>
+                                    <p class="fs-13 pb-3 lh-20">Please choose the appropriate subject you would like to apply your services on Tadya</p>
+                                    <div class="form-group">
+                                        <select id='4' nz-popover [nzPopoverVisible]="tourCurrent===4" [nzPopoverContent]="contentTemplate" formControlName="subject" class="select-container select--container" data-placeholder="Select a subject">
                             <option *ngFor="let x of subjects" selected [value]="x.id">{{x.name}} - Grade {{x.grade}}</option>
                         </select>
-                            </div>
-                        </div>
-                        <!-- end input-box -->
-                        <div class="input-box">
-                            <label class="fs-14 text-black fw-medium mb-0">Phone</label>
-                            <p class="fs-13 pb-3 lh-20">This phone will be used for communication between Tadya and yourself </p>
-                            <div class="form-group">
-                                <input formControlName="phone" class="form-control form--control" type="text" name="text" placeholder="e.g. 0964862067">
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
+                                <!-- end input-box -->
+                                <div class="input-box">
+                                    <label class="fs-14 text-black fw-medium mb-0">Phone</label>
+                                    <p class="fs-13 pb-3 lh-20">This phone will be used for communication between Tadya and yourself </p>
+                                    <div class="form-group">
+                                        <input id='5' nz-popover [nzPopoverVisible]="tourCurrent===5" [nzPopoverContent]="contentTemplate" formControlName="phone" class="form-control form--control" type="text" name="text" placeholder="e.g. 0964862067">
+                                    </div>
+                                </div>
 
-                        <button (click)="onSubmitTeacher()" [disabled]="!teacherProfileForm.valid" class="btn btn-primary" type="submit">
+                                <button id='6' nz-popover [nzPopoverVisible]="tourCurrent===6" [nzPopoverContent]="contentTemplate" (click)="onSubmitTeacher()" [disabled]="!teacherProfileForm.valid" class="btn btn-primary" type="submit">
                 Save Changes
               </button>
-                    </form>
-                    <form *ngIf="!teacherProfile" class="pt-35px" [formGroup]="profileForm">
-                        <div class="input-box">
-                            <label class="fs-14 text-black fw-medium mb-0">Display Name</label>
-                            <p class="fs-13 pb-3 lh-20">This is the name that will be displayed on the platform</p>
-                            <div class="form-group">
-                                <input formControlName="displayName" class="form-control form--control" type="text" name="text" placeholder="e.g. Daniel The Math Teacher">
-                            </div>
-                        </div>
-                        <!-- end input-box -->
+                            </form>
+                            <form *ngIf="!teacherProfile" class="pt-35px" [formGroup]="profileForm">
+                                <div class="input-box">
+                                    <label class="fs-14 text-black fw-medium mb-0">Display Name</label>
+                                    <p class="fs-13 pb-3 lh-20">This is the name that will be displayed on the platform</p>
+                                    <div class="form-group">
+                                        <input formControlName="displayName" class="form-control form--control" type="text" name="text" placeholder="e.g. Daniel The Math Teacher">
+                                    </div>
+                                </div>
+                                <!-- end input-box -->
 
-                        <div class="input-box">
-                            <label class="fs-14 text-black fw-medium mb-0">Location</label>
-                            <p class="fs-13 pb-3 lh-20">Enter the name of the town or district you are from </p>
-                            <div class="form-group">
-                                <input formControlName="location" class="form-control form--control" type="text" name="text" placeholder="e.g. Ndola">
-                            </div>
-                        </div>
+                                <div class="input-box">
+                                    <label class="fs-14 text-black fw-medium mb-0">Location</label>
+                                    <p class="fs-13 pb-3 lh-20">Enter the name of the town or district you are from </p>
+                                    <div class="form-group">
+                                        <input formControlName="location" class="form-control form--control" type="text" name="text" placeholder="e.g. Ndola">
+                                    </div>
+                                </div>
 
-                        <div class="input-box">
-                            <label class="fs-14 text-black fw-medium mb-0">About Me </label>
-                            <p class="fs-13 pb-3 lh-20">Type something about yourself <b><i>(do not type anything personal)</i></b></p>
-                            <div class="form-group">
-                                <textarea formControlName="about" class="form-control form--control user-text-editor" rows="10" cols="40" placeholder="e.g. I am a"></textarea>
-                            </div>
-                        </div>
+                                <div class="input-box">
+                                    <label class="fs-14 text-black fw-medium mb-0">About Me </label>
+                                    <p class="fs-13 pb-3 lh-20">Type something about yourself <b><i>(do not type anything personal)</i></b></p>
+                                    <div class="form-group">
+                                        <textarea formControlName="about" class="form-control form--control user-text-editor" rows="10" cols="40" placeholder="e.g. I am a"></textarea>
+                                    </div>
+                                </div>
 
 
-                        <button (click)="updateProfile()" [disabled]="!profileForm.valid" class="btn btn-primary" type="submit">
+                                <button (click)="updateProfile()" [disabled]="!profileForm.valid" class="btn btn-primary" type="submit">
                 Save Changes
               </button>
-                    </form>
+                            </form>
 
 
 
-                    <div *ngIf="!gotProfile" (click)="getProfile()" class="btn btn-outline-primary">Get Profile</div>
-                </div>
-            </nz-tab>
-            <nz-tab nzTitle="Password">
-                <div class="user-panel">
-                    <div class="bg-gray p-3 rounded-rounded">
-                        <h3 class="fs-17">Change password</h3>
-                    </div>
-                    <form *ngIf="gotProfile" class="pt-35px" [formGroup]="form" (ngSubmit)="changePassword()">
-                        <formly-form [form]="paasswordForm" [model]="passwordModel" [fields]="passwordFields">
-                        </formly-form>
+                            <div *ngIf="!gotProfile" (click)="getProfile()" class="btn btn-outline-primary">Get Profile</div>
+                        </div>
+                    </nz-tab>
+                    <nz-tab nzTitle="Password">
+                        <div class="user-panel">
+                            <div class="bg-gray p-3 rounded-rounded">
+                                <h3 class="fs-17">Change password</h3>
+                            </div>
+                            <form *ngIf="gotProfile" class="pt-35px" [formGroup]="form" (ngSubmit)="changePassword()">
+                                <formly-form [form]="paasswordForm" [model]="passwordModel" [fields]="passwordFields">
+                                </formly-form>
 
-                        <button class="btn btn-primary" type="submit">
+                                <button class="btn btn-primary" type="submit">
   Change Password
 </button>
-                    </form>
-                </div>
-            </nz-tab>
-            <nz-tab *ngIf="false" nzTitle="Plans">
-                <div class="user-panel">
-                    <div class="bg-gray p-3 rounded-rounded">
-                        <h3 class="fs-17">Plans</h3>
-                    </div>
-                    <div class="card card-item p-4">
-                        <div class="card-body">
-                            <h3 class="fs-17 pb-3">Choose Plan</h3>
-                            <div class="divider"><span></span></div>
-                            <div class="row no-gutters text-center">
-                                <div class="col-lg-6 responsive-column-half">
-                                    <div class="icon-box pt-3">
-                                        <span class="fs-20 fw-bold text-color">980k</span>
-                                        <p class="fs-14">Questions</p>
+                            </form>
+                        </div>
+                    </nz-tab>
+                    <nz-tab *ngIf="false" nzTitle="Plans">
+                        <div class="user-panel">
+                            <div class="bg-gray p-3 rounded-rounded">
+                                <h3 class="fs-17">Plans</h3>
+                            </div>
+                            <div class="card card-item p-4">
+                                <div class="card-body">
+                                    <h3 class="fs-17 pb-3">Choose Plan</h3>
+                                    <div class="divider"><span></span></div>
+                                    <div class="row no-gutters text-center">
+                                        <div class="col-lg-6 responsive-column-half">
+                                            <div class="icon-box pt-3">
+                                                <span class="fs-20 fw-bold text-color">980k</span>
+                                                <p class="fs-14">Questions</p>
+                                            </div>
+                                            <!-- end icon-box -->
+                                        </div>
+                                        <!-- end col-lg-6 -->
+                                        <div class="col-lg-6 responsive-column-half">
+                                            <div class="icon-box pt-3">
+                                                <span class="fs-20 fw-bold text-color-2">610k</span>
+                                                <p class="fs-14">Answers</p>
+                                            </div>
+                                            <!-- end icon-box -->
+                                        </div>
+                                        <!-- end col-lg-6 -->
+                                        <div class="col-lg-6 responsive-column-half">
+                                            <div class="icon-box pt-3">
+                                                <span class="fs-20 fw-bold text-color-3">650k</span>
+                                                <p class="fs-14">Answer accepted</p>
+                                            </div>
+                                            <!-- end icon-box -->
+                                        </div>
+                                        <!-- end col-lg-6 -->
+                                        <div class="col-lg-6 responsive-column-half">
+                                            <div class="icon-box pt-3">
+                                                <span class="fs-20 fw-bold text-color-4">320k</span>
+                                                <p class="fs-14">Users</p>
+                                            </div>
+                                            <!-- end icon-box -->
+                                        </div>
+                                        <!-- end col-lg-6 -->
+                                        <div class="col-lg-12 pt-3">
+                                            <p class="fs-14">To get answer of question <a href="signup.html" class="text-color hover-underline">Join<i class="la la-arrow-right ml-1"></i></a></p>
+                                        </div>
                                     </div>
-                                    <!-- end icon-box -->
-                                </div>
-                                <!-- end col-lg-6 -->
-                                <div class="col-lg-6 responsive-column-half">
-                                    <div class="icon-box pt-3">
-                                        <span class="fs-20 fw-bold text-color-2">610k</span>
-                                        <p class="fs-14">Answers</p>
-                                    </div>
-                                    <!-- end icon-box -->
-                                </div>
-                                <!-- end col-lg-6 -->
-                                <div class="col-lg-6 responsive-column-half">
-                                    <div class="icon-box pt-3">
-                                        <span class="fs-20 fw-bold text-color-3">650k</span>
-                                        <p class="fs-14">Answer accepted</p>
-                                    </div>
-                                    <!-- end icon-box -->
-                                </div>
-                                <!-- end col-lg-6 -->
-                                <div class="col-lg-6 responsive-column-half">
-                                    <div class="icon-box pt-3">
-                                        <span class="fs-20 fw-bold text-color-4">320k</span>
-                                        <p class="fs-14">Users</p>
-                                    </div>
-                                    <!-- end icon-box -->
-                                </div>
-                                <!-- end col-lg-6 -->
-                                <div class="col-lg-12 pt-3">
-                                    <p class="fs-14">To get answer of question <a href="signup.html" class="text-color hover-underline">Join<i class="la la-arrow-right ml-1"></i></a></p>
+                                    <!-- end row -->
                                 </div>
                             </div>
-                            <!-- end row -->
+                            <!-- end card -->
                         </div>
-                    </div>
-                    <!-- end card -->
-                </div>
-            </nz-tab>
+                    </nz-tab>
 
-        </nz-tabset>
+                </nz-tabset>
+            </div>
+        </div>
+
     </div>
     <!-- end container -->
 </section>
@@ -205,3 +236,33 @@
 <!-- ================================
          END USER DETAILS AREA
 ================================= -->
+<!-- modals -->
+<<ng-container *ngIf="startTour">
+
+    <nz-modal [nzVisible]="startTour && tourCurrent==0" [nzContent]="modalContent" [nzTitle]="modalTitle" [nzFooter]="modalFooter">
+        <ng-template #modalTitle>{{currentMessage.title}}</ng-template>
+
+        <ng-template #modalContent>
+            <p>{{currentMessage.desc}}</p>
+        </ng-template>
+
+        <ng-template #modalFooter>
+            <button nz-button nzType="default" (click)="cancel()">{{currentMessage.reject}}</button>
+            <button nz-button nzType="primary" (click)="next()">{{currentMessage.accept}}</button>
+        </ng-template>
+    </nz-modal>
+    </ng-container>
+
+
+    <nz-modal [nzVisible]="doneUpdating" [nzContent]="modalContent" [nzTitle]="modalTitle" [nzFooter]="modalFooter">
+        <ng-template #modalTitle>All done here</ng-template>
+
+        <ng-template #modalContent>
+            <p>Weldone, now lets move and create a tutorial</p>
+        </ng-template>
+
+        <ng-template #modalFooter>
+            <button nz-button nzType="default" routerLink="/tutorial/create">Create tutorial</button>
+            <!-- <button nz-button nzType="primary" (click)="next()">{{currentMessage.accept}}</button> -->
+        </ng-template>
+    </nz-modal>

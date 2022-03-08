@@ -53,10 +53,11 @@
                     </ng-container>
 
                     <div class="pager d-flex flex-wrap align-items-center justify-content-between pt-30px px-3">
-                        <div>
+                        <!-- <div>
                             <nz-pagination (nzPageIndexChange)='indexChange($event)' [nzTotal]="totalQuestions" nzShowSizeChanger [(nzPageSize)]="limit"></nz-pagination>
                             <p class="fs-13 pt-2">Showing {{listNumber}}-{{listLimit}} results of {{totalQuestions}}</p>
-                        </div>
+                        </div> -->
+                        <app-pagination (url)="getNewPaginatedQuestions($event)" items="Pages" [api]="api"></app-pagination>
                     </div>
                 </div>
                 <!-- end question-main-bar -->

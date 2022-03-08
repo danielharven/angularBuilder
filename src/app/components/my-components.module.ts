@@ -59,6 +59,10 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 import { MenuClassicLeftComponent } from './MenuClassic/MenuLeft/menu-left.component';
 import { MenuClassicTopComponent } from './MenuClassic/MenuTop/menu-top.component';
 import { ContentFiltersComponent } from './content-filters/content-filters.component';
+import { ListAllTeachersComponent } from './teachers/list-all-teachers/list-all-teachers.component';
+import { PaginationComponent } from './shared/pagination/pagination.component';
+import { TeacherAboutPipe } from '../pipes/teacher-about.pipe';
+import { TeacherLocationPipe } from '../pipes/teacher-location.pipe';
 const COMPONENTS = [
   FieldNgSelect,
   MenuClassicLeftComponent,
@@ -68,7 +72,8 @@ const COMPONENTS = [
   HeaderComponent, FooterComponent, HomeComponent, FaqComponent,
   ContactComponent, PrivacyComponent, TermsComponent, FeedbackComponent,
   AboutComponent, CareersComponent, AdvertsComponent, InviteComponent,
-  PricingPlansComponent, AskQuestionComponent, ProfileComponent, UploadComponent
+  PricingPlansComponent, AskQuestionComponent, ProfileComponent, UploadComponent,
+  TeacherAboutPipe,TeacherLocationPipe
 
 ]
 
@@ -90,7 +95,7 @@ const COMPONENTS = [
     QuillModule,
   ],
   providers:[{provide: ErrorHandler, useClass: MyErrorHandler}],
-  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent, QuestionAskComponent, QuestionAnswerComponent, CountsComponent, CreteTutorialComponent, ViewTutorialsComponent, ViewTutorialDetailsComponent, ViewMyTutorialDetailsComponent, RelatedTutorialsComponent, SearchTutorialsComponent, SideWidgetComponent, CommentsWidgetTutorialsComponent, LoadingScreenComponent, ReservedenquiryPipe, MyQuestionsComponent, MyTutorialsComponent, AllSubjectsComponent, WithdrawComponent, AccountComponent, ContentFiltersComponent ],
+  declarations: [...COMPONENTS, SettingsComponent, RichtestPipe, QuestionsListComponent,DateAgoPipe, QuestionsDetailsComponent, AnswersComponent, QuestionAskComponent, QuestionAnswerComponent, CountsComponent, CreteTutorialComponent, ViewTutorialsComponent, ViewTutorialDetailsComponent, ViewMyTutorialDetailsComponent, RelatedTutorialsComponent, SearchTutorialsComponent, SideWidgetComponent, CommentsWidgetTutorialsComponent, LoadingScreenComponent, ReservedenquiryPipe, MyQuestionsComponent, MyTutorialsComponent, AllSubjectsComponent, WithdrawComponent, AccountComponent, ContentFiltersComponent, ListAllTeachersComponent, PaginationComponent ],
   exports: [...COMPONENTS, HeaderComponent, FooterComponent, HomeComponent],
 })
 export class MyComponentsModule {}

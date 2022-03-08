@@ -1,0 +1,6 @@
+<div class="pager text-center pt-30px">
+    <ng-container>
+        <nz-pagination (nzPageIndexChange)='indexChange($event)' [nzTotal]="total" nzShowSizeChanger [(nzPageSize)]="limit"></nz-pagination>
+        <p class="fs-13 pt-2">Showing page {{start}} of {{(total/limit)+1 |number:'1.0-0'}} {{items}}</p>
+    </ng-container>
+</div>

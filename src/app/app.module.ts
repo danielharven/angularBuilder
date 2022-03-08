@@ -31,6 +31,8 @@ import { NgxSpinnerModule } from 'ngx-spinner'
 import { configureGraphQL } from 'ngx-graphql'
 import { environment } from '../environments/environment'
 import {AuthInterceptor} from "./services/interscept";
+// import { TeacherLocationPipe } from './pipes/teacher-location.pipe';
+// import { TeacherAboutPipe } from './pipes/teacher-about.pipe';
 // import {FlutterwaveModule} from "flutterwave-angular-v3";
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },

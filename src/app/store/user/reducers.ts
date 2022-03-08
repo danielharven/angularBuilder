@@ -9,6 +9,7 @@ export const initialState: object = {
   authorized: false,
   loading: false,
 }
+// const checkRegi
 
 export function reducer(state = initialState, action: UserActions.Actions): object {
   switch (action.type) {

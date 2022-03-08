@@ -1,0 +1,68 @@
+<section class="job-area pt-50px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Tadya Expert Teachers and Tutors</h3>
+                <div class="filters pb-4 d-flex align-items-center">
+                    <h3 class="fs-17 fw-medium mr-1"></h3>
+                    <span class="fs-12 mr-1">|</span>
+                    <span class="fs-13"></span>
+                </div>
+                <!-- end filters -->
+            </div>
+            <!-- end col-lg-12 -->
+            <div class="col-lg-9">
+                <div class="jobs-main-bar mb-50px">
+                    <div class="jobs-snippet">
+                        <!-- end media -->
+                        <div *ngFor="let item of teachers" class="media media-card">
+                            <a class="media-img d-block">
+                                <img *ngIf="false" src="images/company-logo4.png" alt="Teacher Logo">
+                            </a>
+                            <div class="media-body border-left-0">
+                                <h5 class="pb-1 fs-16 fw-medium d-flex align-items-center"><a>{{item?.user?.displayName}}</a>
+                                    <span *ngIf="false" class="badge border border-gray fw-regular ml-2 text-black-50">
+                                  <svg aria-hidden="true" class="mr-1" width="18" height="18" viewBox="0 0 18 18">
+                                      <path fill="#5eba7d" d="M11 4l2.29 2.29L10.5 9l-3-3L1 12.5 2.5 14l5-5 3 3 4.21-4.29L17 10V4h-6z"></path>
+                                  </svg>
+                                  High response rate
+                              </span>
+                                </h5>
+                                <small class="meta d-block lh-20 pb-1">
+                              <span class="pr-1"><i class="la la-map-marker mr-1">{{item?.user?.id|teacherLocation|async}}</i></span>
+                              <span><i class="la la-building mr-1"></i>{{item?.subject?.name}}</span>
+                          </small>
+                                <p class="lh-20 fs-13 text-black-50 truncate">{{item?.user?.id|teacherAbout|async}}
+                                </p>
+                                <div class="tags pt-2">
+                                    <a hrefs="#" class="tag-link active">{{item?.subject?.name}}</a>
+                                    <!-- <a href="#" class="tag-link">python</a>
+                                    <a href="#" class="tag-link">reactjs</a>
+                                    <a href="#" class="tag-link">node.js</a>
+                                    <a href="#" class="tag-link active">1 job</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end media -->
+                    </div>
+                    <!-- end jobs-snippet -->
+
+                    <div class="pager d-flex flex-wrap align-items-center justify-content-between pt-30px px-3">
+                        <!-- <div>
+                            <nz-pagination (nzPageIndexChange)='indexChange($event)' [nzTotal]="totalQuestions" nzShowSizeChanger [(nzPageSize)]="limit"></nz-pagination>
+                            <p class="fs-13 pt-2">Showing {{listNumber}}-{{listLimit}} results of {{totalQuestions}}</p>
+                        </div> -->
+                        <app-pagination (url)="getNewPaginated($event)" items="Pages" [api]="api"></app-pagination>
+                    </div>
+
+                </div>
+                <!-- end jobs-main-bar -->
+            </div>
+            <!-- end col-lg-9 -->
+            <!-- end col-lg-3 -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</section>
+<!-- end job-area -->

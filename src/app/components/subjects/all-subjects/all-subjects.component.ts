@@ -11,7 +11,7 @@ total=0;
 subjects:any=[]
   start  =1
   limit =20
-  listNumbe
+
   constructor(private utility : UtilitiesService) { }
 
   ngOnInit(): void {

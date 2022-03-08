@@ -23,7 +23,7 @@ export class QuestionsListComponent implements OnInit {
   page = 1
   listNumber = 0
   listLimit = 0
-  api='/questions?'
+  api='/questions'
 
   paginations = 0
   state$: Observable<object>;
@@ -52,7 +52,7 @@ export class QuestionsListComponent implements OnInit {
     })
     }
     // this.getSubjects()
-    this.getNewPaginatedQuestions()
+    // this.getNewPaginatedQuestions()
   }
 
   async getQuestions(){
@@ -85,17 +85,17 @@ export class QuestionsListComponent implements OnInit {
   }
   async getPagnatedQuesitons(answered){
     {
-      let limit = this.limit;
-      let start = 0;
-      let x  = await this.utilities
-        .graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
-      this.questions = x.data?.questions || []
-      this.isLoading=false
-      if(limit=>x?.data?.questions?.length){
-        this.listLimit=limit
-      }else {
-        this.listLimit=x?.data?.questions?.length
-      }
+      // let limit = this.limit;
+      // let start = 0;
+      // let x  = await this.utilities
+      //   .graphqlRequests(this.utilities.queries.getPaginatedQuestions({limit,start,answered}));
+      // this.questions = x.data?.questions || []
+      // this.isLoading=false
+      // if(limit=>x?.data?.questions?.length){
+      //   this.listLimit=limit
+      // }else {
+      //   this.listLimit=x?.data?.questions?.length
+      // }
     }
   }
   async getPagnatedReservedQuesitons(reserved){
@@ -161,10 +161,15 @@ export class QuestionsListComponent implements OnInit {
     this.getNewPaginatedQuestions()
     this.totalQuestions= await this.utilities.httpRequest({api:'/questions/count?topic='+topik,method:'get'})
   }
-  async getNewPaginatedQuestions(){
+  async getNewPaginatedQuestions(url=''){
+    // console.log(url);
+
     let api = this.api;
-    let limit = this.limit;
-    let start = this.page
+    if(url.length>3){
+      api=url;
+    }
+    // let limit = this.limit;
+    // let start = this.page
     switch (this.view) {
       case 'yes':{
         // let api=this.api+"&answered=true"
@@ -194,8 +199,8 @@ export class QuestionsListComponent implements OnInit {
         break;
       }
     }
-
-   let x = await this.utilities.httpPaginatedRequest({start,limit,api})
+    let method ='get'
+   let x = await this.utilities.httpRequest({method,api})
    this.isLoading=false
    if(x){
 this.questions=x;

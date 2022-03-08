@@ -665,11 +665,11 @@ query {
     tutorial_created_success:'Tutorial has been created successfully',
     tutorial_update_success:'Tutorial has been updated successfully',
     login_user_success:'Successfully logged in ',
-    profile_Createduser_success:'Successfully Created profile',
+    profile_Createduser_success:'Successfully Created profile, Now create your first tutorial by clicking the link below',
     register_user_failed:'User registration failed ',
     login_user_failed:'Login failed.',
     profile_Createduser_failed:'profile Creation failed.',
-    profile_Update_user_failed:'profile update failed.',
+    profile_Update_user_failed:'Profile update failed. Account with phone exists',
     profile_Update_user_succeed:'profile update succeeded.',
     User_profile_retrieval_failed:'"User profile retrieval failed"',
     session_expired: "Session has expired, kindly login",
@@ -758,7 +758,7 @@ let profile= this.profile
     this.stopLoadScreen()
   }
   evaluateError(err){
-    if(err[0].message){
+    if(err[0]?.message){
       let msg =err[0].message
       switch (msg) {
         case "Invalid token.":{
@@ -933,5 +933,10 @@ let profile= this.profile
     let method='get'
     let tk = await this.httpRequest({api,method});
     return tk;
+  }
+
+  /* Data handlind functions can be cross used*/
+  async getTeachers(){
+
   }
 }

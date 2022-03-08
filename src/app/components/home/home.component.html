@@ -101,11 +101,11 @@
                 <div class="sidebar pb-45px position-sticky top-0">
                     <ul class="generic-list-item generic-list-item-highlight fs-15 row">
                         <!-- <li (click)='current=1' [class.active]='current==1' class="lh-26 col-md-4 col-lg-12"><a hrefs="index.html"><i class="la la-home mr-1 text-black"></i> Home</a></li> -->
-                        <li (click)='current=0' [class.active]='current==0' class="lh-26 col-md-4 col-lg-12"><a><i class="la la-globe mr-1 text-black"></i> Questions</a></li>
-                        <li (click)='current=3' [class.active]='current==3' class="lh-26 col-md-4 col-lg-12"><a hrefs="tags-list.html"><i class="la la-tags mr-1 text-black"></i> Tutorials</a></li>
+                        <li (click)='current=0' [class.active]='current===0' class="lh-26 col-md-4 col-lg-12"><a><i class="la la-globe mr-1 text-black"></i> Questions</a></li>
+                        <li (click)='current=3' [class.active]='current===3' class="lh-26 col-md-4 col-lg-12"><a hrefs="tags-list.html"><i class="la la-tags mr-1 text-black"></i> Tutorials</a></li>
                         <!-- <li (click)='current=2' [class.active]='current==2' class="lh-26 col-md-4 col-lg-12"><a hrefs="badges-list.html"><i class="la la-id-badge mr-1 text-black"></i> Badges</a></li> -->
-                        <li (click)='current=4' [class.active]='current==4' class="lh-26 col-md-4 col-lg-12"><a hrefs="user-list.html"><i class="la la-user mr-1 text-black"></i> Teachers</a></li>
-                        <li (click)='current=5' [class.active]='current==5' class="lh-26 col-md-4 col-lg-12"><a hrefs="category-list.html"><i class="la la-sort mr-1 text-black"></i> Subjects</a></li>
+                        <li (click)='current=4' [class.active]='current===4' class="lh-26 col-md-4 col-lg-12"><a hrefs="user-list.html"><i class="la la-user mr-1 text-black"></i> Teachers</a></li>
+                        <li (click)='current=5' [class.active]='current===5' class="lh-26 col-md-4 col-lg-12"><a hrefs="category-list.html"><i class="la la-sort mr-1 text-black"></i> Subjects</a></li>
 
                         <!--                        <li class="lh-26"><a href="job-list.html"><i class="la la-mouse mr-1 text-black"></i> Jobs</a></li>-->
                         <!--                        <li class="lh-26"><a href="companies.html"><i class="la la-briefcase mr-1 text-black"></i> Companies</a></li>-->
@@ -129,9 +129,9 @@
                         </app-questions-list>
                     </nz-tab>
                 </nz-tabset>
-                <app-view-tutorials *ngIf='current==3'>
-                </app-view-tutorials>
+                <app-view-tutorials *ngIf='current==3'></app-view-tutorials>
                 <app-all-subjects *ngIf='current===5'></app-all-subjects>
+                <app-list-all-teachers *ngIf="current===4"></app-list-all-teachers>
             </div>
             <!-- end col-lg-7 -->
         </div>
