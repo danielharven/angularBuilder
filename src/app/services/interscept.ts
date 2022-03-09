@@ -152,6 +152,12 @@ export class AuthInterceptor implements HttpInterceptor {
         this.notifyUser('You Are Not Apporved to Answer Questions')
         break
       }
+      case '446': {
+        // plan expired redirect to purchase plan
+        // this.router.navigate(['/profile'])
+        this.notifyUser('The form token is invalid, Kindly refresh form.')
+        break
+      }
       case '500': {
         this.notifyUser('Server side error')
         break

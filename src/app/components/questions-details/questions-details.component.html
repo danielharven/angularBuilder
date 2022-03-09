@@ -36,20 +36,21 @@
                     </div>
                     <!-- end question-highlight -->
                     <div class="question d-flex">
-                        <div class="votes votes-styled w-auto">
+                        <!-- <div class="votes votes-styled w-auto">
                             <div id="vote" class="upvotejs">
                                 <a class="upvote upvote-on" data-toggle="tooltip" data-placement="right" title="This question is useful"></a>
                                 <span class="count">1</span>
                                 <a class="downvote" data-toggle="tooltip" data-placement="right" title="This question is not useful"></a>
                                 <a class="star" data-toggle="tooltip" data-placement="right" title="Bookmark this question."></a>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- end votes -->
                         <div class="question-post-body-wrap flex-grow-1">
                             <div class="question-post-body">
                                 <p>{{question.title}}</p>
 
-                                <p>{{question.body}}</p>
+                                <quill-view-html *ngIf="question?.body" [content]='question?.body'></quill-view-html>
+
                                 <img *ngFor='let x of question?.images' class='ml-1' nz-image width="200px" height="200px" [nzSrc]='x?.url' alt="Attached image" />
                             </div>
                             <!-- end question-post-body -->

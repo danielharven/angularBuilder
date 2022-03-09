@@ -7,7 +7,6 @@
                 <ng-container *ngFor="let o of subjects">
                     <nz-option *ngIf="!isSubjectingLoading" nzCustomContent [nzValue]="o.id" [nzLabel]="o.name">
                         {{o?.name}}
-
                     </nz-option>
                 </ng-container>
                 <nz-option *ngIf="isSubjectingLoading" nzDisabled nzCustomContent>

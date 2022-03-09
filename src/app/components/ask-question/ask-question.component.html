@@ -29,14 +29,15 @@
                             <label class="fs-14 text-black fw-medium mb-0">Topic</label>
                             <p class="fs-13 pb-3 lh-20">Please choose the appropriate an appropriate topis.</p>
                             <div class="form-group">
-                                <nz-select formControlName='topic' nzPlaceHolder="Select Topics" nzAllowClear nzShowSearch nzServerSearch [(ngModel)]="selectTopic" (nzOnSearch)="onSearchTopic($event)">
+                                <app-content-filters (topik)="updateTopic($event)"></app-content-filters>
+                                <!-- <nz-select formControlName='topic' nzPlaceHolder="Select Topics" nzAllowClear nzShowSearch nzServerSearch [(ngModel)]="selectTopic" (nzOnSearch)="onSearchTopic($event)">
                                     <ng-container *ngFor="let o of topics">
                                         <nz-option *ngIf="!isLoading" [nzValue]="o.id" [nzLabel]="o.name+' - '+ o.subject.name+' - '+o.subject.grade"></nz-option>
                                     </ng-container>
                                     <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
                                         <i nz-icon nzType="loading" class="loading-icon"></i> Loading Data...
                                     </nz-option>
-                                </nz-select>
+                                </nz-select> -->
                             </div>
                         </div>
                         <!-- end input-box -->
@@ -44,13 +45,16 @@
                             <label class="fs-14 text-black fw-medium mb-0">Question Details</label>
                             <p class="fs-13 pb-3 lh-20">Include all the information someone would need to answer your question</p>
                             <div class="form-group">
-                                <textarea formControlName='body' class="form-control form--control user-text-editor" rows="10" cols="40"></textarea>
+                                <div class="editor">
+                                    <quill-editor style="height: 500px;" formControlName='body' [modules]='myModules'>
+                                    </quill-editor>
+                                </div>
                                 <div class="d-flex align-items-center pt-2">
                                 </div>
                             </div>
                         </div>
                         <!-- end input-box -->
-                        <div>
+                        <!-- <div>
                             <label class="fs-14 text-black fw-medium">Image (Upload any supporting photo or file</label>
                             <div class="form-group">
                                 <nz-upload nzMultiple='true' nzAccept='image/*,.pdf,.doc,.docx,.xls,.xlsx' nzSize='5000' [nzCustomRequest]='uploadModule.uploadFiles'>
@@ -60,7 +64,7 @@
                   </button>
                                 </nz-upload>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- end input-box -->
                         <div class="input-box pt-2">
                             <!--              <div class="form-group">-->
@@ -74,7 +78,8 @@
                             <!--                </div>-->
                             <!--              </div>-->
                             <div class="btn-box">
-                                <button [disabled]='!createForm.valid' (click)='createQuestion()' type="submit" class="btn btn-primary">Publish your question</button>
+                                <button [disabled]='!createForm.valid' (click)='createQuestion()' type="submit" class="btn btn-primary mb-1 ml-1">Publish your question</button>
+                                <button (click)='refreshForm()' class="btn btn-danger ml-1">Refresh from</button>
                             </div>
                         </div>
                     </form>

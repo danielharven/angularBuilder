@@ -21,10 +21,33 @@ export class AskQuestionComponent implements OnInit {
   createForm : FormGroup
   postedQuestion ={}
   tk:any ={}
+  myModules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      // ['blockquote', 'code-block'],
+      // [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      // [{ 'direction': 'rtl' }],                         // text direction
+
+      // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+
+      ['clean'],                                         // remove formatting button
+
+      ['link','image']      ,                   // link and image, video
+      ['formula']
+    ]
+  };
   constructor(public utilities : UtilitiesService,  private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getTopics()
+    // this.getTopics()
     this.createForm = new FormGroup(
       {
         title : new FormControl('',Validators.required),
@@ -36,6 +59,11 @@ export class AskQuestionComponent implements OnInit {
   }
   async getToken(){
     this.tk= await this.utilities.getToken();
+  }
+  updateTopic(topic){
+    this.createForm.patchValue({
+      topic
+    })
   }
   async getTopics() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -61,7 +89,10 @@ export class AskQuestionComponent implements OnInit {
     this.isLoading = true;
     this.searchChange$.next(value);
   }
-
+  refreshForm(){
+    this.createForm.reset()
+    this.getToken()
+  }
   async createQuestion() {
     let {tk}=this.tk
     this.utilities.loadScreen()
