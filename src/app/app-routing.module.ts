@@ -14,8 +14,11 @@ import { LayoutMainComponent } from 'src/app/layouts/Main/main.component'
 // pages
 // VB:REPLACE-START:ROUTER-IMPORTS
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
+import { SmsComponent } from './pages/sms/sms.component'
+import { ContactsComponent } from './pages/contacts/contacts.component'
+import { AccountComponent } from './pages/account/account.component'
+import { SubscriptionComponent } from './pages/subscription/subscription.component'
 import { MyComponentsModule } from './components/my-components.module'
-import { HomeComponent } from './components/home/home.component'
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -23,13 +26,14 @@ const routes: Routes = [
   {
     path: '',
     // VB:REPLACE-NEXT-LINE:ROUTER-REDIRECT
-    component: HomeComponent,
-    data: {title: 'Home'},
+    component: DashboardComponent,
+    data: { title: 'Dashboard' },
     pathMatch: 'full',
-  },{
+  },
+  {
     path: 'home',
     // VB:REPLACE-NEXT-LINE:ROUTER-REDIRECT
-    component: HomeComponent,
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
@@ -39,9 +43,29 @@ const routes: Routes = [
     children: [
       // VB:REPLACE-START:ROUTER-CONFIG
       {
-        path: '',
+        path: 'dashboard',
         data: { title: 'Dashboard' },
         component: DashboardComponent,
+      },
+      {
+        path: 'sms',
+        data: { title: 'Sms' },
+        component: SmsComponent,
+      },
+      {
+        path: 'contacts',
+        data: { title: 'Contacts' },
+        component: ContactsComponent,
+      },
+      {
+        path: 'account',
+        data: { title: 'Account' },
+        component: AccountComponent,
+      },
+      {
+        path: 'subscription',
+        data: { title: 'Subscription' },
+        component: SubscriptionComponent,
       },
 
       // VB:REPLACE-END:ROUTER-CONFIG
@@ -80,6 +104,11 @@ const routes: Routes = [
   declarations: [
     // VB:REPLACE-START:ROUTER-DECLARATIONS
     DashboardComponent,
+    SmsComponent,
+    ContactsComponent,
+    AccountComponent,
+    SubscriptionComponent,
+
     // VB:REPLACE-END:ROUTER-DECLARATIONS
   ],
   providers: [AppPreloader],

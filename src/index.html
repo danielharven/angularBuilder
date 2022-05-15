@@ -2,98 +2,71 @@
 <html lang="en" data-vb-theme="default" data-vb-version="fluent">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Teevo</title>
-  <link rel="shortcut icon" href="favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="theme-color" content="#ffffff" />
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,900&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Mukta:400,700,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/fonts/font-icomoon/style.css">
-  <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/fonts/font-linearicons/style.css">
-  <link rel="stylesheet" type="text/css" href="assets/fonts/font-feathericons/dist/feather.css">
-<!--  <link rel="stylesheet" href="assets/assets/web/assets/mobirise-icons2/mobirise2.css">-->
-<!--  <link rel="stylesheet" href="assets/assets/tether/tether.min.css">-->
-<!--  <link rel="stylesheet" href="assets/assets/bootstrap/css/bootstrap.min.css">-->
-<!--  <link rel="stylesheet" href="assets/assets/bootstrap/css/bootstrap-grid.min.css">-->
-<!--  <link rel="stylesheet" href="assets/assets/bootstrap/css/bootstrap-reboot.min.css">-->
-<!--  <link rel="stylesheet" href="assets/assets/dropdown/css/style.css">-->
-<!--  <link rel="stylesheet" href="assets/assets/socicon/css/styles.css">-->
-<!--  <link rel="stylesheet" href="assets/assets/theme/css/style.css">-->
-<!--  <link rel="preload" as="style" href="assets/assets/mobirise/css/mbr-additional.css">-->
-<!--  <link rel="stylesheet" href="assets/assets/mobirise/css/mbr-additional.css" type="text/css">-->
-
-  <style>
-    .initial__loading {
-      position: fixed;
-      width: 150px;
-      height: 150px;
-      top: 35%;
-      left: 40%;
-      margin: -25px 0 0 -25px
-    }
-
-    .initial__loading svg {
-      width: 200px;
-      height: 200px;
-    }
-
-    .initial__loading svg path {
-      stroke: #4b7cf3;
-      fill: #4b7cf3;
-      stroke-width: 1px;
-      animation: logoAnimate 0.6s ease-in-out infinite;
-    }
-
-    .initial__loading svg path:nth-child(2) {
-      animation-delay: .2s;
-    }
-
-    .initial__loading svg path:nth-child(3) {
-      animation-delay: .4s;
-    }
-
-    @keyframes logoAnimate {
-      0% {
-        stroke: #4b7cf3;
-        fill: #4b7cf3;
-      }
-
-      50% {
-        stroke: #1ad697;
-        fill: #1ad697;
-      }
-
-      100% {
-        stroke: #4b7cf3;
-        fill: #4b7cf3;
-      }
-    }
-  </style>
+    <meta charset="utf-8" />
+    <title>Teevo</title>
+    <link rel="shortcut icon" href="favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mukta:400,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/font-icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/font-linearicons/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/font-feathericons/dist/feather.css">
+    <style>
+        .initial__loading {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            top: 35%;
+            left: 40%;
+            margin: -25px 0 0 -25px
+        }
+        
+        .initial__loading svg {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .initial__loading svg path {
+            stroke: #4b7cf3;
+            fill: #4b7cf3;
+            stroke-width: 1px;
+            animation: logoAnimate 0.6s ease-in-out infinite;
+        }
+        
+        .initial__loading svg path:nth-child(2) {
+            animation-delay: .2s;
+        }
+        
+        .initial__loading svg path:nth-child(3) {
+            animation-delay: .4s;
+        }
+        
+        @keyframes logoAnimate {
+            0% {
+                stroke: #4b7cf3;
+                fill: #4b7cf3;
+            }
+            50% {
+                stroke: #1ad697;
+                fill: #1ad697;
+            }
+            100% {
+                stroke: #4b7cf3;
+                fill: #4b7cf3;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <app-root>
-    <div class="initial__loading">
-    </div>
-  </app-root>
-  <script src="assets/assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="assets/assets/popper/popper.min.js"></script>
-  <script src="assets/assets/tether/tether.min.js"></script>
-  <script src="assets/assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="assets/assets/dropdown/js/nav-dropdown.js"></script>
-  <script src="assets/assets/dropdown/js/navbar-dropdown.js"></script>
-  <script src="assets/assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="assets/assets/parallax/jarallax.min.js"></script>
-  <script src="assets/assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
-  <script src="assets/assets/mbr-testimonials-slider/mbr-testimonials-slider.js"></script>
-  <script src="assets/assets/theme/js/script.js"></script>
-  <script src="assets/assets/formoid/formoid.min.js"></script>
+    <app-root>
+        <div class="initial__loading">
+        </div>
+    </app-root>
 </body>
 
 </html>
