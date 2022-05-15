@@ -1,39 +1,39 @@
 {
   "vb": "1.0.0",
-  "timestamp": 1626076345294,
+  "timestamp": 1652635725821,
   "settings": {
-    "authProvider": "basic-auth",
-    "logo": "ESAPP",
-    "version": "air",
+    "authProvider": "jwt",
+    "logo": "Visual Builder",
+    "version": "fluent",
     "theme": "default",
     "locale": "en-US",
     "isSidebarOpen": false,
     "isSupportChatOpen": false,
     "isMobileView": false,
     "isMobileMenuOpen": false,
-    "isMenuCollapsed": false,
+    "isMenuCollapsed": true,
     "isPreselectedOpen": false,
-    "preselectedVariant": "waves",
+    "preselectedVariant": "default",
     "menuLayoutType": "left",
-    "routerAnimation": "zoom-fadein",
-    "menuColor": "white",
+    "routerAnimation": "slide-fadein-up",
+    "menuColor": "gray",
     "authPagesColor": "gray",
     "isAuthTopbar": true,
-    "primaryColor": "#28a745",
+    "primaryColor": "#4b7cf3",
     "leftMenuWidth": 256,
     "isMenuUnfixed": false,
-    "isMenuShadow": true,
+    "isMenuShadow": false,
     "isTopbarFixed": false,
-    "isTopbarSeparated": true,
+    "isTopbarSeparated": false,
     "isGrayTopbar": false,
-    "isContentMaxWidth": true,
+    "isContentMaxWidth": false,
     "isAppMaxWidth": false,
     "isGrayBackground": false,
     "isCardShadow": true,
     "isSquaredBorders": false,
     "isBorderless": false,
     "layoutMenu": "classic",
-    "layoutTopbar": "none",
+    "layoutTopbar": "v1",
     "layoutBreadcrumbs": "v1",
     "layoutFooter": "v1",
     "flyoutMenuType": "flyout",
@@ -42,223 +42,140 @@
   "config": [
     {
       "key": "__dashboard",
-      "title": "Dashboards",
+      "title": "Dashboard",
       "url": "/dashboard",
-      "icon": "fe fe-home",
-      "expanded": true
+      "icon": "fe fe-home"
     },
     {
-      "title": "L&K Management",
-      "url": "/lkm",
-      "icon": "fe fe-book-open",
-      "key": "pxo5b",
-      "expanded": true,
-      "children": [
-        {
-          "title": "Interview Guide",
-          "url": "/lkm/interviews",
-          "key": "h7aad",
-          "expanded": true
-        },
-        {
-          "title": "My Stories",
-          "url": "/lkm/mystories",
-          "key": "rniyi9",
-          "expanded": true
-        },
-        {
-          "title": "Stories of Change",
-          "url": "/lkm/soc",
-          "key": "tx7k6w",
-          "expanded": true
-        }
-      ]
+      "title": "Sms",
+      "url": "/sms",
+      "icon": "fe fe-mail",
+      "key": "t6vu64"
     },
     {
-      "title": "Matching Grant Facility",
-      "url": "/mgf",
-      "icon": "fe fe-briefcase",
-      "key": "osk3u",
-      "expanded": true,
-      "children": [
-        {
-          "title": "Organizations",
-          "url": "/mgf/org",
-          "key": "exxjo5",
-          "expanded": true
-        },
-        {
-          "title": "Evaluations",
-          "url": "/mgf/evaluations",
-          "key": "pyo5qw"
-        },
-        {
-          "title": "Proposals",
-          "url": "/mgf/proposals",
-          "key": "ou0wkk"
-        },
-        {
-          "title": "Applications",
-          "url": "/mgf/applications",
-          "key": "4hmw"
-        },
-        {
-          "title": "Applicants",
-          "url": "/mgf/applicants",
-          "key": "7019oh",
-          "expanded": true
-        },
-        {
-          "title": "Approvals",
-          "url": "/mgf/approvals",
-          "key": "7s4gfn",
-          "expanded": true
-        },
-        {
-          "title": "Concept Notes",
-          "url": "/mgf/concept-notes",
-          "key": "hl3ks8"
-        }
-      ]
-    },
-    {
-      "title": "Monitoring and Evaluation",
-      "url": "/me",
-      "icon": "fe fe-activity",
-      "key": "o9b8f",
-      "expanded": true,
-      "children": [
-        {
-          "title": "Camp Monthly Schedules",
-          "url": "/me/schedules",
-          "key": "appnar"
-        }
-      ]
-    },
-    {
-      "title": "Capacity Building",
-      "url": "/cbb",
-      "icon": "fe fe-package",
-      "key": "65z1s9",
-      "expanded": true,
-      "children": [
-        {
-          "title": "FaaBS Training topic s",
-          "url": "/cbb/topics",
-          "key": "n2afl"
-        },
-        {
-          "title": "FaaBS Training Attendance",
-          "url": "/cbb/attendance",
-          "key": "ih5ba"
-        },
-        {
-          "title": "Camp Monthly Schedules",
-          "url": "/cbb/schedules",
-          "key": "refa2h"
-        }
-      ]
-    },
-    {
-      "title": "Market Data",
-      "url": "/market",
-      "icon": "fe fe-bar-chart-2",
-      "key": "80pi8",
-      "expanded": true,
-      "children": [
-        {
-          "title": "Commodity Prices",
-          "url": "/prices",
-          "key": "ss6dve"
-        }
-      ]
-    },
-    {
-      "title": "Reports",
-      "url": "/reports",
-      "icon": "fe fe-file-text",
-      "key": "cwm04g",
-      "expanded": true,
-      "children": [
-        {
-          "title": "Training attendance cumulative",
-          "url": "/cumulative",
-          "key": "rfl2mw"
-        }
-      ]
-    },
-    {
-      "title": "User Administration",
-      "url": "/user",
+      "title": "Contacts",
+      "url": "/contacts",
       "icon": "fe fe-users",
-      "key": "2hfvfk",
-      "expanded": true,
-      "children": [
-        {
-          "title": "My Profile",
-          "url": "/user/profile",
-          "key": "oalt1lm"
-        }
-      ]
+      "key": "igsw7m"
+    },
+    {
+      "title": "Account",
+      "url": "/account",
+      "icon": "fe fe-archive",
+      "key": "dfflre"
+    },
+    {
+      "title": "Subscription",
+      "url": "/subscription",
+      "icon": "fe fe-dollar-sign",
+      "key": "t44kvu"
     }
   ],
   "content": {
-    "h7aad": [
+    "t6vu64": [
       {
-        "key": "gqd71",
+        "key": "m6cph",
         "columns": [
           {
-            "key": "klimgf",
-            "className": "col-lg-6 col-md-12",
-            "cards": []
+            "key": "18hqct",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "0kmxt",
+                "extraClass": "card card-top card-top-success",
+                "widgets": [
+                  {
+                    "key": "f1ofz",
+                    "name": "Headers-CardHeader",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Welocome to the SMS section"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "8aj6om",
+        "columns": [
+          {
+            "key": "anaj4b",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "9vqgl",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "h4sw0r",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Delivered SMS"
+                    }
+                  },
+                  {
+                    "key": "lg4omog",
+                    "name": "WidgetsTables-5"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "key": "pbj1dm",
-            "className": "col-lg-6 col-md-12",
-            "cards": []
-          }
-        ]
-      },
-      {
-        "key": "720abe",
-        "columns": [
-          {
-            "key": "24gyhv",
-            "className": "col-lg-12",
+            "key": "n3omfk",
+            "className": "col-lg-4 col-md-12",
             "cards": [
               {
-                "key": "z9bf47",
+                "key": "qfej75",
                 "extraClass": "card card-top card-top-primary",
                 "widgets": [
                   {
-                    "key": "d2xobc",
-                    "name": "Headers-Heading2",
+                    "key": "t1rffs",
+                    "name": "Headers-Heading",
                     "editable": true,
                     "dataType": "object",
                     "wrapper": "card-header",
                     "data": {
-                      "title": "Interview Guide",
-                      "description": "Welcome to the interview guide section."
+                      "title": "Send New SMS"
                     }
                   },
                   {
-                    "key": "pa7it",
-                    "name": "Typography-3"
-                  },
+                    "key": "nptpw6",
+                    "name": "Forms-3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "1iyaxo",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "86jp7c",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
                   {
-                    "key": "7hmdcc",
-                    "name": "Controls-Button2",
+                    "key": "6tub1h",
+                    "name": "Headers-Heading",
                     "editable": true,
                     "dataType": "object",
+                    "wrapper": "card-header",
                     "data": {
-                      "title": "Download Template",
-                      "icon": "fe fe-download",
-                      "type": "primary"
+                      "title": "Received SMS (PAID)"
                     }
                   },
                   {
-                    "key": "ikfkw",
-                    "name": "WidgetsTables-2"
+                    "key": "ds719",
+                    "name": "TablesAntd-7"
                   }
                 ]
               }
@@ -267,47 +184,28 @@
         ]
       }
     ],
-    "rniyi9": [
+    "igsw7m": [
       {
-        "key": "liwese",
+        "key": "eylsle",
         "columns": [
           {
-            "key": "e9senj",
+            "key": "anl20d",
             "className": "col-lg-12",
             "cards": [
               {
-                "key": "e2115i",
-                "extraClass": "card card-top card-top-primary",
+                "key": "vreu2c",
+                "extraClass": "card card-top card-top-success",
                 "widgets": [
                   {
-                    "key": "8fb4sc",
+                    "key": "0p52jh",
                     "name": "Headers-Heading2",
                     "editable": true,
                     "dataType": "object",
                     "wrapper": "card-header",
                     "data": {
-                      "title": "My Stories of Change",
-                      "description": "Welcome to my stories section."
+                      "title": "Contacts and Mailing List",
+                      "description": "You can manage your contacts and mailing list on this page"
                     }
-                  },
-                  {
-                    "key": "kdk0g9",
-                    "name": "Typography-3"
-                  },
-                  {
-                    "key": "yoi50m",
-                    "name": "Controls-Button2",
-                    "editable": true,
-                    "dataType": "object",
-                    "data": {
-                      "title": "New Story of Change",
-                      "icon": "fe fe-plus-circle",
-                      "type": "primary"
-                    }
-                  },
-                  {
-                    "key": "m2lam",
-                    "name": "WidgetsTables-3"
                   }
                 ]
               }
@@ -316,76 +214,68 @@
         ]
       },
       {
-        "key": "497u1",
+        "key": "vcd2ze",
         "columns": [
           {
-            "key": "tpxvbf",
-            "className": "col-lg-12",
+            "key": "af4n9",
+            "className": "col-lg-4 col-md-12",
             "cards": [
               {
-                "key": "6f2dz",
+                "key": "otd3f",
                 "extraClass": "card card-top card-top-primary",
                 "widgets": [
                   {
-                    "key": "d0qz9",
-                    "name": "WidgetsGeneral-11v1",
-                    "wrapper": false
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "tx7k6w": [
-      {
-        "key": "gha3ql",
-        "columns": [
-          {
-            "key": "qw1gqk",
-            "className": "col-lg-12",
-            "cards": [
-              {
-                "key": "wtu5qn",
-                "extraClass": "card card-top card-top-primary",
-                "widgets": [
-                  {
-                    "key": "3d4ekl",
-                    "name": "Headers-Heading2",
+                    "key": "0jwqms",
+                    "name": "Headers-Heading3",
                     "editable": true,
                     "dataType": "object",
                     "wrapper": "card-header",
                     "data": {
-                      "title": "Stories of Change",
-                      "description": "Welcome to stories of change section."
+                      "title": "Contact List",
+                      "button": "Add New",
+                      "url": "#"
                     }
                   },
                   {
-                    "key": "sn1ni",
-                    "name": "Typography-3"
-                  },
-                  {
-                    "key": "0tqkv",
+                    "key": "5gy07j",
                     "name": "WidgetsTables-3"
                   }
                 ]
               }
             ]
-          }
-        ]
-      }
-    ],
-    "ozn14l": [
-      {
-        "key": "hpj7d",
-        "columns": [
+          },
           {
-            "key": "sq7qyk",
-            "className": "col-lg-12",
+            "key": "njbjai",
+            "className": "col-lg-4 col-md-12",
             "cards": [
               {
-                "key": "cck9w",
+                "key": "c6e8sm",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "hiwjiq",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Mailing List"
+                    }
+                  },
+                  {
+                    "key": "yvfr5o",
+                    "name": "TablesAntd-7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "tr9wmp",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "v66w0q",
                 "extraClass": "card card-top card-top-primary",
                 "widgets": []
               }
@@ -394,100 +284,26 @@
         ]
       }
     ],
-    "exxjo5": [
+    "dfflre": [
       {
-        "key": "rgi56i",
+        "key": "zt5ycx",
         "columns": [
           {
-            "key": "36lex",
+            "key": "rgntep",
             "className": "col-lg-12",
             "cards": [
               {
-                "key": "f0rg4f",
-                "extraClass": "card card-top card-top-primary",
+                "key": "6xdcl",
+                "extraClass": "card card-top card-top-success",
                 "widgets": [
                   {
-                    "key": "un1zr",
+                    "key": "0xicb5",
                     "name": "Headers-Heading",
                     "editable": true,
                     "dataType": "object",
                     "wrapper": "card-header",
                     "data": {
-                      "title": "MGF Organizations"
-                    }
-                  },
-                  {
-                    "key": "ipymqs",
-                    "name": "TablesAntd-6"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "appnar": [
-      {
-        "key": "hp65i",
-        "columns": [
-          {
-            "key": "udvvto",
-            "className": "col-lg-12",
-            "cards": [
-              {
-                "key": "ym7g4",
-                "extraClass": "card card-top card-top-primary",
-                "widgets": [
-                  {
-                    "key": "rcixnu",
-                    "name": "Headers-Heading2",
-                    "editable": true,
-                    "dataType": "object",
-                    "wrapper": "card-header",
-                    "data": {
-                      "title": "Instructions",
-                      "description": "Welcome to the camp monthly schedules."
-                    }
-                  }
-                ]
-              },
-              {
-                "key": "13dqxn",
-                "extraClass": "card",
-                "widgets": [
-                  {
-                    "key": "ufpd2u",
-                    "name": "AppPartials-Calendar"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "ss6dve": [
-      {
-        "key": "i9z57",
-        "columns": [
-          {
-            "key": "8td9u",
-            "className": "col-lg-12",
-            "cards": [
-              {
-                "key": "ikar3a",
-                "extraClass": "card card-top card-top-primary",
-                "widgets": [
-                  {
-                    "key": "ic5wkn",
-                    "name": "Headers-Heading2",
-                    "editable": true,
-                    "dataType": "object",
-                    "wrapper": "card-header",
-                    "data": {
-                      "title": "Commodity Prices",
-                      "description": "Welcome to the commodity prices section."
+                      "title": "Account Section"
                     }
                   }
                 ]
@@ -497,35 +313,101 @@
         ]
       },
       {
-        "key": "97k6jd",
+        "key": "cil4xd",
         "columns": [
           {
-            "key": "25yn3t",
+            "key": "ioyhbh",
             "className": "col-lg-4 col-md-12",
             "cards": [
               {
-                "key": "z8cfpl",
+                "key": "mwka8a",
                 "extraClass": "card card-top card-top-primary",
                 "widgets": [
                   {
-                    "key": "iu6b1b",
-                    "name": "Crypto-CryptoList"
+                    "key": "apur1",
+                    "name": "Typography-3"
                   }
                 ]
               }
             ]
           },
           {
-            "key": "j0fi7e",
+            "key": "vl3hh",
             "className": "col-lg-8 col-md-12",
             "cards": [
               {
-                "key": "h7rxdf",
+                "key": "6i8o6l",
                 "extraClass": "card card-top card-top-primary",
                 "widgets": [
                   {
-                    "key": "ysm3ma",
-                    "name": "Crypto-CryptoChart"
+                    "key": "d9icua",
+                    "name": "Forms-3"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "t44kvu": [
+      {
+        "key": "4bydc",
+        "columns": [
+          {
+            "key": "4vcpjo",
+            "className": "col-lg-12",
+            "cards": [
+              {
+                "key": "ei3wzo",
+                "extraClass": "card card-top card-top-success",
+                "widgets": [
+                  {
+                    "key": "14v50j",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Billing Information"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "6g25d9",
+        "columns": [
+          {
+            "key": "tkcrne",
+            "className": "col-lg-4 col-md-12",
+            "cards": [
+              {
+                "key": "tuq2v",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "tfzuf4",
+                    "name": "Typography-3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "mumjhc",
+            "className": "col-lg-8 col-md-12",
+            "cards": [
+              {
+                "key": "l6k4x",
+                "extraClass": "card card-top card-top-primary",
+                "widgets": [
+                  {
+                    "key": "po98b",
+                    "name": "WidgetsGeneral-12v3"
                   }
                 ]
               }
@@ -536,206 +418,84 @@
     ],
     "__dashboard": [
       {
-        "key": "lyze6j",
+        "key": "r710ti",
         "columns": [
           {
-            "key": "wsynbr",
-            "className": "col-lg-12",
-            "cards": [
-              {
-                "key": "rlbypg",
-                "extraClass": "card card-top card-top-primary",
-                "widgets": [
-                  {
-                    "key": "184ghf",
-                    "name": "WidgetsGeneral-22"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "wv4a5",
-        "columns": [
-          {
-            "key": "lbpedu",
-            "className": "col-lg-6 col-md-12",
-            "cards": [
-              {
-                "key": "nl1seu",
-                "extraClass": "card",
-                "widgets": [
-                  {
-                    "key": "cei4oe",
-                    "name": "WidgetsLists-1"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "key": "xgt7s",
-            "className": "col-lg-6 col-md-12",
-            "cards": [
-              {
-                "key": "2akz19",
-                "extraClass": "card",
-                "widgets": [
-                  {
-                    "key": "8idhk",
-                    "name": "WidgetsLists-1"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "6vquv",
-        "columns": [
-          {
-            "key": "l92fkl",
-            "className": "col-lg-12",
-            "cards": [
-              {
-                "key": "6mzj8x",
-                "extraClass": "card card-top card-top-primary",
-                "widgets": [
-                  {
-                    "key": "0qc9be",
-                    "name": "WidgetsTables-7"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "oalt1lm": [
-      {
-        "key": "b2muxk",
-        "columns": [
-          {
-            "key": "zqz73",
+            "key": "661k7",
             "className": "col-lg-4 col-md-12",
             "cards": [
               {
-                "key": "bslbyb",
-                "extraClass": "card card-top card-top-primary",
+                "key": "ylonm",
+                "extraClass": "card card-top card-top-success",
                 "widgets": [
                   {
-                    "key": "zgt4zt",
-                    "name": "WidgetsGeneral-23"
+                    "key": "oplbup",
+                    "name": "Headers-Heading",
+                    "editable": true,
+                    "dataType": "object",
+                    "wrapper": "card-header",
+                    "data": {
+                      "title": "Credit"
+                    }
+                  },
+                  {
+                    "key": "fet1bg",
+                    "name": "WidgetsCharts-11",
+                    "wrapper": false
                   }
                 ]
               }
             ]
           },
           {
-            "key": "u65g6",
-            "className": "col-lg-8 col-md-12",
+            "key": "ia3eue",
+            "className": "col-lg-4 col-md-12",
             "cards": [
               {
-                "key": "gnscvs",
-                "extraClass": "card card-top card-top-primary",
+                "key": "53yhu",
+                "extraClass": "card card-top card-top-success",
                 "widgets": [
                   {
-                    "key": "t0kpjr",
-                    "name": "Headers-CardHeaderTabbed2",
+                    "key": "xpi95g",
+                    "name": "Headers-Heading",
                     "editable": true,
                     "dataType": "object",
-                    "wrapper": "card-header py-0",
+                    "wrapper": "card-header",
                     "data": {
-                      "title": "Defaults"
+                      "title": "Outgoing"
                     }
                   },
                   {
-                    "key": "m44a2nf",
-                    "name": "Forms-1"
+                    "key": "m7rbgg",
+                    "name": "WidgetsCharts-11v1",
+                    "wrapper": false
                   }
                 ]
               }
             ]
-          }
-        ]
-      }
-    ],
-    "n2afl": [
-      {
-        "key": "ilyx1",
-        "columns": [
+          },
           {
-            "key": "do47xk",
-            "className": "col-lg-12",
+            "key": "5zmon",
+            "className": "col-lg-4 col-md-12",
             "cards": [
               {
-                "key": "xqnkl",
-                "extraClass": "card card-top card-top-primary",
+                "key": "96f26f",
+                "extraClass": "card card-top card-top-success",
                 "widgets": [
                   {
-                    "key": "jpi0xh",
-                    "name": "Headers-Heading2",
+                    "key": "rg2mbh",
+                    "name": "Headers-Heading",
                     "editable": true,
                     "dataType": "object",
                     "wrapper": "card-header",
                     "data": {
-                      "title": "FaaBS Training Topics ",
-                      "description": "Welcome to the FaaBS Training Topics section."
+                      "title": "Mbasela"
                     }
-                  }
-                ]
-              },
-              {
-                "key": "1s5xbt",
-                "extraClass": "card",
-                "widgets": [
+                  },
                   {
-                    "key": "rayz2k",
-                    "name": "WidgetsTables-3"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "ih5ba": [
-      {
-        "key": "orsqh",
-        "columns": [
-          {
-            "key": "dwgjna",
-            "className": "col-lg-12",
-            "cards": [
-              {
-                "key": "n16aom",
-                "extraClass": "card card-top card-top-primary",
-                "widgets": [
-                  {
-                    "key": "5d51tq",
-                    "name": "Headers-Heading2",
-                    "editable": true,
-                    "dataType": "object",
-                    "wrapper": "card-header",
-                    "data": {
-                      "title": "FaaBS Training Attendance",
-                      "description": "Welcome to the FTA section."
-                    }
-                  }
-                ]
-              },
-              {
-                "key": "w7ikf2",
-                "extraClass": "card",
-                "widgets": [
-                  {
-                    "key": "9eys9o",
-                    "name": "WidgetsTables-3"
+                    "key": "ht3w1",
+                    "name": "WidgetsCharts-11v2",
+                    "wrapper": false
                   }
                 ]
               }
