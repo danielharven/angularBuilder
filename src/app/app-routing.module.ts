@@ -25,19 +25,6 @@ import { MyComponentsModule } from './components/my-components.module'
 const routes: Routes = [
   {
     path: '',
-    // VB:REPLACE-NEXT-LINE:ROUTER-REDIRECT
-    component: DashboardComponent,
-    data: { title: 'Dashboard' },
-    pathMatch: 'full',
-  },
-  {
-    path: 'home',
-    // VB:REPLACE-NEXT-LINE:ROUTER-REDIRECT
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
-  {
-    path: 'dashboard',
     component: LayoutMainComponent,
     canActivate: [AuthGuard],
     children: [

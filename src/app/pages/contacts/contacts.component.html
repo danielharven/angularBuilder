@@ -15,10 +15,15 @@
       <div class="card card-top card-top-primary">
         <div class="card-header">
           <vb-headers-heading-3
-            [data]="{'title':'Contact List','button':'Add New','url':'#'}"
+            [data]="{'title':'Contact List','button':'Add New'}"
           ></vb-headers-heading-3>
+          <a class="btn btn-light" target="_blank" rel="noopener noreferrer">
+          <span>Add New </span>
+        </a>
         </div>
-        <div class="card-body"><vb-widgets-tables-3></vb-widgets-tables-3></div>
+        <div class="card-body">
+          <app-customers-table></app-customers-table>
+        </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-12">

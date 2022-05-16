@@ -6,7 +6,7 @@ export const initialState: object = {
   role: '',
   email: '',
   avatar: '',
-  authorized: false,
+  authorized: true,
   loading: false,
 }
 
