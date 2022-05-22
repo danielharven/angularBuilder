@@ -16,7 +16,7 @@ import {FormlyFieldConfig} from "@ngx-formly/core";
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-5 col-md-12 d-flex ">
+        <div class="col-lg-9 col-md-12 d-flex ">
           <nz-tabset>
             <nz-tab nzTitle="Delivered SMS">
           <div class="card card-top card-top-primary">
