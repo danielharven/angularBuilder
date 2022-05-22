@@ -16,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { NavComponent } from './nav/nav.component'
 import { FooterComponent } from './Footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { CustomersTableComponent } from './customers-table/customers-table.component'
+import { CustomersTableComponent } from './customers-table/customers-table.component';
+import { UploaderComponent } from './shared/uploader/uploader.component'
 
 const COMPONENTS = [
   FieldNgSelect,
@@ -43,7 +44,7 @@ const COMPONENTS = [
     FormlySelectModule,
     NgSelectModule,
   ],
-  declarations: [...COMPONENTS, HomeComponent, CustomersTableComponent],
-  exports: [...COMPONENTS, CustomersTableComponent],
+  declarations: [...COMPONENTS, HomeComponent, CustomersTableComponent, UploaderComponent],
+    exports: [...COMPONENTS, CustomersTableComponent, UploaderComponent],
 })
 export class MyComponentsModule {}

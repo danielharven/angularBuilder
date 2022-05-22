@@ -41,10 +41,31 @@ import {FormlyFieldConfig} from "@ngx-formly/core";
         </nz-tab>
         <nz-tab nzTitle="Create a Contact" [nzForceRender]="true">
         <ng-container nz-tab>
-        <form [formGroup]="form" (ngSubmit)="createItem(model)">
-          <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+          <div class="row">
+            <div class="col-sm-12">
+                <form
+                  nz-form
+                  [formGroup]="form" (ngSubmit)="createItem(model)">
+                  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+                  <button type="submit" class="btn btn-default">Submit</button>
+                  <br>
+                </form>
+              <p>Or upload a CSV document with Contacts download <a style="color:greenyellow" href="">format here</a></p>
+              <nz-form-item>
+                <nz-upload nzType="drag" [nzMultiple]="false" [nzLimit]="1"
+                           nzAction="https://jsonplaceholder.typicode.com/posts/">
+                  <p class="ant-upload-drag-icon">
+                    <i nz-icon nzType="inbox"></i>
+                  </p>
+                  <p class="ant-upload-text">Upload CSV document of contacts</p>
+                  <p class="ant-upload-hint">
+                    Support for bulk upload
+                  </p>
+                </nz-upload>
+              </nz-form-item>
+            </div>
+          </div>
+
       </ng-container>
         </nz-tab>
         <nz-tab nzTitle="Mailing List" [nzForceRender]="true">
@@ -101,10 +122,14 @@ import {FormlyFieldConfig} from "@ngx-formly/core";
         </nz-tab>
         <nz-tab nzTitle="Create a Mailing List" [nzForceRender]="true">
         <ng-container nz-tab>
-        <form [formGroup]="mailListCreateForm" (ngSubmit)="createMailListItem(model)">
-          <formly-form [form]="mailListCreateForm" [fields]="mailListCreatefields" [model]="mailListCreatemodel"></formly-form>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+
+            <form [formGroup]="mailListCreateForm" (ngSubmit)="createMailListItem(mailListCreatemodel)">
+            <formly-form [form]="mailListCreateForm" [fields]="mailListCreatefields" [model]="mailListCreatemodel"></formly-form>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+
+          <nz-form-item></nz-form-item>
+
       </ng-container>
         </nz-tab>
       </nz-tabset>
@@ -204,8 +229,8 @@ export class CustomersTableComponent implements OnInit {
       key: 'name',
       type: 'input',
       templateOptions: {
-        label: 'Customer Full Names',
-        placeholder: 'Dalisto Benard',
+        label: 'Mailing List Name',
+        placeholder: 'Paid Customers',
         required: true,
       }
     },
@@ -214,7 +239,7 @@ export class CustomersTableComponent implements OnInit {
       type: 'textarea',
       templateOptions: {
         label: 'Description',
-        placeholder: 'Phone Number',
+        placeholder: 'Customers who have active accounts with us',
         required: true,
       }
     } ,

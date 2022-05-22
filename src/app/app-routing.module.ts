@@ -19,6 +19,7 @@ import { ContactsComponent } from './pages/contacts/contacts.component'
 import { AccountComponent } from './pages/account/account.component'
 import { SubscriptionComponent } from './pages/subscription/subscription.component'
 import { MyComponentsModule } from './components/my-components.module'
+import {FormlyModule} from "@ngx-formly/core";
 
 // VB:REPLACE-END:ROUTER-IMPORTS
 
@@ -87,6 +88,7 @@ const routes: Routes = [
     LayoutsModule,
     WidgetsComponentsModule,
     MyComponentsModule,
+    FormlyModule,
   ],
   declarations: [
     // VB:REPLACE-START:ROUTER-DECLARATIONS
