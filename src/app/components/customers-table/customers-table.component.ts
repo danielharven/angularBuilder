@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {FormlyFieldConfig} from "@ngx-formly/core";
+import {HttpService} from "../../services/http.service";
 
 @Component({
   selector: 'app-customers-table',
@@ -182,9 +183,25 @@ export class CustomersTableComponent implements OnInit {
     }
   ];
   // end create variables
-  constructor() { }
+  // Pagination variables
+  page =1;
+  limit=20;
+
+  // End Pagination variables
+  constructor(private http: HttpService) { }
 
   ngOnInit(): void {
+    this.getPaginatedContacts(this.page,this.limit,"names","")
+  }
+  async getPaginatedContacts(page,limit,searchTerm,search,sort=""
+  ){
+    let api="/contacts";
+     api =this.http.paginationService({
+       api,page,search,searchTerm,limit
+     });
+     let method="get";
+     let resp = await this.http.makeCall({api,method})
+    console.log(resp)
   }
 
   // create Modal functions
