@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
-import qs from 'qs'
+import {parse} from 'qs'
 import { Router, NavigationEnd, ActivatedRoute, NavigationStart } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 import { filter, map, mergeMap } from 'rxjs/operators'
@@ -98,7 +98,7 @@ export class AppComponent implements OnInit {
       .subscribe((event: NavigationStart) => {
         const queryString = event.url.match(/\?(.*)/)
         if (queryString) {
-          const queryParams = qs.parse(queryString[1])
+          const queryParams = parse(queryString[1])
           console.log(queryParams)
           const keys = Object.keys(queryParams)
           if (keys.length) {

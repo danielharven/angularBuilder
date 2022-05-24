@@ -1,15 +1,33 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {FormlyFieldConfig} from "@ngx-formly/core";
 import {HttpService} from "../../services/http.service";
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 @Component({
   selector: 'app-customers-table',
   template: `
+    <ng-template #loadingTemplate>
+      <div class="ant-notification-notice-content">
+        <div class="ant-notification-notice-with-icon">
+          <span class="ant-notification-notice-icon">
+            <i nz-icon nzType="loading" style="color: rgb(16, 142, 233);"></i>
+          </span>
+          <div class="ant-notification-notice-message">loading...</div>
+        </div>
+      </div>
+    </ng-template>
+
     <div class="table-responsive text-nowrap">
       <nz-tabset class="tabs" [nzSelectedIndex]="0">
         <nz-tab nzTitle="Contact List" [nzForceRender]="true">
-          <nz-table #basicTable [nzData]="tableData" [nzShowPagination]="false" class="table mb-4">
+          <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input (keydown)="searchMyContacts()" [(ngModel)]="searchText" type="text" nz-input placeholder="input search text" />
+          </nz-input-group>
+          <ng-template #suffixIconButton>
+            <button (click)="searchMyContacts()" nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+          </ng-template>
+          <nz-table #basicTable [nzData]="tableData" [nzFrontPagination]="false" [nzShowPagination]="true" class="table mb-4">
             <thead>
             <tr>
               <th class="bg-transparent">Names</th>
@@ -20,25 +38,43 @@ import {HttpService} from "../../services/http.service";
             <tbody>
             <tr *ngFor="let data of basicTable.data">
               <td>
-                <div>{{data.names}}</div>
-                <div class="text-gray-4">{{data.phone}}</div>
+                <div>{{data.name}}</div>
+                <div class="text-gray-4">{{data.email}}</div>
               </td>
               <td>
                 <a href="javascript: void(0);" class="text-blue">
-                  {{data.email}}
+                  {{data.phone}}
                 </a>
               </td>
               <td class="text-right">
-                <button type="button" class="btn btn-primary mr-2">
-                  <i class="fe fe-trash-circle"></i>
+                <button (nzOnConfirm)="delete(data)" nz-popconfirm nzPopconfirmTitle="Are you sure you want to delete?" [nzIcon]="iconTpl"  type="button" class="btn btn-danger mr-2">
+                  <i class="fe fe-trash"></i>
+                  <ng-template #iconTpl>
+                    <i nz-icon nzType="question-circle-o" style="color: red;"></i>
+                  </ng-template>
                 </button>
-                <button type="button" class="btn btn-light">
+                <button (click)="edit(data)" type="button" class="btn btn-light">
                   <i class="fe fe-edit text-blue"></i>
                 </button>
               </td>
             </tr>
             </tbody>
           </nz-table>
+
+          <nz-modal [(nzVisible)]="isEditContact"
+                    nzTitle="Edit Contact "
+                    (nzOnCancel)="handleCancelEditContactModal()" (nzOnOk)="handleOkContactModal()">
+            <ng-container *nzModalContent>
+              <form
+                nz-form
+                [formGroup]="editContactform" (ngSubmit)="editContactItem(editContactModal)">
+                <formly-form [form]="editContactform" [fields]="editContactFields" [model]="editContactModal"></formly-form>
+                <button type="submit" class="btn btn-default">Submit</button>
+                <br>
+              </form>
+            </ng-container>
+          </nz-modal>
+
         </nz-tab>
         <nz-tab nzTitle="Create a Contact" [nzForceRender]="true">
         <ng-container nz-tab>
@@ -148,6 +184,7 @@ import {HttpService} from "../../services/http.service";
   styleUrls: ['./customers-table.component.scss']
 })
 export class CustomersTableComponent implements OnInit {
+  @ViewChild("loadingTemplate") loadingTemplate: TemplateRef<any>
   tableData =[]
   mailListData =[]
   // create variables
@@ -184,32 +221,103 @@ export class CustomersTableComponent implements OnInit {
   ];
   // end create variables
   // Pagination variables
-  page =1;
+  page =0;
   limit=20;
 
   // End Pagination variables
-  constructor(private http: HttpService) { }
+  processing = false;
+  searchText: any;
+  contactsApi = '/customers'
+  constructor(private http: HttpService,private notification: NzNotificationService) { }
 
   ngOnInit(): void {
-    this.getPaginatedContacts(this.page,this.limit,"names","")
+    this.getPaginatedContacts(this.page,this.limit,["name"],"")
   }
-  async getPaginatedContacts(page,limit,searchTerm,search,sort=""
+  searchMyContacts() {
+    this.getPaginatedContacts(this.page,this.limit,["name","phone","email"],this.searchText)
+  }
+  async getPaginatedContacts(page,limit,searchTerm,search,sort="CreatedAt"
   ){
-    let api="/contacts";
-     api =this.http.paginationService({
-       api,page,search,searchTerm,limit
+
+     let api =this.http.paginationService({
+       api:this.contactsApi,page,search,searchTerm,limit
      });
      let method="get";
      let resp = await this.http.makeCall({api,method})
-    console.log(resp)
+    if(resp){
+      console.log(resp)
+      this.tableData=resp;
+    }
   }
 
-  // create Modal functions
+  // create contatc functions
   handleCancel(){}
   handleOk(){}
 
   createItem(data){}
+// Edit Contacts fields
+  isEditContact: any;
+  editContactform = new FormGroup({})
+  editContactModal: { phone: any; name: any; id: any; email: any } = {email:"",name:"",phone:"",id:""}
+  editContactFields : FormlyFieldConfig[] = [
+    {
+      key: 'name',
+      type: 'input',
+      templateOptions: {
+        label: 'Customer Full Names',
+        placeholder: 'Dalisto Benard',
+        required: true,
+      }
+    },
+    {
+      key: 'phone',
+      type: 'input',
+      templateOptions: {
+        label: 'Phone Number',
+        placeholder: 'Phone Number',
+        required: true,
+      }
+    } ,   {
+      key: 'email',
+      type: 'input',
+      templateOptions: {
+        label: 'Email address (optional)',
+        placeholder: 'Enter email ',
+        required: false,
+      }
+    }
+  ];
+  delete(data: any) {
 
+  }
+
+  edit(data: any) {
+    let {name,email,phone,id} = data
+    this.editContactModal = {
+      name, email, phone,id
+    }
+    this.isEditContact = true;
+  }
+  handleOkContactModal() {
+    this.isEditContact = false;
+    this.editContactItem(this.editContactModal)
+  }
+
+  async editContactItem(model: { phone: string; name: string; email: string }) {
+    this.isEditContact = false
+    this.showLoading()
+    let method = "put";
+    let api = "/customers"
+    let data:any = {...model}
+    let call = await this.http.makeCall({method,api,data})
+    this.hideLoading();
+    if(call){
+      this.http.showCustomerMsg.success("Update was a success")
+    }else{
+      this.http.showCustomerMsg.error("Update failed...")
+    }
+  }
+// End Edit Contact Field
   // view mail list table
   inputVisible = false;
   inputValue="";
@@ -273,4 +381,21 @@ export class CustomersTableComponent implements OnInit {
   ];
   createMailListItem(data){}
   //end create a mailling list
+
+
+  handleCancelEditContactModal() {
+    this.isEditContact  =false
+  }
+
+  showLoading(){
+    this.processing = true
+    this.notification.template(this.loadingTemplate,{nzDuration:0});
+  }
+  hideLoading(){
+    this.processing = true
+    this.notification.remove()
+  }
+
+
+
 }

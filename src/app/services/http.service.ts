@@ -14,7 +14,9 @@ export class HttpService {
   constructor(private http: HttpClient,
               private msg: NzNotificationService) { }
 
- async  makeCall({method,data={},api}){
+ async  makeCall({method,data={
+   id: ""
+ },api}){
     let myApi = API+api
    method = method.toString().toLocaleLowerCase();
     switch (method) {
@@ -32,7 +34,26 @@ export class HttpService {
         if(!resp) {
           this.handleCallError(resp)
         }
-
+        return resp
+        break
+      }
+      case "put":{
+        myApi = myApi+"/"+data.id;
+        let token = localStorage.getItem('token')
+        let resp = null;
+        if(token){
+          let headers = {
+            Authorization:'Bearer '+token
+          }
+          resp = await this.http.put(myApi,data,{headers}).toPromise()
+        }else{
+          resp = await this.http.put(myApi,data).toPromise()
+        }
+        if(!resp) {
+          this.handleCallError(resp)
+          return false;
+        }
+        return resp
         break
       }
     }
@@ -41,16 +62,20 @@ export class HttpService {
     console.log(resp)
   }
 
-  paginationService({api,page,limit,sortBy=undefined,sortOrder="DESC",searchTerm,search=''}){
-    let seeke =`{
-    "${searchTerm}_contains":"${search}"
-    }`
-    if(!sortBy) sortBy=searchTerm
-    let seek = JSON.parse(seeke);
+  paginationService({api,page,limit,sortBy=undefined,sortOrder="DESC",searchTerm=[],search=''}){
+
+    let seek ={}
+    for(let ss of searchTerm){
+      seek[`${ss}_contains`]=search
+    }
+    const seekArray = Object.entries(seek).map(item=>({[item[0]]:item[1]}))
+    if(!sortBy) sortBy=searchTerm[0]
     let apiString = stringify({
       _start:page,
       _limit:limit,
-      _where:[{...seek}]
+      _where:{
+        _or:seekArray
+    }
     })
     if(api.includes('?')){
       api=api+"&"+apiString;
@@ -58,5 +83,16 @@ export class HttpService {
       api=api+"?"+apiString;
     }
     return api;
+  }
+  showCustomerMsg={
+    success:msg=>{
+      this.msg.success("ZedSMS",msg)
+    },
+    error:msg=>{
+      this.msg.error("ZedSMS Error",msg)
+    },
+    info:msg=>{
+      this.msg.info("ZedSMS",msg)
+    },
   }
 }
