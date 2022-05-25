@@ -56,6 +56,43 @@ export class HttpService {
         return resp
         break
       }
+      case "delete":{
+        myApi = myApi+"/"+data.id;
+        let token = localStorage.getItem('token')
+        let resp = null;
+        if(token){
+          let headers = {
+            Authorization:'Bearer '+token
+          }
+          resp = await this.http.delete(myApi,{headers}).toPromise()
+        }else{
+          resp = await this.http.delete(myApi).toPromise()
+        }
+        if(!resp) {
+          this.handleCallError(resp)
+          return false;
+        }
+        return resp
+        break
+      }
+      case "post":{
+        let token = localStorage.getItem('token')
+        let resp = null;
+        if(token){
+          let headers = {
+            Authorization:'Bearer '+token
+          }
+          resp = await this.http.post(myApi,data,{headers}).toPromise()
+        }else{
+          resp = await this.http.post(myApi,data).toPromise()
+        }
+        if(!resp) {
+          this.handleCallError(resp)
+          return false;
+        }
+        return resp
+        break
+      }
     }
   }
   async handleCallError(resp: any){

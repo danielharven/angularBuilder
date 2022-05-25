@@ -21,9 +21,15 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
     <div class="table-responsive text-nowrap">
       <nz-tabset class="tabs" [nzSelectedIndex]="0">
         <nz-tab nzTitle="Contact List" [nzForceRender]="true">
-          <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-            <input (keydown)="searchMyContacts()" [(ngModel)]="searchText" type="text" nz-input placeholder="input search text" />
-          </nz-input-group>
+          <div class="row ">
+            <div class="col-md-10 d-flex justify-content-between">
+              <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                <input (keydown)="searchMyContacts()" [(ngModel)]="searchText" type="text" nz-input placeholder="type to search" />
+              </nz-input-group>
+              <div (click)="showCreateContactModal=true" class="btn btn-outline-primary">Create Contact</div>
+            </div>
+         </div>
+
           <ng-template #suffixIconButton>
             <button (click)="searchMyContacts()" nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
           </ng-template>
@@ -75,35 +81,19 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
             </ng-container>
           </nz-modal>
 
-        </nz-tab>
-        <nz-tab nzTitle="Create a Contact" [nzForceRender]="true">
-        <ng-container nz-tab>
-          <div class="row">
-            <div class="col-sm-12">
-                <form
-                  nz-form
-                  [formGroup]="form" (ngSubmit)="createItem(model)">
-                  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-                  <button type="submit" class="btn btn-default">Submit</button>
-                  <br>
-                </form>
+          <nz-modal [(nzVisible)]="showCreateContactModal" nzTitle="Create Contact or upload" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+            <ng-container *nzModalContent>
+              <form [formGroup]="form" (ngSubmit)="createItem(model)">
+                <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+                <button [disabled]="!form.valid" type="submit" class="btn btn-default">Submit</button>
+              </form>
               <p>Or upload a CSV document with Contacts download <a style="color:greenyellow" href="">format here</a></p>
               <nz-form-item>
-                <nz-upload nzType="drag" [nzMultiple]="false" [nzLimit]="1"
-                           nzAction="https://jsonplaceholder.typicode.com/posts/">
-                  <p class="ant-upload-drag-icon">
-                    <i nz-icon nzType="inbox"></i>
-                  </p>
-                  <p class="ant-upload-text">Upload CSV document of contacts</p>
-                  <p class="ant-upload-hint">
-                    Support for bulk upload
-                  </p>
-                </nz-upload>
+                <app-uploader fileTypes="application/csv"  fileSize="100000"  hint="Upload CSV of contacts"></app-uploader>
               </nz-form-item>
-            </div>
-          </div>
+            </ng-container>
+          </nz-modal>
 
-      </ng-container>
         </nz-tab>
         <nz-tab nzTitle="Mailing List" [nzForceRender]="true">
         <ng-container nz-tab>
@@ -172,14 +162,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
       </nz-tabset>
     </div>
 
-    <nz-modal [(nzVisible)]="showCreateModal" nzTitle="Create" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-      <ng-container *nzModalContent>
-        <form [formGroup]="form" (ngSubmit)="createItem(model)">
-          <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-      </ng-container>
-    </nz-modal>
+
   `,
   styleUrls: ['./customers-table.component.scss']
 })
@@ -188,7 +171,7 @@ export class CustomersTableComponent implements OnInit {
   tableData =[]
   mailListData =[]
   // create variables
-  showCreateModal = false;
+  showCreateContactModal = false;
   form : FormGroup =new FormGroup({});
   model = { email: '',name:"",phone:"" };
   fields: FormlyFieldConfig[] = [
@@ -251,10 +234,29 @@ export class CustomersTableComponent implements OnInit {
   }
 
   // create contatc functions
-  handleCancel(){}
-  handleOk(){}
+  handleCancel(){
+    this.showCreateContactModal =false
+  }
+  handleOk(){
+    this.createItem(this.model)
 
-  createItem(data){}
+  }
+
+  async createItem(data){
+    this.showCreateContactModal =false
+    this.showLoading()
+    let method = "post";
+    let api = "/customers"
+    let call = await this.http.makeCall({method,api,data})
+    this.hideLoading();
+    if(call){
+      this.http.showCustomerMsg.success("creation was a success");
+      this.refresh()
+    }else{
+      this.http.showCustomerMsg.error("creation failed...")
+    }
+
+  }
 // Edit Contacts fields
   isEditContact: any;
   editContactform = new FormGroup({})
@@ -287,8 +289,18 @@ export class CustomersTableComponent implements OnInit {
       }
     }
   ];
-  delete(data: any) {
-
+  async delete(data: any) {
+    this.showLoading()
+    let method = "delete";
+    let api = "/customers"
+    let call = await this.http.makeCall({method,api,data})
+    this.hideLoading();
+    if(call){
+      this.http.showCustomerMsg.success("delete was a success");
+      this.refresh()
+    }else{
+      this.http.showCustomerMsg.error("delete failed...")
+    }
   }
 
   edit(data: any) {
@@ -312,7 +324,8 @@ export class CustomersTableComponent implements OnInit {
     let call = await this.http.makeCall({method,api,data})
     this.hideLoading();
     if(call){
-      this.http.showCustomerMsg.success("Update was a success")
+      this.http.showCustomerMsg.success("Update was a success");
+      this.refresh()
     }else{
       this.http.showCustomerMsg.error("Update failed...")
     }
@@ -396,6 +409,7 @@ export class CustomersTableComponent implements OnInit {
     this.notification.remove()
   }
 
-
-
+  refresh(){
+    this.getPaginatedContacts(this.page,this.limit,["name"],"")
+  }
 }
