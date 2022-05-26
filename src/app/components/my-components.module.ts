@@ -17,7 +17,10 @@ import { NavComponent } from './nav/nav.component'
 import { FooterComponent } from './Footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CustomersTableComponent } from './customers-table/customers-table.component';
-import { UploaderComponent } from './shared/uploader/uploader.component'
+import { UploaderComponent } from './shared/uploader/uploader.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
+import { MailListComponent } from './mail-list/mail-list.component';
+import { SendToMailListComponent } from './send-to-mail-list/send-to-mail-list.component'
 
 const COMPONENTS = [
   FieldNgSelect,
@@ -44,7 +47,7 @@ const COMPONENTS = [
     FormlySelectModule,
     NgSelectModule,
   ],
-  declarations: [...COMPONENTS, HomeComponent, CustomersTableComponent, UploaderComponent],
-    exports: [...COMPONENTS, CustomersTableComponent, UploaderComponent],
+  declarations: [...COMPONENTS, HomeComponent, CustomersTableComponent, UploaderComponent, ContactListComponent, MailListComponent, SendToMailListComponent],
+    exports: [...COMPONENTS, CustomersTableComponent, UploaderComponent, SendToMailListComponent],
 })
 export class MyComponentsModule {}

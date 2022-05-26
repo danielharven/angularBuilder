@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core'
-import {FormGroup} from "@angular/forms";
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core'
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {FormlyFieldConfig} from "@ngx-formly/core";
+import {HttpService} from "../../services/http.service";
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 @Component({
   selector: 'app-sms',
@@ -16,50 +18,47 @@ import {FormlyFieldConfig} from "@ngx-formly/core";
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-9 col-md-12 d-flex ">
+        <div class="col-lg-10 col-md-12 d-flex ">
           <nz-tabset>
-            <nz-tab nzTitle="Delivered SMS">
+            <nz-tab nzTitle="Sent SMS">
           <div class="card card-top card-top-primary">
-            <div class="card-header">
-              <vb-headers-heading [data]="{'title':'Delivered SMS'}"></vb-headers-heading>
-            </div>
             <div class="card-body">
 
                   <div>
                   <div class="text-nowrap text-dark font-size-50 font-weight-bold">
-                    101 / 10000 <sup class="text-uppercase text-gray-6 font-size-30">SENT</sup>
+                    {{totalSent}} / 10000 <sup class="text-uppercase text-gray-6 font-size-30">SENT</sup>
                   </div>
                   <div class="table-responsive text-nowrap">
-                    <nz-table #basicTable [nzData]="sentMailData" [nzShowPagination]="true" class="table mb-4">
+                    <nz-table #basicTable [nzData]="sentMailData" [nzTotal]="totalSent"
+                              [nzShowPagination]="true" class="table mb-4">
                       <thead>
                       <tr>
                         <th class="bg-transparent width-50">Date</th>
                         <th class="bg-transparent">Customer</th>
-                        <th class="bg-transparent">Number</th>
-                        <th class="bg-transparent text-right"></th>
+                        <th class="bg-transparent">Message</th>
+                        <th class="bg-transparent text-right">Delivered?</th>
                       </tr>
                       </thead>
                       <tbody>
                       <tr *ngFor="let data of basicTable.data">
                         <td>
-                          <div class="vb__utils__avatar">
-                            <img [src]="data.avatar" alt="User" />
+                         {{data.createdAt |date}}
+                        </td>
+                        <td>
+                          <div>
+                            <ng-container *ngFor="let contact of data.customers let i=index" >
+                              <nz-tag>{{contact.name}}</nz-tag>
+                              <br *ngIf="i%5===0">
+                            </ng-container>
                           </div>
                         </td>
                         <td>
-                          <div>{{data.userName.name}}</div>
-                          <div class="text-gray-4">{{data.userName.position}}</div>
-                        </td>
-                        <td>
-                          <a href="javascript: void(0);" class="text-blue">
-                            {{data.location}}
-                          </a>
+                            {{data.message}}
                         </td>
                         <td class="text-right">
                           <div class="text-nowrap">
-                            <button type="button" class="btn btn-light">
-                              <span class="text-blue">Add</span>
-                            </button>
+                              <span [ngClass]="{'text-success':data.sent,'text-danger':!data.sent}">{{data.sent}}</span>
+
                           </div>
                         </td>
                       </tr>
@@ -74,8 +73,29 @@ import {FormlyFieldConfig} from "@ngx-formly/core";
               <ng-container nz-tab>
 
                   <form [formGroup]="smsCreateForm" (ngSubmit)="createSMS(smsCreatemodel)">
+                    <nz-form-item>
+                      <nz-form-label>Contacts</nz-form-label>
+                      <nz-select
+                        [nzMaxTagCount]="100"
+                        [nzMaxTagPlaceholder]="tagPlaceHolder"
+                        nzMode="multiple"
+                        nzPlaceHolder="Please select a contact"
+                        [nzServerSearch]="true"
+                        (nzOnSearch)="searchContacts($event)"
+                        [nzDropdownRender]="renderTemplate"
+                        (ngModelChange)="contactSearch=''"
+                        formControlName="customers"
+                        name="customers"
+                      >
+                        <nz-option *ngFor="let item of listOfContacts" [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
+                      </nz-select>
+                      <ng-template #renderTemplate>
+                        <nz-pagination (nzPageIndexChange)="paginateContacts($event)" [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
+                      </ng-template>
+                      <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+                    </nz-form-item>
                     <formly-form [form]="smsCreateForm" [fields]="smsCreatefields" [model]="smsCreatemodel"></formly-form>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button [disabled]="!this.smsCreateForm.valid" type="submit" class="btn btn-default">Submit</button>
                   </form>
 
                 <nz-form-item></nz-form-item>
@@ -83,12 +103,8 @@ import {FormlyFieldConfig} from "@ngx-formly/core";
             </nz-tab>
             <nz-tab nzTitle="Send To Mailing List">
               <ng-container nz-tab>
-                  <form [formGroup]="smsMailingCreateForm" (ngSubmit)="createSMS(smsMailingCreatemodel)">
-                    <formly-form [form]="smsMailingCreateForm" [fields]="smsMailingCreatefields" [model]="smsCreatemodel"></formly-form>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                  </form>
+                <app-send-to-mail-list></app-send-to-mail-list>
 
-                <nz-form-item></nz-form-item>
               </ng-container>
             </nz-tab>
             <nz-tab nzTitle="Received SMS">
@@ -140,28 +156,48 @@ import {FormlyFieldConfig} from "@ngx-formly/core";
         </nz-comment-content>
       </nz-comment>
     </ng-template>
+    <ng-template #loadingTemplate>
+      <div class="ant-notification-notice-content">
+        <div class="ant-notification-notice-with-icon">
+          <span class="ant-notification-notice-icon">
+            <i nz-icon nzType="loading" style="color: rgb(16, 142, 233);"></i>
+          </span>
+          <div class="ant-notification-notice-message">loading...</div>
+        </div>
+      </div>
+    </ng-template>
   `,
 })
 export class SmsComponent implements OnInit {
+  @ViewChild("loadingTemplate") loadingTemplate: TemplateRef<any>
+  listOfContacts=[]
   sentMailData =[]
-  constructor() {}
-  ngOnInit() {}
+  totalSent =0;
+  page =0;
+  limit=20;
+  contactSearch = ''
+  // End Pagination variables
+  processing = false;
+  searchText: any;
+  contactsApi = '/outboxes'
+  constructor(private http: HttpService,private notification: NzNotificationService) {}
+  ngOnInit() {
+    this.getPaginatedContacts(this.page,this.limit,["message"],"")
+    this.getTotalSent();
+    this.paginateContacts(0)
+  }
 
   //Send SMS
-  smsCreateForm : FormGroup =new FormGroup({});
+  async getTotalSent(){
+    this.totalSent= await this.http.makeCall({api:this.contactsApi+'/count',method:'get'})
+
+  }
+  smsCreateForm : FormGroup =new FormGroup({
+    customers : new FormControl(null,Validators.required)
+  });
   smsCreatemodel = { email: '',name:"",phone:"" };
   smsCreatefields: FormlyFieldConfig[] = [
     {
-      key: 'contacts',
-      type: 'select',
-      templateOptions: {
-        label: 'Contacts',
-        placeholder: 'Select Customer(s)',
-        required: true,
-        multiple:true
-      }
-    },
-    {
       key: 'message',
       type: 'textarea',
       templateOptions: {
@@ -171,40 +207,36 @@ export class SmsComponent implements OnInit {
       }
     }
   ];
-  //End Send SMS
-  createSMS(model: any) {
-
+  searchMyContacts() {
+    this.getPaginatedContacts(this.page,this.limit,["name","description"],this.searchText)
   }
+  async getPaginatedContacts(page,limit,searchTerm,search,sort="CreatedAt"
+  ){
 
-
-  //Send SMS Mailing List
-  smsMailingCreateForm : FormGroup =new FormGroup({});
-  smsMailingCreatemodel = { email: '',name:"",phone:"" };
-  smsMailingCreatefields: FormlyFieldConfig[] = [
-    {
-      key: 'mailList',
-      type: 'select',
-      templateOptions: {
-        label: 'Mailing List',
-        placeholder: 'Select Mailing List',
-        required: true,
-        multiple:false
-      }
-    },
-    {
-      key: 'message',
-      type: 'textarea',
-      templateOptions: {
-        label: 'Message',
-        placeholder: 'Type in your message',
-        required: true,
-      }
+    let api =this.http.paginationService({
+      api:this.contactsApi,page,search,searchTerm,limit
+    });
+    let method="get";
+    let resp = await this.http.makeCall({api,method})
+    if(resp){
+      this.sentMailData=resp;
     }
-  ];
-  //End Send SMS
-  createSMSMailing(model: any) {
-
   }
+  //End Send SMS
+  async createSMS(model: any) {
+    this.showLoading()
+    let method = "post";
+    let api = this.contactsApi
+    let call = await this.http.makeCall({method,api,data:{...this.smsCreateForm.value}})
+    this.hideLoading();
+    if(call){
+      this.http.showCustomerMsg.success("sms are loaded for delivery");
+      this.refresh()
+    }else{
+      this.http.showCustomerMsg.error("sms loading failed...")
+    }
+  }
+
   // Received Sms
   receivedSms = {
     author: 'Han Solo',
@@ -252,5 +284,38 @@ export class SmsComponent implements OnInit {
 
   handleSubmit(comment: any) {
 
+  }
+
+  async paginateContacts(page: number) {
+    let api = '/customers'
+    let limit = 20
+    let method='get';
+    let term = this.contactSearch || ''
+    api = this.http.paginationService({api,page,limit,
+      searchTerm:["name","email","phone"],search:term})
+    this.listOfContacts =  await this.http.makeCall({method,api}) || this.listOfContacts
+
+  }
+  async searchContacts($event: string) {
+    let api = '/customers'
+    let page  =0
+    let limit = 30
+    let term= $event;
+    this.contactSearch = term;
+    let method='get';
+    api = this.http.paginationService({api,page,limit,
+      searchTerm:["name","email","phone"],search:term})
+    this.listOfContacts =  await this.http.makeCall({method,api}) || this.listOfContacts
+  }
+  refresh(){
+    this.getPaginatedContacts(this.page,this.limit,["message"],"")
+  }
+  showLoading(){
+    this.processing = true
+    this.notification.template(this.loadingTemplate,{nzDuration:0});
+  }
+  hideLoading(){
+    this.processing = true
+    this.notification.remove()
   }
 }
