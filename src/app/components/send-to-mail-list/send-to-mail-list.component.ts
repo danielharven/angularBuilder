@@ -17,20 +17,18 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
         </div>
       </div>
     </ng-template>
-    <form [formGroup]="smsCreateForm" (ngSubmit)="createSMS()">
+    <form nz-form nzLayout="vertical" [formGroup]="smsCreateForm" (ngSubmit)="createSMS()">
       <nz-form-item>
-        <nz-form-label>Contacts</nz-form-label>
+        <nz-form-label>Mailing List</nz-form-label>
         <nz-select
-          [nzMaxTagCount]="100"
           [nzMaxTagPlaceholder]="tagPlaceHolder"
-          nzMode="multiple"
-          nzPlaceHolder="Please select a contact"
+          nzPlaceHolder="Please select a mailing list"
           [nzServerSearch]="true"
           (nzOnSearch)="searchContacts($event)"
           [nzDropdownRender]="renderTemplate"
           (ngModelChange)="contactSearch=''"
-          formControlName="customers"
-          name="customers"
+          formControlName="maillist"
+          name="maillist"
         >
           <nz-option *ngFor="let item of listOfContacts" [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
         </nz-select>
@@ -48,7 +46,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 export class SendToMailListComponent implements OnInit {
   @ViewChild("loadingTemplate") loadingTemplate: TemplateRef<any>
   smsCreateForm : FormGroup =new FormGroup({
-    customers : new FormControl(null,Validators.required)
+    maillist : new FormControl(null,Validators.required)
   });
   smsCreatemodel = { email: '',name:"",phone:"" };
   smsCreatefields: FormlyFieldConfig[] = [
@@ -59,6 +57,7 @@ export class SendToMailListComponent implements OnInit {
         label: 'Message',
         placeholder: 'Type in your message',
         required: true,
+        rows:5
       }
     }
   ];
@@ -71,7 +70,7 @@ export class SendToMailListComponent implements OnInit {
   // End Pagination variables
   processing = false;
   searchText: any;
-  contactsApi = '/maillists'
+  contactsApi = '/maillists/load'
   constructor(private http: HttpService,private notification: NzNotificationService) { }
 
   ngOnInit(): void {
@@ -83,10 +82,10 @@ export class SendToMailListComponent implements OnInit {
     let call = await this.http.makeCall({method,api,data:{...this.smsCreateForm.value}})
     this.hideLoading();
     if(call){
-      this.http.showCustomerMsg.success("sms are loaded for delivery");
+      this.http.showCustomerMsg.success("mail list is loaded for delivery");
       this.refresh()
     }else{
-      this.http.showCustomerMsg.error("sms loading failed...")
+      this.http.showCustomerMsg.error("mail list loading failed...")
     }
   }
   showLoading(){
@@ -98,10 +97,10 @@ export class SendToMailListComponent implements OnInit {
     this.notification.remove()
   }
   refresh(){
-    this.getPaginatedContacts(this.page,this.limit,["message"],"")
+    this.smsCreateForm.reset()
   }
   async paginateContacts(page: number) {
-    let api = '/customers'
+    let api = '/maillists'
     let limit = 20
     let method='get';
     let term = this.contactSearch || ''
@@ -123,14 +122,14 @@ export class SendToMailListComponent implements OnInit {
     }
   }
   async searchContacts($event: string) {
-    let api = '/customers'
+    let api = '/maillists'
     let page  =0
     let limit = 30
     let term= $event;
     this.contactSearch = term;
     let method='get';
     api = this.http.paginationService({api,page,limit,
-      searchTerm:["name","email","phone"],search:term})
+      searchTerm:["name","description"],search:term})
     this.listOfContacts =  await this.http.makeCall({method,api}) || this.listOfContacts
   }
 }

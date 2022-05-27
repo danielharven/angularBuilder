@@ -20,7 +20,8 @@ import { CustomersTableComponent } from './customers-table/customers-table.compo
 import { UploaderComponent } from './shared/uploader/uploader.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { MailListComponent } from './mail-list/mail-list.component';
-import { SendToMailListComponent } from './send-to-mail-list/send-to-mail-list.component'
+import { SendToMailListComponent } from './send-to-mail-list/send-to-mail-list.component';
+import { ReadSmsComponent } from './read-sms/read-sms.component'
 
 const COMPONENTS = [
   FieldNgSelect,
@@ -29,6 +30,11 @@ const COMPONENTS = [
   FileValueAccessor,
   NavComponent,
   FooterComponent,
+  CustomersTableComponent,
+   UploaderComponent,
+    SendToMailListComponent,
+    ReadSmsComponent,
+    HomeComponent, ContactListComponent, MailListComponent
 ]
 
 @NgModule({
@@ -47,7 +53,7 @@ const COMPONENTS = [
     FormlySelectModule,
     NgSelectModule,
   ],
-  declarations: [...COMPONENTS, HomeComponent, CustomersTableComponent, UploaderComponent, ContactListComponent, MailListComponent, SendToMailListComponent],
-    exports: [...COMPONENTS, CustomersTableComponent, UploaderComponent, SendToMailListComponent],
+  declarations: [...COMPONENTS, ],
+    exports: [...COMPONENTS],
 })
 export class MyComponentsModule {}

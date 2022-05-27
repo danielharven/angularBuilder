@@ -71,8 +71,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
             </nz-tab>
             <nz-tab nzTitle="Send new SMS">
               <ng-container nz-tab>
-
-                  <form [formGroup]="smsCreateForm" (ngSubmit)="createSMS(smsCreatemodel)">
+                  <form nz-form nzLayout="vertical" [formGroup]="smsCreateForm" (ngSubmit)="createSMS(smsCreatemodel)">
                     <nz-form-item>
                       <nz-form-label>Contacts</nz-form-label>
                       <nz-select
@@ -109,53 +108,18 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
             </nz-tab>
             <nz-tab nzTitle="Received SMS">
               <ng-container nz-tab>
-                <ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ comment: receivedSms }"></ng-template>
+                <app-read-sms></app-read-sms>
               </ng-container>
             </nz-tab>
-            <nz-tab nzTitle="Spam SMS">
+            <nz-tab nzDisabled nzTitle="Spam SMS (coming soon)">
               <ng-container nz-tab>
-                <ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ comment: receivedSms }"></ng-template>
-              </ng-container>
+            </ng-container>
             </nz-tab>
           </nz-tabset>
         </div>
       </div>
     </div>
 
-    <ng-template #commentTemplateRef let-comment="comment">
-      <nz-comment [nzAuthor]="comment.author">
-        <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="comment.avatar"></nz-avatar>
-        <nz-comment-content>
-          <p>{{ comment.content }}</p>
-        </nz-comment-content>
-        <nz-comment-action>
-        <i
-          nz-tooltip
-          nzTitle="delete"
-          nz-icon
-          nzType="trash"
-          [nzTheme]="'outline'"
-          (click)="deleteSms(comment)"
-        ></i>
-          <span class="count like">Delete</span>
-        </nz-comment-action>
-        <ng-container *ngIf="comment.children && comment.children.length">
-          <ng-template ngFor let-child [ngForOf]="comment.children">
-          </ng-template>
-        </ng-container>
-
-        <nz-comment-content>
-          <nz-form-item>
-            <textarea [(ngModel)]="replyInputValue" nz-input rows="4"></textarea>
-          </nz-form-item>
-          <nz-form-item>
-            <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!replyInputValue" (click)="handleSubmit(comment)">
-              Send Response
-            </button>
-          </nz-form-item>
-        </nz-comment-content>
-      </nz-comment>
-    </ng-template>
     <ng-template #loadingTemplate>
       <div class="ant-notification-notice-content">
         <div class="ant-notification-notice-with-icon">
