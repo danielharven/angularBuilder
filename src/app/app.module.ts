@@ -32,6 +32,7 @@ import { FormlyModule } from '@ngx-formly/core'
 import { FormlyFieldFile } from './components/formly/file-component'
 import { FieldNgSelect } from './components/formly/quill/ng-select'
 import { FieldQuillType } from './components/formly/quill/quil-type'
+import { jwtAuthService } from './services/jwt/jwt.service'
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
   { provide: NZ_I18N, useValue: localeZorro },
@@ -86,13 +87,14 @@ registerLocaleData(localeEn, 'en')
     // auth services
     firebaseAuthService,
     basicAuthService,
+    jwtAuthService,
 
     // fake http interceptors
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: MockHttpCallInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MockHttpCallInterceptor,
+      multi: true,
+    },
 
     // locale providers
     ...LOCALE_PROVIDERS,
