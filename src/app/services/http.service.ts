@@ -132,4 +132,8 @@ export class HttpService {
       this.msg.info("ZedSMS",msg,{nzDuration:0})
     },
   }
+  showLoading(){
+
+  }
+  stopLoadScreen(){}
 }

@@ -13,9 +13,11 @@ import * as Reducers from 'src/app/store/reducers'
 import * as UserActions from './actions'
 
 import { firebaseAuthService } from 'src/app/services/firebase'
-import { UtilitiesService } from '../../services/utilities.service'
+
 
 import qs from 'qs'
+import { HttpService } from 'src/app/services/http.service'
+import { jwtAuthService } from 'src/app/services/jwt/jwt.service'
 
 @Injectable()
 export class UserEffects implements OnInitEffects {
@@ -26,7 +28,7 @@ export class UserEffects implements OnInitEffects {
     private route: ActivatedRoute,
     private rxStore: Store<any>,
     private notification: NzNotificationService,
-    private utilities : UtilitiesService
+    private utilities : HttpService
   ) {}
 
   ngrxOnInitEffects(): Action {
@@ -55,7 +57,7 @@ export class UserEffects implements OnInitEffects {
           catchError(error => {
             console.log('LOGIN ERROR: ', error)
             this.utilities.stopLoadScreen();
-            this.utilities.notifyUser.error('Login failed')
+            this.utilities.showCustomerMsg.error('Login failed')
             return from([{ type: UserActions.LOGIN_UNSUCCESSFUL }])
           }),
         )
