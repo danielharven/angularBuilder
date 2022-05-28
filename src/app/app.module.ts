@@ -21,7 +21,6 @@ import { reducers, metaReducers } from './store/reducers'
 import { UserEffects } from './store/user/effects'
 import { firebaseConfig, firebaseAuthService } from './services/firebase'
 import { basicAuthService } from './services/basic-auth'
-import { MockHttpCallInterceptor } from './services/fakeApi'
 
 // locale resistration
 import { registerLocaleData } from '@angular/common'
@@ -33,6 +32,7 @@ import { FormlyFieldFile } from './components/formly/file-component'
 import { FieldNgSelect } from './components/formly/quill/ng-select'
 import { FieldQuillType } from './components/formly/quill/quil-type'
 import { jwtAuthService } from './services/jwt/jwt.service'
+import { AuthInterceptor } from './services/interscept'
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
   { provide: NZ_I18N, useValue: localeZorro },
@@ -92,7 +92,7 @@ registerLocaleData(localeEn, 'en')
     // fake http interceptors
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: MockHttpCallInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
 

@@ -10,14 +10,14 @@ export class jwtAuthService {
   url =  environment.url
   constructor(private http: HttpClient, private router:Router) {}
 
-  login(email: string, password: string): Observable<any> {
+  login({email, password}): Observable<any> {
     let identifier = email;
     return this.http.post(this.url+'/auth/local',
       { identifier, password })
   }
 
-  register(email: string, password: string, name: string,tk:string): Observable<any> {
-    return this.http.post(this.url+'/auth/register', { email, password, name,tk })
+  register({email='', password='', username='',tk='',company='',}): Observable<any> {
+    return this.http.post(this.url+'/auth/register', { email, password, username,tk,company })
   }
 
   currentAccount(): Observable<any> {
