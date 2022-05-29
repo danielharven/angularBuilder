@@ -25,6 +25,11 @@ import {FormlyModule} from "@ngx-formly/core";
 
 const routes: Routes = [
   {
+    path:'',
+    redirectTo:'/dashboard',
+    pathMatch: 'full'
+  },
+  {
     path: '',
     component: LayoutMainComponent,
     canActivate: [AuthGuard],

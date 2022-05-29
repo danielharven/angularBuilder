@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import {HttpService} from "../../services/http.service";
 
 @Component({
   selector: 'app-account',
@@ -16,29 +17,62 @@ import { Component, OnInit } from '@angular/core'
     <div class="row">
       <div class="col-lg-8 col-md-12">
         <div class="card card-top ">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-sm-9">
+                {{account.name}}
+              </div>
+              <div class="col-sm-3">
+                <div class="btn btn-outline-primary">Edit</div>
+              </div>
+            </div>
+          </div>
           <div class="card-body">
             <div>
+              <div class="row">
+                <div class="col-sm-12">
+
+                </div>
+              </div>
               <dl class="row">
                 <dt class="col-sm-3">Account Status</dt>
                 <dd class="col-sm-9">
-                  {{account.status}}
+                  <div class="row">
+                    <div class="col-sm-9 h3">{{account.status}}</div>
+                  </div>
+
                 </dd>
 
                 <dt class="col-sm-3">Name</dt>
                 <dd class="col-sm-9">
-                  {{account.name}}
+                 <div class="row">
+                   <div class="col-sm-9 h4"> {{account.name}}</div>
+                 </div>
                 </dd>
 
                 <dt class="col-sm-3">Address</dt>
-                <dd class="col-sm-9">{{account.address}}</dd>
-
-                <dt class="col-sm-3 text-truncate">Email</dt>
                 <dd class="col-sm-9">
-                  {{account.email}}
+                  <div class="row">
+                    <div class="col-sm-9 h4">{{account.address}}</div>
+                    <div class="col-sm-3"><a >edit</a></div>
+                  </div>
+                </dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">
+                  <div class="row">
+                    <div class="col-sm-9 h4"> {{account.email}}</div>
+                    <div class="col-sm-3"><a >edit</a></div>
+                  </div>
                 </dd>
 
                 <dt class="col-sm-3">Phone</dt>
-                <dd class="col-sm-9">{{account.phone}}</dd>
+                <dd class="col-sm-9">
+                  <div class="row">
+                    <div class="col-sm-9 h4">{{account.phone}}</div>
+                    <div class="col-sm-3"><a >edit</a></div>
+                  </div>
+                </dd>
               </dl>
             </div>
 
@@ -75,6 +109,16 @@ export class AccountComponent implements OnInit {
     status: undefined,
     email: undefined
   }
-  constructor() {}
-  ngOnInit() {}
+  api = '/companies'
+  constructor(private http:HttpService) {}
+  ngOnInit() {
+    this.getMyAccountDetails();
+  }
+
+  async getMyAccountDetails(){
+    let method = 'get'
+   let acc = await this.http.makeCall({method,api:this.api});
+   this.account  =acc[0]
+  }
+
 }
