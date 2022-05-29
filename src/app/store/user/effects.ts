@@ -1,5 +1,3 @@
-
-
 import { Injectable } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { Actions, Effect, ofType, OnInitEffects } from '@ngrx/effects'
@@ -8,14 +6,10 @@ import { Observable, of, empty, from } from 'rxjs'
 import { map, switchMap, catchError, withLatestFrom, concatMap } from 'rxjs/operators'
 import store from 'store'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-
 import * as Reducers from 'src/app/store/reducers'
 import * as UserActions from './actions'
-
 import { firebaseAuthService } from 'src/app/services/firebase'
-
-
-import qs from 'qs'
+import {parse} from 'qs'
 import { HttpService } from 'src/app/services/http.service'
 import { jwtAuthService } from 'src/app/services/jwt/jwt.service'
 
@@ -77,10 +71,8 @@ export class UserEffects implements OnInitEffects {
       if (settings.authProvider === 'jwt') {
         return this.jwtAuthService.register(payload).pipe(
           map(response => {
-            if (response && response.id) {
-              if (response.accessToken) {
-                store.set('accessToken', response.accessToken)
-              }
+            if (response && response.jwt) {
+                store.set('accessToken', response.jwt)
               this.router.navigate(['/'])
               return new UserActions.RegisterSuccessful(response)
             }
@@ -110,7 +102,7 @@ export class UserEffects implements OnInitEffects {
         return this.jwtAuthService.currentAccount().pipe(
           map(response => {
             console.log(this.route);
-            let pass = qs.parse(window.location.hash.split('?')[1]);
+            let pass = parse(window.location.hash.split('?')[1]);
             if (response && (response.email || response.user)) {
 
               if (this.route.snapshot.queryParams.returnUrl) {

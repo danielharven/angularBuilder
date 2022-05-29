@@ -17,7 +17,8 @@ export class jwtAuthService {
   }
 
   register({email='', password='', username='',tk='',company='',}): Observable<any> {
-    return this.http.post(this.url+'/auth/register', { email, password, username,tk,company })
+    username = username+"__"+Math.floor( Math.random()*10000)
+    return this.http.post(this.url+'/auth/local/register', { email, password, username,tk,company })
   }
 
   currentAccount(): Observable<any> {
@@ -43,4 +44,5 @@ export class jwtAuthService {
       return observable.complete()
     })
   }
+
 }

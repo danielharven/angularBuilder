@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private msg: NzNotificationService,
     private router: Router) {}
   notifyUser(msg) {
-    this.msg.error("ZedSMS - Error",msg,{nzDuration:0})
+    this.msg.error("ZedSMS OOPS!",msg,{nzDuration:0})
   }
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // Get the auth token from the service.
@@ -102,7 +102,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private evaluateError(error: HttpErrorResponse) {
-
+    console.log(error)
     let codes = error.status + ''
     // console.log(codes)
     let {href} = window.location
@@ -121,7 +121,7 @@ export class AuthInterceptor implements HttpInterceptor {
         localStorage.clear()
         store.remove();
         let loc =window.location.href;
-        if(localStorage.includes('auth/login')){
+        if(error.url.includes('auth/login')){
 
           break;
         }
@@ -130,6 +130,12 @@ export class AuthInterceptor implements HttpInterceptor {
       }
       case '400': {
         // data field error
+        if(error.url.includes('users/me')){
+
+          break;
+        }
+
+        this.notifyUser(error?.error?.message[0].messages[0].message || error?.error?.error)
         break
       }
       case '444': {
@@ -147,11 +153,11 @@ export class AuthInterceptor implements HttpInterceptor {
       case '446': {
         // plan expired redirect to purchase plan
         // this.router.navigate(['/profile'])
-        this.notifyUser('The form token is invalid, Kindly refresh form.')
+        this.notifyUser('The form is invalid, Kindly refresh page.')
         break
       }
       case '500': {
-        this.notifyUser('Server side error')
+        this.notifyUser('oh! our bad we have an error')
         break
       }
       default: {

@@ -126,7 +126,7 @@ export class HttpService {
       this.msg.success("ZedSMS",msg,{nzDuration:0})
     },
     error:msg=>{
-      this.msg.error("ZedSMS Error",msg,{nzDuration:0})
+      this.msg.error("ZedSMS OOPS!",msg,{nzDuration:0})
     },
     info:msg=>{
       this.msg.info("ZedSMS",msg,{nzDuration:0})
@@ -136,4 +136,8 @@ export class HttpService {
 
   }
   stopLoadScreen(){}
+
+  async getTk(){
+    return await this.makeCall({method:'get',api:'/formtokens/mine'})
+  }
 }
