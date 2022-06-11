@@ -75,7 +75,10 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
                 nz-form
                 [formGroup]="editContactform" (ngSubmit)="editContactItem(editContactModal)">
                 <formly-form [form]="editContactform" [fields]="editContactFields" [model]="editContactModal"></formly-form>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <ng-container *nzModalFooter>
+                  <button nz-button nzType="default" (click)="handleCancelEditContactModal()">Cancel</button>
+                  <button nz-button nzType="primary" (click)="handleOkContactModal()" >Submit</button>
+                </ng-container>
                 <br>
               </form>
             </ng-container>
@@ -85,12 +88,15 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
             <ng-container *nzModalContent>
               <form [formGroup]="form" (ngSubmit)="createItem(model)">
                 <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-                <button [disabled]="!form.valid" type="submit" class="btn btn-default">Submit</button>
-              </form>
-              <p>Or upload a CSV document with Contacts download <a style="color:greenyellow" href="">format here</a></p>
+             </form>
+              <p>Or upload a CSV document with Contacts download <a download style="color:greenyellow" href="https://res.cloudinary.com/davidharven/raw/upload/v1654049295/zedsms/xfp1tfxavx5dwszzwz03.csv">format here</a></p>
               <nz-form-item>
-                <app-uploader fileTypes="application/csv"  fileSize="100000"  hint="Upload CSV of contacts"></app-uploader>
+                <app-uploader (onUploaded)="processFile($event)"  fileTypes="text/csv"  fileSize="100000"  hint="Upload CSV of contacts"></app-uploader>
               </nz-form-item>
+            </ng-container>
+            <ng-container *nzModalFooter>
+              <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+              <button nz-button nzType="primary" (click)="handleOk()" >Submit</button>
             </ng-container>
           </nz-modal>
 
@@ -157,6 +163,7 @@ export class CustomersTableComponent implements OnInit {
   ngOnInit(): void {
     this.getPaginatedContacts(this.page,this.limit,["name"],"")
   }
+
   searchMyContacts() {
     this.getPaginatedContacts(this.page,this.limit,["name","phone","email"],this.searchText)
   }
@@ -169,7 +176,7 @@ export class CustomersTableComponent implements OnInit {
      let method="get";
      let resp = await this.http.makeCall({api,method})
     if(resp){
-      console.log(resp)
+
       this.tableData=resp;
     }
   }
@@ -179,22 +186,23 @@ export class CustomersTableComponent implements OnInit {
     this.showCreateContactModal =false
   }
   handleOk(){
+    if(!this.form.valid) return
     this.createItem(this.model)
 
   }
 
   async createItem(data){
-    this.showCreateContactModal =false
-    this.showLoading()
+    this.showCreateContactModal =false;
+    this.showLoading();
     let method = "post";
-    let api = "/customers"
+    let api = "/customers";
     let call = await this.http.makeCall({method,api,data})
     this.hideLoading();
     if(call){
       this.http.showCustomerMsg.success("creation was a success");
-      this.refresh()
+      this.refresh();
     }else{
-      this.http.showCustomerMsg.error("creation failed...")
+      this.http.showCustomerMsg.error("creation failed...");
     }
 
   }
@@ -231,7 +239,7 @@ export class CustomersTableComponent implements OnInit {
     }
   ];
   async delete(data: any) {
-    this.showLoading()
+    this.showLoading();
     let method = "delete";
     let api = "/customers"
     let call = await this.http.makeCall({method,api,data})
@@ -352,5 +360,20 @@ export class CustomersTableComponent implements OnInit {
 
   refresh(){
     this.getPaginatedContacts(this.page,this.limit,["name"],"")
+  }
+  async processFile(id) {
+    const{file:{response}}=id
+    if(response.length>0){
+      for(let x of response){
+        let api="/bulkcustomeruploads";
+        let method="POST";
+        let data ={
+          file:x.id,
+          id:''
+        };
+        this.http.makeCall({api,data,method})
+      }
+    }
+
   }
 }

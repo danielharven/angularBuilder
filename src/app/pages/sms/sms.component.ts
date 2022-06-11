@@ -25,9 +25,6 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
             <div class="card-body">
 
                   <div>
-                  <div class="text-nowrap text-dark font-size-50 font-weight-bold">
-                    {{totalSent}} / 10000 <sup class="text-uppercase text-gray-6 font-size-30">SENT</sup>
-                  </div>
                   <div class="table-responsive text-nowrap">
                     <nz-table #basicTable [nzData]="sentMailData" [nzTotal]="totalSent"
                               [nzShowPagination]="true" class="table mb-4">

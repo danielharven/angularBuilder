@@ -23,13 +23,13 @@ export const getMenuData: any[] = [
     key: 'dfflre',
     url: '/account',
     icon: 'fe fe-archive',
-  },
-  {
-    title: 'Subscription',
-    key: 't44kvu',
-    url: '/subscription',
-    icon: 'fe fe-dollar-sign',
-  },
+  }
+  // {
+  //   title: 'Subscription',
+  //   key: 't44kvu',
+  //   url: '/subscription',
+  //   icon: 'fe fe-dollar-sign',
+  // },
 
   // VB:REPLACE-END:MENU-CONFIG
 ]

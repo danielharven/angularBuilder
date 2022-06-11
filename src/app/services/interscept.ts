@@ -118,14 +118,14 @@ export class AuthInterceptor implements HttpInterceptor {
         break
       }
       case '401': {
-        localStorage.clear()
-        store.remove();
+        // localStorage.clear()
+        // store.remove();
         let loc =window.location.href;
         if(error.url.includes('auth/login')){
 
           break;
         }
-        this.notifyUser('Kindly login to proceed')
+        this.notifyUser('Un Authorized')
         break
       }
       case '400': {
