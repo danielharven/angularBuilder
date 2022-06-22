@@ -33,7 +33,15 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
           <ng-template #suffixIconButton>
             <button (click)="searchMyContacts()" nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
           </ng-template>
-          <nz-table #basicTable [nzData]="tableData" [nzFrontPagination]="false" [nzShowPagination]="true" class="table mb-4">
+          <nz-table #basicTable [nzData]="tableData"
+          [nzFrontPagination]="false"
+          [nzTotal]="totalContacts"
+          (nzPageIndexChange)="searchMyContacts()"
+          [nzLoading]="loadingData"
+          [nzPageSize]="limit"
+          [nzPageIndex]="page"
+          nzServerRender=true
+          [nzShowPagination]="true" class="table mb-4">
             <thead>
             <tr>
               <th class="bg-transparent">Names</th>
@@ -117,6 +125,8 @@ export class CustomersTableComponent implements OnInit {
   @ViewChild("loadingTemplate") loadingTemplate: TemplateRef<any>
   tableData =[]
   mailListData =[]
+  totalContacts=0
+  loadingData=true
   // create variables
   showCreateContactModal = false;
   form : FormGroup =new FormGroup({});
@@ -162,6 +172,7 @@ export class CustomersTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPaginatedContacts(this.page,this.limit,["name"],"")
+    this.countTotal();
   }
 
   searchMyContacts() {
@@ -178,7 +189,14 @@ export class CustomersTableComponent implements OnInit {
     if(resp){
 
       this.tableData=resp;
+      this.loadingData=false
     }
+  }
+  async countTotal(){
+    let api = this.contactsApi+'/count'
+    let method="get";
+    let resp:any = this.http.makeCall({method,api});
+    this.countTotal = resp;
   }
 
   // create contatc functions

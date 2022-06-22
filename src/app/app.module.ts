@@ -33,11 +33,16 @@ import { FieldNgSelect } from './components/formly/quill/ng-select'
 import { FieldQuillType } from './components/formly/quill/quil-type'
 import { jwtAuthService } from './services/jwt/jwt.service'
 import { AuthInterceptor } from './services/interscept'
+import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config'
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
   { provide: NZ_I18N, useValue: localeZorro },
 ]
 registerLocaleData(localeEn, 'en')
+const ngZorroConfig: NzConfig = {
+  message: { nzTop: 120 },
+  notification: { nzMaxStack:1, nzDuration:10000 }
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -101,6 +106,8 @@ registerLocaleData(localeEn, 'en')
 
     // firestore settings
     { provide: SETTINGS, useValue: {} },
+  // antd
+    { provide: NZ_CONFIG, useValue: ngZorroConfig }
   ],
   bootstrap: [AppComponent],
 })

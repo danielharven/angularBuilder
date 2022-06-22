@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core'
 export class EnumsService {
   standards = {
     essap_link: '',
-    szi_link: 'https://www.szi.gov.zm',
-    szi_name: 'SMART Zambia Institute',
-    esapp_name: 'ESAPP',
-    testUserName:'admin@emis.com',
+    szi_link: 'https://zone-tech.org',
+    szi_name: 'Zone Technology Zambia',
+    esapp_name: 'ZedSms',
+    testUserName:'admin@zedsms.com',
     testUserPassword: 'Q!weRTy@134'
   }
   constructor() {}
