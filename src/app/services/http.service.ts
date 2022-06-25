@@ -108,7 +108,7 @@ export class HttpService {
     const seekArray = Object.entries(seek).map(item=>({[item[0]]:item[1]}))
     if(!sortBy) sortBy=searchTerm[0]
     let apiString = stringify({
-      _start:page,
+      _start:page?(page-1)*limit:page,
       _limit:limit,
       _where:{
         _or:seekArray

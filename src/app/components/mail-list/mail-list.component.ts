@@ -132,7 +132,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
               <nz-option *ngFor="let item of listOfContacts" [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
             </nz-select>
             <ng-template #renderTemplate>
-              <nz-pagination (nzPageIndexChange)="paginateContacts($event)" [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
+              <nz-pagination (nzPageIndexChange)="paginateContacts($event)" [nzPageIndex]="page" [nzTotal]="totalCount"></nz-pagination>
             </ng-template>
             <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
           </nz-form-item>
@@ -185,13 +185,21 @@ export class MailListComponent implements OnInit {
   processing = false;
   searchText: any;
   contactsApi = '/maillists'
+  totalCount = 100
   constructor(private http: HttpService,private notification: NzNotificationService) { }
 
   ngOnInit(): void {
-    this.getPaginatedContacts(this.page,this.limit,["name"],"")
+    this.getPaginatedContacts(this.page,this.limit,["name"],"");
+    this.countContacts();
   }
   searchMyContacts() {
     this.getPaginatedContacts(this.page,this.limit,["name","description"],this.searchText)
+  }
+  async countContacts(){
+    let api = '/customers/count';
+let method = "GET";
+let count:any = await this.http.makeCall({api,method});
+this.totalCount = count;
   }
   async getPaginatedContacts(page,limit,searchTerm,search,sort="CreatedAt"
   ){
