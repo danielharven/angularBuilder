@@ -40,7 +40,6 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
           [nzLoading]="loadingData"
           [nzPageSize]="limit"
           [nzPageIndex]="page"
-          nzServerRender=true
           [nzShowPagination]="true" class="table mb-4">
             <thead>
             <tr>
@@ -74,7 +73,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
             </tr>
             </tbody>
           </nz-table>
-
+          <nz-pagination [nzTotal]="totalContacts" [nzPageSize]="limit" (nzPageIndexChange)="paginateContacts($event)"></nz-pagination>
           <nz-modal [(nzVisible)]="isEditContact"
                     nzTitle="Edit Contact "
                     (nzOnCancel)="handleCancelEditContactModal()" (nzOnOk)="handleOkContactModal()">
@@ -173,6 +172,10 @@ export class CustomersTableComponent implements OnInit {
   ngOnInit(): void {
     this.getPaginatedContacts(this.page,this.limit,["name"],"")
     this.countTotal();
+  }
+  async paginateContacts(page: number) {
+    this.page =page;
+    this.searchMyContacts();
   }
 
   searchMyContacts() {

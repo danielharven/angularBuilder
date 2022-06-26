@@ -68,7 +68,7 @@ import { HttpService } from 'src/app/services/http.service';
         <textarea [(ngModel)]="replyValue" name="" id="" cols="50" rows="5"></textarea>
       </ng-container>
 </nz-modal>
-
+<nz-pagination [nzPageSize]="limit" [nzTotal]="totalSent" (nzPageIndexChange)="paginateContacts($event)"></nz-pagination>
     <ng-template #loadingTemplate>
       <div class="ant-notification-notice-content">
         <div class="ant-notification-notice-with-icon">
@@ -143,7 +143,7 @@ export class ReadSmsComponent implements OnInit {
     let method = "post";
     let api = "/outboxes"
     let data= {
-      customer:this.selected.phone,message:this.replyValue
+      customers:[this.selected.phone],message:this.replyValue
     }
     //@ts-ignore
     let resp = await this.http.makeCall({method,api,data})
