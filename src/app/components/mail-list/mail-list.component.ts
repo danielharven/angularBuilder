@@ -31,6 +31,9 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
     </ng-template>
     <nz-table #basicTable
               [nzData]="tableData"
+              [nzTotal]="totalCount"
+              [nzPageSize]="limit"
+              (nzPageIndexChange)="paginateContacts($event)"
               [ngStyle]="{'overflow-x':'scroll'}"
               [nzFrontPagination]="false"
               [nzShowPagination]="true"
@@ -179,7 +182,7 @@ export class MailListComponent implements OnInit {
   // end create variables
   // Pagination variables
   page =0;
-  limit=20;
+  limit=10;
   contactSearch = ''
   // End Pagination variables
   processing = false;
@@ -196,7 +199,7 @@ export class MailListComponent implements OnInit {
     this.getPaginatedContacts(this.page,this.limit,["name","description"],this.searchText)
   }
   async countContacts(){
-    let api = '/customers/count';
+    let api = '/maillists/count';
 let method = "GET";
 let count:any = await this.http.makeCall({api,method});
 this.totalCount = count;
@@ -339,25 +342,25 @@ this.totalCount = count;
   }
 
   async searchContacts($event: string) {
-    let api = '/customers'
+    let api = this.contactsApi
     let page  =0
-    let limit = 30
+    let limit = 10
     let term= $event;
     this.contactSearch = term;
     let method='get';
     api = this.http.paginationService({api,page,limit,
-      searchTerm:["name","email","phone"],search:term})
-   this.listOfContacts =  await this.http.makeCall({method,api}) || this.listOfContacts
+      searchTerm:["name","description"],search:term})
+   this.tableData =  await this.http.makeCall({method,api}) || this.tableData
   }
 
   async paginateContacts(page: number) {
-    let api = '/customers'
-    let limit = 20
+    let api = this.contactsApi
+    let limit = 10
     let method='get';
     let term = this.contactSearch || ''
     api = this.http.paginationService({api,page,limit,
-      searchTerm:["name","email","phone"],search:term})
-    this.listOfContacts =  await this.http.makeCall({method,api}) || this.listOfContacts
+      searchTerm:["name","description"],search:term})
+    this.tableData =  await this.http.makeCall({method,api}) || this.tableData
 
   }
 

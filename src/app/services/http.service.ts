@@ -112,7 +112,8 @@ export class HttpService {
       _limit:limit,
       _where:{
         _or:seekArray
-    }
+    },
+      _sort:"createdAt:DESC"
     })
     if(api.includes('?')){
       api=api+"&"+apiString;

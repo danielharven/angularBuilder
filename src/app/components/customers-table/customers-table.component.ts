@@ -22,7 +22,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
       <nz-tabset class="tabs" [nzSelectedIndex]="0">
         <nz-tab nzTitle="Contact List" [nzForceRender]="true">
           <div class="row ">
-            <div class="col-md-10 d-flex justify-content-between">
+            <div class="col-md-12 d-flex justify-content-between">
               <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
                 <input (keydown)="searchMyContacts()" [(ngModel)]="searchText" type="text" nz-input placeholder="type to search" />
               </nz-input-group>
@@ -33,19 +33,20 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
           <ng-template #suffixIconButton>
             <button (click)="searchMyContacts()" nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
           </ng-template>
-          <nz-table #basicTable [nzData]="tableData"
-          [nzFrontPagination]="false"
-          [nzTotal]="totalContacts"
-          (nzPageIndexChange)="searchMyContacts()"
+          <nz-table #basicTable
+                    [nzFrontPagination]="false"
+                    [nzTotal]="totalContacts"
+                    [nzPageSize]="limit"
+                    [ngStyle]="{'overflow-x':'scroll'}"
+                    (nzPageIndexChange)="paginateContacts($event)"
+                    [nzData]="tableData"
           [nzLoading]="loadingData"
-          [nzPageSize]="limit"
-          [nzPageIndex]="page"
-          [nzShowPagination]="true" class="table mb-4">
+                    class="table mb-4">
             <thead>
             <tr>
               <th class="bg-transparent">Names</th>
               <th class="bg-transparent">Phone</th>
-              <th class="bg-transparent text-right">Actions</th>
+              <th class="bg-transparent">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -73,7 +74,6 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
             </tr>
             </tbody>
           </nz-table>
-          <nz-pagination [nzTotal]="totalContacts" [nzPageSize]="limit" (nzPageIndexChange)="paginateContacts($event)"></nz-pagination>
           <nz-modal [(nzVisible)]="isEditContact"
                     nzTitle="Edit Contact "
                     (nzOnCancel)="handleCancelEditContactModal()" (nzOnOk)="handleOkContactModal()">
@@ -124,7 +124,7 @@ export class CustomersTableComponent implements OnInit {
   @ViewChild("loadingTemplate") loadingTemplate: TemplateRef<any>
   tableData =[]
   mailListData =[]
-  totalContacts=0
+  totalContacts=100
   loadingData=true
   // create variables
   showCreateContactModal = false;
@@ -161,7 +161,7 @@ export class CustomersTableComponent implements OnInit {
   // end create variables
   // Pagination variables
   page =0;
-  limit=20;
+  limit=10;
 
   // End Pagination variables
   processing = false;
@@ -198,8 +198,8 @@ export class CustomersTableComponent implements OnInit {
   async countTotal(){
     let api = this.contactsApi+'/count'
     let method="get";
-    let resp:any = this.http.makeCall({method,api});
-    this.countTotal = resp;
+    let resp:any =await this.http.makeCall({method,api});
+    this.totalContacts = resp;
   }
 
   // create contatc functions

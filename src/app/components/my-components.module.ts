@@ -21,7 +21,8 @@ import { UploaderComponent } from './shared/uploader/uploader.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { MailListComponent } from './mail-list/mail-list.component';
 import { SendToMailListComponent } from './send-to-mail-list/send-to-mail-list.component';
-import { ReadSmsComponent } from './read-sms/read-sms.component'
+import { ReadSmsComponent } from './read-sms/read-sms.component';
+import { GetCustomerNamePipe } from './shared/pipe/get-customer-name.pipe'
 
 const COMPONENTS = [
   FieldNgSelect,
@@ -53,7 +54,7 @@ const COMPONENTS = [
     FormlySelectModule,
     NgSelectModule,
   ],
-  declarations: [...COMPONENTS, ],
+  declarations: [...COMPONENTS, GetCustomerNamePipe, ],
     exports: [...COMPONENTS],
 })
 export class MyComponentsModule {}

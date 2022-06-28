@@ -10,14 +10,16 @@ import { HttpService } from 'src/app/services/http.service';
   [nzTotal]="totalSent"
   [nzFrontPagination]="false"
   [nzShowPagination]="true"
-  (nzPageIndexChange)="paginateContacts($event)"
+            [nzPageSize]="limit"
+            [ngStyle]="{'overflow-x':'scroll'}"
+            (nzPageIndexChange)="paginateContacts($event)"
   [nzData]="message">
 
   <tbody>
     <tr *ngFor="let comment of basicTable.data">
     <ng-container>
     <ng-template #authorTemplate>
-    {{comment?.customer?.name}} - {{comment.phone}}
+    {{comment?.phone | getCustomerName | async}} - {{comment.phone}} - {{comment.createdAt| date}}
   </ng-template>
     <nz-comment [nzAuthor]="authorTemplate">
         <nz-comment-content>
@@ -42,7 +44,7 @@ import { HttpService } from 'src/app/services/http.service';
           </div>
 
         </nz-comment-action>
-        <nz-comment-action   >
+        <nz-comment-action  *ngIf="comment.phone.length>8"  >
           <div class="ml-3" (click)="replySms(comment)">
           <i
           nz-tooltip
@@ -88,7 +90,7 @@ export class ReadSmsComponent implements OnInit {
   totalSent = 0
   contactsApi = '/inboxes';
   page =0;
-  limit=20;
+  limit=10;
   contactSearch = ''
   processing = false;
   searchText: any;
@@ -137,16 +139,31 @@ export class ReadSmsComponent implements OnInit {
     this.selected = comment;
     this.isVisible = true;
   }
+
   async reply(){
     this.isVisible =false;
+
     this.showLoading()
     let method = "post";
-    let api = "/outboxes"
+    let api  ="/customers?q="+this.selected.phone;
+    let resp = await this.http.makeCall({method,api})
+    if(Array.isArray(resp)){
+      if (resp.length===0)
+         {
+        this.http.showCustomerMsg.error("Customer unknown")
+        return  this.hideLoading()
+      }
+        }else{
+      this.hideLoading()
+      return this.http.showCustomerMsg.error("Customer unknown")
+
+    }
+    api = "/outboxes"
     let data= {
-      customers:[this.selected.phone],message:this.replyValue
+      customers:resp,message:this.replyValue
     }
     //@ts-ignore
-    let resp = await this.http.makeCall({method,api,data})
+     resp = await this.http.makeCall({method,api,data})
     this.hideLoading()
     if(resp){
       this.http.showCustomerMsg.success('Message sent');

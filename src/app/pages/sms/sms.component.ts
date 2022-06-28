@@ -18,22 +18,27 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-10 col-md-12 d-flex ">
+        <div class="col-lg-12 col-md-12 d-flex ">
           <nz-tabset>
-            <nz-tab nzTitle="Sent SMS">
+            <nz-tab (click)="paginateContacts(0)" nzTitle="Sent SMS">
           <div class="card card-top card-top-primary">
             <div class="card-body">
 
                   <div>
                   <div class="table-responsive text-nowrap">
-                    <nz-table #basicTable [nzData]="sentMailData" [nzTotal]="totalSent"
+                    <nz-table #basicTable [nzData]="sentMailData"
+                              [nzFrontPagination]="false"
+                              [nzTotal]="totalSent"
+                              [nzPageSize]="limit"
+                              [ngStyle]="{'overflow-x':'scroll'}"
+                              (nzPageIndexChange)="paginateContacts($event)"
                               [nzShowPagination]="true" class="table mb-4">
                       <thead>
                       <tr>
                         <th class="bg-transparent width-50">Date</th>
-                        <th class="bg-transparent">Customer</th>
-                        <th class="bg-transparent">Message</th>
-                        <th class="bg-transparent text-right">Delivered?</th>
+                        <th class="bg-transparent width-50">Customer</th>
+                        <th class="bg-transparent width-50">Message</th>
+                        <th class="bg-transparent">Status</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -49,12 +54,12 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
                             </ng-container>
                           </div>
                         </td>
-                        <td>
+                        <td nzBreakWord>
                             {{data.message}}
                         </td>
                         <td class="text-right">
                           <div class="text-nowrap">
-                              <span [ngClass]="{'text-success':data.sent,'text-danger':!data.sent}">{{data.sent}}</span>
+                              <span>{{data.status}}</span>
 
                           </div>
                         </td>
@@ -135,7 +140,7 @@ export class SmsComponent implements OnInit {
   sentMailData =[]
   totalSent =0;
   page =0;
-  limit=20;
+  limit=10;
   contactSearch = ''
   // End Pagination variables
   processing = false;
@@ -248,25 +253,25 @@ export class SmsComponent implements OnInit {
   }
 
   async paginateContacts(page: number) {
-    let api = '/customers'
-    let limit = 20
+    let api = this.contactsApi
+    let limit = 10
     let method='get';
     let term = this.contactSearch || ''
     api = this.http.paginationService({api,page,limit,
-      searchTerm:["name","email","phone"],search:term})
-    this.listOfContacts =  await this.http.makeCall({method,api}) || this.listOfContacts
+      searchTerm:["message"],search:term})
+    this.sentMailData =  await this.http.makeCall({method,api}) || this.sentMailData
 
   }
   async searchContacts($event: string) {
-    let api = '/customers'
+    let api = this.contactsApi
     let page  =0
-    let limit = 30
+    let limit = 10
     let term= $event;
     this.contactSearch = term;
     let method='get';
     api = this.http.paginationService({api,page,limit,
-      searchTerm:["name","email","phone"],search:term})
-    this.listOfContacts =  await this.http.makeCall({method,api}) || this.listOfContacts
+      searchTerm:["message","status"],search:term})
+    this.sentMailData =  await this.http.makeCall({method,api}) || this.sentMailData
   }
   refresh(){
     this.getPaginatedContacts(this.page,this.limit,["message"],"")

@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store'
 import * as Reducers from 'src/app/store/reducers'
 
 @Component({
-  selector: 'vb-footer',
+  selector: 'vbs-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
