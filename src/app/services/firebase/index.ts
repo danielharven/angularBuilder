@@ -17,12 +17,13 @@ interface User {
 }
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyBJVhr2WZshEGR7egcxoygQIphKOkKVIYQ',
-  authDomain: 'sellpixels-7d5d4.firebaseapp.com',
-  databaseURL: 'https://sellpixels-7d5d4.firebaseio.com',
-  projectId: 'sellpixels-7d5d4',
-  storageBucket: 'cleanui-72a42.appspot.com',
-  messagingSenderId: '338219933237',
+  apiKey: "AIzaSyDYlYwpiWQ_xEyGuKbt09IY865iOmYFO3g",
+  authDomain: "zedsms-54a3e.firebaseapp.com",
+  projectId: "zedsms-54a3e",
+  storageBucket: "zedsms-54a3e.appspot.com",
+  messagingSenderId: "532444387394",
+  appId: "1:532444387394:web:8d7437b6b4d27618f675db",
+  measurementId: "G-NHXM8JDQBY"
 }
 
 @Injectable({
