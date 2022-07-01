@@ -263,15 +263,15 @@ export class SmsComponent implements OnInit {
 
   }
   async searchContacts($event: string) {
-    let api = this.contactsApi
+    let api = '/customers'
     let page  =0
     let limit = 10
     let term= $event;
     this.contactSearch = term;
     let method='get';
     api = this.http.paginationService({api,page,limit,
-      searchTerm:["message","status"],search:term})
-    this.sentMailData =  await this.http.makeCall({method,api}) || this.sentMailData
+      searchTerm:["phone","name"],search:term})
+    this.listOfContacts =  await this.http.makeCall({method,api}) || this.sentMailData
   }
   refresh(){
     this.getPaginatedContacts(this.page,this.limit,["message"],"")
