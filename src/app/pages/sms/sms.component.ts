@@ -170,6 +170,9 @@ export class SmsComponent implements OnInit {
         label: 'Message',
         placeholder: 'Type in your message',
         required: true,
+        minRows:5,
+        maxRows:10,
+        rows:5
       }
     }
   ];

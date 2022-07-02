@@ -176,6 +176,8 @@ export class MailListComponent implements OnInit {
         label: 'Description',
         placeholder: 'Customers who have active accounts with us',
         required: true,
+        minRows:3,
+        maxRows:10
       }
     } ,
   ];

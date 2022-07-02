@@ -72,7 +72,9 @@ export class SendToMailListComponent implements OnInit {
         label: 'Message',
         placeholder: 'Type in your message',
         required: true,
-        row:5
+        minRows:5,
+        maxRows:10,
+        rows:5
       }
     }
   ];
@@ -80,7 +82,7 @@ export class SendToMailListComponent implements OnInit {
   listOfContacts=[]
   totalSent =0;
   page =0;
-  limit=20;
+  limit=10;
   contactSearch = ''
   // End Pagination variables
   processing = false;
@@ -122,7 +124,7 @@ this.checked=!this.checked;
   }
   async paginateContacts(page: number) {
     let api = '/maillists'
-    let limit = 20
+    let limit = 10
     let method='get';
     let term = this.contactSearch || ''
     api = this.http.paginationService({api,page,limit,
@@ -145,7 +147,7 @@ this.checked=!this.checked;
   async searchContacts($event: string) {
     let api = '/maillists'
     let page  =0
-    let limit = 30
+    let limit = 10
     let term= $event;
     this.contactSearch = term;
     let method='get';
