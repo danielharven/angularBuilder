@@ -290,7 +290,17 @@ export class CustomersTableComponent implements OnInit {
     this.showLoading()
     let method = "put";
     let api = "/customers"
-    let data:any = {...model}
+    let data:any ={}
+    if(model.email.includes("@"))
+    {
+      data =  {...model}
+    }
+    else{
+      //@ts-ignore
+      let{phone,name,id}=model;
+      data ={phone,name,id}
+    }
+
     let call = await this.http.makeCall({method,api,data})
     this.hideLoading();
     if(call){

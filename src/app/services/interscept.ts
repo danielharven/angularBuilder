@@ -108,7 +108,7 @@ export class AuthInterceptor implements HttpInterceptor {
     let {href} = window.location
     switch (codes) {
       case '403': {
-        if(!href.includes('home'))
+        if(!href.includes('home') ||!href.includes('auth/login'))
         this.notifyUser(error?.error?.message || error?.error?.error)
         break
       }
