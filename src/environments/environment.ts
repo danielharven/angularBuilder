@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   authenticated: false,
   hmr: false,
-  url: "https://zedsms-ecdabsvihq-uc.a.run.app"
+  url: "http://localhost:1337"
 }
 
 /*

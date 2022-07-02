@@ -38,6 +38,20 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
         <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
       </nz-form-item>
       <formly-form [form]="smsCreateForm" [fields]="smsCreatefields" [model]="smsCreatemodel"></formly-form>
+     <nz-form-item>
+       <label nz-checkbox (ngModelChange)="showSechduleTimer()"
+              [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="checked">Send Later</label>
+       <ng-container *ngIf="checked">
+         <nz-form-label>Set date and time to send</nz-form-label>
+         <nz-date-picker
+           nzShowTime
+           nzFormat="yyyy-MM-dd HH:mm:ss"
+           formControlName="scheduled"
+         ></nz-date-picker>
+       </ng-container>
+
+     </nz-form-item>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
   `,
@@ -46,7 +60,8 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 export class SendToMailListComponent implements OnInit {
   @ViewChild("loadingTemplate") loadingTemplate: TemplateRef<any>
   smsCreateForm : FormGroup =new FormGroup({
-    maillist : new FormControl(null,Validators.required)
+    maillist : new FormControl(null,Validators.required),
+    scheduled : new FormControl(Date.now(),Validators.required)
   });
   smsCreatemodel = { email: '',name:"",phone:"" };
   smsCreatefields: FormlyFieldConfig[] = [
@@ -57,7 +72,7 @@ export class SendToMailListComponent implements OnInit {
         label: 'Message',
         placeholder: 'Type in your message',
         required: true,
-        rows:5
+        row:5
       }
     }
   ];
@@ -71,9 +86,15 @@ export class SendToMailListComponent implements OnInit {
   processing = false;
   searchText: any;
   contactsApi = '/maillists/load'
+
+  checked=false;
+
   constructor(private http: HttpService,private notification: NzNotificationService) { }
 
   ngOnInit(): void {
+  }
+  showSechduleTimer(){
+this.checked=!this.checked;
   }
   async createSMS() {
     this.showLoading()

@@ -126,7 +126,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
               nzMode="multiple"
               nzPlaceHolder="Please select a contact"
               [nzServerSearch]="true"
-              (nzOnSearch)="searchContacts($event)"
+              (nzOnSearch)="searchCompanyContacts($event)"
               [nzDropdownRender]="renderTemplate"
               (ngModelChange)="contactSearch=''"
               formControlName="customers"
@@ -135,7 +135,7 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
               <nz-option *ngFor="let item of listOfContacts" [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
             </nz-select>
             <ng-template #renderTemplate>
-              <nz-pagination (nzPageIndexChange)="paginateContacts($event)" [nzPageIndex]="page" [nzTotal]="totalCount"></nz-pagination>
+              <nz-pagination (nzPageIndexChange)="paginateCompanyContacts($event)" [nzPageIndex]="page" [nzTotal]="totalCountContacts"></nz-pagination>
             </ng-template>
             <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
           </nz-form-item>
@@ -189,6 +189,7 @@ export class MailListComponent implements OnInit {
   searchText: any;
   contactsApi = '/maillists'
   totalCount = 100
+  totalCountContacts = 100
   constructor(private http: HttpService,private notification: NzNotificationService) { }
 
   ngOnInit(): void {
@@ -203,6 +204,10 @@ export class MailListComponent implements OnInit {
 let method = "GET";
 let count:any = await this.http.makeCall({api,method});
 this.totalCount = count;
+
+api = '/customers/count';
+count = await this.http.makeCall({api,method});
+this.totalCountContacts = count;
   }
   async getPaginatedContacts(page,limit,searchTerm,search,sort="CreatedAt"
   ){
@@ -378,4 +383,29 @@ this.totalCount = count;
       this.http.showCustomerMsg.error("Update failed...")
     }
   }
+
+  async searchCompanyContacts($event: string) {
+    let api = '/customers'
+    let page  =0
+    let limit = 10
+    let term= $event;
+    this.contactSearch = term;
+    let method='get';
+    api = this.http.paginationService({api,page,limit,
+      searchTerm:["name","phone","email"],search:term})
+    this.listOfContacts =  await this.http.makeCall({method,api}) || this.tableData
+  }
+
+  async paginateCompanyContacts(page: number) {
+    let api = '/customers'
+    let limit = 10
+    let method='get';
+    let term = this.contactSearch || ''
+    api = this.http.paginationService({api,page,limit,
+      searchTerm:["name","phone","email"],search:term})
+    this.listOfContacts =  await this.http.makeCall({method,api}) || this.tableData
+
+  }
+
+
 }
